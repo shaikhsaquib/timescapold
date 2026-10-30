@@ -1,0 +1,121 @@
+<%--
+ -- @(#)search.jsp	15/07/2009
+ --
+ -- Copyright 2004 BCCL. All Rights Reserved.
+ --
+ -- This software is the proprietary information of BCCL.
+ -- Use is subject to license terms.
+ --
+ --%>
+
+ <%--
+ -- Comments....
+ -- @author		Sachin Kale
+ -- @version 	1.00, 15/07/2009
+ --%>
+<%@ page language="java" %>
+<% //@ include file="../includes/sessionCheck.jsp" %>
+<%@ page errorPage="../common/errorPage.jsp"%>
+<% //@ include file="../includes/empHeader.jsp" %>
+<%@ page import="java.util.Hashtable, java.util.ArrayList" %>
+<%@ page import="com.bccl.util.HtmlUtil,com.bccl.util.Utility"%>
+<jsp:useBean id="groupwareWebController" class="com.bccl.groupware.web.controller.GroupwareWebController" /> 
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>Price Approval</title>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	
+	<!-- <meta content="width=device-width, initial-scale=1" name="viewport"> -->
+	
+<meta http-equiv="X-UA-Compatible" content="IE=edge; IE=9; IE=8; IE=7;chrome=1"> 
+
+
+<link rel="stylesheet" href="../bootstrap-3.3.2-dist/css/bootstrap.css">
+	<link rel="stylesheet" href="../css/ota.css"/>
+<link rel="stylesheet" href="../css/global.css">
+
+<script Language="JavaScript" src="../js/util.js"></script>
+<script Language="JavaScript" src="../js/common.js"></script> 
+<script Language="JavaScript" src="../js/ota.js"></script>
+
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script Language="JavaScript" src="../js/ota.js"></script> 
+	<script Language="JavaScript" src="../js/util.js"></script> 
+    <script Language="JavaScript" src="../js/common.js"></script> 
+	<script type="text/javascript">
+		
+	</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<% 
+	//String forWhom = (String) request.getParameter("forWhom");
+	String tblId = (String) request.getParameter("id");
+	//out.println("forWhom=="+forWhom);
+
+%>
+<form name="singlefupload"  method = "post" >
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		
+		<!-- <input type ="hidden" name = "forWhom" value = "<%//=forWhom%>" /> -->
+	
+		<tr>
+			<td colspan="100%" class="bold" align="left" height="30">SEARCH FOR USERS </td>
+		</tr>
+
+		<tr>
+			<td colspan="100%" class="normal" align="left" bgcolor="#000000"><img src="../images/spacer.gif" border="0"></td>
+		</tr>		
+        <tr>
+			<td class = "bold" height = "30" colspan = "100%" align = "left">Search By Name / Email-Id </td>
+		</tr>
+
+		<tr>
+			<td class = "normal" height = "30" width = "30%" align = "right">Enter Name / Email-Id</td>
+			<td class = "bold" height = "30"   width = "5%" align = "center">:</td>
+			<td class = "normal" height = "30" width="30%" align="left"><input type = "text" name = "email" id="email" class = "normal" size="30"></td>
+			<td align = "left">
+				<a href="javascript:validateUser('<%=tblId%>')"><img src="../images/but_go.gif" alt="go" border="0" valign = "absbottom"><a/>&nbsp;&nbsp;
+				<a href="javascript:clear()"><img src="../images/but_reset.gif" alt="reset" border="0" valign = "absbottom"></a>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="100%" class="normal" align="left" bgcolor="#000000"><img src="../images/spacer.gif" border="0"></td>
+		</tr>		
+       <!-- 	<tr>
+			<td colspan="100%" class="normal" align="left">
+            <table border="0" cellspacing="0" cellpadding="5">
+                <tr>
+                    <td><textarea name="outputText" id="outputText" rows="5" cols="37"></textarea>
+                    <input type="hidden" class="normal" name="userOId" id="userOId" ></td>
+                    <td><a href="#" onclick="add()" class="underline" valign="middle">Add to Members List<td>
+                </tr>
+            </table>
+        </td>
+		</tr>	 -->	
+		<tr>
+			<td colspan="100%" class="normal" align="left" bgcolor="#000000"><img src="../images/spacer.gif" border="0"></td>
+		</tr>		
+		<tr>
+			<td colspan="100%" class="normal" align="left" height = "15px">List of Members</td>
+		</tr>		
+		<tr>
+			<td colspan="100%" class="normal" align="left" bgcolor="#000000"><img src="../images/spacer.gif" border="0"></td>
+		</tr>		
+        <tr>
+			<td class = "normal" colspan="100%" align = "right">
+                <div id="members" style="padding:1px;padding-top:1px;text-align:left;"></div>
+            </td>
+		</tr>
+    </table>
+</form>
+
+	<script>
+			document.getElementById("email").focus();
+	</script>
+</html>

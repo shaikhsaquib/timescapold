@@ -1,0 +1,1 @@
+http://publib.boulder.ibm.com/infocenter/wpdoc/v6r0/index.jsp?topic=/com.ibm.wp.ent.doc/wpf/clus_install_create_cluster.html

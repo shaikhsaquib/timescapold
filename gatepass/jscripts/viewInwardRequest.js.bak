@@ -1,0 +1,83 @@
+function showInwardDetails(gatepassId, type, pageName, createdBy, status)
+{
+	
+	if (pageName == "processorViewInwardRequest")
+	{
+		url = "../common/viewInwardRequestDetails.jsp?gatepassId="+gatepassId+"&pageName="+pageName+"&createdBy="+createdBy+"&type="+type;
+		win = window.open(url, "RequestDetails", "top=10,left=100,width=800,height=650,scrollbars=yes,status=no,resizable=yes");
+
+	}
+	else {
+
+		url = "../common/inwardRequestDetails.jsp?gatepassId="+gatepassId+"&pageName="+pageName+"&createdBy="+createdBy+"&type="+type;
+		win = window.open(url, "RequestDetails", "top=10,left=100,width=800,height=650,scrollbars=yes,status=no,resizable=yes");
+
+	}
+
+}
+
+function updateAction(spId, gatepassId, type, pageName, status){
+
+	frmObj = document.frmViewRequests;
+	
+	if  (status == 'MA')
+	{
+		var authorisedBy = frmObj.authorisedBy.value;
+		valid = checkNull("AuthorisedBy",authorisedBy);
+
+		if(!valid){
+		frmObj.authorisedBy.focus();
+		return;
+		}
+	}
+	
+	//loadURL("../common/updateInwardAction.jsp?gatepassId="+gatepassId+"&type="+type+"&pageName="+pageName+"&spId="+spId+"&status="+status, "result"+spId, "Status Loading...");
+
+	frmObj.action = "../common/updateInwardAction.jsp?gatepassId="+gatepassId+"&type="+type+"&pageName="+pageName+"&spId="+spId+"&status="+status;
+
+	frmObj.submit();
+
+}
+
+function printClose() {
+
+	self.opener.location.reload();
+	window.print();
+	self.close();
+}
+
+
+function showInwardReport()
+{
+
+	frmObj = document.frmInwardRequests;
+	
+	fromDate = frmObj.fromDate.value;
+	toDate = frmObj.toDate.value;
+	type = frmObj.type.value;
+	reqStatus = frmObj.reqStatus.value;	
+	locnCode = frmObj.locnCode.value;
+
+	valid = checkNull("Location",locnCode);
+
+	if(!valid){
+		frmObj.locnCode.focus();
+		return;
+	}
+
+	var locn = locnCode.substring(0,locnCode.indexOf("|"));
+
+	frmObj.action ="../processor/inwardReportContainer.jsp?fromDate="+fromDate+"&toDate="+toDate+"&type="+type+"&reqStatus="+reqStatus+"&locn="+locn;
+
+	frmObj.submit();
+  
+}
+
+function downloadInwardReport(fromDate,toDate,type,locnCode,reqStatus)
+{
+	frmObj = document.frmInwardRequests;
+
+	url = "../common/downloadInwardReportsAll.jsp?fromDate="+fromDate+"&toDate="+toDate+"&type="+type+"&reqStatus="+reqStatus+"&locnCode="+locnCode;
+
+	win = window.open(url, "ReportDetails", "top=10,left=100,width=800,height=650,scrollbars=yes,status=no,resizable=yes"); 
+}

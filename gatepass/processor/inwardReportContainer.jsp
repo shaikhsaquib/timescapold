@@ -1,0 +1,177 @@
+<%@ page language="java" %>
+<%@ include file="../includes/sessionCheck.jsp" %>
+<%@ page errorPage="../common/errorPage.jsp"%>
+<%@ include file="../includes/empHeader.jsp" %>
+<%@ include file="../includes/statusHash.jsp" %>
+<%
+response.setHeader("Cache-Control","no-cache"); //HTTP 1.1
+response.setHeader("Pragma","no-cache"); //HTTP 1.0
+response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
+%>
+<%@ page import="java.util.Hashtable,java.util.Enumeration, java.util.ArrayList, java.util.Calendar, java.util.Date" %>
+
+<jsp:useBean id="GatepassController" class="com.bccl.gatepass.web.controller.GatepassWebController"/>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>View Requests</title>
+<link href="../style/global.css" rel="stylesheet" type="text/css" />
+<link href="../style/calendarControl.css" rel="stylesheet" type="text/css" />
+<script src="../jscripts/calendarControl.js"language="javascript"></script>
+<script src="../jscripts/viewInwardRequest.js"language="javascript"></script>
+<script src="../jscripts/util.js"language="javascript"></script>
+<script src="../jscripts/common.js"language="javascript"></script>
+<script src="../jscripts/jquery.js"language="javascript"></script>
+<style type="text/css">
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-image: url('../images/header_BG.jpg');
+	background-repeat: repeat-x;
+</style>
+</head>
+
+<%
+	ArrayList requestsList = new ArrayList();
+	Hashtable requestsHash = new Hashtable();
+
+	requestsHash.put("PRINTEDBY", timescapeUserOId+"");
+	requestsHash.put("TIMESCAPEUSEROID", timescapeUserOId+"");
+	requestsHash.put("WORKFLOWTYPE", "10");
+	requestsHash.put("ROLECODE", "5");
+
+	String location = (String)request.getParameter("locn");
+
+	requestsHash.put("LOCATION", location);
+
+	String fromDate = (String)request.getParameter("fromDate");
+		
+		if(fromDate!=null && fromDate!=""){
+
+			requestsHash.put("FROMDATE", fromDate);
+		
+		}
+
+		String toDate = (String)request.getParameter("toDate");
+
+		if(toDate!=null && toDate!=""){
+
+			requestsHash.put("TODATE", toDate);
+		
+		}else if(fromDate!=null && fromDate!=""){
+
+			requestsHash.put("FROMDATE", fromDate);
+		
+		}
+
+		String type = (String)request.getParameter("type");
+		
+		if(type!=null && !type.equals("0")){
+
+			requestsHash.put("TYPE", type);
+		
+		}
+
+		String reqStatus = (String)request.getParameter("reqStatus");
+
+		if(reqStatus!=null && !reqStatus.equals("0")){
+
+			//requestsHash.remove("STATUS");		
+			requestsHash.put("STATUS", reqStatus);
+
+		}else{
+
+			requestsHash.remove("STATUS");		
+		}
+
+	//out.println(requestsHash);
+
+	requestsList = GatepassController.getInwardReport(requestsHash);
+
+	//out.println(requestsList.size());
+	
+%>
+<body>
+<form name="frmInwardRequests" method="post">
+<%@ include file="../includes/relatedLinks.jsp"%>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td colspan="100%" bgcolor="#E7EAEF" class="budgetMenuBG">&nbsp;&nbsp;VIEW REQUESTS</td>
+    </tr>
+    <tr>
+      <td width="10%" align="center" valign="middle">      
+      <td align="left" valign="middle" class="normal">Returnable :      
+		<img src="../images/arrow_returnable1.png" width="20" height="19" /> | Non Returnable :      
+        <img src="../images/arrow_nonreturnable.png" width="20" height="19" />  | Goods Returned :      
+        <img src="../images/arrow_returnable.png" width="20" height="19" />   |  Goods Partially Returned :      
+        <img src="../images/arrow_partiallyReturned.png" width="20" height="19" />   | Not Returned:      
+        <img src="../images/arrow_notReturned.png" width="20" height="19" /> | Open/Save Report in csv:
+		<a href="#"
+		onclick="downloadInwardReport('<%=fromDate%>','<%=toDate%>','<%=type%>','<%=location%>',<%=reqStatus%>)">	
+		<img src="../images/excel.png" border="0"  class="normal"></a>
+		</td> 
+	
+  </tr>
+</table>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="2" class="normal">
+<tr class="greyBG">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="2" class="normal">
+<tr class="greyBG">
+	<td width="15%" height="30px">Request ID </td>
+	<td width="10%" align="left">Date </td>
+	<td width="10%">Type </td>
+	<td width="20%">Party Name </td>
+	<td width="9%">Date Of Return</td>
+	<!-- <td width="17%">Recommender/Authoriser</td> -->
+	<td width="18%">Approver</td>
+	<td width="20%">Request Status</td>
+</tr>
+<tr>
+	<td height="1" colspan="8" bgcolor="#f8f8f8"><img src="../images/spacer.gif" width="1" height="1" /></td>
+</tr>
+<%
+	//String pageName = "report";
+	if(requestsList.size()==0){
+%>
+	<tr>
+		<td height="1" colspan="8" bgcolor="#f8f8f8"><img src="../images/spacer.gif" width="1" height="1" /></td>
+	</tr>
+	<tr>
+		<td height="30" align="center" valign="middle" class="bold" colspan="8">There are no request(s) to view!!</td>
+	</tr>
+	<tr>
+		<td height="1" colspan="8" bgcolor="#f8f8f8"><img src="../images/spacer.gif" width="1" height="1" /></td>
+	</tr>
+
+<%
+	}else{
+
+		for(int ii=0; ii< requestsList.size(); ii++){
+
+			String tmpArr[] = (String [])requestsList.get(ii);
+
+			//String reviewerName ="-";
+			//reviewerName = tmpArr[16].equals("0")? "-" : tmpArr[17];	
+			
+%>	
+				<tr>
+					<td height="20px" align="left" valign="middle" class="normal"><%=tmpArr[0]%></td>
+					<td align="left" valign="middle" class="normal"><%=tmpArr[13]%></td>
+					<td align="left" valign="middle" class="normal"><img src="<%=statusImg.get(tmpArr[1])%>" border="0"></td>
+					<td align="left" valign="middle" class="normal"><%=tmpArr[4]%></td>
+					<td align="left" valign="middle" class="normal"><%=tmpArr[7]%></td>
+					<!-- <td align="left" valign="middle" class="normal"><%//=tmpArr[4]%></td> -->
+					<td align="left" valign="middle" class="normal"><%=tmpArr[18]%></td>
+				
+					<td align="left" valign="middle" class="normal"><%=statusInHash.get(tmpArr[22])%></td>
+				</tr>
+
+<%        //    }		
+		}
+	}
+%>
+</table>

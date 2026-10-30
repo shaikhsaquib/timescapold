@@ -1,0 +1,132 @@
+body {
+  padding-top: 0;
+  overflow-x:hidden;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 12px;
+font-weight:normal;
+
+
+}
+
+hr {
+  display: block;
+  -webkit-margin-before: 0.5em;
+  -webkit-margin-after: 0.5em;
+  -webkit-margin-start: auto;
+  -webkit-margin-end: auto;
+  border-style: inset;
+  border-width: 1px;
+}
+
+.form-inline .form-group {
+    margin-left: 5px;
+    margin-right: 0;
+   padding-top :2px;
+}
+
+
+.form-horizontal .control-label {
+  
+  font-weight:normal;
+     text-align: right;
+}
+.help-inline {
+  font-size: 13px;
+  color: #737373;
+  display: inline-block;
+  padding: 5px;
+}
+.form-control {
+    padding-right: 10px;
+}
+.form-control + .glyphicon {
+    position: absolute;
+    right: 0;
+    padding: 8px 27px;
+}
+h5 {
+ margin-left: 20px;
+ padding-bottom :0;
+ FONT-FAMILY: Arial, Helvetica, sans-serif;
+ COLOR: #000000;
+ FONT-SIZE: 9.5pt;
+ FONT-WEIGHT: bold;
+}
+.red-tooltip + .tooltip > .tooltip-inner {background-color: #000;}
+.aligncenter { 
+	text-align: center; 
+}
+
+th { text-align: center; }
+
+.green.btn {
+  color: #FFFFFF;
+  background-color: #35aa47;
+  border-color: "";
+ 
+  body {
+  padding-top: 0;
+}
+.aligncenter { 
+	text-align: center; 
+}
+td {
+    padding-left: .2em;
+    padding-bottom: .2em;
+	padding-right: .2em;
+}
+th { text-align: center; }
+.bg { background-color: #FBBBB9; width: 100%;  }
+.centerTable { margin: 0px auto; }
+
+ table{
+ padding: 0px 0px 0px 0px;
+   margin: 0px 0px 0px 0px;
+ display: table;
+ }
+.abc {text-align:left;padding-left:8px; vertical-align:middle;}
+
+.wide {
+  width: 150px;
+}
+table.fixed { table-layout:fixed; }
+.BreakWord {word-break: break-all; }
+
+
+textarea {
+                border: none;
+                width: 100%;
+                height:100%;
+   -webkit-box-sizing: border-box; /* <=iOS4, <= Android  2.3 */
+      -moz-box-sizing: border-box; /* FF1+ */
+           box-sizing: border-box; /* Chrome, IE8, Opera, Safari 5.1*/
+}
+::-webkit-input-placeholder {
+ font-size: 11px;
+ color: #d0cdfa;
+ text-transform: uppercase;
+ text-transform: uppercase;
+ text-align: center;
+ font-weight: bold;
+}
+:-moz-placeholder { /* older Firefox*/
+ font-size:11px;
+ color: #d0cdfa;
+ text-transform: uppercase;
+ text-align: center;
+ font-weight: bold;
+}
+::-moz-placeholder { /* Firefox 19+ */ 
+ font-size: 11px;
+ color: #d0cdfa; 
+ text-transform: uppercase;
+ text-align: center;
+ font-weight: bold;
+} 
+:-ms-input-placeholder { 
+ font-size: 11px; 
+ color: #d0cdfa;
+ text-transform: uppercase;
+ text-align: center;
+ font-weight: bold;
+}

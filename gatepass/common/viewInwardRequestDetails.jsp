@@ -1,0 +1,395 @@
+<!--<%--
+ -- Comments....
+ -- @author		Kavita Yadav
+ -- @version 	1.00, JAN 2013.
+ --%> -->
+
+<%@ page language="java" %>
+<%@ include file="../includes/sessionCheck.jsp" %>
+
+<%@ include file="../includes/empHeader.jsp" %>
+<%@ include file="../includes/statusHash.jsp" %>
+<%@ page import="java.util.Hashtable, java.util.ArrayList, java.util.GregorianCalendar, java.util.Calendar" %>
+
+<%
+response.setHeader("Cache-Control","no-cache"); //HTTP 1.1
+response.setHeader("Pragma","no-cache"); //HTTP 1.0
+response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
+%>
+<jsp:useBean id="GatepassController" class="com.bccl.gatepass.web.controller.GatepassWebController"/>
+<script src="../jscripts/viewRequests.js"language="javascript"></script>
+<script src="../jscripts/common.js"language="javascript"></script>
+<%
+
+
+	ArrayList requestsList = new ArrayList();
+	ArrayList requestDetailsList = new ArrayList();
+	ArrayList approversList			= new ArrayList();
+	Hashtable requestsHash = new Hashtable();
+	Hashtable criteriaHash			= new Hashtable();
+
+	String accept = "";
+	String reject = "";
+	String createdDate = "";
+	String recievedDate = "";
+	String ModifiedDate = "";
+	String acceptedDate = "";
+	String approvedDate = "";
+	String recievedBy = "";
+
+	
+	String gatepassId = (String)request.getParameter("gatepassId");
+	String createdBy = (String)request.getParameter("createdBy");
+	String pageName = (String)request.getParameter("pageName");
+	String reqType = (String)request.getParameter("type");
+ 
+
+	requestsHash.put("GATEPASSID",gatepassId);
+	requestsHash.put("CREATEDBY",createdBy);
+	requestsHash.put("REQTYPE",reqType);
+	//out.println(pageName);
+	
+
+
+	if(pageName.equals("viewInwardUser")) 
+		{
+			criteriaHash.put("TIMESCAPEUSEROID", timescapeUserOId+"");
+			criteriaHash.put("ROLECODE", "3");
+			criteriaHash.put("WORKFLOWTYPE", "10");
+			criteriaHash.put("COMPANYCODE", companyCode);
+			criteriaHash.put("BRANCHCODE", branchCode);
+			criteriaHash.put("LOCATIONCODE", locationCode);
+			criteriaHash.put("DEPARTMENT", deptGroup);
+			criteriaHash.put("STATUS", "A");
+
+			
+			approversList = GatepassController.getApprovers(criteriaHash);
+	}
+
+	requestsList = GatepassController.getInwordRequests(requestsHash);
+	requestDetailsList = GatepassController.getInwardGatepassDetails(gatepassId,reqType);
+	
+	int rows = requestDetailsList.size();
+	
+	
+	//out.println(requestsList.size());
+	//out.println(requestDetailsList.size());
+%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Request Details</title>
+<link href="../style/global.css" rel="stylesheet" type="text/css" />
+<link href="../style/calendarControl.css"rel="stylesheet">
+<script src="../jscripts/calendarControl.js"language="javascript"></script>
+<script src="../jscripts/common.js"language="javascript"></script>
+<script src="../jscripts/util.js"language="javascript"></script>
+<script src="../jscripts/addRows.js"language="javascript"></script>
+<script src="../jscripts/viewInwardRequest.js"language="javascript"></script>
+<script src="../jscripts/createInwardRequest.js"language="javascript"></script>
+
+<script> 
+    function hideImage() { 
+        if (document.getElementById) { 
+            document.getElementById('printbutton').style.visibility = 'hidden'; 
+           // document.getElementById('button').style.visibility = 'hidden'; 
+        } 
+    }
+    function showImage() { 
+        if (document.getElementById) { 
+            document.getElementById('printbutton').style.visibility = 'visible'; 
+            //document.getElementById('button').style.visibility = 'visible'; 
+        } 
+    } 
+     </script>
+
+
+</head>
+<body>
+<form name="frmViewRequests" method="post">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+      <td colspan="100%" height="20px" bgcolor="#E7EAEF" class="budgetMenuBG">&nbsp;&nbsp;INWARD REQUEST DETAILS</td>
+	</tr>
+	<tr class="normal">
+            <td colspan="100%" valign="top">&nbsp;</td>
+          </tr>
+</table>
+<%
+
+	if(requestsList.size()==0){
+%>
+	<tr>
+		<td height="20" colspan="100%"><hr></td>
+	</tr>
+	<tr>
+		<td height="30" align="center" valign="middle" class="bold" colspan="100%">There are no details to view!!</td>
+	</tr>
+	<tr>
+		<td height="20" colspan="100%"><hr></td>
+	</tr>
+<%
+	}else{
+		   String tmpArr[] = (String [])requestsList.get(0);
+
+		    if("UC".equals(tmpArr[24])){
+
+				 createdDate = tmpArr[28];
+				 recievedDate = "";
+				 ModifiedDate = "";
+				 acceptedDate = "";
+				 approvedDate = "";
+				 
+
+			}else if( "RA".equals(tmpArr[24]))
+			{
+				 createdDate = tmpArr[28];
+				 recievedDate = tmpArr[29];
+				 ModifiedDate = "";
+				 acceptedDate = "";
+				 approvedDate = "";
+
+			}else if( "MA".equals(tmpArr[24]))
+			{
+				 createdDate = tmpArr[28];
+				 recievedDate = tmpArr[29];
+				 ModifiedDate = tmpArr[30];
+				 acceptedDate = "";
+				 approvedDate = "";
+
+
+			}else if( "AA".equals(tmpArr[24]))
+			{
+				 createdDate = tmpArr[28];
+				 recievedDate = tmpArr[29];
+				 ModifiedDate = tmpArr[30];
+				 acceptedDate = tmpArr[31];
+				 approvedDate = "";
+			}else if( "PA".equals(tmpArr[24]))
+			{
+				 createdDate = tmpArr[28];
+				 recievedDate = tmpArr[29];
+				 ModifiedDate = tmpArr[30];
+				 acceptedDate = tmpArr[31];
+				 approvedDate = tmpArr[32];
+			}
+
+		  // out.println(tmpArr[24]);
+%>
+		<table width="90%" border="0" align="center" cellpadding="5" cellspacing="0"  class="normalBig" id="1" name="1">
+	<tr>
+<td colspan="100%" align="right" class="redbold">
+<input name="printbutton" type="submit" class="style4" id="printbutton" value="Print" onclick="javascript:hideImage();window.print();showImage();"/>
+</td>
+	</tr>
+</table>
+
+<table border="0" cellspacing="2" cellpadding="0" width="100%" align="center">
+	<input type="hidden" name="createdBy" value="<%=createdBy%>">
+			
+		 <tr>
+            <td height="25px" width = "40%" align="right" class="bold" valign="middle"></td>
+            <td align="left" width = "18%" class="bold" valign="middle"><%=statusHash.get(tmpArr[1])%> Gatepass</td> 
+            <td align="left" width = "40%" valign="middle" class="bold"></td>
+          </tr>
+		  <tr>
+            <td  height="25px" align="right" class="bold" valign="middle">Inward Gatepass ID</td>
+            <td  align="center" class="bold" valign="middle"> : </td> 
+            <td  align="left" valign="middle" class="normal"><%=tmpArr[0]%></td>
+          </tr>	  
+		  <tr>
+            <td height="25px" align="right" class="bold" valign="middle">VMS Reference ID</td>
+            <td align="center" class="bold" valign="middle"> : </td> 
+            <td align="left" valign="middle" class="normal"><%=tmpArr[2]%></td>
+          </tr>
+		  <tr>
+            <td height="25px" align="right" class="bold" valign="middle">Outward Reference Number</td>
+            <td align="center" class="bold" valign="middle"> : </td> 
+            <td align="left" valign="middle" class="normal"><%=tmpArr[3]%></td>
+          </tr>
+		  
+          <tr>
+            <td height="25px" align="right" class="bold" valign="middle">Party's Name</td>
+            <td align="center" class="bold" valign="middle"> : </td>
+            <td align="left" valign="middle" class="normal"><%=tmpArr[4]%></td>
+          </tr>
+		   <tr>
+            <td height="25px" align="right" class="bold" valign="middle">Mobile No</td>
+            <td align="center" class="bold" valign="middle"> : </td>
+            <td align="left" valign="middle" class="normal"><%=tmpArr[5]%></td>
+          </tr>
+          <tr class="normal">
+            <td height="25px" align="right" class="bold" valign="middle">Address</td>
+            <td align="center" class="bold" valign="middle"> : </td>
+            <td align="left" valign="middle" class="normal"><%=tmpArr[6]%></td>
+          </tr>
+		   <tr class="normal">
+            <td height="25px" align="right" class="bold" valign="middle">Vehicle No</td>
+            <td align="center" class="bold" valign="middle"> : </td>
+            <td align="left" valign="middle" class="normal"><%=tmpArr[26]%></td>
+          </tr>
+		   <tr class="normal">
+            <td height="25px" align="right" class="bold" valign="middle">Employee Name</td>
+            <td align="center" class="bold" valign="middle"> : </td>
+            <td align="left" valign="middle" class="normal"><%=tmpArr[33]%></td>
+          </tr>
+         
+	   
+         
+<%
+	if(tmpArr[1].equals("R")){
+%>
+          <tr id="showThisDate" name="showThisDate" class="normal">
+            <td height="25px" align="right" class="bold" valign="middle">Probable Date of Return</td>
+            <td align="center" class="bold" valign="middle"> : </td>
+            <td align="left" valign="middle" class="normal"><%=tmpArr[8]%></td>
+          </tr>
+<%
+	}
+%>
+         <tr class="normal">
+            <td colspan="100%" valign="top">&nbsp;</td>
+          </tr>
+          <tr class="normal">
+            <td colspan="100%" valign="top">&nbsp;</td>
+          </tr>
+		  <tr class="normal">
+            <td colspan="100%" height="30" align="left" valign="middle" class="greyBG">MATERIAL DETAILS :</td>
+          </tr>
+		  <tr class="normal">
+            <td colspan="100%" valign="top">&nbsp;</td>
+          </tr>
+	</table>
+			 
+<%
+		//}//end of for
+%>
+
+<table border="1" cellspacing="0" cellpadding="0" width="100%">
+		<tr class="greyBG">
+
+
+		<td width="2%" height="30">Sr.No.</td>
+			<td width="15%">Purchase Order No.</td>
+			<td width="15%">DC/Invoice</td>
+			<td width="20%">Material Description</td>
+			<td width="10%">UOM</td>
+			<td width="3%">Quantity</td>
+			<td width="25%">Reason for taking the material</td>
+			<td width="5%">Received Quantity</td>
+<%
+	if( "UC".equals(tmpArr[24]))
+	{
+%>
+			<td width="5%">Reject Quantity</td>
+<%
+	} else if( "RA".equals(tmpArr[24]) || "MA".equals(tmpArr[24]) || "AA".equals(tmpArr[24]) || "PA".equals(tmpArr[24]))
+	{
+%>
+			<td width="3%">Sending Quantity</td>
+			<td width="2%">Pending Quantity</td>
+<%
+	} 
+
+%>
+
+	</tr>
+<%
+// Details Display part starts here 
+
+	
+		for(int ii=0; ii< requestDetailsList.size(); ii++){
+
+			String tmpDetArr[] = (String [])requestDetailsList.get(ii);
+
+%>
+	<tr class="normal">
+			<td height="30" align="center" class="normal"><%=ii+1%></td>
+			<td><%=tmpDetArr[3]%></td>
+			<td><%=tmpDetArr[4]%></td>
+			<td><%=tmpDetArr[5]%></td>
+			<td><%=tmpDetArr[6]%></td>
+			<td><%=tmpDetArr[7]%> </td>
+			<td> <%=tmpDetArr[8]%></td>
+			<td> <%=tmpDetArr[10]%></td>
+<%
+	if( "UC".equals(tmpArr[24]))
+	{
+%>
+			<td> <%=tmpDetArr[9]%></td>
+<%
+	} else if( "RA".equals(tmpArr[24]) || "PA".equals(tmpArr[24]))
+	{
+%>			<input type="hidden" name="recQuantity<%=ii%>" size = "2" value ="<%=tmpDetArr[10]%>" id="recQuantity" >
+			<td ><input type="text" name = "sendQuan<%=ii%>" size = "2"  id ="sendQuan" value ="<%=tmpDetArr[11]%>" onblur= "onCheck(<%=rows%>);" readonly></td>
+			<td ><input type="text" name="PendingQuan<%=ii%>"  size = "2" id = "PendingQuan" value = "<%=tmpDetArr[12]%>" readonly></td>
+<%
+	}  else if( "MA".equals(tmpArr[24]) || "AA".equals(tmpArr[24]))
+	{
+%>	
+		<td> <%=tmpDetArr[11]%></td>
+		<td> <%=tmpDetArr[12]%></td>
+<%
+	}
+%>
+
+	</tr>
+	<input type="hidden" name="rows" size = "2" value ="<%=rows%>" >
+	<input type="hidden" name="srno<%=ii%>" size = "2" value ="<%=ii+1%>" >
+	
+<%
+		}
+
+%>
+
+ </table>
+ <input type="hidden" name="totalRecQuan" size = "2" value = "<%=tmpArr[25]%>">
+ <input type="hidden" name="totalSendingQuan" size = "2" id ="totalSendingQuan">
+ <input type="hidden" name="totalPendingQuan" size = "2" id ="totalPendingQuan" value = "<%=tmpArr[25]%>"> 
+
+ <%
+		//if( "UC".equals(tmpArr[24])){
+	 %>
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%" align="center">
+<tr class="normal">
+	<td colspan="100%" valign="top">&nbsp;</td>
+</tr>
+<tr class="greyBG">
+	<td width="18%" height="30">CREATED BY</td>
+	<td width="18%" height="30">RECEIVED BY</td>
+	<td width="18%" height="30">MODIFIED BY</td>
+	<td width="18%">APPROVED BY</td>
+	<td width="18%">APPROVED/PROCESSED BY</td>
+	<td width="10%">STATUS</td>
+</tr>
+<tr>
+	<td height="30" class="normal"><%=tmpArr[10]%><BR><BR><%=createdDate%></td>
+	<td class="normal"><%=tmpArr[13]%><BR><BR><%=recievedDate%></td>
+	<td class="normal"><%=tmpArr[16]%><BR><BR><%=ModifiedDate%></td>
+	<td class="normal"><%=tmpArr[19]%><BR><BR><%=acceptedDate%></td>
+	<td class="normal"><%=tmpArr[22]%><BR><BR><%=approvedDate%></td>
+	<td class="normal"><%=statusInHash.get(tmpArr[24])%></td>
+<%
+
+		}	
+		//}
+
+%></tr>
+<tr class="normal">
+	<td colspan="100%" height="5px">&nbsp;</td>
+</tr>
+
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>  
+		<td align="center"class="bold"><a href="#" onclick="window.close();" class="normal underline"><input type="button" class="button" value="C L O S E"></a></td>
+	</tr>
+</table>
+
+</form>
+</body>
+</html>	

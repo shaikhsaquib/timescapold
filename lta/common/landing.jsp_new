@@ -1,0 +1,107 @@
+<%--
+ -- @(#)landing.jsp	22-09-15
+ --
+ -- Copyright 2012 BCCL. All Rights Reserved.
+ --
+ -- This software is the proprietary information of BCCL.
+ -- Use is subject to license terms.
+ --
+ --%>
+ <%--
+ -- Comments....
+ -- @author		Krishna Vishwakarma
+ -- @version 	1.00, 22-09-15
+ --%>
+
+<%@ page language="java" %>
+<%@ include file="../includes/sessionCheck.jsp" %>
+<%//@ page errorPage="../common/errorPage.jsp"%>
+<%@ include file="../includes/empHeader.jsp" %>
+<%@ page import="java.util.Hashtable, java.util.ArrayList, java.util.StringTokenizer"%>
+<%@ page import="java.text.*, java.util.Calendar, java.util.GregorianCalendar, java.util.Date, java.io.*" %>
+<%@ page import="com.bccl.util.HtmlUtil,com.bccl.util.Utility"%>
+<jsp:useBean id="ltaController" class="com.bccl.lta.web.controllerbeans.LtaWebController" /> 
+
+
+  <!DOCTYPE html>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	   
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> LTA </title>
+	<link href="../css/reset.css" rel="stylesheet"/>	
+	<link href="../css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet"/>  
+	<link href="../bootstrap-3.3.2-dist/css/bootstrap.min.css" rel="stylesheet"/> 
+	<link href="../css/lta.css" rel="stylesheet"/>	
+    <title>LTA Application</title>
+	<!-- <script Language="JavaScript" src="../jscripts/jquery.js">
+	</script> -->
+	<script src="../js/jquery-1.9.1.min.js"></script>
+	<script src="../jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+	<script src="../bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
+	<script src="../js/bootstrap-maxlength.min.js"></script>	
+	<script Language="JavaScript" src="../jscripts/apply.js">
+	</script>
+    
+	<script>
+	$(document).ready(function() {
+	$('.RelatedLinks ul li.RelLinks').hover(function() {
+			$(this).find('.dropdownmenu').show();
+		}, function(){
+			$(this).find('.dropdownmenu').hide();
+	});
+	
+	});
+	
+	</script>
+
+    </head>
+ 
+<form name  = "frmLtaApplication" method = "post"">
+ <%@ include file="../includes/relatedlinks.jsp" %>
+
+<body >   
+<hr>
+	<div class="container"> 
+	<div class="row"> 
+	<div class="col-xs-1 "></div>
+	<div class="col-xs-10 " style="margin-top:5px;">
+    <div class="portlet box blue">
+		<div class="portlet-title">
+			
+		</div>
+	<div class="portlet-body">
+    <p style="margin-top:10px;font-size:17px;" class="text-center"> <strong> Monthly LTA</strong></p><hr style="border-top: dotted 1px; margin-top:1px;margin-bottom:1px;pdding-top:1px;" /></p>
+	<p style="text-align:justify;margin-top:10px;font-size:15px;"> All Employees who have LTA (Leave Travel Assistance) as part of their Total Target Remuneration (TTR) sheet, will have an option to avail LTA on a monthly basis.  The Payment of Monthly LTA is Taxable and basis declaration on Timescape. The Option to avail Monthly Taxable LTA is available to employees once in a year, the intimation of which is generally circulated by HR in the month of April. In case of a New Joiner, he/she can exercise this option of availing Monthly Taxable LTA within 30 days from the Date of Joining (DOJ). <br>
+	Employees not availing the Monthly LTA Option, will continue to get their LTA on an annual basis.<br></p>
+	<p style="text-align:justify;font-size:20px;">To apply for Monthly LTA, click <a href="../common/lta.jsp?flag=M"> here</a> or on Related links.</p>
+
+      <p style="margin-top:10px;font-size:17px;" class="text-center"> <strong>Annual LTA</strong></p><hr style="border-top: dotted 1px; margin-top:1px;margin-bottom:1px;pdding-top:1px;" /></p>
+    <p style="text-align:justify;margin-top:10px;font-size:18px;"> Annual LTA Details.</p>
+	<p style="text-align:justify;font-size:20px;">To apply for Annual LTA, click <a href="../common/lta.jsp?flag=A"> here</a> or on Related links.</p>
+    </div>
+	</div>
+	</div>
+	<div class="col-xs-1 "></div>
+	</div>
+
+   <!-- <div class="row"> 
+	<div class="col-xs-1 "></div>
+	<div class="col-xs-10 bs-example" style="margin-top:10px;">
+    <div class="portlet box yellow">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-th"></i>    <strong>Annual LTA</strong>
+			</div>			
+		</div>
+	<div class="portlet-body">
+	
+    </div>
+	</div>
+	</div>
+	<div class="col-xs-1 "></div>
+	</div>
+	</div>-->
+</body>
+</html>

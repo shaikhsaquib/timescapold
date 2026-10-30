@@ -1,0 +1,482 @@
+<%@ page import="java.util.Hashtable, java.util.ArrayList" %>
+<%@ page import="com.bccl.util.HtmlUtil,com.bccl.util.Utility"%>
+<%//@ include file="includes/sessionCheck.jsp"%>
+<%//@ page errorPage="common/errorPage.jsp"%>
+<%@ include file="../includes/empHeader.jsp"%>
+<jsp:useBean id="priceApprovalWebController" class="com.bccl.priceapproval.web.controller.priceapprovalWebController" /> 
+<%@page import="com.bccl.tsenvironment.EnvironmentProperties"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>PRICE APPROVAL</title>
+<link href="../style/global.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+</style>
+	<script Language="JavaScript" src="../jscripts/fieldCheck.js"></script>
+<link href="../style/calendarControl.css" rel="stylesheet">
+</head>
+<body>
+<% 
+		String DPATH       = EnvironmentProperties.getValue("priceapproval", "uploadPath");
+
+	    String emailId1	   = emailId;
+
+		if (emailId1.indexOf("@") > -1) {
+        emailId1 = emailId1.substring(0, emailId1.indexOf("@"));        
+	    }   
+		
+		String userEmailid  = emailId1;
+	    		
+		String tOId			= (String)request.getParameter("tOId");
+
+		String priceid		= (String)request.getParameter("priceid");
+
+		ArrayList vStatus	=  new ArrayList();
+	
+		vStatus 			=	priceApprovalWebController.viewStatus(tOId,priceid);
+
+		ArrayList vStatus1	=  new ArrayList();
+	
+		vStatus1 			=	priceApprovalWebController.viewApp2(tOId,priceid);
+
+	
+		String[] data1		= (String [])vStatus.get(0);
+
+		String pageType		= request.getParameter("viewSAB"); 
+
+		//String[] data2 = (String [])vStatus1.get(0);
+
+		//String priceid1						= data1[0];
+		String NEGOTIATION_PC_DATE			= data1[1];
+		String NEGOTIATION_PC_MEETING_VENUE	= data1[2];
+		String NEGOTIATION_VALUE			= data1[3];
+		String FINALIZED_VENDOR_NAME		= data1[4];
+		String PAYMENT_TERMS				= data1[5];
+		String SAVINGS						= data1[6];
+		String PRODUCT_SERVICE__NAME	= data1[7];
+		String INDENTED_USER				= data1[8];
+		String PACKAGE_NAME_SANCTION		= data1[9];
+		String TOTAL_BUDGET					= data1[10];
+		String PO_COMMITTED_TILL_DATE		= data1[11];
+		String BALANCE_BUDGET				= data1[12];
+		String REQUIREMENT					= data1[13];
+		String DESCRIPTION1					= data1[14];
+		String DESCRIPTION2					= data1[15];
+		String DESCRIPTION3					= data1[16];
+		String ATTACHMENT1					= data1[17];
+		String ATTACHMENT2					= data1[18];
+		String ATTACHMENT3					= data1[19];
+		String PRODUCT1						= data1[20];
+		String PRODUCT2						= data1[21];
+		String PRODUCT3						= data1[22];
+		String RATE1						= data1[23];
+		String RATE2						= data1[24];
+		String RATE3						= data1[25];
+		String BENCHMARK1					= data1[26];
+		String BENCHMARK2					= data1[27];
+		String BENCHMARK3					= data1[28];
+		String RECOMMENEDATION				= data1[29];
+		String SUPPORTEDBY_DIRECTOR1		= data1[30];
+		String SUPPORTEDBY_DIRECTOR2		= data1[31];
+		String APPROVER11					= data1[32];
+		String APPROVER12					= data1[33];
+		String APPROVER13					= data1[34];
+		String APPROVER21					= data1[35];
+		String APPROVER22					= data1[36];
+		String APPROVER23					= data1[37];
+		String APPROVER31					= data1[38];
+		String APPROVER32					= data1[39];
+		String APPROVER33					= data1[40];
+		String APPROVER4					= data1[41];
+		String APPROVER5					= data1[42];
+		String APPROVER6					= data1[43];
+		String CREATEDBY					= data1[44];
+		String CREATEDON					= data1[45];
+		String MODIFIEDBY					= data1[46];	
+		String MODIFIEDON					= data1[47];
+		String STATUS						= data1[48];
+
+		String display						= "NA";
+		//String VENDORID					=  data2[0];
+		//String PRICEID					=  data2[1];
+		//String VENDOR						=  data2[2];
+		//String INITIALOFFER				=  data2[3];
+		//String FINALOFFER					=  data2[4];
+		//String DELIVERYPERIOD				=  data2[5];
+		//String WARRANTYPERIOD				=  data2[6];
+		//String CREATEDBY					=  data2[7];
+		//String CREATEDON					=  data2[8];
+		//String MODIFIEDBY					=  data2[9];
+		//String MODIFIEDON					=  data2[10];
+		//String STATUS						=  data2[11];
+
+%>
+<form name="priceApprovalMain" method="post" action="">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="77%"><img src="../images/header_price1.jpg" width="842" height="44" /></td>
+    <td width="23%" rowspan="2">&nbsp;</td>
+  </tr>
+<!--   <tr>
+    <td height="38"><img src="../images/header_price2.jpg" width="706" height="34" /><img src="../images/related_links.png" width="18" height="18" /><span class="boldsmall">Related links&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;  | <img src="../images/otherESSlinks.png" width="18" height="18" /> <span class="boldsmall">Other ESS links</span></td>
+  </tr> -->
+</table>
+<table width="100%" cellspacing="2" cellpadding="2" border="0">
+  <tr><td colspan="6" align="right" class="travelMenuBG">PRICE APPROVAL ID : <%=priceid%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td height="12"></td></tr>
+  <tr>
+	<td colspan="6" align="right" class="travelMenuBG"> STATUS : <%if(STATUS.equals("L")){%>In Process<%}else if(STATUS.equals("A")){%>Approved<%}else if(STATUS.equals("R")){%>Rejected<%}%>&nbsp;&nbsp;&nbsp;&nbsp;
+    </td>
+	</tr>
+   <tr><td height="7"></td></tr>
+  <tr><td height="20" align="left"><a href="../index.jsp" class="normal"><b>BACK</b></a></td></tr>
+  <tr><td height="10"></td></tr>
+  <tr><td height="10" align="right" colspan="6" class="redbold">Print <a href="#" onclick="javascript:void window.print();"><img src="../images/print.gif" border="0"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td height="10" class="boldsmall" align="right" colspan="5"><%if(pageType!=null){if(pageType.equals("YES")){%><a href="supportApprove.jsp?sa=<%=priceid%>&tOId=<%=tOId%>">Support / Approve</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="reject.jsp?sa=<%=priceid%>&tOId=<%=tOId%>">Reject</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%}}%></td></tr>
+  <tr><td height="10"></td></tr>
+  <tr>
+    <td height="26" colspan="2" bgcolor="#fbf9f9" class="travelMenuBG">PC MEETING DETAILS</td>
+    <td colspan="2" align="left" bgcolor="#fbf9f9" class="travelMenuBG">PRICE DETAILS</td>
+  </tr>
+  <tr>
+    <td width="18%" height="27" bgcolor="#fbf9f9"><span class="small" id="top">Negotiation/PC meeting date:</span></td>
+    <td width="26%" align="left"><span class="small">
+      <%=NEGOTIATION_PC_DATE%>
+    </span></td>
+    <td width="21%" align="left" bgcolor="#fbf9f9" class="normal"><span class="small">Product/ Service/ Project Name:</span></td>
+    <td width="35%" align="left"><span class="small">
+     <table width="100%" cellspacing="0" cellpadding="0" border="0">
+	  <tr>
+	  <td width="45%">
+	  <%=PRODUCT_SERVICE__NAME%>
+	  <td width="3%"></td>
+	  <td id="requestedBy2Description" align="left" width="8%"></td>
+	  <td align="left"></td>
+	  </tr>
+	  </table>
+    </span></td>
+  </tr>
+  <tr>
+    <td bgcolor="#fbf9f9"><span class="small">Negotiation/PC meeting venue:</span></td>
+    <td width="30%" align="left"><span class="small">
+      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+	  <tr>
+	  <td width="45%"><%=NEGOTIATION_PC_MEETING_VENUE%></td>
+	  <td width="3%"></td>
+	  <td id="lineCountDescription" align="left" width="8%"></td>
+	  <td align="left"></td>
+	  </tr>
+	  </table>
+		<!--<input name="lineCountDescription" class="style3" value="100" size="3" maxlength="3" readonly="readOnly" />-->
+    </span></td>
+    <td width="21%" align="left" bgcolor="#fbf9f9" class="normal"><span class="small">Indented User/ User group:</span></td>
+    <td width="35%" align="left"><span class="small">
+	<table width="100%" cellspacing="0" cellpadding="0" border="0">
+	  <tr>
+	  <td width="45%">
+	  <%=INDENTED_USER%>
+	  <td width="3%"></td>
+	  <td id="requestedBy3Description" align="left" width="8%"></td>
+	  <td align="left"></td>
+	  </tr>
+	  </table>
+      </span></td>
+  </tr>
+  <tr>
+    <td bgcolor="#fbf9f9"><p class="small">Negotiated value (Rs):</p></td>
+    <td width="26%" align="left"><span class="small">
+	<table width="100%" cellspacing="0" cellpadding="0" border="0">
+	  <tr>
+	  <td width="45%">
+	  <%=NEGOTIATION_VALUE%></td>
+	  <td id="requestedBy7Description" align="left" width="8%"></td>
+	  <td align="left"></td>
+	  </tr>
+	  </table>
+    </span></td>
+    <td width="21%" align="left" bgcolor="#fbf9f9" class="normal"><span class="small">Package Name/ Sanction:</span></td>
+    <td width="35%" align="left"><span class="small">
+      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+	  <tr>
+	  <td width="45%">
+	  <%=PACKAGE_NAME_SANCTION%>
+	  <td width="3%"></td>
+	  <td id="requestedBy4Description" align="left" width="8%"></td>
+	  <td align="left"></td>
+	  </tr>
+	  </table>
+    </span></td>
+  </tr>
+  <tr>
+    <td bgcolor="#fbf9f9"><span class="small">Finalized vendor's name :</span></td>
+    <td width="26%" align="left"><span class="small">
+      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+	  <tr>
+	  <td width="45%">
+	  <%=FINALIZED_VENDOR_NAME%></td>
+	  <td id="requestedBy8Description" align="left" width="8%"></td>
+	  <td align="left"></td>
+	  </tr>
+	  </table>
+    </span></td>
+    <td width="21%" align="left" bgcolor="#fbf9f9" class="normal"><span class="small">Total Budget (Rs.):</span></td>
+    <td width="35%" align="left"><span class="small">
+      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+	  <tr>
+	  <td width="45%">
+	  <%=TOTAL_BUDGET%>
+	  <td width="3%"></td>
+	  <td id="requestedBy5Description" align="left" width="8%"></td>
+	  <td align="left"></td>
+	  </tr>
+	  </table>
+    </span></td>
+  </tr>
+  <tr>
+    <td bgcolor="#fbf9f9"><span class="small">Payment terms:</span></td>
+    <td width="26%" align="left"><span class="small">
+	<table width="100%" cellspacing="0" cellpadding="0" border="0">
+	  <tr>
+	  <td width="45%">
+	  <%=PAYMENT_TERMS%>
+	  <td width="3%"></td>
+	  <td id="reasonDescription" align="left" width="8%"></td>
+	  <td align="left"></td>
+	  </tr>
+	  </table>
+      </span></td>
+    <td width="21%" align="left" bgcolor="#fbf9f9" class="normal"><span class="small">PO's Commited till date (Rs.)</span></td>
+    <td width="35%" align="left"><span class="small">
+	<table width="100%" cellspacing="0" cellpadding="0" border="0">
+	  <tr>
+	  <td width="45%">
+	  <%=PO_COMMITTED_TILL_DATE%>
+	  <td width="3%"></td>
+	  <td id="fqtNumberDescription" align="left" width="8%"></td>
+	  <td align="left"></td>
+	  </tr>
+	  </table>
+      </span></td>
+  </tr>
+  <tr>
+    <td bgcolor="#fbf9f9"><span class="small">Savings (Rs):</span></td>
+    <td width="26%" align="left"><span class="small">
+      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+	  <tr>
+	  <td width="45%">
+	  <%=SAVINGS%>
+	  <td width="3%"></td>
+	  <td id="requestedBy9Description" align="left" width="8%"></td>
+	  <td align="left"></td>
+	  </tr>
+	  </table>
+    </span></td>
+    <td width="21%" height="26" align="left" valign="middle" bgcolor="#fbf9f9" class="normal">Balance Budget(Rs.)</td>
+    <td valign="top" width="35%" align="left"><span class="small">
+      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+	  <tr>
+	  <td width="45%">
+	  <%=BALANCE_BUDGET%>
+	  <td width="3%"></td>
+	  <td id="requestedBy6Description" align="left" width="8%"></td>
+	  <td align="left"></td>
+	  </tr>
+	  </table>
+    </span></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellpadding="2" cellspacing="2">
+
+  <tr>
+    <td height="22" bgcolor="#ffffff" class="travelMenuBG">BACKGROUND</td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="2" cellspacing="2">
+ </table>
+<!-- error code -->
+<table width="100%" cellspacing="2" cellpadding="2">
+  <tr>
+    <td height="32" colspan="2" align="left" valign="middle" class="travelMenuBG">ATTACHMENTS</td>
+    <td colspan="3" align="left" valign="middle" class="travelMenuBG">BENCHMARKING</td>
+    <td align="left" valign="middle" class="travelMenuBG">RECOMMENDATION</td>
+  </tr>
+  <tr>
+    <td height="25" align="left" valign="top" class="greyBG">DESCRIPTION</td>
+    <td height="25" align="left" valign="top" class="greyBG">ATTACH</td>
+    <td align="left" valign="top" class="greyBG">PRODUCT/SERVICE</td>
+    <td align="left" valign="top" class="greyBG" width="10%">Rate</td>
+    <td align="left" valign="top" class="greyBG" width="20%">Benchmark Rate</td>
+    <td width="29%" rowspan="4" align="left" valign="top" class="small"><%=RECOMMENEDATION%></td>
+  </tr>
+  <tr>
+    <td width="18%" height="25" align="left" valign="top"><span class="small">
+     <%=DESCRIPTION1%>
+    </span></td>
+	<%
+				 if(!(ATTACHMENT1.equals("NA.NA_NA")))
+				{
+				 String st1 = ATTACHMENT1.substring(0, ATTACHMENT1.lastIndexOf("."));
+				 String st2 = ATTACHMENT1.substring(ATTACHMENT1.lastIndexOf(".")+1,ATTACHMENT1.length());
+                 String st3 = st1.substring(0, ATTACHMENT1.lastIndexOf("_"));
+                 display = st3 + "." + st2;
+				}
+				
+
+    %>
+    <td width="9%" height="25" align="left" valign="top" class="small"><%if(!(ATTACHMENT1.equals("NA.NA_NA")))
+				{%><a href="#"  onclick="downloadAttachments('<%=DPATH+userEmailid+"/"+ATTACHMENT1%>')"><%=display%></a><%}%></td>
+    <td width="21%" align="left" valign="top" class="small"><%=PRODUCT1%></td>
+    <td width="8%" align="left" valign="top"><span class="small">
+     <%=RATE1%>
+    </span></td>
+    <td width="15%" align="left" valign="top"><span class="small">
+      <%=BENCHMARK1%>
+    </span></td>
+  </tr>
+ <tr>
+    <td width="18%" height="25" align="left" valign="top"><span class="small">
+     <%=DESCRIPTION2%>
+    </span></td>
+	<%
+				   if(!(ATTACHMENT2.equals("NA.NA_NA")))
+				{
+				 String st1 = ATTACHMENT2.substring(0, ATTACHMENT2.lastIndexOf("."));
+				 String st2 = ATTACHMENT2.substring(ATTACHMENT2.lastIndexOf(".")+1,ATTACHMENT2.length());
+                 String st3 = st1.substring(0, ATTACHMENT2.lastIndexOf("_"));
+                 display = st3 + "." + st2;
+				}
+				
+    %>
+    <td width="9%" height="25" align="left" valign="top" class="small"><%if(!(ATTACHMENT2.equals("NA.NA_NA")))
+				{%><a href="#"  onclick="downloadAttachments('<%=DPATH+userEmailid+"/"+ATTACHMENT2%>')"><%=display%></a><%}%></td>
+    <td width="21%" align="left" valign="top" class="small"><%=PRODUCT2%></td>
+    <td width="8%" align="left" valign="top"><span class="small">
+     <%=RATE2%>
+    </span></td>
+    <td width="15%" align="left" valign="top"><span class="small">
+      <%=BENCHMARK2%>
+    </span></td>
+  </tr>
+ <tr>
+    <td width="18%" height="25" align="left" valign="top"><span class="small">
+     <%=DESCRIPTION3%>
+    </span></td>
+		<%
+				if(!(ATTACHMENT3.equals("NA.NA_NA")))
+				{
+				 String st1 = ATTACHMENT3.substring(0, ATTACHMENT3.lastIndexOf("."));
+				 String st2 = ATTACHMENT3.substring(ATTACHMENT3.lastIndexOf(".")+1,ATTACHMENT3.length());
+                 String st3 = st1.substring(0, ATTACHMENT3.lastIndexOf("_"));
+                 display = st3 + "." + st2;
+				}
+				
+    %>
+    <td width="9%" height="25" align="left" valign="top" class="small"><%if(!(ATTACHMENT3.equals("NA.NA_NA")))
+				{%><a href="#"  onclick="downloadAttachments('<%=DPATH+userEmailid+"/"+ATTACHMENT3%>')"><%=display%></a><%}%></td>
+    <td width="21%" align="left" valign="top" class="small"><%=PRODUCT3%></td>
+    <td width="8%" align="left" valign="top"><span class="small">
+     <%=RATE3%>
+    </span></td>
+    <td width="15%" align="left" valign="top"><span class="small">
+      <%=BENCHMARK3%>
+    </span></td>
+  </tr>
+</table>
+
+
+<!-- code ends-->
+<table width="100%" border="0" cellpadding="2" cellspacing="2">
+
+  <tr>
+    <td height="22" bgcolor="#ffffff" class="travelMenuBG">SUPPORTED BY</td>
+  </tr>
+</table>
+<table width="100%" cellspacing="2" cellpadding="2">
+  <tr >
+    <td width="18%" bgcolor="#fbf9f9" class="small" >DIRECTOR</td>
+    <td width="34%" height="29" bgcolor="#fbf9f9" class="small" ><%=SUPPORTEDBY_DIRECTOR1%></td>
+    <td width="14%" align="left" bgcolor="#fbf9f9" class="small">DIRECTOR</td>
+    <td width="34%" align="left" bgcolor="#fbf9f9"><span class="small">
+     <%=SUPPORTEDBY_DIRECTOR2%>
+    </span></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="52%" bgcolor="#FFFFFF"><table width="100%" border="0" cellpadding="2" cellspacing="2">
+     
+      <tr>
+        <td height="22" bgcolor="#ffffff" class="travelMenuBG">APPROVALS</td>
+        </tr>
+    </table>
+      <table width="100%" cellspacing="2" cellpadding="2">
+        <tr class="greyBG">
+          <td width="17%" >B&amp;C-<span class="small"> LEVEL 1</span><span class="redsmall"></span></td>
+          <td width="17%" height="29" >USER/ TEAM<span class="small">-LEVEL </span><span class="redsmall"><span class="small">1</span></span></td>
+          <td width="24%" align="left">FINANCE/BRANCH HEAD/ MAS- <span class="redsmall"><span class="small">LEVEL 1</span> </span></td>
+          <td width="16%" align="left"><span class="small">LEVEL 2</span></td>
+          <td width="15%" align="left"><span class="small">LEVEL 2</span></td>
+          <td width="14%" align="left"><span class="small">LEVEL 2</span></td>
+        </tr>
+        <tr class="small">
+          <td class="small" height = "25" width="12%" align="left"><%if(APPROVER11!=null){out.println(APPROVER11);}%>
+		  </td>
+          <td class="small" height = "25" width="12%" align="left"><%if(APPROVER12!=null){out.println(APPROVER12);}%>
+		  </td>
+          <td class="small" height = "25" width="12%" align="left"><%if(APPROVER13!=null){out.println(APPROVER13);}%>
+		  </td>
+          <td rowspan="3" align="left" valign="top" class="small"><span class="small">
+            <%if(APPROVER4!=null){out.println(APPROVER4);}%>
+			</span></td>
+          <td rowspan="3" align="left" valign="top"><span class="small">
+<%if(APPROVER5!=null){out.println(APPROVER5);}%></span></td>
+          <td rowspan="3" align="left" valign="top"><span class="small">
+<%if(APPROVER6!=null){out.println(APPROVER6);}%></span></td>
+        </tr>
+        <tr class="small">
+          <td class="small" height = "25" width="12%" align="left"><%if(APPROVER21!=null){out.println(APPROVER21);}%>
+		  </td>
+          <td class="small" height = "25" width="12%" align="left"><%if(APPROVER22!=null){out.println(APPROVER22);}%>
+		  </td>
+          <td class="small" height = "25" width="12%" align="left"><%if(APPROVER23!=null){out.println(APPROVER23);}%>
+		  </td>
+        </tr>
+        <tr class="small">
+          <td class="small" height = "25" width="12%" align="left"><%if(APPROVER31!=null){out.println(APPROVER31);}%>
+		  </td>
+          <td class="small" height = "25" width="12%" align="left"><%if(APPROVER32!=null){out.println(APPROVER32);}%>
+		  </td>
+          <td class="small" height = "25" width="12%" align="left"><%if(APPROVER33!=null){out.println(APPROVER33);}%>
+		  </td>
+        </tr>
+      </table>
+      <table width="100%" border="0" cellspacing="4" cellpadding="0">
+        <tr>
+          <td width="50%">&nbsp;</td>
+          <td width="50%">&nbsp;</td>
+        </tr>
+        <tr>
+          <td align="right" valign="middle"></td>
+          <td></td>
+        </tr>
+      </table>
+     
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <!-- <tr>
+    <td width="45%" bgcolor="#E6DED1"><img src="../images/price_footer.jpg" width="347" height="25" /></td>
+    <td width="55%" bgcolor="#E6DED1"><img src="../images/related_links.png" width="18" height="18" /><span class="boldsmall">Related links&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;  | <img src="../images/otherESSlinks.png" width="18" height="18" /> <span class="boldsmall">Other ESS links</span></td>
+  </tr> -->
+</table>
+<p>&nbsp;</p>
+<table width="100%" cellpadding="0" cellspacing="0" >
+</tbody>
+</form>
+</body>
+</html>

@@ -1,0 +1,28 @@
+C:\Program Files\Java\jdk1.6.0_22\lib\classes12.jar;C:\Program Files\Java\jdk1.6.0_22\lib;
+
+C:\Program Files\Java\jdk1.6.0_22\jre\lib\ext
+
+
+select * from REQ_FOR_LEAVE where RFL_SNO = '201109552972'
+
+UPDATE REQ_FOR_LEAVE 
+		 SET RFL_APPR_FLAG = 'L'
+		, RFL_APPR_REMARKS=  'L'
+		,  RFL_APPR_DATE =  TO_DATE(SYSDATE,'DD-MON-YYYY')
+		 WHERE RFL_SNO=  '201109552972'
+		 
+	select nls_date_format from session
+	
+/* Formatted on 2011/09/23 11:23 (Formatter Plus v4.8.5) */
+SELECT TO_CHAR(RFL_APPR_DATE,'DD-MON-YYYY')
+  FROM req_for_leave
+ WHERE rfl_sno = '201109552972'
+ 
+delete from req_for_leave where rfl_sno = '201109551107'
+
+/* Formatted on 2011/09/23 12:26 (Formatter Plus v4.8.5) */
+UPDATE req_for_leave
+   SET rfl_appr_flag = 'C',
+       rfl_appr_remarks = 'C ',
+       rfl_appr_date = TO_DATE (SYSDATE, 'DD-MON-YYYY')
+ WHERE rfl_sno = '201109551107'

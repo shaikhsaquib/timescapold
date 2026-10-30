@@ -1,0 +1,134 @@
+body {
+margin-left: 0px;
+margin-top: 0px;
+margin-right: 0px;
+margin-bottom: 0px;
+background-image: url(../images/smsbanner2.png);
+background-repeat: repeat-x;
+}
+.container{
+    margin:0px auto;
+    width: 100%; 
+}
+
+.main-area {
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	padding-top:8px;
+	padding-bottom:5px;
+	padding-left:8px;
+	padding-right:8px;
+	margin-left :30px;
+	margin-right :30px;	
+	margin-bottom:15px;
+}
+.bs-example {
+	position: relative;
+	padding: 10px 15px;
+	margin-left:10px;
+	border: 1px solid #cdcdcd;
+	border-radius: 10px;
+}
+.row {
+  margin-right: 8px;
+  margin-left: 8px;  
+}
+.btn1{
+	margin-top:10px;
+}
+.btm {
+margin-bottom:10px;
+text-align:center;
+}
+.control-label
+{	
+	margin-top:6px;	
+}
+table { table-layout: fixed; word-wrap: break-word; }
+ table th, table td { overflow: hidden; }
+ @media (min-width: 768px)
+	.bs-example {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.RelatedLinks {
+font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+font-weight:normal;
+font-size: 13px;
+margin:5px 5px 0 0 ;
+float:right;
+position:relative;
+width:200px;
+}
+
+.RelatedLinks  ul li{
+list-style-type:none;
+}
+
+.RelatedLinks .RelLinks{
+font-size:16px;
+text-align:right;
+}
+
+
+.RelatedLinks .RelLinks a,
+.RelatedLinks .RelLinks a:link,
+.RelatedLinks .RelLinks a:visited,
+.RelatedLinks .RelLinks a:hover{
+background: url("../images/DownArrow.png") no-repeat right center;
+padding-right:15px;
+}
+
+
+.RelatedLinks  a,
+.RelatedLinks  a:link,
+.RelatedLinks  a:visited,
+.RelatedLinks  a:hover{
+color:#000;
+text-decoration:none;
+
+}
+
+.RelatedLinks  .dropdownmenu {
+border:1px #e6e6e6 solid;
+width:200px;
+float:left;
+padding:0 0 0 0;
+margin:0 0 0 0;
+z-index:1000;
+background-color:#fff;
+position:absolute;
+display:none;
+left:5px;
+top:22px;
+text-align:left;
+}
+
+.RelatedLinks  .dropdownmenu  li{
+width:100%;
+float:left;
+padding:0 0 0 0;
+margin:0 0 0 0;
+list-style-type:none;
+border-bottom:1px #e6e6e6 solid;
+text-align:left;
+}
+
+.RelatedLinks  .dropdownmenu  li a,
+.RelatedLinks  .dropdownmenu  li a:link,
+.RelatedLinks  .dropdownmenu  li a:visited,
+.RelatedLinks  .dropdownmenu  li a:active{
+background-image:none;
+background-color:1px #e6e6e6 solid;
+padding:3px 7px;
+width:100%;
+text-align:left;
+width:100%;
+float:left;
+}
+
+.RelatedLinks  .dropdownmenu  li a:hover{
+background-color:#e6e6e6;
+background-image:none;
+}

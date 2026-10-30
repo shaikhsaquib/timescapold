@@ -1,0 +1,282 @@
+.grey {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #999999; FONT-SIZE: 8pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.normal {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 8pt; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+.normal1 {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 7.5pt; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+.bold {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 8pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.small {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 7.5pt; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+.underline {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 8pt; FONT-WEIGHT: normal; TEXT-DECORATION: underline
+}
+.underline_small {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 7.5pt; FONT-WEIGHT: normal; TEXT-DECORATION: underline
+}
+.white {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #ffffff; FONT-SIZE: 8pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.whitenormal {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #ffffff; FONT-SIZE: 8pt; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+.boldsmall {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 7.5pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.boldsmallBG {
+	FONT-FAMILY: Arial, Helvetica, sans-serif;
+	COLOR: #000000;
+	FONT-SIZE: 8pt;
+	FONT-WEIGHT: bolder;
+	TEXT-DECORATION: none;
+	background-image: url(../images/menubg.jpg);
+	background-repeat: repeat-x;
+	background-position: left top;
+	letter-spacing: 0.8em;
+}
+.travelMenuBG {
+	FONT-FAMILY: Arial, Helvetica, sans-serif;
+	COLOR: #000000;
+	FONT-SIZE: 7.5pt;
+	FONT-WEIGHT: bolder;
+	TEXT-DECORATION: none;
+	background-image: url(../images/travel_menubg.jpg);
+	background-repeat: repeat-x;
+	background-position: left top;
+	letter-spacing: 0.2em;
+}
+.button {
+	FONT-FAMILY: Arial, Helvetica, sans-serif;
+	COLOR: #000000;
+	FONT-SIZE: 8pt;
+	FONT-WEIGHT: bold;
+	TEXT-DECORATION: none;
+	letter-spacing: 0.7em;
+	text-transform: uppercase;
+}
+.greyBG {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+	COLOR: #333333;
+	FONT-SIZE: 7pt;
+	FONT-WEIGHT: bolder;
+	TEXT-DECORATION: none;
+	background-image: url(../images/greybg.jpg);
+	background-repeat: repeat-x;
+	background-position: left top;
+}
+.big {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 12pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.bigoffblue {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #a8c6e5; FONT-SIZE: 13pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.whitesmall {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #ffffff; FONT-SIZE: 7.5pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+A:hover {
+	TEXT-DECORATION: underline
+}
+.boldunderline {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 8pt; FONT-WEIGHT: bold; TEXT-DECORATION: underline
+}
+.boldunderline_small {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 7.5pt; FONT-WEIGHT: bold; TEXT-DECORATION: underline
+}
+.notile {
+	BACKGROUND-IMAGE: url(images/vignettebar.jpg); BACKGROUND-REPEAT: no-repeat
+}
+.bold1 {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 8pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.bigblue {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #6097cf; FONT-SIZE: 8pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.smallblue {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #6097cf; FONT-SIZE: 7.5pt; FONT-WEIGHT: bold; TEXT-DECORATION: underline
+}
+.hrblue {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #37577b; FONT-SIZE: 7.5pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.whitesmallCopy {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #ffffff; FONT-SIZE: 7.5pt; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+.whitesmallnormal {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #ffffff; FONT-SIZE: 7.5pt; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+.redbold {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #ab0000; FONT-SIZE: 8pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.whiteCopy {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #ffffff; FONT-SIZE: 8.5pt; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+.greysmall {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #c1c1c1; FONT-SIZE: 10pt; FONT-WEIGHT: bold
+}
+.blue {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #99ccff; FONT-SIZE: 7.5pt; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+.rednormal {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #ff0000; FONT-SIZE: 8pt; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+.brownnormal {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #cc6633; FONT-SIZE: 8pt; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+.bluenormal {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #6097cf; FONT-SIZE: 8pt; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+.greytitle {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #999999; FONT-SIZE: 10pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.bigblue1 {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #6097cf; FONT-SIZE: 8pt; FONT-WEIGHT: bold
+}
+.whitebig {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #ffffff; FONT-SIZE: 10pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.header {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #ffffff; FONT-SIZE: 14pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.brownnormal {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #cc6633; FONT-SIZE: 8pt; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+.bluenormal {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #6097cf; FONT-SIZE: 8pt; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+.nav {
+	TEXT-TRANSFORM: none; FONT-VARIANT: normal; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 10px; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.navnormal {
+	TEXT-TRANSFORM: none; FONT-VARIANT: normal; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 10px; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+.loginlinks {
+	TEXT-TRANSFORM: none; FONT-VARIANT: normal; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #018bcd; FONT-SIZE: 10px; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+.redheader {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #ff0000; FONT-SIZE: 14pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.blueheader {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #37577b; FONT-SIZE: 14pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.blackheader {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 14pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.titleblack {
+	TEXT-TRANSFORM: none; FONT: bolder 17px Verdana, Arial, Helvetica, sans-serif; COLOR: #000000; TEXT-DECORATION: none
+}
+.navblue {
+	TEXT-TRANSFORM: none; FONT-VARIANT: normal; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #07187e; FONT-SIZE: 10px; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+.navred {
+	TEXT-TRANSFORM: none; FONT-VARIANT: normal; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #ff0000; FONT-SIZE: 10px; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+.redboldunderline {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #ab0000; FONT-SIZE: 8pt; FONT-WEIGHT: bold; TEXT-DECORATION: underline
+}
+.underlineBig {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 10pt; FONT-WEIGHT: normal; TEXT-DECORATION: underline
+}
+.normalBig {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 10pt; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+.redsmall {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #ff0000; FONT-SIZE: 7.5pt; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+.lightgrey {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #eeeeee; FONT-SIZE: 8pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.smallunderline {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 7.5pt; FONT-WEIGHT: normal; TEXT-DECORATION: underline
+}
+.timescapeHeaderLink {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 7.5pt; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+.urBtnStd {
+	BORDER-BOTTOM: #75aec9 0px; TEXT-ALIGN: center; BORDER-LEFT: #75aec9 0px; PADDING-BOTTOM: 0px; BACKGROUND-COLOR: #75aec9; PADDING-LEFT: 5px; PADDING-RIGHT: 4px; WHITE-SPACE: nowrap; HEIGHT: 14px; COLOR: #000; FONT-SIZE: 0.7em; BORDER-TOP: #75aec9 0px; CURSOR: hand; FONT-WEIGHT: normal; BORDER-RIGHT: #75aec9 0px; TEXT-DECORATION: none; PADDING-TOP: 0px
+}
+
+
+/* remove the list style */
+ #nav {
+	font-family:"Arial";
+	margin:0; 
+	padding:0; 
+	list-style:none;
+	padding:35px 0;
+}	
+
+/* make the LI display inline */
+/* it's position relative so that position absolute */
+/* can be used in submenu */
+#nav li {
+	float:left; 
+	display:block; 
+	width:110px; 
+	position:relative;
+	z-index:500; 
+	margin:0 1px;
+}
+
+/* this is the parent menu */
+#nav li a {
+	background:#a8aebd;
+	padding:0px 0px 0 5px; 
+	font-weight:700;  
+	height:12px; 
+	text-decoration:none; 
+	color:#333333; 
+	text-align:left;
+}
+
+#nav li a:hover {
+	color:#000000;
+}
+
+/* you can make a different style for default selected value */
+#nav a.selected {
+	color:#f00;
+}
+
+/* submenu, it's hidden by default */
+#nav ul {
+	position:absolute; 
+	left:0; 
+	display:none; 
+	margin:0 0 0 -1px; 
+	padding:0; 
+	list-style:none;
+}
+
+#nav ul li {
+	width:250px; 
+	float:left; 
+	border-top:1px  #fff; // border of menu option
+	background:#a8aebd;// menu option background color
+}
+
+/* display block will make the link fill the whole area of LI */
+#nav ul a {
+	font-family:"Arial";
+	display:block;  
+	height:15px;
+	padding: 3px 25px; 
+	color:#ffffff;
+	background-image: url("../images/link_icon.jpg");
+	background-repeat: no-repeat;
+	background-position: 7px 8px;
+}
+
+#nav ul a:hover {
+	text-decoration:none;	
+}
+
+/* fix ie6 small issue */
+/* we should always avoid using hack like this */
+/* should put it into separate file : ) */
+*html #nav ul {
+	margin:0 0 0 -2px;
+}

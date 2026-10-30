@@ -1,0 +1,476 @@
+<!--<%--
+ -- Comments....
+ -- @author		Ashutosh Joshi
+ -- @version 	1.00, May 2012.
+ --%> -->
+
+<%@ page language="java" %>
+<%@ include file="../includes/sessionCheck.jsp" %>
+<%@ page errorPage="../common/errorPage.jsp"%>
+<%@ include file="../includes/empHeader.jsp" %>
+<%@ page import="java.util.Hashtable, java.util.ArrayList, java.util.GregorianCalendar, java.util.Calendar" %>
+
+<%
+response.setHeader("Cache-Control","no-cache"); //HTTP 1.1
+response.setHeader("Pragma","no-cache"); //HTTP 1.0
+response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
+%>
+
+<jsp:useBean id="gatepassCtrl" class="com.bccl.gatepass.web.controller.GatepassWebController"/>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Create Gatepass Request</title>
+<link href="../style/global.css" rel="stylesheet" type="text/css" />
+<link href="../style/calendarControl.css"rel="stylesheet">
+<script src="../jscripts/calendarControl.js"language="javascript"></script>
+<script src="../jscripts/common.js"language="javascript"></script>
+<script src="../jscripts/util.js"language="javascript"></script>
+<script src="../jscripts/addRows.js"language="javascript"></script>
+<style type="text/css">
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-image: url('../images/header_BG.jpg');
+	background-repeat: repeat-x;
+}
+</style>
+</head>
+
+<%
+	GregorianCalendar today = new GregorianCalendar();
+%>
+
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="43%"><img src="../images/gatePass.jpg" width="365" height="50" /></td>
+    <td width="57%" valign="bottom"><img src="../images/related_links.png" width="18" height="18" /><span class="boldsmall">Related links&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  </tr>
+</table>
+
+<form name="frmCreateRequest"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+
+    <tr>
+      <td width="43%" bgcolor="#E7EAEF" class="budgetMenuBG">&nbsp;&nbsp;REQUEST GATEPASS</td>
+      <td width="1%" bgcolor="#E7EAEF" class="budgetMenuBG">&nbsp;</td>
+    
+      <td width="56%" height="20" bgcolor="#E7EAEF" class="budgetMenuBG">&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="center" valign="middle">      
+      <td align="center" valign="middle">      
+      <td align="center" valign="middle">      
+  <tr>
+      <td colspan="3" align="center" valign="middle"><table border="0" cellspacing="2" cellpadding="0" width="100%" align="center">
+          <tr>
+            <td height="34" colspan="100%" align="center" valign="middle" class="greyBG"><input type="radio" name="gatePassType" id="gatePassType" value="R" />&nbsp;RETURNABLE GATE PASS&nbsp; | &nbsp; <input type="radio" name="gatePassType" id="gatePassType" value="N"/>NON- RETURNABLE GATE PASS
+             </td>
+          </tr>
+         <!--  <tr class="normal">
+            <td height="41" colspan="2" align="right" valign="middle">Department</td>
+            <td width="22%" align="left" valign="middle"><input maxlength="50" size="30" name="partyPersonName2" /></td>
+            <td width="7%" align="left" valign="middle">Section/Vertical</td>
+            <td width="40%" align="left" valign="middle"><input maxlength="50" size="30" name="partyPersonName3" /></td>
+          </tr> -->
+          <tr class="normal">
+            <td colspan="2" align="right" valign="middle">Party's Name</td>
+            <td align="left" valign="middle"><input maxlength="60" size="30" name="partyName" onblur="checkJunk('partyName',this.value);checkNull('partyName',this.value);"/>
+            <img src="../images/tick.png" width="20" height="20" /></td>
+            <td align="left" valign="middle"></td>
+            <td align="left" valign="middle"></td>
+          </tr>
+          <tr class="normal">
+            <td colspan="2" align="right" valign="middle">Address</td>
+            <td colspan="3" align="left" valign="middle"><textarea onkeydown="limitText(this.form,105,105);" onkeyup="limitText(this.form,105,105);" onblur="checkNull('partyAddress',this.value)" rows="4" cols="30" name="partyAddress"></textarea>
+            <img src="../images/tick.png" width="20" height="20" /></td>
+          </tr>
+          <tr>
+            <td colspan="2" align="right" valign="middle" class="normal">Represented By</td>
+            <td colspan="3" align="left" valign="bottom" class="normal"><input maxlength="50" size="30" name="partyPersonName" onblur="checkJunk('partyPersonName',this.value);checkNull('partyPersonName',this.value);"/>
+              (Name of Person)<img src="../images/tick.png" width="20" height="20" /><br />
+            <br /></td>
+          </tr>
+          <tr class="normal">
+            <td width="1%" rowspan="10" align="right" valign="middle"><label></label>
+              <label></label>
+            <label></label>              </td>
+            <td height="24" align="right" valign="middle" class="greyBG">MATERIAL DETAILS</td>
+            <td colspan="3" align="left" valign="middle" class="greyBG">&nbsp;</td>
+          </tr>
+          <tr class="normal">
+            <td width="30%" align="right" valign="middle"><label>Ownership </label></td>
+            <td align="left" valign="middle"><select name="ownership">
+              <option selected="selected" value="Y">Company's   own</option>
+              <option value="N">Party's own</option>
+            </select>
+            <img src="../images/tick.png" width="20" height="20" /></td>
+            <td align="left" valign="middle"> </td>
+            <td align="left" valign="middle"> </td>
+          </tr>
+          <tr class="normal">
+            <td align="right" valign="middle">Item Category</td>
+            <td align="left" valign="middle"><select name="itemCategory">
+              <option selected="selected" value="Y">Capital   item</option>
+              <option value="N">Non-capital item</option>
+            </select>
+            <img src="../images/tick.png" width="20" height="20" /></td>
+            <td align="left" valign="middle"> </td>
+            <td align="left" valign="middle"> </td>
+          </tr>
+          <tr class="normal">
+            <td align="right" valign="middle">Probable Date of Return</td>
+            <td colspan="3" align="left" valign="middle"><input id="returnDate" readonly="readonly" size="10" name="returnDate" onfocus="showCalendarControl(this);"/>
+            <img src="../images/calendar.png" width="26" height="26" /></td>
+          </tr>
+          <tr class="normal">
+            <td align="right" valign="middle">Purchase Order / Job order No.</td>
+            <td align="left" valign="middle"><input onchange="checkPurNo(this.form);" maxlength="20" size="30" name="purchaseOrderJobNo" /></td>
+            <td valign="middle" align="right">Date</td>
+            <td align="left" valign="top"><input id="purchaseOrderDate" readonly="readonly" size="10" name="purchaseOrderDate" onfocus="showCalendarControl(this);"/> <img src="../images/calendar.png" width="26" height="26" /></td>
+          </tr>
+          <tr class="normal">
+            <td colspan="4" valign="top">&nbsp;</td>
+          </tr>
+          <tr class="normal">
+            <td colspan="4" valign="top"><table border="0" cellspacing="2" bordercolordark="#000000" cellpadding="0" width="100%" align="center">
+              <tbody>
+                <tr class="greyBG">
+                  <td width="4%" height="30">Sr.No.</td>
+                  <td width="16%">Material Description</td>
+                  <td width="5%">Quantity</td>
+                  <td width="9%">UOM</td>
+                  <td width="12%">Asset Transfer Note NO.</td>
+                  <td width="10%">Asset Transfer Date</td>
+                  <td width="18%">Location to be Transfered</td>
+                  <td width="26%">Remarks/Reason for taking the material</td>
+                  </tr>
+                <tr>
+				<table id="dataTable">
+                  <td >1</td>
+                  <td>                    <span class="normal">
+                    <input maxlength="50" size="23" name="materialDesc0" />                  
+                    </span></td>
+                  <td>                    <span class="normal">
+                    <input onblur="checkNumeric(this,1,20,',','.','-');" maxlength="38" size="5" name="quantity0" />                  
+                    </span></td>
+                  <td>
+                    <span class="normal">
+                    <select name="uomId0">
+                      <option selected="selected" value="1">NOS</option>
+                      <option value="2">KGS</option>
+                      <option value="3">LTS</option>
+                      <option value="4">MTS</option>
+                      <option value="5">PACKET</option>
+                      <option value="6">LOTS</option>
+                      <option value="7">BAGS</option>
+                      <option value="8">CARTONS</option>
+                      <option value="21">CM</option>
+                    </select>
+                    </span></td>
+                  <td>                    <span class="normal">
+                    <input onblur="setfocusFunc(this,'assetransferdate0','0');" onchange="setSrNoFields(this.form);" maxlength="38" size="10" name="assetTransferNoteNo0" />                  
+                    </span></td>
+                  <td>
+                    <span class="normal">
+                    <input id="assetransferdate0" readonly="readonly" maxlength="38" size="7" name="assetransferdate0" onfocus="showCalendarControl(this);"/>
+                    <img src="../images/calendar.png" width="26" height="26" /></span></td>
+                  <td>
+                    <span class="normal">
+                    
+                    </span>
+                    <select name="uomId2" class="normal">
+                      <option value="1">Select Location</option>
+                      <option value="2"></option>
+                      <option value="3"></option>
+                      <option value="4"></option>
+                      <option value="5"></option>
+                      <option value="6"></option>
+                      <option value="7"></option>
+                      <option value="8"></option>
+                      <option value="21"></option>
+                    </select></td>
+                  <td>                    <span class="normal">
+                    <input maxlength="100" size="23" name="materialReason0" />                  
+                    </span></td>
+                  </tr>
+                <tr>
+                  <td>2</td>
+                  <td>                    <span class="normal">
+                    <input maxlength="50" size="23" name="materialDesc1" />                  
+                    </span></td>
+                  <td>                    <span class="normal">
+                    <input onblur="checkNumeric(this,1,20,',','.','-');" maxlength="38" size="5" name="quantity1" />                  
+                    </span></td>
+                  <td>
+                    <span class="normal">
+                    <select name="uomId1">
+                      <option selected="selected" value="1">NOS</option>
+                      <option value="2">KGS</option>
+                      <option value="3">LTS</option>
+                      <option value="4">MTS</option>
+                      <option value="5">PACKET</option>
+                      <option value="6">LOTS</option>
+                      <option value="7">BAGS</option>
+                      <option value="8">CARTONS</option>
+                      <option value="21">CM</option>
+                    </select>
+                    </span></td>
+                  <td>                    <span class="normal">
+                    <input onblur="setfocusFunc(this,'assetransferdate1','1');" onchange="setSrNoFields(this.form);" maxlength="38" size="10" name="assetTransferNoteNo1" />                  
+                    </span></td>
+                  <td>
+                    <span class="normal">
+                    <input id="assetransferdate1" readonly="readonly" maxlength="38" size="7" name="assetransferdate1" onfocus="showCalendarControl(this);"/>
+                    <img src="../images/calendar.png" width="26" height="26" /></span></td>
+                  <td><select name="uomId3" class="normal">
+                    <option value="1">Select Location</option>
+                    <option value="2"></option>
+                    <option value="3"></option>
+                    <option value="4"></option>
+                    <option value="5"></option>
+                    <option value="6"></option>
+                    <option value="7"></option>
+                    <option value="8"></option>
+                    <option value="21"></option>
+                  </select></td>
+                  <td>                    <span class="normal">
+                    <input maxlength="100" size="23" name="materialReason1" />                  
+                    </span></td>
+                  </tr>
+
+				  <td >3</td>
+                  <td>                    <span class="normal">
+                    <input maxlength="50" size="23" name="materialDesc0" />                  
+                    </span></td>
+                  <td>                    <span class="normal">
+                    <input onblur="checkNumeric(this,1,20,',','.','-');" maxlength="38" size="5" name="quantity0" />                  
+                    </span></td>
+                  <td>
+                    <span class="normal">
+                    <select name="uomId0">
+                      <option selected="selected" value="1">NOS</option>
+                      <option value="2">KGS</option>
+                      <option value="3">LTS</option>
+                      <option value="4">MTS</option>
+                      <option value="5">PACKET</option>
+                      <option value="6">LOTS</option>
+                      <option value="7">BAGS</option>
+                      <option value="8">CARTONS</option>
+                      <option value="21">CM</option>
+                    </select>
+                    </span></td>
+                  <td>                    <span class="normal">
+                    <input onblur="setfocusFunc(this,'assetransferdate0','0');" onchange="setSrNoFields(this.form);" maxlength="38" size="10" name="assetTransferNoteNo0" />                  
+                    </span></td>
+                  <td>
+                    <span class="normal">
+                    <input id="assetransferdate0" readonly="readonly" maxlength="38" size="7" name="assetransferdate0" onfocus="showCalendarControl(this);"/>
+                    <img src="../images/calendar.png" width="26" height="26" /></span></td>
+                  <td>
+                    <span class="normal">
+                    
+                    </span>
+                    <select name="uomId2" class="normal">
+                      <option value="1">Select Location</option>
+                      <option value="2"></option>
+                      <option value="3"></option>
+                      <option value="4"></option>
+                      <option value="5"></option>
+                      <option value="6"></option>
+                      <option value="7"></option>
+                      <option value="8"></option>
+                      <option value="21"></option>
+                    </select></td>
+                  <td>                    <span class="normal">
+                    <input maxlength="100" size="23" name="materialReason0" />                  
+                    </span></td>
+                  </tr>
+
+				  <td >4</td>
+                  <td>                    <span class="normal">
+                    <input maxlength="50" size="23" name="materialDesc0" />                  
+                    </span></td>
+                  <td>                    <span class="normal">
+                    <input onblur="checkNumeric(this,1,20,',','.','-');" maxlength="38" size="5" name="quantity0" />                  
+                    </span></td>
+                  <td>
+                    <span class="normal">
+                    <select name="uomId0">
+                      <option selected="selected" value="1">NOS</option>
+                      <option value="2">KGS</option>
+                      <option value="3">LTS</option>
+                      <option value="4">MTS</option>
+                      <option value="5">PACKET</option>
+                      <option value="6">LOTS</option>
+                      <option value="7">BAGS</option>
+                      <option value="8">CARTONS</option>
+                      <option value="21">CM</option>
+                    </select>
+                    </span></td>
+                  <td>                    <span class="normal">
+                    <input onblur="setfocusFunc(this,'assetransferdate0','0');" onchange="setSrNoFields(this.form);" maxlength="38" size="10" name="assetTransferNoteNo0" />                  
+                    </span></td>
+                  <td>
+                    <span class="normal">
+                    <input id="assetransferdate0" readonly="readonly" maxlength="38" size="7" name="assetransferdate0" onfocus="showCalendarControl(this);"/>
+                    <img src="../images/calendar.png" width="26" height="26" /></span></td>
+                  <td>
+                    <span class="normal">
+                    
+                    </span>
+                    <select name="uomId2" class="normal">
+                      <option value="1">Select Location</option>
+                      <option value="2"></option>
+                      <option value="3"></option>
+                      <option value="4"></option>
+                      <option value="5"></option>
+                      <option value="6"></option>
+                      <option value="7"></option>
+                      <option value="8"></option>
+                      <option value="21"></option>
+                    </select></td>
+                  <td>                    <span class="normal">
+                    <input maxlength="100" size="23" name="materialReason0" />                  
+                    </span></td>
+                  </tr>
+
+				  <td >5</td>
+                  <td>                    <span class="normal">
+                    <input maxlength="50" size="23" name="materialDesc0" />                  
+                    </span></td>
+                  <td>                    <span class="normal">
+                    <input onblur="checkNumeric(this,1,20,',','.','-');" maxlength="38" size="5" name="quantity0" />                  
+                    </span></td>
+                  <td>
+                    <span class="normal">
+                    <select name="uomId0">
+                      <option selected="selected" value="1">NOS</option>
+                      <option value="2">KGS</option>
+                      <option value="3">LTS</option>
+                      <option value="4">MTS</option>
+                      <option value="5">PACKET</option>
+                      <option value="6">LOTS</option>
+                      <option value="7">BAGS</option>
+                      <option value="8">CARTONS</option>
+                      <option value="21">CM</option>
+                    </select>
+                    </span></td>
+                  <td>                    <span class="normal">
+                    <input onblur="setfocusFunc(this,'assetransferdate0','0');" onchange="setSrNoFields(this.form);" maxlength="38" size="10" name="assetTransferNoteNo0" />                  
+                    </span></td>
+                  <td>
+                    <span class="normal">
+                    <input id="assetransferdate0" readonly="readonly" maxlength="38" size="7" name="assetransferdate0" onfocus="showCalendarControl(this);"/>
+                    <img src="../images/calendar.png" width="26" height="26" /></span></td>
+                  <td>
+                    <span class="normal">
+                    
+                    </span>
+                    <select name="uomId2" class="normal">
+                      <option value="1">Select Location</option>
+                      <option value="2"></option>
+                      <option value="3"></option>
+                      <option value="4"></option>
+                      <option value="5"></option>
+                      <option value="6"></option>
+                      <option value="7"></option>
+                      <option value="8"></option>
+                      <option value="21"></option>
+                    </select></td>
+                  <td>                    <span class="normal">
+                    <input maxlength="100" size="23" name="materialReason0" />                  
+                    </span></td>
+                  </tr>
+                </tbody>
+            </table></td>
+          </tr>
+		 </table>
+          <tr class="normal">
+            <td colspan="4" valign="top">&nbsp;<a href="javascript:addRow('dataTable')"><img src="../images/but_addMoreBills.gif" border="0"><a/></td>
+			
+          </tr>
+		
+		
+          <tr class="normal">
+            <td colspan="4" valign="top"><table border="0" cellspacing="0" cellpadding="0" width="100%" align="center">
+              <tbody>
+                <tr class="greyBG">
+                  <td width="33%" height="30"><div align="left"><strong>&nbsp;&nbsp;PREPARED BY</strong></div></td>
+                  <td valign="center" width="34%" align="middle"><div align="left">AUTHORISED BY  <img src="../images/tick.png" width="20" height="20" /></div></td>
+                  <td width="33%"><div align="left">REVIEWED BY</div></td>
+                  </tr>
+                <tr>
+                  <td><div align="left">
+                    <input maxlength="100" size="23" name="materialReason2" />
+      
+                    </div></td>
+                  <td><div align="left">
+                    <select name="uomId5" class="normal">
+                      <option value="1">Select Authority</option>
+                      <option value="2"></option>
+                      <option value="3"></option>
+                      <option value="4"></option>
+                      <option value="5"></option>
+                      <option value="6"></option>
+                      <option value="7"></option>
+                      <option value="8"></option>
+                      <option value="21"></option>
+                    </select>
+                   
+                    </div></td>
+                  <td><div align="left">
+                    <select name="uomId4" class="normal">
+                      <option value="1">Select Authority</option>
+                      <option value="2"></option>
+                      <option value="3"></option>
+                      <option value="4"></option>
+                      <option value="5"></option>
+                      <option value="6"></option>
+                      <option value="7"></option>
+                      <option value="8"></option>
+                      <option value="21"></option>
+                    </select>
+                  </div></td>
+                  </tr>
+                </tbody>
+            </table></td>
+          </tr>
+          <tr>
+            <td colspan="4" valign="top">&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>        
+  </table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+  <td  align="center">
+  <a href="javascript:validate(5,'pre_req')"><img src="../images/but_submit.gif" border="0"><a/>
+  <a href="javascript:clear(this.form)"><img src="../images/but_reset.gif" border="0"></a>
+
+  </td>
+  </tr>
+</table>
+</form>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="45%" bgcolor="#F8F8F8"><img src="../images/gatePass_footer.jpg" width="351" height="25" /></td>
+    <td width="55%" bgcolor="#F8F8F8"> <img src="../images/related_links.png" width="18" height="18" /><span class="boldsmall">Related links&nbsp;</span>&nbsp;&nbsp;&nbsp;</td>
+	 
+
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="100%" cellpadding="0" cellspacing="0" >
+   
+  </tbody>
+</table>
+
+</body>
+</html>

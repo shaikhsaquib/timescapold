@@ -1,0 +1,31 @@
+<%--   
+ -- Interaction Center -- Common 
+ -- @(#)annualltaapply.jsp	21-09-15
+ --
+ -- Copyright 2012 BCCL. All Rights Reserved.
+ --
+ -- This software is the proprietary information of BCCL.
+ -- Use is subject to license terms.
+ --
+ --%>
+
+ <%--
+ -- Comments....
+ -- @author		Krishna Vishwakarma
+ -- @version 	1.00, 21-09-15
+ --%>
+<%@ page language="java" %>
+<%@ include file="../includes/sessionCheck.jsp" %>
+<%//@ page errorPage="../common/errorPage.jsp"%>
+<%@ include file="../includes/empHeader.jsp" %>
+<%@ page import="java.util.Hashtable, java.util.ArrayList, java.util.StringTokenizer"%>
+<%@ page import="java.text.*, java.util.Calendar, java.util.GregorianCalendar, java.util.Date, java.io.*" %>
+<%@ page import="com.bccl.util.HtmlUtil,com.bccl.util.Utility"%>
+<jsp:useBean id="ltaController" class="com.bccl.lta.web.controllerbeans.LtaWebController" /> 
+<jsp:useBean id="BennetTouchController" class="com.bccl.bennettouch.web.controller.BennetTouchWebController"/>
+<%@ page import="com.bccl.util.JcoGetDataFromSAP"%>
+
+ <html>
+	<%@ include file ="../common/claimLTAMaintenance.html" %>
+</html>
+

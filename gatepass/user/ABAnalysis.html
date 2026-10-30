@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>RMD Dashboard</title>
+		<link href="style/global.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="js/jquery-latest.min.js"></script>
+		<script type="text/javascript">
+
+			var processingRequest='<center><table width="100%" height="100%"><tr><td align="center" height="20" style="COLOR: #6097cf; FONT-SIZE:14pt;"><img src="images/loading.gif" valign="absmiddle"> Loading...</td></tr></table></center>';
+
+		$(function () {
+
+			
+			$('#dataContainer').html(processingRequest);
+
+			var random = Math.random();
+		//------------------------
+			$.ajax({
+
+				url : "web/ABAnalysisFilter.jsp?random="+random,
+				success : function (data) {
+					$('#dataContainer').html(data);
+				},
+			   error: function (request, status, error) {
+					alert(request.responseText);
+			   }
+			});
+		});
+
+	</script>
+	</head>
+<body>
+<script src="js/highcharts.js"></script>
+<!-- <script src="../../js/modules/exporting.js"></script> -->
+<div id="dataContainer" style="height:20px;margin: 0 auto;"></div><br>
+<div id="container" style="height: 450px;margin: 0 auto;float:left;"></div>
+</body>
+</html>

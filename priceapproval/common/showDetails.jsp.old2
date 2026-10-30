@@ -1,0 +1,421 @@
+<%@ page import="java.util.Hashtable, java.util.ArrayList" %>
+<%@ page import="com.bccl.util.HtmlUtil,com.bccl.util.Utility"%>
+<%@ include file="../includes/sessionCheck.jsp"%>
+<%@ page errorPage="../common/errorPage.jsp"%>
+<%@ include file="../includes/empHeader.jsp"%>
+<jsp:useBean id="priceApprovalWebController" class="com.bccl.priceapproval.web.controller.priceapprovalWebController" /> 
+<%@page import="com.bccl.tsenvironment.EnvironmentProperties"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>PRICE APPROVAL</title>
+<link href="../style/global.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+</style>
+	<script Language="JavaScript" src="../jscripts/fieldCheck.js"></script>
+<link href="../style/calendarControl.css" rel="stylesheet">
+</head>
+<body>
+<% 
+		String DPATH       = EnvironmentProperties.getValue("priceapproval", "uploadPath");
+
+	    String emailId1	   = emailId;
+
+		if (emailId1.indexOf("@") > -1) {
+        emailId1 = emailId1.substring(0, emailId1.indexOf("@"));        
+	    }   
+		
+		String userEmailid  = emailId1;
+	    		
+		String tOId			= (String)request.getParameter("tOId");
+
+		String priceid		= (String)request.getParameter("priceid");
+
+		ArrayList vStatus	=  new ArrayList();
+	
+		vStatus 			=	priceApprovalWebController.viewStatus(tOId,priceid);
+
+		ArrayList vStatus1	=  new ArrayList();
+	
+		vStatus1 			=	priceApprovalWebController.viewApp2(tOId,priceid);
+
+	
+		String[] data1		= (String [])vStatus.get(0);
+
+		String pageType		= request.getParameter("viewSAB"); 
+
+		//String[] data2 = (String [])vStatus1.get(0);
+
+		//String priceid1						= data1[0];
+		String NEGOTIATION_PC_DATE			= data1[1];
+		String NEGOTIATION_PC_MEETING_VENUE	= data1[2];
+		String NEGOTIATION_VALUE			= data1[3];
+		String FINALIZED_VENDOR_NAME		= data1[4];
+		String PAYMENT_TERMS				= data1[5];
+		String SAVINGS						= data1[6];
+		String PRODUCT_SERVICE__NAME	= data1[7];
+		String INDENTED_USER				= data1[8];
+		String PACKAGE_NAME_SANCTION		= data1[9];
+		String TOTAL_BUDGET					= data1[10];
+		String PO_COMMITTED_TILL_DATE		= data1[11];
+		String BALANCE_BUDGET				= data1[12];
+		String REQUIREMENT					= data1[13];
+		String DESCRIPTION1					= data1[14];
+		String DESCRIPTION2					= data1[15];
+		String DESCRIPTION3					= data1[16];
+		String ATTACHMENT1					= data1[17];
+		String ATTACHMENT2					= data1[18];
+		String ATTACHMENT3					= data1[19];
+		String PRODUCT1						= data1[20];
+		String PRODUCT2						= data1[21];
+		String PRODUCT3						= data1[22];
+		String RATE1						= data1[23];
+		String RATE2						= data1[24];
+		String RATE3						= data1[25];
+		String BENCHMARK1					= data1[26];
+		String BENCHMARK2					= data1[27];
+		String BENCHMARK3					= data1[28];
+		String RECOMMENEDATION				= data1[29];
+		String SUPPORTEDBY_DIRECTOR1		= data1[30];
+		String SUPPORTEDBY_DIRECTOR2		= data1[31];
+		String APPROVER11					= data1[32];
+		String APPROVER12					= data1[33];
+		String APPROVER13					= data1[34];
+		String APPROVER21					= data1[35];
+		String APPROVER22					= data1[36];
+		String APPROVER23					= data1[37];
+		String APPROVER31					= data1[38];
+		String APPROVER32					= data1[39];
+		String APPROVER33					= data1[40];
+		String APPROVER4					= data1[41];
+		String APPROVER5					= data1[42];
+		String APPROVER6					= data1[43];
+		String CREATEDBY					= data1[44];
+		String CREATEDON					= data1[45];
+		String MODIFIEDBY					= data1[46];	
+		String MODIFIEDON					= data1[47];
+		String STATUS						= data1[48];
+
+		String display						= "NA";
+		//String VENDORID					=  data2[0];
+		//String PRICEID					=  data2[1];
+		//String VENDOR						=  data2[2];
+		//String INITIALOFFER				=  data2[3];
+		//String FINALOFFER					=  data2[4];
+		//String DELIVERYPERIOD				=  data2[5];
+		//String WARRANTYPERIOD				=  data2[6];
+		//String CREATEDBY					=  data2[7];
+		//String CREATEDON					=  data2[8];
+		//String MODIFIEDBY					=  data2[9];
+		//String MODIFIEDON					=  data2[10];
+		//String STATUS						=  data2[11];
+
+		int len = NEGOTIATION_VALUE.length();
+
+		String temp = "";
+			
+		int lenCount = len-1;
+
+		int counter = 1;
+
+		if(len>3)
+		{
+			while(lenCount>=0)
+			{
+				if((counter>3) && (counter%2==0))
+					{
+						temp = temp + ",";
+					}
+				
+				temp = temp + NEGOTIATION_VALUE.charAt(lenCount);
+				
+				lenCount--;
+				counter++;
+			}
+			temp =  new StringBuffer(temp).reverse().toString();
+	   
+			NEGOTIATION_VALUE = temp;
+		}
+		    
+       
+
+// change 
+
+	    len = SAVINGS.length();
+
+		temp = "";
+			
+		lenCount = len-1;
+
+		counter = 1;
+
+		if(len>3)
+		{
+			while(lenCount>=0)
+			{
+				if((counter>3) && (counter%2==0))
+					{
+						temp = temp + ",";
+					}
+				
+				temp = temp + SAVINGS.charAt(lenCount);
+				
+				lenCount--;
+				counter++;
+			}
+
+					temp =  new StringBuffer(temp).reverse().toString();
+	   				SAVINGS = temp;
+		}
+		    
+
+
+// change 
+
+	    len = TOTAL_BUDGET.length();
+
+		temp = "";
+			
+		lenCount = len-1;
+
+		counter = 1;
+
+		if(len>3)
+		{
+			while(lenCount>=0)
+			{
+				if((counter>3) && (counter%2==0))
+					{
+						temp = temp + ",";
+					}
+				
+				temp = temp + TOTAL_BUDGET.charAt(lenCount);
+				
+				lenCount--;
+				counter++;
+			}
+		temp =  new StringBuffer(temp).reverse().toString();
+	   
+	    TOTAL_BUDGET = temp;
+
+		
+		}
+		    
+       
+// change 
+
+	    len = BALANCE_BUDGET.length();
+
+		temp = "";
+			
+		lenCount = len-1;
+
+		counter = 1;
+
+		if(len>3)
+		{
+			while(lenCount>=0)
+			{
+				if((counter>3) && (counter%2==0))
+					{
+						temp = temp + ",";
+					}
+				
+				temp = temp + BALANCE_BUDGET.charAt(lenCount);
+				
+				lenCount--;
+				counter++;
+			}
+		
+			temp =  new StringBuffer(temp).reverse().toString();
+	   
+	        BALANCE_BUDGET = temp;
+		}
+		    
+       
+
+// change 
+
+	    len = PO_COMMITTED_TILL_DATE.length();
+
+		temp = "";
+			
+		lenCount = len-1;
+
+		counter = 1;
+
+		if(len>3)
+		{
+			while(lenCount>=0)
+			{
+				if((counter>3) && (counter%2==0))
+					{
+						temp = temp + ",";
+					}
+				
+				temp = temp + PO_COMMITTED_TILL_DATE.charAt(lenCount);
+				
+				lenCount--;
+				counter++;
+			}
+		
+			temp =  new StringBuffer(temp).reverse().toString();
+	   
+			PO_COMMITTED_TILL_DATE = temp;
+
+		}
+		    
+       
+
+
+	   //out.println(temp);
+		
+
+%>
+<center>
+<form name="priceApprovalMain" method="post" action="">
+<table width="637" height="493" border="1" bordercolor="#f0f0f0" cellpadding="2" cellspacing="0">
+  <tr><td height="10"></td></tr>
+ <tr><td height="20" align="left"><a href="../index.jsp" class="normal"><b>BACK</b></a></td></tr>
+ <tr><td height="10"></td></tr>
+ <tr><td height="10" align="right" colspan="6" class="redbold">Print <a href="#" onclick="javascript:void window.print();"><img src="../images/print.gif" border="0"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td height="10"></td></tr>
+  <tr>
+    <td colspan="3" bgcolor="#333333" class="white" align="left">PRICE APPROVAL REQUEST NO</td>
+    <td colspan="2" align="center" class="normal"><%=priceid%></td>
+  </tr>
+  <tr>
+    <td width="28" rowspan="6" bgcolor="#e8e8e8" class="nav"><img src="../images/basic.jpg" width="25" height="104" /></td>
+    <td colspan="2" align="center" valign="middle" class="travelMenuBG">PC meeting details</td>
+    <td colspan="2" align="center" valign="middle" class="travelMenuBG">Price Details</td>
+  </tr>
+  <tr>
+    <td width="214" class="nav" align="left">Negotiation/PC meeting date</td>
+    <td width="170" class="normal" align="left"> <%=NEGOTIATION_PC_DATE%></td>
+    <td width="96" class="nav" align="left">Project Name</td>
+    <td width="97" class="normal" align="left"><%=PRODUCT_SERVICE__NAME%></td>
+  </tr>
+  <tr>
+    <td class="nav" align="left">Finalized vendor's name</td>
+    <td class="normal" align="left"><%=FINALIZED_VENDOR_NAME%></td>
+    <td class="nav" align="left">Package Name/ Sanction</td>
+    <td class="normal" align="left"><%=PACKAGE_NAME_SANCTION%></td>
+  </tr>
+  <tr>
+    <td class="nav" align="left">Negotiated value (Rs.)</td>
+    <td class="normal" align="left"><%=NEGOTIATION_VALUE%></td>
+    <td class="nav" align="left">Budget (Rs.)</td>
+    <td class="normal" align="left"><%=TOTAL_BUDGET%></td>
+  </tr>
+  <tr>
+    <td class="nav" align="left">Payment terms</td>
+    <td class="normal" align="left"><%=PAYMENT_TERMS%></td>
+    <td class="nav" align="left">PO's Commited till date (Rs.)</td>
+    <td class="normal" align="left"><%=PO_COMMITTED_TILL_DATE%></td>
+  </tr>
+  <tr>
+    <td class="nav" align="left">Savings (Rs.)</td>
+    <td class="normal" align="left"> <%=SAVINGS%></td>
+    <td class="nav" align="left">Balance Budget(Rs.)</td>
+    <td class="normal" align="left"><%=BALANCE_BUDGET%></td>
+  </tr>
+  <tr>
+    <td height="70" bgcolor="#e8e8e8" class="nav"><img src="../images/background.jpg" width="25" height="104" /></td>
+    <td colspan="4" bgcolor="#FFFFFF" class="normal" align="left"><%=REQUIREMENT%></td>
+  </tr>
+  <tr>
+    <td bgcolor="#e8e8e8" class="nav"><img src="../images/finalComparative.jpg" width="25" height="104" /></td>
+	<td colspan="5"> 
+    <table cellpadding="2" cellspacing="0" width="100%" border="1" bordercolor="#f0f0f0">
+    <tr>
+	<td align="left" class="travelMenuBG">Item Description</td>
+    <td align="center" class="travelMenuBG">Vendor</td>
+    <td align="center" class="travelMenuBG">Initial all-inclusive offer</td>
+    <td align="center" class="travelMenuBG">Final all-inclusive offer</td>
+    <td align="center" class="travelMenuBG">Delivery/Completion Period</td>
+    <td align="center" class="travelMenuBG">Warranty/Defect Liability Period</td>
+  </tr>
+  <%
+	 for(int i=0;i<vStatus1.size();i++)
+	 {
+		String[] data2 = (String [])vStatus1.get(i);	 
+  %>
+  <tr>
+    <%if(i==0){%><td align="left" class="normal" rowspan="<%=i+1%>"><%=PACKAGE_NAME_SANCTION%></td><%}else{%>
+	<td></td>
+	<%}%>
+    <td align="center" class="normal"><%=data2[2]%></td>
+    <td align="center" class="normal"><%=data2[3]%></td>
+    <td align="center" class="normal"><%=data2[4]%></td>
+    <td align="center" class="normal"><%=data2[5]%></td>
+    <td align="center" class="normal"><%=data2[6]%></td>
+  </tr>
+  <%
+     }
+  %>
+  </table>
+  </td>
+  </tr>
+
+ <!--  <tr>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+  </tr> -->
+  <tr>
+    <td bgcolor="#e8e8e8" class="nav"><img src="../images/recommendation.jpg" width="25" height="104" /></td>
+    <td colspan="4" class="normal" align="left"><%=RECOMMENEDATION%></td>
+  </tr>
+  <tr>
+    <td bgcolor="#e8e8e8" class="nav"><img src="../images/supportedBy.jpg" width="25" height="104" /></td>
+    <td colspan="2" valign="bottom" class="normal" align="center"><%=SUPPORTEDBY_DIRECTOR1%></td>
+    <td colspan="2" class="normal" valign="bottom"><%=SUPPORTEDBY_DIRECTOR2%></td>
+  </tr>
+  <tr>
+    <td rowspan="7" bgcolor="#e8e8e8" class="nav"><img src="../images/approval.jpg" width="25" height="104" /></td>
+    <td align="center" class="travelMenuBG">B&amp;C-LEVEL 1</td>
+    <td align="center" class="travelMenuBG">USER/PRICE TEAM-LEVEL 1</td>
+    <td align="center" class="travelMenuBG">LEVEL 2</td>
+    <td align="center" class="travelMenuBG">LEVEL 2</td>
+  </tr>
+  <tr>
+    <td align="left" class="normal">&nbsp;</td>
+    <td class="normal">&nbsp;</td>
+    <td rowspan="6" valign="bottom"><span class="nav"><%if(APPROVER4!=null){out.println(APPROVER4);}%><br />
+     <!--  Dy. Director -->
+    </span></td>
+    <td rowspan="6" valign="bottom"><p class="nav"><%if(APPROVER5!=null){out.println(APPROVER5);}%><br />
+    <!-- Director --></p></td>
+  </tr>
+  <tr>
+    <td align="center"><span class="nav"><%if(APPROVER11!=null){out.println(APPROVER11);}%></span></td>
+    <td align="center" class="nav"><%if(APPROVER12!=null){out.println(APPROVER12);}%></td>
+  </tr>
+  <tr>
+    <td align="left">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center" class="nav"><%if(APPROVER21!=null){out.println(APPROVER21);}%></td>
+    <td align="center" class="nav"><%if(APPROVER22!=null){out.println(APPROVER22);}%></td>
+  </tr>
+  <tr>
+    <td align="left">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center" class="nav"><%if(APPROVER31!=null){out.println(APPROVER31);}%></td>
+    <td align="center" class="nav"><%if(APPROVER32!=null){out.println(APPROVER32);}%></td>
+  </tr>
+</table>
+</form>
+</center>
+</body>
+</html>

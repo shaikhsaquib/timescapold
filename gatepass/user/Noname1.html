@@ -1,0 +1,311 @@
+<!--<%--
+ -- Comments....
+ -- @author		Ashutosh Joshi
+ -- @version 	1.00, May 2012.
+ --%> -->
+
+<%@ page language="java" %>
+<%@ include file="../includes/sessionCheck.jsp" %>
+<%@ page errorPage="../common/errorPage.jsp"%>
+<%@ include file="../includes/empHeader.jsp" %>
+<%@ page import="java.util.Hashtable, java.util.ArrayList, java.util.GregorianCalendar, java.util.Calendar" %>
+
+<%
+response.setHeader("Cache-Control","no-cache"); //HTTP 1.1
+response.setHeader("Pragma","no-cache"); //HTTP 1.0
+response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
+%>
+
+<jsp:useBean id="GatepassController" class="com.bccl.gatepass.web.controller.GatepassWebController"/>
+<jsp:useBean id="listDomainObjectsController" class="com.bccl.enterprise.web.controller.DomainObjectsWebController" />
+
+<%
+
+	ArrayList locationsList = new ArrayList();
+	ArrayList approversList = new ArrayList();
+	ArrayList reviewersList = new ArrayList();
+	ArrayList unitsList = new ArrayList();
+	Hashtable criteriaHash = new Hashtable();
+
+	locationsList = listDomainObjectsController.listLocations(criteriaHash);
+	unitsList = GatepassController.getUnits();
+
+	criteriaHash.put("ROLECODE", "2");
+	criteriaHash.put("WORKFLOWTYPE", "10");
+	criteriaHash.put("COMPANYCODE", companyCode);
+	criteriaHash.put("BRANCHCODE", branchCode);
+	criteriaHash.put("LOCATIONCODE", locationCode);
+	criteriaHash.put("DEPARTMENT", deptGroup);
+	criteriaHash.put("STATUS", "A");
+
+	//out.println(criteriaHash);
+
+	reviewersList = GatepassController.getReviewers(criteriaHash);
+	
+	criteriaHash.remove("ROLECODE");
+	criteriaHash.put("ROLECODE", "3");
+	//out.println(criteriaHash);
+
+	approversList = GatepassController.getApprovers(criteriaHash);
+
+	//out.println(reviewersList.size());
+	//out.println(approversList.size());
+
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Create Gatepass Request</title>
+<link href="../style/global.css" rel="stylesheet" type="text/css" />
+<link href="../style/calendarControl.css"rel="stylesheet">
+<script src="../jscripts/calendarControl.js"language="javascript"></script>
+<script src="../jscripts/common.js"language="javascript"></script>
+<script src="../jscripts/util.js"language="javascript"></script>
+<script src="../jscripts/addRows.js"language="javascript"></script>
+<script src="../jscripts/createRequest.js"language="javascript"></script>
+<style type="text/css">
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-image: url('../images/header_BG.jpg');
+	background-repeat: repeat-x;
+}
+</style>
+</head>
+
+<%
+	GregorianCalendar today = new GregorianCalendar();
+%>
+
+<body onload="hideMyCols();">
+<form name="frmCreateRequest" method="post">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="43%"><img src="../images/gatePass.jpg" width="365" height="50" /></td>
+    <td width="57%" valign="bottom"><img src="../images/related_links.png" width="18" height="18" /><span class="boldsmall">Related links&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  </tr>
+</table>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+
+    <tr>
+      <td colspan="100%" height="20px" bgcolor="#E7EAEF" class="budgetMenuBG">&nbsp;&nbsp;REQUEST GATEPASS</td>
+    </tr>
+    <tr>
+      <td align="center" colspan="100%" height="10px" valign="middle">&nbsp;</td>
+	</tr>   
+</table>
+<table border="0" cellspacing="2" cellpadding="0" width="100%" align="center">
+          <tr>
+           <td colspan="100%" height="40px" align="center" valign="middle" class="greyBG"><input type="radio" name="gatePassType" id="gatePassType" value="R" onclick="showMyCols();"/>&nbsp;RETURNABLE GATE PASS&nbsp; | &nbsp; <input type="radio" name="gatePassType" id="gatePassType" value="N" onclick="showMyCols();"/>NON- RETURNABLE GATE PASS
+             </td>
+          </tr>
+         <!--  <tr class="normal">
+            <td height="41" colspan="2" align="right" valign="middle">Department</td>
+            <td width="22%" align="left" valign="middle"><input maxlength="50" size="30" name="partyPersonName2" /></td>
+            <td width="7%" align="left" valign="middle">Section/Vertical</td>
+            <td width="40%" align="left" valign="middle"><input maxlength="50" size="30" name="partyPersonName3" /></td>
+          </tr> -->
+          <tr class="normal">
+            <td width="35%" align="right" valign="middle">Party's Name</td>
+            <td width="3%" align="center" valign="middle"> : </td>
+            <td width="62%" align="left" valign="middle"><input maxlength="60" size="30" name="partyName"/>
+            <img src="../images/tick.png" width="20" height="20" /></td>
+          </tr>
+          <tr class="normal">
+            <td align="right" valign="middle">Address</td>
+            <td align="center" valign="middle"> : </td>
+            <td align="left" valign="middle"><textarea rows="4" cols="30" name="partyAddress"></textarea>
+            <img src="../images/tick.png" width="20" height="20" /></td>
+          </tr>
+          <tr>
+            <td align="right" valign="middle" class="normal">Represented By</td>
+            <td align="center" valign="middle"> : </td>
+            <td align="left" valign="bottom" class="normal"><input maxlength="50" size="30" name="partyPersonName"/>
+              (Name of Person)<img src="../images/tick.png" width="20" height="20" /></td>
+          </tr>
+		<tr>
+		  <td align="center" colspan="100%" height="10px" valign="middle">&nbsp;</td>
+		</tr>   
+          <tr class="normal">
+            <td colspan="100%" height="30" align="left" valign="middle" class="greyBG">MATERIAL DETAILS :</td>
+          </tr>
+          <tr class="normal">
+            <td align="right" valign="middle">Ownership</td>
+            <td align="center" valign="middle"> : </td>
+            <td align="left" valign="middle"><select name="ownership" onChange="showMyCols();">
+              <option value="0">Select</option>
+              <option value="Company's Own">Company's Own</option>
+              <option value="Party's Own">Party's Own</option>
+            </select>
+            <img src="../images/tick.png" width="20" height="20" /></td>
+          </tr>
+          <tr class="normal">
+            <td align="right" valign="middle">Item Category</td>
+            <td align="center" valign="middle"> : </td>
+            <td align="left" valign="middle"><select name="itemCategory" onChange="showMyCols()">
+              <option value="0">Select</option>
+              <option value="Capital Item">Capital Item</option>
+              <option value="Non-Capital Item">Non-capital Item</option>
+            </select>
+            <img src="../images/tick.png" width="20" height="20"/></td>
+          </tr>
+          <tr class="normal">
+            <td align="right" valign="middle">Probable Date of Return</td>
+            <td align="center" valign="middle"> : </td>
+            <td align="left" valign="middle"><input id="returnDate" size="10" name="returnDate" onfocus="showCalendarControl(this);"/>
+            <!-- <img src="../images/calendar.png" width="26" height="26"/> --></td>
+          </tr>
+          <tr class="normal">
+            <td align="right" valign="middle">Purchase Order / Job order No.</td>
+            <td align="center" valign="middle"> : </td>
+            <td align="left" valign="middle"><input onchange="checkPurNo(this.form);" maxlength="20" size="30" name="purchaseOrderJobNo" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Purchase Order / Job order Date : <input id="purchaseOrderDate" readonly="readonly" size="10" name="purchaseOrderDate" onfocus="showCalendarControl(this);"/> 
+			<!-- <img src="../images/calendar.png" width="26" height="26" /> --></td>
+          </tr>
+          <tr class="normal">
+            <td colspan="100%" valign="top">&nbsp;</td>
+          </tr>
+	</table>
+	<table border="0" cellspacing="3" cellpadding="0" width="100%">
+		<tr class="greyBG">
+			<td width="2%" height="30">Sr.No.</td>
+			<td width="18%">Material Description</td>
+			<td width="5%">Quantity</td>
+			<td width="9%">UOM</td>
+			<td id="showThis" name = "showThis" width="12%">Asset Transfer Note NO.</td>
+			<td id="showThis" name = "showThis" width="10%">Asset Transfer Date</td>
+			<td id="showThis" name = "showThis" width="18%">Location to be Transfered</td>
+			<td width="26%">Remarks/Reason for taking the material</td>
+		</tr>
+<%
+	for(int ii=0; ii< 5; ii++){
+%>
+		<tr class="normal">
+			<td height="30" align="center"><%=ii+1%></td>
+			<td><input maxlength="50" size="20" name="materialDesc<%=ii%>"/></td>
+			<td>
+				<input maxlength="10" size="5" name="quantity<%=ii%>"/>
+			</td>
+			<td>
+			<select name="uomId<%=ii%>" class="normal">
+
+<%
+	for(int jj=0; jj< unitsList.size(); jj++){
+		
+		String tmpArr[] = (String[])unitsList.get(jj);
+%>	
+	<option value="<%=tmpArr[0]%>"><%=tmpArr[1]%></option>
+<%
+	}
+%>
+	</select>
+</td>
+			<td id="showThis" name = "showThis"><input maxlength="10" size="10" name="transferNoteNo<%=ii%>"/></td>
+			<td id="showThis" name = "showThis"><input id="assetransferdate<%=ii%>" readonly maxlength="38" size="7" name="assetransferdate<%=ii%>" onfocus="showCalendarControl(this);"/>
+                    <!-- <img src="../images/calendar.png" width="26" height="26" /> --></td>
+			<td id="showThis" name = "showThis">
+			<select name="location<%=ii%>" class="normal">
+
+<%
+	for(int kk=0; kk< locationsList.size(); kk++){
+		
+		String tmpArr[] = (String[])locationsList.get(kk);
+%>	
+		<option value="<%=tmpArr[8]%>"><%=tmpArr[5]%></option>
+<%
+	}
+%>
+	</select>
+</td>
+			<td><input maxlength="10" size="20" name="remarks<%=ii%>"/></td>
+		</tr>
+
+<%
+	}
+%>
+	 </table>
+<table border="0" cellspacing="2" cellpadding="0" width="100%" align="center">
+			<!--  <tr class="normal">
+            <td colspan="100%" valign="top" align="right">&nbsp;<a href="javascript:addRow('dataTable')"><img src="../images/but_addMoreBills.gif" border="0"><a/></td>
+          </tr> -->
+          <tr class="normal">
+            <td colspan="4" valign="top"><table border="0" cellspacing="0" cellpadding="0" width="100%" align="center">
+              <tbody>
+                <tr class="greyBG">
+                  <td width="33%" height="30"><div align="left"><strong>&nbsp;&nbsp;PREPARED BY</strong></div></td>
+                  <td valign="center" width="34%" align="middle"><div align="left">AUTHORISED BY  <img src="../images/tick.png" width="20" height="20" /></div></td>
+                  <td width="33%"><div align="left">REVIEWED BY</div></td>
+                  </tr>
+                <tr>
+                  <td><div align="left">
+                    <input maxlength="100" size="35" name="preparedBy" value="<%=emailId%>" readOnly/>
+      
+                    </div></td>
+                  <td>
+ 			<select name="authorisedBy" class="normal">
+                      <option value="0">Select Authority</option>
+
+<%
+	int mm;
+	for(mm=0 ; mm< approversList.size(); mm++){
+		
+		String tmpArr[] = (String[])approversList.get(mm);
+%>	
+		<option value="<%=tmpArr[0]%>"><%=tmpArr[6]%></option>
+<%
+	}
+%>
+	</select>
+                  
+                    </td>
+                  <td><div align="left">
+ 			<select name="reviewedBy" class="normal">
+                      <option value="0">Select Authority</option>
+
+<%
+	for(mm=0; mm< reviewersList.size(); mm++){
+		
+		String tmpArr[] = (String[])reviewersList.get(mm);
+%>	
+		<option value="<%=tmpArr[0]%>"><%=tmpArr[6]%></option>
+<%
+	}
+%>
+	</select>                  </td>
+                  </tr>
+                </tbody>
+            </table></td>
+          </tr>
+          <tr>
+            <td colspan="4" valign="top">&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>        
+  </table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+  <td  align="center"><input type="button" name="submit" value="S U B M I T" onclick="validate()">&nbsp;&nbsp;<input type="button" name="clear" value="R E S E T " onClick="javascript:reset();">
+  </td>
+  </tr>
+</table>
+</form>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="45%" bgcolor="#F8F8F8"><img src="../images/gatePass_footer.jpg" width="351" height="25" /></td>
+    <td width="55%" bgcolor="#F8F8F8"> <img src="../images/related_links.png" width="18" height="18" /><span class="boldsmall">Related links&nbsp;</span>&nbsp;&nbsp;&nbsp;</td>
+	 
+
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="100%" cellpadding="0" cellspacing="0" >
+   
+  </tbody> 
+</table>
+
+</body>
+</html>

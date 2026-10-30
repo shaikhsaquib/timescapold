@@ -1,0 +1,30 @@
+@media print 
+{
+	body {width:1100px;}
+	div[class|=col-]{ float: none;}
+	.col-sm-6{width:50%}
+	.col-xs-6{width:50%}
+	@page {
+	size: 330mm 427mm;
+	margin: 13mm;
+	}
+	.container {
+	width: 1070px;
+	}
+	.table-responsive{
+	width:100%;
+	overflow-x:visible;
+	}
+	.table-bordered{
+	border: 2px solid #000;
+	border-collapse:collapse !important;
+	}
+	.table-bordered th,
+	.table-bordered td {
+	border: 1px solid #000 !important;
+	}
+	.np1{
+	display:none;
+	}
+	
+}

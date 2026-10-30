@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>RMD Dashboard</title>
+		<script type="text/javascript" src="js/jquery-latest.min.js"></script>
+		<style type="css">
+			.bigblue {
+				FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #6097cf; FONT-SIZE: 8pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+			}
+		</style>
+		<script type="text/javascript">
+		$(function () {
+
+			var processingRequest='<center><table width="100%" height="100%"><tr><td align="center" height="20" style="COLOR: #6097cf; FONT-SIZE:14pt;"><img src="images/loading.gif" valign="absmiddle"> Loading...</td></tr></table></center>';
+			
+			$('#dataContainer').html(processingRequest);
+			$('#container').html(processingRequest);
+			//$('#container2').html(processingRequest);
+			//$('#container3').html(processingRequest);
+			//$('#container4').html(processingRequest);
+			//$('#container5').html(processingRequest);
+
+			var random = Math.random();
+		//------------------------
+			$.ajax({
+
+				url : "web/hierarchyData.jsp?random="+random,
+				success : function (data) {
+					$('#dataContainer').html(data);					
+				},
+			   error: function (request, status, error) {
+					alert(request.responseText);
+			   }
+			});
+
+			$.ajax({
+
+				url : "web/netSalesTarget.jsp?random="+Math.random(),
+				success : function (data) {
+					//alert(data);			
+					dataArr = data.split("::");
+					//alert(dataArr[1]);
+					dataArr2 = dataArr[0].indexOf(",") > -1 ? dataArr[0].split(",") : dataArr[0];
+					dataArr3 = dataArr[1].indexOf(",") > -1 ? dataArr[1].split(",") : dataArr[1];
+					dataArr4 = dataArr[2].indexOf(",") > -1 ? dataArr[2].split(",") : dataArr[2];
+					//dataArr5 = dataArr[3].indexOf(",") > -1 ? dataArr[3].split(",") : dataArr[3];
+
+					var dataArr5 =[];
+					var dataArr6 =[];
+					for(var i=0;i<dataArr3.length;i++){
+						dataArr5.push(parseFloat(dataArr3[i]));
+						dataArr6.push(parseFloat(dataArr4[i]));
+					}
+					
+					$('#container').highcharts({
+						chart: {
+							type: 'line'
+						},
+						title: {
+							text: 'Netsales Actual Vs Target'
+						},
+						//subtitle: {
+						//	text: 'Source: WorldClimate.com'
+						//},
+						xAxis: {
+							categories: dataArr2,
+							labels: {
+								overflow: 'justify',
+								rotation: -90,
+								step: 7,
+				                staggerLines: 1               
+							}
+
+						},
+						yAxis: {
+							title: {
+								text: 'Values in 1000\'s'
+							},
+							min: 0
+						},
+						tooltip: {
+							crosshairs: true,
+							shared: true,
+							//enabled: true,
+							//formatter: function() {
+							//	return '<b>'+ this.series.name +'</b><br/>'+
+							//		this.x +': '+ this.y +'°C';
+							//}
+						},
+						plotOptions: {
+							series: {
+								marker: {
+									enabled: false
+								}
+							},
+							line: {
+								dataLabels: {
+									enabled: false
+								},
+								enableMouseTracking: true
+							}
+						},
+						series: [{
+							name: 'NetSales Target',
+							data: dataArr5
+						}, {
+							name: 'Net Sales',
+							data: dataArr6
+						}]
+					});
+				},
+			   error: function (request, status, error) {
+					alert(request.responseText);
+			   }
+			});
+		
+		});
+		</script>
+		<script src="js/highcharts.js"></script>
+	</head>
+<body>
+<!-- <script src="../../js/modules/exporting.js"></script> -->
+<div id="dataContainer" style="height:20px;margin: 0 auto;"></div>
+<div id="container" style="width: 500px; height: 450px;margin: 0 auto;float:left;"></div>
+<!-- <div id="container2" style="width: 440px; height: 450px; margin: 0 auto;float:left;"></div>
+<div id="container3" style="width: 400px; height: 450px; margin: 0 auto;float:left;"></div>
+<div id="container4" style="width: 400px; height: 450px; margin: 0 auto;float:left;"></div>
+<div id="container5" style="width: 400px; height: 450px; margin: 0 auto;float:left;"></div> -->
+
+</body>
+</html>

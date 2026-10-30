@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Audit Recommendations</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.min.js"></script>
+   <script Language="JavaScript" src="js/ota.js"></script>
+
+  <style>
+	body{
+		font-family: Calibri;
+		font-size: 16px;
+		color: #000;
+	}
+	
+	table th, td{
+		text-align: center;
+	}
+
+	.col-md-12, .col-sm-12, .col-xs-12{
+		border-bottom: 1px solid #DFDFDF;
+		padding: 0;
+		
+	}
+
+	.col-md-6, .col-sm-6, .col-xs-6{
+		margin: 1% 0%;
+		background: #FBFBFB;
+	}
+
+	.form-control{
+		color: #000;
+	}
+
+	
+  </style>
+</head>
+<body>
+	<div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+		<img src="images/header.png" style="width: 100%;">
+	</div>
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="col-md-3 col-sm-3"></div>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="border: 1px solid #BBBBBB; margin: 1% 0%;">
+		<form name = "frmSingle" method = "post" >
+			 <div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="col-md-6 col-sm-6 col-xs-6" style="font-weight: bold; color: #2F6C87;">
+					Sr. No.
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-6" >
+					<input class="form-control" rows="5" maxlength="500" name ="srNo" id= "srNo" style="resize: none;" required>
+				</div>
+			</div> 
+			<!-- <div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="col-md-6 col-sm-6 col-xs-6" style="font-weight: bold; color: #2F6C87;">
+					Area
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-6">
+					TGIT
+				</div>
+			</div> -->
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="col-md-6 col-sm-6 col-xs-6" style="font-weight: bold; color: #2F6C87;">
+					Area
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-6">
+					<select class="form-control" name = "area" id = "area" style="" required>
+						<option value="0">Select</option>
+						<option value="1">TGIT</option>
+						<option value="2">MAS</option>
+						<option value="3">HR</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="col-md-6 col-sm-6 col-xs-6" style="font-weight: bold; color: #2F6C87;">
+					Sub-Area
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-6">
+					<select class="form-control" name = "subArea" id = "subArea" style="" required>
+						<option value="0">Select</option>
+						<option value="1">Java</option>
+						<option value="2">Tester</option>
+						<option value="3">Functional</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="col-md-6 col-sm-6 col-xs-6" style="font-weight: bold; color: #2F6C87;">
+					Recommendation
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-6">
+					<textarea class="form-control" maxlength="500" rows="5" name="recommendation" id ="recommendation" style="resize: none;" required></textarea>
+				</div>
+			</div>
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="col-md-6 col-sm-6 col-xs-6" style="font-weight: bold; color: #2F6C87;">
+					Severety
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-6">
+					<select class="form-control" name = "severety" id = "severety" style="" required>
+						<option value="0">Select</option>
+						<option value="1">High</option>
+						<option value="2">Medium</option>
+						<option value="3">Low</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="col-md-6 col-sm-6 col-xs-6" style="font-weight: bold; color: #2F6C87;">
+					Management Comments (as per released report)
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-6">
+					<textarea class="form-control" rows="5" maxlength="500" name = "mangComments" id ="mangComments" style="resize: none;" required></textarea>
+				</div>
+			</div>
+			 <div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="col-md-6 col-sm-6 col-xs-6" style="font-weight: bold; color: #2F6C87;">
+					Person Responsible
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-6">
+					<input class="form-control" rows="5" maxlength="500" name="perResp" id="perResp" style="resize: none;" required>
+				</div>
+			</div> 
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="col-md-6 col-sm-6 col-xs-6" style="font-weight: bold; color: #2F6C87;">
+					Target Implementation Date (as per released report)
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-6">
+					<form action="/action_page.php" >
+						<input type="date" name="target_date" name ="targetDate" id="targetDate"  style="width: 100%; border-radius: 5px;" required>
+					</form>
+				</div>
+			</div>
+			<!-- <div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="col-md-6 col-sm-6 col-xs-6" style="font-weight: bold; color: #2F6C87;">
+					Action Taken
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-6">
+					<textarea class="form-control" maxlength="500" rows="5" style="resize: none;"></textarea>
+				</div>
+			</div> -->
+			<!-- <div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="col-md-6 col-sm-6 col-xs-6"  style="font-weight: bold;">
+					Attachment
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-6">
+					<input type="file" id="myFile" required>
+				</div>
+			</div> -->
+			<!-- <div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="col-md-6 col-sm-6 col-xs-6"  style="font-weight: bold; color: #2F6C87;">
+					Status
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-6">
+					<select class="form-control" style="" required>
+						<option value="volvo">Implemented</option>
+						<option value="saab">Not Implemented</option>
+						<option value="opel">In Progress</option>
+					</select>
+				</div>
+			</div> -->
+			<!-- <div class="col-md-12 col-sm-12 col-xs-12" style="border-bottom: none;">
+				<div class="col-md-6 col-sm-6 col-xs-6" style="font-weight: bold; color: #2F6C87;">
+					Revised Target Implementation Date
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-6">
+					<form action="/action_page.php" >
+						<input type="date" name="revised_target_date"  style="width: 100%; border-radius: 5px;" required>
+					</form>
+				</div>
+			</div> -->
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<center><input class="btn-danger" type="submit" style="font-size: 16px; margin: 1% 0%; padding: 0.5% 1.5%; border-radius: 6px;" required onclick="singleUpload()";></center>
+			</div>
+		</div>
+		</form>
+		</div>
+	</body>
+</html>

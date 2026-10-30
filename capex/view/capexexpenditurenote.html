@@ -1,0 +1,708 @@
+
+<!DOCTYPE >
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Capex Proposal</title>	
+	<link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet"/>  
+	<link href="bootstrap-3.3.2-dist/css/bootstrap.min.css" rel="stylesheet"  /> 
+	<link href="css/capex.css" rel="stylesheet"/>		
+	<link href="css/select2.min.css" rel="stylesheet">
+	<style>
+	@media print 
+	{
+		body {width:1100px;}
+			div[class|=col-]{ float: none;}
+			.col-sm-6{width:50%}
+		@page {
+			size: 330mm 427mm;
+			margin: 13mm;
+
+		}
+		.container {
+			width: 1070px;
+		}
+
+		.table-responsive{
+			width:100%;
+			overflow-x:visible;
+		}
+		.table-bordered{
+		border: 2px solid #000;
+		border-collapse:collapse !important;
+		}
+		.table-bordered th,
+		.table-bordered td {
+		border: 1px solid #000 !important;
+		}
+		.np1{
+		display:none;
+		}
+	}
+	</style>
+	<script src="http://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="http://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>			
+	<script src="js/jquery-1.9.1.min.js"></script>
+	<script src="jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+	<script src="bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
+	<script src="js/select2.min.js"></script>	
+	<script src="js/bootstrap-maxlength.min.js"></script>
+	<script>
+function myFunction() {
+    window.print();
+}
+</script>
+	<script>
+	$(document).ready(function() {
+	
+	  var i=1;
+    $("#add_row").click(function(){
+		$('#addr'+i).html("<td>"+ (i+1) +"</td> <td><input name='date"+i+"' type='text' placeholder='issue date' class='form-control input-md datepicker_recurring_start normal'  /> </td><td><select  name='pub"+i+"'  class='form-control input-md normal'>'<option>Option 1</option>' '<option>Option 2</option>' '<option>Option 3</option>' '<option>Option 4</option>'</td><td><select  name='loc"+i+"'  class='form-control input-md normal'>'<option>Option 1</option>' '<option>Option 2</option>' '<option>Option 3</option>' '<option>Option 4</option>'</td>    ");		
+		$('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
+		i++; 
+	});
+    $("#delete_row").click(function(){
+    	if(i>1){
+			$("#addr"+(i-1)).html('');
+			i--;
+		}
+	});
+	
+	$('body').on('focus',".datepicker", function(){
+			$(this).datepicker({ dateFormat: 'dd-mm-yy' });	
+	});
+	$('body').on('focus',"#textarea", function(){
+			$(this).maxlength({alwaysShow: true});		
+	});	
+		$('.collapse').on('shown.bs.collapse', function(){
+$(this).parent().find(".glyphicon-plus").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+}).on('hidden.bs.collapse', function(){
+$(this).parent().find(".glyphicon-minus").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+});
+	$('.closeall').click(function(){
+  $('.panel1-collapse1.in ')
+    .collapse('hide');
+});
+
+$('.openall').click(function(){
+  $('.panel1-collapse1:not(".in")')
+    .collapse('show');
+});
+$('.printall').click(function(){
+  $('.panel-collapse:not(".in")')
+    .collapse('show');
+	myFunction()
+});
+	$(".multi").select2({ width: '100%'  });
+    function toggleNavbarMethod() {
+        if ($(window).width() > 768) {
+            $('.navbar .dropdown').on('mouseover', function(){
+                $('.dropdown-toggle', this).trigger('click'); 
+            }).on('mouseout', function(){
+                $('.dropdown-toggle', this).trigger('click').blur();
+            });
+        }
+        else {
+            $('.navbar .dropdown').off('mouseover').off('mouseout');
+        }
+    }
+    toggleNavbarMethod();
+    $(window).resize(toggleNavbarMethod);
+	$('body').on('focus',".datepicker1", function(){
+			$(this).datepicker({ dateFormat: 'dd/mm/yy',changeMonth: true,
+      changeYear: true });	
+	});	
+	$('.RelatedLinks ul li.RelLinks').hover(function() {
+			$(this).find('.dropdownmenu').show();
+		}, function(){
+			$(this).find('.dropdownmenu').hide();
+	});
+});
+	</script>
+	
+<script>
+	
+	function showhide()
+	{
+		var div = document.getElementById("firstdiv");
+		if (div.style.display !== "none") {
+		div.style.display = "none";
+	}
+	else {
+		div.style.display = "block";
+	}
+	}
+	  function setFocus() {
+    var editor = $('.date');
+    var value = editor.val();
+    editor.val("");
+    editor.focus();
+    editor.val(value);
+}
+	</script>
+</head>
+<body> 
+<div class="row head1" style="margin-right:0px;margin-left:0px;">
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 " style="padding-left:0px;padding-top:20px;background:url(images/capexheader.jpg);height:60px;color:#FFF;">
+<h3 class="special" >Capex Approval</h3>
+</div>
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 " style="padding-top:20px;">
+<div class="RelatedLinks ">
+	<ul>
+		<li class="RelLinks"><a href="#" style="">Related Links</a>
+		<ul class="dropdownmenu">
+			<li><a href="capexexpenditurenote.html">Capex Expenditure Note</a></li>						
+			<li><a href="cpexexpenditure.html">Capex Expenditure Proposal</a></li>
+					
+		</ul>
+		</li>
+	</ul>
+</div>
+</div>
+</div>
+
+<form action="#" class="form-horizontal" role="form">
+	<div class="container-fluid">
+	<div class="row">
+	<div class="col-lg-1"></div>	
+	<div class="col-xs-12 col-md-12 col-lg-10 col-sm-12 bs-example">
+		<h3 class="form-section ">CAPEX Expenditure Note </h3><hr>
+		<div class="row"><div class="col-xs-12 col-md-12 col-lg-12 col-sm-12 "> <a href="#" class="btn btn-primary openall np1"> <span class="glyphicon glyphicon-plus "></span> open all</a> <a href="#" class="btn btn-primary closeall np1"> <span class="glyphicon glyphicon-minus"></span> close all</a>
+		 <a  class="btn btn-primary btn-sm col-xs-offset-2 pull-right printall np1"  ><i class="fa fa-print" aria-hidden="true"></i> Print</a></div></div>
+		<div class="panel-group" id="accordion" style="margin-top:5px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> <span class="glyphicon glyphicon-minus"></span>Project Details :</a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in abc">
+                <div class="panel-body" style="height:auto;overflow-y:hidden;">
+				
+				  <table class="table table-bordered" style="page">
+					
+					<tbody>
+						<tr>
+							
+						</tr>
+						<tr>
+							<td><strong>Project Title</strong></td>
+							<td colspan="4"> Upgradation of CFL/FTL/GLS electrical fittings to LED at DCPF Noida</td>
+							<td><a href="#myModal2"  class="btn btn-default btn-sm pull-right np1" data-toggle="modal" ><i class="fa fa-paperclip" style="color:green;"></i><b>  View Attachments </b></a>  </td>
+						</tr>
+						<tr>
+							<td><strong>Request No :</strong></td>
+							<td>1234</td>
+							<td><strong>Submitted On :</strong></td>
+							<td>3/31/2017</td>
+							<td><strong>Submitted By :</strong></td>
+							<td  style="word-wrap: break-word;">sachin.kale@timesgroup.com</td>
+						</tr>
+						<tr>
+							<td><strong>Proposed Amount :</strong></td>
+							<td>40</td>
+							<td><strong>Opex Amount :</strong></td>
+							<td>0</td>
+							<td><strong>Budgeted Amount :</strong></td>
+							<td>400</td>
+						</tr>
+						<tr>
+							<td><strong>Financial Year :</strong></td>
+							<td>2016 -17</td>
+							<td><strong>Payback Period :</strong></td>
+							<td>Yrs / Months</td>
+							<td><strong>Savings Envisaged :</strong></td>
+							<td>40</td>
+						</tr>
+						<tr>
+					
+			
+							<td><strong>Project Category :</strong></td>
+							<td>Infrastructure / Compliance</td>
+							<td><strong>Location:</strong></td>
+							<td>BCCL - NAGPUR</td>
+							<td><strong>Function :</strong></td>
+							<td>johncarter@mail.com</td>
+						</tr>
+					
+						<td colspan="6">
+							<a href="#myModal1" class="btn btn-default btn-sm pull-left np1" data-toggle="modal"><i class="fa fa-comment fa-2x" style=
+							"color:#2e6da4;padding-top:2px;"></i>  <b>Comments </b>  <span class="badge" style="margin-left:3px;">3</span></a>
+						
+						<a href="#myModal5"  class="btn btn-danger pull-right np1" data-toggle="modal" style="margin-left:3px;"><i class="fa fa-times"></i> Reject</a><a href="#myModal4"  class="btn btn-danger pull-right np1" data-toggle="modal"><i class="fa fa-check-circle"></i> Approve</a><a href="#myModal3" class="btn btn-danger pull-right np1" data-toggle="modal" style="margin-right:3px;"><i class="fa fa-eye" aria-hidden="true"></i> Review</a></td>
+						<tr>
+						
+						</tr>
+					</tbody>
+				</table>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"> <span class="glyphicon glyphicon-plus"></span> Project Brief  :</a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel1-collapse1 collapse">
+                <div class="panel-body" style="height:auto;overflow-y:hidden;">
+					<div class="table-responsive ">
+			  <table class="table table-bordered">
+				<tbody>
+					<tr>
+						<td><strong>Project Start Date :</strong></td>
+						<td>5/1/2016</td>
+						<td><strong>Project End Date :</strong></td>
+						<td>3/31/2017</td>
+						<td><strong>Project Close-Out Date :</strong></td>
+						<td>4/10/2017</td>
+					</tr>
+					
+					
+				</tbody>
+			</table>
+			</div>
+			<div class="table-responsive ">
+			  <table class="table table-bordered">
+				
+				<tbody>
+					<tr>
+						<td width="5%"><strong>Reasons (If Unbudgeted):</strong></td>
+						<td width="30%">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</td>
+					</tr>
+					<tr>
+						<td width="5%"><strong>Rationale:</strong></td>
+						<td width="30%">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</td>
+					</tr>
+					<tr>
+						
+						<td><strong>Recommendation:</strong></td>
+						<td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</td>
+					</tr>
+					<tr>
+						<td width="15%"><strong>Project Description:</strong></td>
+						<td width="40%">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</td>
+					</tr>
+					
+				</tbody>
+			</table>
+			</div>
+			
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"> <span class="glyphicon glyphicon-plus"></span> Capex Opex Details</a>
+                </h4>
+            </div>
+            <div id="collapseThree" class="panel1-collapse1 collapse">
+			<div class="panel-body" style="height:auto;overflow-y:hidden;">
+			<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 ">
+			   <table class="table table-bordered">
+			<thead>
+			<tr class="warning" >
+				<th class="text-center" width="15%" colspan="3" style="text-align:left;">Capex Details</th>
+			</tr>
+			</thead>
+			<thead>
+			<tr class="">
+				<th class="text-center" width="2%">Sr.No.</th>
+				<th class="text-center" width="19%">Particulars</th>
+				<th class="text-center" width="9%">Estimated Cost</th>
+				
+			</tr>
+			</thead>
+					<tbody>
+			<tr>
+				<td class="text-center">1</td>
+				<td class="text-left">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</td>
+				<td class="text-left">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</td>
+			</tr>
+			
+		</tbody>
+		</table>
+
+            </div>
+			
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 ">
+			<table class="table table-bordered">
+			<thead>
+			<tr class="warning" >
+				<th class="text-center" width="15%" colspan="3" style="text-align:left;">Opex Details</th>
+			</tr>
+			</thead>
+			<thead>
+			<tr class="">
+				<th class="text-center" width="2%">Sr.No.</th>
+				<th class="text-center" width="19%">Particulars</th>
+				<th class="text-center" width="9%">Estimated Cost</th>
+				
+			</tr>
+			</thead>
+			
+		<tbody>
+			<tr>
+				<td class="text-center">1</td>
+				<td class="text-left">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</td>
+				<td class="text-left">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</td>
+			</tr>
+			
+		</tbody>
+		</table>
+
+            </div>
+            </div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"> <span class="glyphicon glyphicon-plus"></span> Participants</a>
+                </h4>
+            </div>
+            <div id="collapseFour" class="panel1-collapse1 collapse">
+                <div class="panel-body" style="height:auto;overflow-y:hidden;">
+				<table class="table table-bordered">
+				<tbody>
+					<tr>
+						<td><strong>Created By :</strong></td>
+						<td>sachin.kale@timesgroup.com</td>
+						<td><strong>Project Manager :</strong></td>
+						<td>sundaram.sethuraman@timesgroup.com</td>
+						
+					</tr>
+					<tr>
+						<td><strong>Project Sponser :</strong></td>
+						<td>sanjay.singh5@timesgroup.com</td>
+						<td><strong>Project Co-Ordinator :</strong></td>
+						<td>michelle.wadhwani@timesgroup.com</td>
+						
+					</tr>
+					<tr>
+						<td><strong>Supported By :</strong></td>
+						<td>mohit.jain@timesgroup.com</td>
+						<td><strong>Recommended By :</strong></td>
+						<td>shrijeet.mishra@timesgroup.com</td>
+						
+					</tr>
+					<tr>
+						<td><strong>Recommended By :</strong></td>
+						<td>raj.jain@timesgroup.com</td>
+						<td><strong>Approved By :</strong></td>
+						<td>vineet.jain@timesgroup.com</td>
+						
+					</tr>
+				</tbody>
+			</table>
+
+				
+				</div>
+			</div>
+		</div>
+		
+		<div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive"> <span class="glyphicon glyphicon-plus"></span>Attachments :</a>
+                </h4>
+            </div>
+            <div id="collapseFive" class="panel1-collapse1 collapse ">
+                <div class="panel-body" style="height:auto;overflow-y:hidden;">
+				 <p>1. ABCD. Docx</p>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapsesix"> <span class="glyphicon glyphicon-plus"></span>Comments :</a>
+                </h4>
+            </div>
+            <div id="collapsesix" class="panel1-collapse1 collapse ">
+                <div class="panel-body" style="height:auto;overflow-y:hidden;">
+					 <div class="panel panel-primary">
+                
+                <div class="panel-body">
+                    <ul class="chat">
+                        <li class="left clearfix"><span class="chat-img pull-left">
+                            <img src="images/user1.png" alt="User Avatar" class="img-circle" />
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
+                                        <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="right clearfix" ><span class="chat-img pull-right">
+                            <img src="images/user2.png" alt="User Avatar" class="img-circle" />
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
+                                    <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="left clearfix"><span class="chat-img pull-left">
+                            <img src="images/user1.png" alt="User Avatar" class="img-circle" />
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
+                                        <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="right clearfix"><span class="chat-img pull-right">
+                            <img src="images/user2.png" alt="User Avatar" class="img-circle" />
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
+                                    <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+				</div>
+			</div>
+		</div>
+		</div>
+		</div>
+	<div class="col-lg-1 "></div>
+	</div>	 
+</div>  
+ 
+<div id="myModal1" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			   <h4 class="modal-title"><i class="fa fa-comment-o fa-2x"></i> Comments</h4>
+			</div>
+			<div class="modal-body">
+			   <br>
+				<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-2 col-lg-12 ">
+				<div class="panel-body" style="height:auto;overflow-y:hidden;">
+					 <div class="panel panel-primary">
+                
+                <div class="panel-body">
+                    <ul class="chat">
+                        <li class="left clearfix"><span class="chat-img pull-left">
+                            <img src="images/user1.png" alt="User Avatar" class="img-circle" />
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
+                                        <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="right clearfix" ><span class="chat-img pull-right">
+                            <img src="images/user2.png" alt="User Avatar" class="img-circle" />
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
+                                    <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="left clearfix"><span class="chat-img pull-left">
+                            <img src="images/user1.png" alt="User Avatar" class="img-circle" />
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
+                                        <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="right clearfix"><span class="chat-img pull-right">
+                            <img src="images/user2.png" alt="User Avatar" class="img-circle" />
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
+                                    <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+				</div>
+				<div class="panel-footer">
+				<div class="input-group">
+					<input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+					<span class="input-group-btn" >
+						 <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-left:5px;">Send</button>
+					</span>
+				</div>
+			</div>
+		</div>
+		</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+			   
+			</div>
+		</div>
+	</div>
+</div>
+<div id="myModal2" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			   <h4 class="modal-title"><i class="fa fa-paperclip"></i>  Attachments</h4>
+			</div>
+			<div class="modal-body">
+			  
+				<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-2 col-lg-12 ">
+		  <p>1. ABCD. Docx</p>
+		</div>
+		</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+			   
+			</div>
+		</div>
+	</div>
+</div>
+<div id="myModal3" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			   <h4 class="modal-title"><i class="fa fa-eye"></i>  Review</h4>
+			</div>
+			<div class="modal-body">
+			  
+				<div class="row">
+				<div class="form-group">
+				<label class="col-xs-2 control-label">Comment</label>
+				<div class="col-xs-8">
+					<textarea class="form-control" rows="3"></textarea>
+				</div>
+			</div>
+		</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+			   
+			</div>
+		</div>
+	</div>
+</div>
+<div id="myModal4" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			   <h4 class="modal-title"><i class="fa fa-check-circle"></i>  Approve</h4>
+			</div>
+			<div class="modal-body">
+			  
+				<div class="row">
+				<div class="form-group">
+				<label class="col-xs-2 control-label">Comment</label>
+				<div class="col-xs-8">
+					<textarea class="form-control" rows="3"></textarea>
+				</div>
+			</div>
+		</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+			   
+			</div>
+		</div>
+	</div>
+</div>
+<div id="myModal5" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			   <h4 class="modal-title"><i class="fa fa-times"></i>  Reject</h4>
+			</div>
+			<div class="modal-body">
+			  
+				<div class="row">
+				<div class="form-group">
+				<label class="col-xs-2 control-label">Comment</label>
+				<div class="col-xs-8">
+					<textarea class="form-control" rows="3"></textarea>
+				</div>
+			</div>
+		</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+			   
+			</div>
+		</div>
+	</div>
+</div>
+</form>	
+<footer class="footer ">
+	<div class="container text-center">
+		<p style="margin-bottom:2px; margin-left:80px;" class="ex ">Copyright @ 2016 Bennett, Coleman & Co. Ltd. All rights reserved. </p>
+	</div>
+</footer>
+</body>
+</html>
+
+
+           
+
+

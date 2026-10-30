@@ -1,0 +1,496 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Travel Hub</title>
+<link href="style/global.css" rel="stylesheet" type="text/css" />
+<script Language="JavaScript" src="jscripts/util.js"></script>
+<script Language="JavaScript" src="jscripts/common.js"></script>
+<script Language="JavaScript" src="jscripts/search.js"></script>
+<script Language="JavaScript" src="jscripts/fieldCheck.js"></script>
+<style type="text/css">
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+</style>
+<script src="jscripts/calendarControl.js" language="javascript"></script>
+<link href="style/calendarControl.css" rel="stylesheet">
+<script type="text/javascript">
+var counter = 2;
+function addRow()
+{
+  counter = parseInt(counter) + 1;
+
+  document.priceApprovalMain.count.value = counter;
+
+  tabBody = document.getElementById("inputtable");
+  row	  = document.createElement("TR");
+
+  cell1   = document.createElement("TD");
+  cell1.innerHTML = "<input type='textbox' name='v"+counter+"' class='normal'  size='20' maxlength='50' /> ";
+  row.appendChild(cell1);
+
+  cell1   = document.createElement("TD");
+  cell1.innerHTML = "<input type='textbox' name='i"+counter+"' class='normal'  size='20' maxlength='50' /> ";
+  row.appendChild(cell1);
+
+  cell1   = document.createElement("TD");
+  cell1.innerHTML = "<input type='textbox' name='f"+counter+"' class='normal'  size='20' maxlength='50'  /> ";
+  row.appendChild(cell1);
+
+  cell1   = document.createElement("TD");
+  cell1.innerHTML = "<textarea name='d"+counter+"' rows='2' class='small' maxlength='30'></textarea>";
+  row.appendChild(cell1);
+
+  cell1   = document.createElement("TD");
+  cell1.innerHTML = "<textarea name='w"+counter+"' rows='2' class='small' maxlength='30'></textarea>";
+  row.appendChild(cell1);
+  
+  tabBody.appendChild(row);
+}
+function delRow()
+{
+	if(counter > 2)
+	{
+	document.getElementById("inputtable").deleteRow(counter);
+	counter = counter - 1;
+	document.priceApprovalMain.count.value = counter;
+	}
+}
+</script>
+<script src="jscripts/fieldCheck.js" language="javascript"></script>
+</head>
+<body>
+<form name="priceApprovalMain" method="post" action="">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="77%"><img src="images/header_price1.jpg" width="842" height="44" /></td>
+    <td width="23%" rowspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="38"><img src="images/header_price2.jpg" width="706" height="34" /><img src="images/related_links.png" width="18" height="18" /><span class="boldsmall">Related links&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;  | <img src="images/otherESSlinks.png" width="18" height="18" /> <span class="boldsmall">Other ESS links</span></td>
+  </tr>
+</table>
+<table width="100%" cellspacing="2" cellpadding="2" border="0">
+  <tr>
+    <td height="26" colspan="2" bgcolor="#fbf9f9" class="travelMenuBG">PC MEETING DETAILS</td>
+    <td colspan="2" align="left" bgcolor="#fbf9f9" class="travelMenuBG">PROJECT DETAILS</td>
+  </tr>
+  <tr>
+    <td width="18%" height="27" bgcolor="#fbf9f9"><span class="small" id="top">Negotiation/PC meeting date:</span></td>
+    <td width="26%" align="left"><span class="small">
+      <input name="requestedBy" class="small" maxlength="100" onfocus="showCalendarControl(this);" readonly="readonly" />
+    </span></td>
+    <td width="21%" align="left" bgcolor="#fbf9f9" class="normal"><span class="small">Product/ Service/ Project Name:</span></td>
+    <td width="35%" align="left"><span class="small">
+     <table width="100%" cellspacing="0" cellpadding="0" border="0">
+	  <tr>
+	  <td width="45%">
+	  <input name="requestedBy2" class="small" maxlength="100" onkeydown="textCounter(document.priceApprovalMain.requestedBy2,'requestedBy2Description',100)" onkeyup="textCounter(document.priceApprovalMain.requestedBy2,'requestedBy2Description',100)"/>
+	  <td width="3%"></td>
+	  <td id="requestedBy2Description" align="left" width="8%">100</td>
+	  <td align="left">Characters Left</td>
+	  </tr>
+	  </table>
+    </span></td>
+  </tr>
+  <tr>
+    <td bgcolor="#fbf9f9"><span class="small">Negotiation/PC meeting venue:</span></td>
+    <td width="30%" align="left"><span class="small">
+      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+	  <tr>
+	  <td width="45%"><textarea name="reason4" rows="2" class="small" onkeydown="textCounter(document.priceApprovalMain.reason4,'lineCountDescription',50)" onkeyup="textCounter(document.priceApprovalMain.reason4,'lineCountDescription',50)"></textarea></td>
+	  <td width="3%"></td>
+	  <td id="lineCountDescription" align="left" width="8%">50</td>
+	  <td align="left">Characters Left</td>
+	  </tr>
+	  </table>
+		<!--<input name="lineCountDescription" class="style3" value="100" size="3" maxlength="3" readonly="readOnly" />-->
+    </span></td>
+    <td width="21%" align="left" bgcolor="#fbf9f9" class="normal"><span class="small">Indented User/ User group:</span></td>
+    <td width="35%" align="left"><span class="small">
+	<table width="100%" cellspacing="0" cellpadding="0" border="0">
+	  <tr>
+	  <td width="45%">
+	  <input name="requestedBy3" class="small" maxlength="100" onkeydown="textCounter(document.priceApprovalMain.requestedBy3,'requestedBy3Description',100)" onkeyup="textCounter(document.priceApprovalMain.requestedBy3,'requestedBy3Description',100)"/>
+	  <td width="3%"></td>
+	  <td id="requestedBy3Description" align="left" width="8%">100</td>
+	  <td align="left">Characters Left</td>
+	  </tr>
+	  </table>
+      </span></td>
+  </tr>
+  <tr>
+    <td bgcolor="#fbf9f9"><p class="small">Negotiated value (Rs):</p></td>
+    <td width="26%" align="left"><span class="small">
+	<table width="100%" cellspacing="0" cellpadding="0" border="0">
+	  <tr>
+	  <td width="45%">
+	  <input name="requestedBy7" class="small" maxlength="100" onkeydown="textCounter(document.priceApprovalMain.requestedBy7,'requestedBy7Description',100)" onkeyup="textCounter(document.priceApprovalMain.requestedBy7,'requestedBy7Description',100)"/>
+	  <td width="3%"></td>
+	  <td id="requestedBy7Description" align="left" width="8%">100</td>
+	  <td align="left">Characters Left</td>
+	  </tr>
+	  </table>
+    </span></td>
+    <td width="21%" align="left" bgcolor="#fbf9f9" class="normal"><span class="small">Package Name/ Sanction:</span></td>
+    <td width="35%" align="left"><span class="small">
+      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+	  <tr>
+	  <td width="45%">
+	  <input name="requestedBy4" class="small" maxlength="100" onkeydown="textCounter(document.priceApprovalMain.requestedBy4,'requestedBy4Description',100)" onkeyup="textCounter(document.priceApprovalMain.requestedBy4,'requestedBy4Description',100)"/>
+	  <td width="3%"></td>
+	  <td id="requestedBy4Description" align="left" width="8%">100</td>
+	  <td align="left">Characters Left</td>
+	  </tr>
+	  </table>
+    </span></td>
+  </tr>
+  <tr>
+    <td bgcolor="#fbf9f9"><span class="small">Finalized vendor's name :</span></td>
+    <td width="26%" align="left"><span class="small">
+      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+	  <tr>
+	  <td width="45%">
+	  <input name="requestedBy8" class="small" maxlength="100" onkeydown="textCounter(document.priceApprovalMain.requestedBy8,'requestedBy8Description',50)" onkeyup="textCounter(document.priceApprovalMain.requestedBy8,'requestedBy8Description',50)"/>
+	  <td width="3%"></td>
+	  <td id="requestedBy8Description" align="left" width="8%">50</td>
+	  <td align="left">Characters Left</td>
+	  </tr>
+	  </table>
+    </span></td>
+    <td width="21%" align="left" bgcolor="#fbf9f9" class="normal"><span class="small">Total Budget (Rs.):</span></td>
+    <td width="35%" align="left"><span class="small">
+      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+	  <tr>
+	  <td width="45%">
+	  <input name="requestedBy5" class="small" maxlength="100" onkeydown="textCounter(document.priceApprovalMain.requestedBy5,'requestedBy5Description',20)" onkeyup="textCounter(document.priceApprovalMain.requestedBy5,'requestedBy5Description',20)"/>
+	  <td width="3%"></td>
+	  <td id="requestedBy5Description" align="left" width="8%">20</td>
+	  <td align="left">Characters Left</td>
+	  </tr>
+	  </table>
+    </span></td>
+  </tr>
+  <tr>
+    <td bgcolor="#fbf9f9"><span class="small">Payment terms:</span></td>
+    <td width="26%" align="left"><span class="small">
+	<table width="100%" cellspacing="0" cellpadding="0" border="0">
+	  <tr>
+	  <td width="45%">
+	  <textarea name="reason" rows="2" class="small" onkeydown="textCounter(document.priceApprovalMain.reason,'reasonDescription',150)" onkeyup="textCounter(document.priceApprovalMain.reason,'reasonDescription',150)"></textarea>
+	  <td width="3%"></td>
+	  <td id="reasonDescription" align="left" width="8%">150</td>
+	  <td align="left">Characters Left</td>
+	  </tr>
+	  </table>
+      </span></td>
+    <td width="21%" align="left" bgcolor="#fbf9f9" class="normal"><span class="small">PO's Commited till date (Rs.)</span></td>
+    <td width="35%" align="left"><span class="small">
+	<table width="100%" cellspacing="0" cellpadding="0" border="0">
+	  <tr>
+	  <td width="45%">
+	  <input name="fqtNumber" class="small" maxlength="100" onkeydown="textCounter(document.priceApprovalMain.fqtNumber,'fqtNumberDescription',20)" onkeyup="textCounter(document.priceApprovalMain.fqtNumber,'fqtNumberDescription',20)"/>
+	  <td width="3%"></td>
+	  <td id="fqtNumberDescription" align="left" width="8%">20</td>
+	  <td align="left">Characters Left</td>
+	  </tr>
+	  </table>
+      </span></td>
+  </tr>
+  <tr>
+    <td bgcolor="#fbf9f9"><span class="small">Savings (Rs):</span></td>
+    <td width="26%" align="left"><span class="small">
+      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+	  <tr>
+	  <td width="45%">
+	  <input name="requestedBy9" class="small" maxlength="100" onkeydown="textCounter(document.priceApprovalMain.requestedBy9,'requestedBy9Description',20)" onkeyup="textCounter(document.priceApprovalMain.requestedBy9,'requestedBy9Description',20)"/>
+	  <td width="3%"></td>
+	  <td id="requestedBy9Description" align="left" width="8%">20</td>
+	  <td align="left">Characters Left</td>
+	  </tr>
+	  </table>
+    </span></td>
+    <td width="21%" height="26" align="left" valign="middle" bgcolor="#fbf9f9" class="normal">Balance Budget(Rs.)</td>
+    <td valign="top" width="35%" align="left"><span class="small">
+      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+	  <tr>
+	  <td width="45%">
+	  <input name="requestedBy6" class="small" maxlength="100" onkeydown="textCounter(document.priceApprovalMain.requestedBy6,'requestedBy6Description',20)" onkeyup="textCounter(document.priceApprovalMain.requestedBy6,'requestedBy6Description',20)"/>
+	  <td width="3%"></td>
+	  <td id="requestedBy6Description" align="left" width="8%">20</td>
+	  <td align="left">Characters Left</td>
+	  </tr>
+	  </table>
+    </span></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellpadding="2" cellspacing="2">
+
+  <tr>
+    <td height="22" bgcolor="#ffffff" class="travelMenuBG">BACKGROUND</td>
+  </tr>
+</table>
+<table width="100%" cellspacing="2" cellpadding="2">
+<tbody id="inputtable">
+  <tr class="greyBG">
+    <td width="8%" height="29" >VENDOR</td>
+    <td width="9%" align="left">INITIAL OFFER (Rs)</td>
+    <td width="8%" align="left">FINAL OFFER (Rs)</td>
+    <td width="12%" align="left">Delivery/ Completion Period</td>
+    <td width="17%" align="left">Warranty/ Defect Liability Period</td>
+    <td width="29%" colspan="3" align="left">REQUIREMENT</td>
+  </tr>
+  <tr>
+    <td height="25" valign="top" align="left"><span class="small">
+      <input name="v1" class="normal"  size="20" maxlength="50"  />    
+    </span></td>
+    <td height="25" valign="top" align="left"><span class="small">
+      <input name="i1" class="normal"  size="20" maxlength="20"  />    
+    </span></td>
+    <td height="25" valign="top" align="left"><span class="small">
+      <input name="f1" class="normal"  size="20" maxlength="30"  />    
+    </span></td>
+    <td height="25" valign="top" align="left"><span class="small">
+      <textarea name="d1" rows="2" class="small" maxlength="30"></textarea>
+    </span></td>
+    <td height="25" valign="top" align="left"><span class="small">
+      <textarea name="w1" rows="2" class="small" maxlength="30"></textarea>
+    </span></td>
+    <td colspan="3" rowspan="4" align="left" valign="top"><textarea name="req" id="req" cols="45" rows="7"></textarea></td>
+  </tr>
+  <tr>
+    <td height="25" valign="top" align="left"><span class="small">
+      <input name="v2" class="normal"  size="20" maxlength="50"  />    
+    </span></td>
+    <td height="25" valign="top" align="left"><span class="small">
+      <input name="i2" class="normal"  size="20" maxlength="20"  />    
+    </span></td>
+    <td height="25" valign="top" align="left"><span class="small">
+      <input name="f2" class="normal"  size="20" maxlength="30"  />    
+    </span></td>
+    <td height="25" valign="top" align="left"><span class="small">
+      <textarea name="d2" rows="2" class="small" maxlength="30"></textarea>
+    </span></td>
+    <td height="25" valign="top" align="left"><span class="small">
+      <textarea name="w2" rows="2" class="small" maxlength="30"></textarea>
+    </span></td>
+  </tr>
+   </tbody>
+   <tr><td colspan="5" height="10"><input type="button" value="Add Textbox" name="add" onclick="addRow()" class="bold">
+   <input type="button" value="Remove Textbox" name="add" onclick="delRow()" class="bold"></td></tr>
+   <input type="hidden" name="count" value="2" />	
+ </table>
+<table width="100%" border="0" cellpadding="2" cellspacing="2">
+ </table>
+<table width="100%" cellspacing="2" cellpadding="2">
+  <tr>
+    <td height="32" colspan="2" align="left" valign="middle" class="travelMenuBG">ATTACHMENTS</td>
+    <td colspan="3" align="left" valign="middle" class="travelMenuBG">BENCHMARKING</td>
+    <td align="left" valign="middle" class="travelMenuBG">RECOMMENDATION</td>
+  </tr>
+  <tr>
+    <td height="25" align="left" valign="top" class="greyBG">DESCRIPTION</td>
+    <td height="25" align="left" valign="top" class="greyBG">ATTACH</td>
+    <td align="left" valign="top" class="greyBG">PRODUCT/SERVICE</td>
+    <td align="left" valign="top" class="greyBG">Rate (Rs/ Sqft)</td>
+    <td align="left" valign="top" class="greyBG">Benchmark Rate Rs/sft. </td>
+    <td width="29%" rowspan="4" align="left" valign="top"><textarea name="recommendation" id="textarea2" cols="45" rows="7"></textarea></td>
+  </tr>
+  <tr>
+    <td width="18%" height="25" align="left" valign="top"><span class="small">
+      <textarea name="reason1" rows="2" class="small" maxlength="50"></textarea>
+    </span></td>
+    <td width="9%" height="25" align="left" valign="top"><input name="attach1" type="text" class="small" id="attach1" value="" /><a href="#" onclick="upload('attach1')"><img src="images/attachment.gif" border="0" /></a><input name="attach1New" type="hidden" id="attach1New" value="" /></td>
+    <td width="21%" align="left" valign="top" class="small"><textarea name="reason14" rows="2" class="small" maxlength="50"></textarea></td>
+    <td width="8%" align="left" valign="top"><span class="small">
+      <input name="fromDateAir" class="small" id="fromDateAir"  size="20" maxlength="100"/>
+    </span></td>
+    <td width="15%" align="left" valign="top"><span class="small">
+      <input name="fromDateAir4" class="small" id="fromDateAir4" size="20" maxlength="100"/>
+    </span></td>
+  </tr>
+  <tr>
+    <td height="25" valign="top" align="left"><span class="small">
+      <textarea name="reason2" rows="2" class="small" maxlength="50"></textarea>
+    </span></td>
+    <td height="25" valign="top" align="left"><input name="attach2" type="text" class="small" id="attach2" value="" /><a href="#" onclick="upload('attach2')"><img src="images/attachment.gif" border="0" /></a><input name="attach2New" type="hidden" id="attach2New" value="" /></td>
+    <td valign="top" align="left"><span class="small">
+      <textarea name="reason15" rows="2" class="small" maxlength="50"></textarea>
+    </span></td>
+    <td valign="top" align="left"><span class="small">
+      <input name="fromDateAir2" class="small" id="fromDateAir5"  size="20" maxlength="100" />
+    </span></td>
+    <td valign="top" align="left"><span class="small">
+      <input name="fromDateAir8" class="small" id="fromDateAir8"  size="20" maxlength="100" />
+    </span></td>
+  </tr>
+  <tr>
+    <td height="36" valign="top" align="left"><span class="small">
+      <textarea name="reason3" rows="2" class="small" maxlength="50"></textarea>
+    </span></td>
+    <td height="36" valign="top" align="left"><input name="attach3" type="text" class="small" id="attach3" value="" /><a href="#" onclick="upload('attach3')"><img src="images/attachment.gif" border="0" /></a><input name="attach3New" type="hidden" id="attach3New" value="" /></td>
+    <td valign="top" align="left"><span class="small">
+      <textarea name="reason16" rows="2" class="small" maxlength="50"></textarea>
+    </span></td>
+    <td valign="top" align="left"><span class="small">
+      <input name="fromDateAir3" class="small" id="fromDateAir6" size="20" maxlength="100" />
+    </span></td>
+    <td valign="top" align="left"><span class="small">
+      <input name="fromDateAir9" class="small" id="fromDateAir9" size="20" maxlength="100" />
+    </span></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellpadding="2" cellspacing="2">
+
+  <tr>
+    <td height="22" bgcolor="#ffffff" class="travelMenuBG">SUPPORTED BY</td>
+  </tr>
+</table>
+<table width="100%" cellspacing="2" cellpadding="2">
+  <tr >
+    <td width="18%" bgcolor="#fbf9f9" class="small" >DIRECTOR</td>
+    <td width="34%" height="29" bgcolor="#fbf9f9" class="small" ><select name="sbd1" class="small" id="select">
+      <option>Sanjay Singh</option>
+    </select></td>
+    <td width="14%" align="left" bgcolor="#fbf9f9" class="small">DIRECTOR</td>
+    <td width="34%" align="left" bgcolor="#fbf9f9"><span class="small">
+      <select name="sbd2" class="small" id="select2">
+        <option>K Thiagarajan</option>
+        <option>Sanjay Singh</option>
+      </select>
+    </span></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="52%" bgcolor="#FFFFFF"><table width="100%" border="0" cellpadding="2" cellspacing="2">
+     
+      <tr>
+        <td height="22" bgcolor="#ffffff" class="travelMenuBG">APPROVALS</td>
+        </tr>
+    </table>
+      <table width="100%" cellspacing="2" cellpadding="2">
+        <tr class="greyBG">
+          <td width="17%" >B&amp;C-<span class="small"> LEVEL 1</span><span class="redsmall"> (min 2)</span></td>
+          <td width="17%" height="29" >USER/PROJECT TEAM<span class="small">-LEVEL </span><span class="redsmall"><span class="small">1</span>(min 2)</span></td>
+          <td width="21%" align="left">FINANCE/BRANCH HEAD/ MAS- <span class="redsmall"><span class="small">LEVEL 1</span> (min 2)</span></td>
+          <td width="16%" align="left">B &amp; C <span class="small">-LEVEL2</span></td>
+          <td width="15%" align="left">B &amp;C -<span class="small">LEVEL 2</span></td>
+          <td width="14%" align="left">CEO</td>
+        </tr>
+        <tr class="small">
+          <td class = "normal" height = "25" width="12%" align="left"><input type = "text" name = "app1" id="app1" class = "normal" size="20" onClick="addUser('approvedby',this.id)">
+		  </td>
+          <td class = "normal" height = "25" width="12%" align="left"><input type = "text" name = "app2" id="app2" class = "normal" size="20" onClick="addUser('approvedby',this.id)">
+		  </td>
+          <td class = "normal" height = "25" width="12%" align="left"><input type = "text" name = "app3" id="app3" class = "normal" size="20" onClick="addUser('approvedby',this.id)">
+		  </td>
+          <td rowspan="3" align="left" valign="top" class="small"><span class="boldunderline_small">
+            <select name="select12" class="small" id="select12">
+        <option>K Thiagarajan</option>
+        <option>Sanjay Singh</option>
+      </select>
+			</span></td>
+          <td rowspan="3" align="left" valign="top"><span class="boldunderline_small">
+<select name="select13" class="small" id="select14">
+        <option>K Thiagarajan</option>
+        <option>Sanjay Singh</option>
+      </select>         </span></td>
+          <td rowspan="3" align="left" valign="top"><span class="boldunderline_small">
+<select name="select14" class="small" id="select14">
+        <option>K Thiagarajan</option>
+        <option>Sanjay Singh</option>
+      </select>         </span></td>
+        </tr>
+        <tr class="small">
+          <td class = "normal" height = "25" width="12%" align="left"><input type = "text" name = "app4" id="app4" class = "normal" size="20" onClick="addUser('approvedby',this.id)">
+		  </td>
+          <td class = "normal" height = "25" width="12%" align="left"><input type = "text" name = "app5" id="app5" class = "normal" size="20" onClick="addUser('approvedby',this.id)">
+		  </td>
+          <td class = "normal" height = "25" width="12%" align="left"><input type = "text" name = "app6" id="app6" class = "normal" size="20" onClick="addUser('approvedby',this.id)">
+		  </td>
+        </tr>
+        <tr class="small">
+          <td class = "normal" height = "25" width="12%" align="left"><input type = "text" name = "app7" id="app7" class = "normal" size="20" onClick="addUser('approvedby',this.id)">
+		  </td>
+          <td class = "normal" height = "25" width="12%" align="left"><input type = "text" name = "app8" id="app8" class = "normal" size="20" onClick="addUser('approvedby',this.id)">
+		  </td>
+          <td class = "normal" height = "25" width="12%" align="left"><input type = "text" name = "app9" id="app9" class = "normal" size="20" onClick="addUser('approvedby',this.id)">
+		  </td>
+        </tr>
+      </table>
+      <table width="100%" border="0" cellspacing="4" cellpadding="0">
+        <tr>
+          <td width="50%">&nbsp;</td>
+          <td width="50%">&nbsp;</td>
+        </tr>
+        <tr>
+          <td align="right" valign="middle"><input name="submitForm" onclick="validateForm();" type="button" class="bold" id="submitForm" value="Submit" /></td>
+          <td><input name="reset" type="button" class="bold" id="reset" value="Reset" /></td>
+        </tr>
+      </table>
+      <table width="100%" border="0" cellpadding="2" cellspacing="2">
+        <tr>
+          <td height="14" bgcolor="#ffffff"><hr /></td>
+        </tr>
+        <tr>
+          <td height="22" bgcolor="#ffffff" class="travelMenuBG">VIEW STATUS</td>
+        </tr>
+      </table>
+      <table border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tbody>
+          <tr>
+            <td class="small" height="20" colspan="100" align="left">&nbsp;Tip : <img src="images/ico_inprocess.png" /> : In 
+              Process | <img src="images/ico_bapproved.png" /> : Approved by Level 1| <img src="images/ico_brejected.png" /> : 
+              Rejected by Level 1| <img src="images/ico_bapproved2.jpg" width="10" height="10" /> : Approved by Level2 |<img src="images/ico_brejected2.jpg" width="10" height="10" /> Rejected by Level2 |  <img src="images/ico_approved.png" /> : 
+              Approved by CEO | <img src="images/ico_rejected.png" /> : 
+              Rejected by CEO </td>
+          </tr>
+        </tbody>
+      </table>
+      <table width="100%" cellspacing="2" cellpadding="2">
+        <tr class="greyBG">
+          <td width="17%" height="29" >PROJECT ID</td>
+          <td width="21%" align="left">NAME OF PROJECT</td>
+          <td width="27%" align="left">FINAL OFFER (Rs)</td>
+          <td width="19%" align="left">Delivery/ Completion Period</td>
+          <td width="16%" align="left">STATUS</td>
+        </tr>
+        <tr>
+          <td height="25" align="left" valign="middle" class="boldunderline_small">12345678</td>
+          <td height="25" align="left" valign="middle" class="small">Kochi office Project</td>
+          <td height="25" align="left" valign="middle" class="small">Rs. 351 Lacs</td>
+          <td height="25" align="left" valign="middle" class="small">10-Nov-2011</td>
+          <td height="25" valign="middle" align="left"><span class="small"><img src="images/ico_bapproved2.jpg" width="10" height="10" /></span></td>
+        </tr>
+        <tr>
+          <td height="25" align="left" valign="middle" class="boldunderline_small">91011121314</td>
+          <td height="25" valign="middle" align="left"><span class="small"> Trivandrum office Project</span></td>
+          <td height="25" valign="middle" align="left"><span class="small">Rs. 95 Lacs</span></td>
+          <td height="25" valign="middle" align="left"><span class="small">12-Dec-2011</span></td>
+          <td height="25" valign="middle" align="left"><span class="small"><img src="images/ico_bapproved2.jpg" width="10" height="10" /></span></td>
+        </tr>
+        <tr>
+          <td height="25" valign="top" align="left">&nbsp;</td>
+          <td height="25" valign="top" align="left">&nbsp;</td>
+          <td height="25" valign="top" align="left">&nbsp;</td>
+          <td height="25" colspan="2" align="center" valign="top">&nbsp;</td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="45%" bgcolor="#E6DED1"><img src="images/price_footer.jpg" width="347" height="25" /></td>
+    <td width="55%" bgcolor="#E6DED1"><img src="images/related_links.png" width="18" height="18" /><span class="boldsmall">Related links&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;  | <img src="images/otherESSlinks.png" width="18" height="18" /> <span class="boldsmall">Other ESS links</span></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="100%" cellpadding="0" cellspacing="0" >
+</tbody>
+</form>
+</body>
+</html>

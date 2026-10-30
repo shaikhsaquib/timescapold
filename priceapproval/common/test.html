@@ -1,0 +1,217 @@
+<table width="100%" border="0" cellpadding="2" cellspacing="2">
+  <tr>
+    <td height="22" bgcolor="#ffffff" class="travelMenuBG">BACKGROUND</td>
+  </tr>
+</table>
+<table width="100%" cellspacing="2" cellpadding="2">
+<tbody id="inputtable">
+  <tr class="greyBG">
+    <td width="8%" height="29" >VENDOR</td>
+    <td width="9%" align="left">INITIAL OFFER (Rs)</td>
+    <td width="8%" align="left">FINAL OFFER (Rs)</td>
+    <td width="12%" align="left">Delivery/ Completion Period</td>
+    <td width="17%" align="left">Warranty/ Defect Liability Period</td>
+    <td width="29%" colspan="3" align="left">REQUIREMENT</td>
+  </tr>
+  <% for(int j=0; j<vStatus1.size(); j++) 
+	  {
+		
+		String[] data2 = (String [])vStatus1.get(j);
+		
+		String VENDORID						=  data2[0];
+		String VENDOR						=  data2[2];
+		String INITIALOFFER					=  data2[3];
+		String FINALOFFER					=  data2[4];
+		String DELIVERYPERIOD				=  data2[5];
+		String WARRANTYPERIOD				=  data2[6];	
+  
+  %>
+  <tr>
+    <td height="25" valign="top" align="left"><span class="small">
+      <%=VENDOR%>   
+    </span></td>
+    <td height="25" valign="top" align="left"><span class="small">
+      <%=INITIALOFFER%>   
+    </span></td>
+    <td height="25" valign="top" align="left"><span class="small">
+      <%=FINALOFFER%>   
+    </span></td>
+    <td height="25" valign="top" align="left"><span class="small">
+      <%=DELIVERYPERIOD%>
+    </span></td>
+    <td height="25" valign="top" align="left"><span class="small">
+      <%=WARRANTYPERIOD%>
+    </span></td>
+	  <%if(j==0){%>
+    <td colspan="3" rowspan="4" align="left" valign="top"><%=REQUIREMENT%></td>
+	  <%}%>	
+  </tr>
+  <%
+	  }	  
+  %>	
+  </tbody>
+   <tr><td colspan="5" height="10"></td></tr>
+</table>
+
+
+
+<table width="100%" cellspacing="2" cellpadding="2">
+  <tr>
+    <td height="32" colspan="2" align="left" valign="middle" class="travelMenuBG">ATTACHMENTS</td>
+    <td colspan="3" align="left" valign="middle" class="travelMenuBG">BENCHMARKING</td>
+    <td align="left" valign="middle" class="travelMenuBG">RECOMMENDATION</td>
+  </tr>
+  <tr>
+    <td height="25" align="left" valign="top" class="greyBG">DESCRIPTION</td>
+    <td height="25" align="left" valign="top" class="greyBG">ATTACH</td>
+    <td align="left" valign="top" class="greyBG">PRODUCT/SERVICE</td>
+    <td align="left" valign="top" class="greyBG" width="10%">Rate</td>
+    <td align="left" valign="top" class="greyBG" width="20%">Benchmark Rate</td>
+    <td width="29%" rowspan="4" align="left" valign="top"><%=RECOMMENEDATION%></td>
+  </tr>
+  <tr>
+    <td width="18%" height="25" align="left" valign="top"><span class="small">
+     <%=DESCRIPTION1%>
+    </span></td>
+	<%
+				 String st1 = ATTACHMENT1.substring(0, ATTACHMENT1.lastIndexOf("."));
+                 String st2 = ATTACHMENT1.substring(ATTACHMENT1.lastIndexOf(".")+1,ATTACHMENT1.length());
+                 String st3 = st1.substring(0, ATTACHMENT1.lastIndexOf("_"));
+                 String display = st3 + "." + st2;
+    %>
+    <td width="9%" height="25" align="left" valign="top"><%=display%></td>
+    <td width="21%" align="left" valign="top" class="small"><%=PRODUCT1%></td>
+    <td width="8%" align="left" valign="top"><span class="small">
+     <%=RATE1%>
+    </span></td>
+    <td width="15%" align="left" valign="top"><span class="small">
+      <%=BENCHMARK1%>
+    </span></td>
+  </tr>
+ <tr>
+    <td width="18%" height="25" align="left" valign="top"><span class="small">
+     <%=DESCRIPTION2%>
+    </span></td>
+	<%
+				  st1 = ATTACHMENT2.substring(0, ATTACHMENT2.lastIndexOf("."));
+                  st2 = ATTACHMENT2.substring(ATTACHMENT2.lastIndexOf(".")+1,ATTACHMENT2.length());
+                  st3 = st1.substring(0, ATTACHMENT2.lastIndexOf("_"));
+                  display = st3 + "." + st2;
+    %>
+    <td width="9%" height="25" align="left" valign="top"><%=display%></td>
+    <td width="21%" align="left" valign="top" class="small"><%=PRODUCT2%></td>
+    <td width="8%" align="left" valign="top"><span class="small">
+     <%=RATE2%>
+    </span></td>
+    <td width="15%" align="left" valign="top"><span class="small">
+      <%=BENCHMARK2%>
+    </span></td>
+  </tr>
+ <tr>
+    <td width="18%" height="25" align="left" valign="top"><span class="small">
+     <%=DESCRIPTION3%>
+    </span></td>
+		<%
+				  st1 = ATTACHMENT3.substring(0, ATTACHMENT3.lastIndexOf("."));
+                  st2 = ATTACHMENT3.substring(ATTACHMENT3.lastIndexOf(".")+1,ATTACHMENT3.length());
+                  st3 = st1.substring(0, ATTACHMENT3.lastIndexOf("_"));
+                  display = st3 + "." + st2;
+    %>
+    <td width="9%" height="25" align="left" valign="top"><%=display%></td>
+    <td width="21%" align="left" valign="top" class="small"><%=PRODUCT3%></td>
+    <td width="8%" align="left" valign="top"><span class="small">
+     <%=RATE3%>
+    </span></td>
+    <td width="15%" align="left" valign="top"><span class="small">
+      <%=BENCHMARK3%>
+    </span></td>
+  </tr>
+</table>
+
+
+
+<table width="100%" border="0" cellpadding="2" cellspacing="2">
+
+  <tr>
+    <td height="22" bgcolor="#ffffff" class="travelMenuBG">SUPPORTED BY</td>
+  </tr>
+</table>
+<table width="100%" cellspacing="2" cellpadding="2">
+  <tr >
+    <td width="18%" bgcolor="#fbf9f9" class="small" >DIRECTOR</td>
+    <td width="34%" height="29" bgcolor="#fbf9f9" class="small" ><%=SUPPORTEDBY_DIRECTOR1%></td>
+    <td width="14%" align="left" bgcolor="#fbf9f9" class="small">DIRECTOR</td>
+    <td width="34%" align="left" bgcolor="#fbf9f9"><span class="small">
+     <%=SUPPORTEDBY_DIRECTOR2%>
+    </span></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="52%" bgcolor="#FFFFFF"><table width="100%" border="0" cellpadding="2" cellspacing="2">
+     
+      <tr>
+        <td height="22" bgcolor="#ffffff" class="travelMenuBG">APPROVALS</td>
+        </tr>
+    </table>
+      <table width="100%" cellspacing="2" cellpadding="2">
+        <tr class="greyBG">
+          <td width="17%" >B&amp;C-<span class="small"> LEVEL 1</span><span class="redsmall"> (min 2)</span></td>
+          <td width="17%" height="29" >USER/PROJECT TEAM<span class="small">-LEVEL </span><span class="redsmall"><span class="small">1</span>(min 2)</span></td>
+          <td width="21%" align="left">FINANCE/BRANCH HEAD/ MAS- <span class="redsmall"><span class="small">LEVEL 1</span> (min 2)</span></td>
+          <td width="16%" align="left">B &amp; C <span class="small">-LEVEL2</span></td>
+          <td width="15%" align="left">B &amp;C -<span class="small">LEVEL 2</span></td>
+          <td width="14%" align="left">CEO</td>
+        </tr>
+        <tr class="small">
+          <td class = "normal" height = "25" width="12%" align="left"><%=APPROVER11%>
+		  </td>
+          <td class = "normal" height = "25" width="12%" align="left"><%=APPROVER12%>
+		  </td>
+          <td class = "normal" height = "25" width="12%" align="left"><%=APPROVER13%>
+		  </td>
+          <td rowspan="3" align="left" valign="top" class="small"><span class="boldunderline_small">
+            <%=APPROVER4%>
+			</span></td>
+          <td rowspan="3" align="left" valign="top"><span class="boldunderline_small">
+<%=APPROVER5%></span></td>
+          <td rowspan="3" align="left" valign="top"><span class="boldunderline_small">
+<%=APPROVER6%></span></td>
+        </tr>
+        <tr class="small">
+          <td class = "normal" height = "25" width="12%" align="left"><%=APPROVER21%>
+		  </td>
+          <td class = "normal" height = "25" width="12%" align="left"><%=APPROVER22%>
+		  </td>
+          <td class = "normal" height = "25" width="12%" align="left"><%=APPROVER23%>
+		  </td>
+        </tr>
+        <tr class="small">
+          <td class = "normal" height = "25" width="12%" align="left"><%=APPROVER31%>
+		  </td>
+          <td class = "normal" height = "25" width="12%" align="left"><%=APPROVER32%>
+		  </td>
+          <td class = "normal" height = "25" width="12%" align="left"><%=APPROVER33%>
+		  </td>
+        </tr>
+      </table>
+      <table width="100%" border="0" cellspacing="4" cellpadding="0">
+        <tr>
+          <td width="50%">&nbsp;</td>
+          <td width="50%">&nbsp;</td>
+        </tr>
+        <tr>
+          <td align="right" valign="middle"></td>
+          <td></td>
+        </tr>
+      </table>
+     
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="45%" bgcolor="#E6DED1"><img src="../images/price_footer.jpg" width="347" height="25" /></td>
+    <td width="55%" bgcolor="#E6DED1"><img src="../images/related_links.png" width="18" height="18" /><span class="boldsmall">Related links&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;  | <img src="../images/otherESSlinks.png" width="18" height="18" /> <span class="boldsmall">Other ESS links</span></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="100%" cellpadding="0" cellspacing="0" >
+</tbody>

@@ -1,0 +1,3 @@
+http://oldlight.wordpress.com/2008/10/07/installing-the-oracle-client-on-ubuntu/
+
+https://help.ubuntu.com/community/Oracle9i

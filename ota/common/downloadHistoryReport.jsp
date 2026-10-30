@@ -1,0 +1,87 @@
+<%--
+ -- @(#)governanceExcelReports1.jsp - 11-APR-2011
+ --
+ -- Copyright 2009 BCCL. All Rights Reserved.
+ --
+ -- This software is the proprietary information of BCCL.
+ -- Use is subject to license terms.
+ --
+ --%>
+ <%--
+ -- Comments -  This page is called from the Reports 1 Page of Governance.
+ -- @author  -  Sachin Mehta
+ -- @version -  1.0
+ -- This page is used forr initial declaration by employee
+ --%>
+<%@ page import = "java.util.Hashtable, java.util.ArrayList,java.io.PrintWriter" %>
+<%@ page import = "com.bccl.util.Utility" %>
+<%@ include file="../includes/empHeader.jsp" %>
+<%@ include file="FormatDate.jsp" %>
+<%@ include file="StatusFullFormMap.jsp" %>
+
+<jsp:useBean id="OtaController" class="com.bccl.ota.web.controllerbeans.OtaWebController"/>
+<jsp:useBean id="utilityObj" class="com.bccl.util.Utility"/>
+<%
+	ArrayList numIndex = new ArrayList();
+    String headerStr = "";
+	String fileName = "History Report.csv";
+	StringBuffer csvContent = new StringBuffer();
+	HashMap<String,String> deptMap = (HashMap)session.getAttribute("deptMap");
+	String[] inputArr = null;
+	
+	ArrayList viewList = new ArrayList();
+	viewList =  OtaController.displayUploadData((Hashtable) session.getAttribute("viewHashNew"));
+	ArrayList<String[]> completeHistoryData = new ArrayList<String[]>();
+
+	String recommendations  = "";
+	String mgmtComments     = "";
+	String severity         = "";
+	String userId           = "";
+	String supervisorId     = "";
+	String targetDate       = "";
+	String area             = "";
+	String year             = "";
+	String userRemark       = "";
+	String supervisorRemark = "";
+	String revisedTargetDate= "";
+	String userStatus       = "";
+	String supervisorStatus = "";
+	String departmentName   = "";
+	
+	if(viewList.size() > 0){
+		for(int i = 0; i< viewList.size(); i++){
+			String[] tmpArr = (String[])viewList.get(i);
+			recommendations     = tmpArr[0].replace("\"","\'");
+			mgmtComments        = tmpArr[1].replace("\"","\'");
+			severity            = ((tmpArr[2] != null) ? tmpArr[2].toLowerCase() : "");		
+			userId              = ((tmpArr[3] != null) ? tmpArr[3].toLowerCase() : "");
+			supervisorId        = ((tmpArr[4] != null) ? tmpArr[4].toLowerCase() : "");
+			targetDate          = ((tmpArr[5] != null) ? tmpArr[5] : "");
+			area                = ((tmpArr[6] != null) ? tmpArr[6] : "");
+			year                = ((tmpArr[7] != null) ? tmpArr[7] : "");
+			userRemark 	        = ((tmpArr[8] != null) ? tmpArr[8].replace("\"","\'") : "NA");
+			supervisorRemark 	= ((tmpArr[9] != null) ? tmpArr[9].replace("\"","\'") : "NA");
+			revisedTargetDate 	= ((tmpArr[10] != null) ? tmpArr[10] : "");
+			userStatus 	        = ((tmpArr[12] != null) ? statusFullForm.get(tmpArr[12]) : "");
+			supervisorStatus 	= ((tmpArr[13] != null) ? statusFullForm.get(tmpArr[13]) : "");
+			departmentName      = ((tmpArr[14] != null) ? deptMap.get(tmpArr[14]) : "NA");
+			
+			targetDate = formatDate(targetDate,"yyyy-MM-dd","dd-MM-yyyy");
+			revisedTargetDate = formatDate(revisedTargetDate,"yyyy-MM-dd","dd-MM-yyyy");
+		
+			completeHistoryData.add(new String[] {year,area,recommendations,mgmtComments,severity,userId,userRemark,supervisorId,supervisorRemark,targetDate,revisedTargetDate,userStatus,supervisorStatus,departmentName});
+		}
+
+		headerStr = "YEAR,AREA,RECOMMENDATIONS,MANAGEMENT COMMENTS, SEVERITY, SUBORDINATE ID, SUBORDINATE REMARK, SUPERVISOR ID, SUPERVISOR REMARK, TARGET DATE, REVISED TARGET DATE, USER STATUS, SUPERVISOR STATUS, DEPARTMENT NAME \n";
+		StringBuffer requests = Utility.toStringBuffer(completeHistoryData, numIndex);
+		csvContent.append(headerStr).append(requests);
+
+		PrintWriter writer = null;
+		response.setContentType("text/csv");
+		response.setHeader("Content-disposition","attachment;filename="+fileName);
+		writer = response.getWriter();
+		writer.println(csvContent);
+		writer.flush();
+		writer.close();
+	}			
+%>

@@ -1,0 +1,21 @@
+
+.BreakWord {word-break: break-all; }
+
+.rdatacolor {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #19476B; FONT-SIZE: 7pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.bgrdatacolor {
+	background-color: #F9FBF8;
+}
+
+.fontname{
+FONT-SIZE:13px;
+}
+
+a:hover{
+text-decoration: none;
+}
+.selectboxheight{
+	
+	height:30px;
+}
