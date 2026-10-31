@@ -1,0 +1,454 @@
+
+<!DOCTYPE >
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Create Request </title>	
+	<link href="../css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet"/>  
+	<link href="../bootstrap-3.3.2-dist/css/bootstrap.min.css" rel="stylesheet"/> 
+	<link href="../css/legal.css" rel="stylesheet"/>		
+	<link href="../css/select2.min.css" rel="stylesheet">
+	<link href="../css/bootstrap-table.min.css" rel="stylesheet"/> 	
+	<style>
+		.select2-container .select2-selection--single 
+		{
+			box-sizing: border-box;
+			cursor: pointer;
+			display: block;
+			height: 32px;		
+			border-radius: 0;
+			  border: 1px solid #CCC;
+		}
+		.ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year {
+      color: #000;
+      font-family: ...;
+      font-size: 16px;
+      font-weight: bold;
+	 
+}
+	</style>
+	<script src="http://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="http://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>			
+	<script src="../js/jquery-1.9.1.min.js"></script>
+	<script src="../jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+	<script src="../bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
+	<script src="../js/select2.min.js"></script>	
+	<script src="../js/bootstrap-maxlength.min.js"></script>
+	<script src="../js/bootstrap-table.min.js"></script>
+	<script src="../js/bootstrap-table-toolbar.js"></script>
+	<script src="../js/jquery.validate.min.js"></script>
+	<script src="../js/form-validation.js"></script>
+	<script src="../js/additional-methods.min.js"></script>	
+	<script src="../jscript/legal.js"></script>	
+	<script src="../jscript/common.js"></script>	
+	<script src="../jscript/util.js"></script>	
+	<script>
+	$(document).ready(function() {
+	
+	$('body').on('focus',".datepicker", function(){
+		$(this).datepicker({ dateFormat: 'dd-mm-yy',minDate:0   });		
+	});	
+	$('body').on('focus',"#textarea", function(){
+			$(this).maxlength({alwaysShow: true});		
+	});	
+	function format(icon) {
+		var originalOption = icon.element;
+		return '<i class="fa ' + $(originalOption).data('icon') + '"></i> ' + icon.text;
+	}
+	$(".multi").select2({ width: '100%', formatResult: format  });
+    $('.RelatedLinks ul li.RelLinks').hover(function() {
+			$(this).find('.dropdownmenu').show();
+		}, function(){
+			$(this).find('.dropdownmenu').hide();
+	});
+	
+
+	$('#input').keyup(function() {
+    if (!$('#form')[0].checkValidity()) {
+        $('#submit').click();
+    }
+});
+$('#link').click(function() {
+    if (!$('#form')[0].checkValidity()) {
+        $('#submit').click();
+    }
+});
+
+
+});
+	</script>	
+</head>
+<body >
+
+<form name = "createRequest" class="form-horizontal" id="form"> 
+<div class="row" style="margin-right:5px;">
+	<div class="RelatedLinks">
+		<ul>
+			<li class="RelLinks"><a href="#">Related Links</a>
+			<ul class="dropdownmenu">
+					<li><a href="createReq.html">Create Request</a></li>
+					<li><a href="viewrequestuser.html">View Request</a></li>
+					<li><a href="viewrequest.html">View Approval Request</a></li>
+				<li><a href="dashboard2.html">Conversation Screen</a></li>	
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div><hr style="margin-bottom:10px;">
+	<div class="container-fluid">
+	<div class="row">
+	<div class="col-xs-1"></div>	
+	<div class="col-xs-10 bs-example">
+	<div class="portlet box blue">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-pencil-square-o"></i> Create Request
+			</div>			
+		</div>
+		<div class="portlet-body">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<label class="control-label col-md-4">Type Of Agreement : </label>
+					<div class="col-md-8">
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="fa fa-file-word-o"></i>
+						</span>
+						<select class="form-control multi" name="typeOfAgreement" id="typeOfAgreement">
+							<option value="Agency agreement" data-icon="fa-file-text-o">Agency agreement</option>
+							<option value="Non-disclosure agreement" >Non-disclosure agreement</option>
+							<option value="Publicist agreement">Publicist agreement</option>
+							<option value="Artist agreement">Artist agreement</option>
+							<option value="Barter agreement">Barter agreement</option>
+							<option value="Business center agreement">Business center agreement</option>
+							<option value="In-house photographer">In-house photographer</option>
+							<option value="Commissioned photographer">Commissioned photographer</option>
+							<option value="Sourced photographer">Sourced photographer</option>
+							<option value="Dealership agreement">Dealership agreement</option>
+							<option value="Memorandum of understanding">Memorandum of understanding</option>
+							<option value="Indemnity bond">Indemnity bond</option>
+							<option value="Knowledge partner">Knowledge partner</option>
+							<option value="Leave and license">Leave and license</option>
+							<option value="Logistics agreement">Logistics agreement</option>
+							<option value="Master event agreement">Master event agreement</option>
+							<option value="Master services agreement">Master services agreement</option>
+							<option value="Miss diva agreement">Miss diva agreement</option>
+							<option value="Printing agreement">Printing agreement</option>
+							<option value="Procurement agreement">Procurement agreement</option>
+							<option value="TM assignment agreement">TM assignment agreement</option>
+						</select> 
+					</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group ">
+					<label class="control-label col-md-4">Name Of Parties : </label>
+					<div class="col-md-8">
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="fa fa-bars"></i>
+						</span>
+						<input type="text" class="form-control" placeholder="" name="partyName" id="partyName" value="">
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<label class="control-label col-md-4">Reason For Signing Agreement : </label>
+					<div class="col-md-8">
+						<textarea class="form-control noresize" rows="2" maxlength="500" name="reasonForSingAgreement" id="reasonForSingAgreement" placeholder="Reason"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group ">
+					<label class="control-label col-md-4">Date Of Agreement : </label>
+					<div class="col-md-8">
+					<div class="input-group">
+						<span class="input-group-addon">
+						<i class="fa fa-calendar"></i>
+						</span>
+						<input type="text" class="form-control datepicker " name="dateOfAgreement" id="dateOfAgreement" value=""  placeholder="From"/>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<label class="control-label col-md-4">Value Of Agreement : </label>
+					<div class="col-md-8">
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="fa fa-inr"></i>
+						</span>
+						   <input type="text" name="valueOfAgreement" id="valueOfAgreement" class="form-control" value=""  placeholder=""  required="required" />
+					<!-- 	<input type="submit" id="submit" style="display:none;" /> -->
+						
+					</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group ">
+					<label class="control-label col-md-4">Agreement : </label>
+					<div class="col-md-8">
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="fa fa-info"></i>
+						</span>
+						<select class="form-control" name="agreement" id="agreement">
+							<option value="New">New</option>
+							<option value="Renewal">Renewal</option>
+						</select>
+					</div>
+						</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<label class="control-label col-md-4">Nature Of Parties : </label>
+					<div class="col-md-8">
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="fa fa-user"></i>
+						</span>
+						<select class="form-control" name="natureOfParties" id="natureOfParties">
+							<option value="Company">Company</option>
+							<option value="Partnership">Partnership</option>
+							<option value="Sole Proprietorship">Sole Proprietorship</option>
+							<option value="Government Agency">Government Agency</option>
+							<option value="NGO">NGO</option>
+						</select>
+					</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group ">
+					<label class="control-label col-md-4">Address : </label>
+					<div class="col-md-8">
+						<textarea class="form-control noresize" name = "address" id ="address" rows="2" maxlength="500" placeholder="Address" ></textarea>
+					</div>
+					
+				</div>
+			</div>
+			
+		</div>
+
+		<div class="row">			
+			<div class="col-md-6">
+				<div class="form-group ">
+					<label class="control-label col-md-4">Term Of Agreement : </label>
+					<div class="col-md-8">
+						<textarea class="form-control noresize" name = "termOfAgreement" id ="termOfAgreement"  rows="2" maxlength="500" placeholder="Term Of Agreement"  ></textarea>
+					</div>
+					
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group ">
+					<label class="control-label col-md-4">Jurisdiction : </label>
+					<div class="col-md-8">
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="fa fa-info"></i>
+						</span>
+						<select class="form-control" name="jurisdiction" id="jurisdiction">
+							<option value="Mumbai">Mumbai</option>
+							<option value="Delhi">Delhi</option>
+						</select>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">			
+			<div class="col-md-6">
+				<div class="form-group ">
+					<label class="control-label col-md-4">Consideration of Agreement : </label>
+					<div class="col-md-8">
+						<textarea class="form-control noresize" name="considerationOfAgreement" id="considerationOfAgreement" rows="2" maxlength="500" placeholder="Consideration of the Agreement" ></textarea>
+					</div>
+					
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group ">
+					<label class="control-label col-md-4">Deliverables of the nature of Parties : </label>
+					<div class="col-md-8">
+						<textarea class="form-control noresize" name="deliverablesNatureOfParty" id="deliverablesNatureOfParty" rows="2" maxlength="500" placeholder="Deliverables of the nature of Party"></textarea>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">			
+			<div class="col-md-6">
+				<div class="form-group ">
+					<label class="control-label col-md-4">Termination Period : </label>
+
+					<div class="col-md-8">
+					<div class="input-group">
+						<span class="input-group-addon">
+						<i class="fa fa-calendar"></i>
+						</span>
+						<input type="text" class="form-control datepicker " name="terminationFromDate" id="terminationFromDate" value=""  placeholder="From"/>
+					</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group ">
+				
+					<div class="col-md-8">
+					<div class="input-group">
+						<span class="input-group-addon">
+						<i class="fa fa-calendar"></i>
+						</span>
+						<input type="text" class="form-control datepicker " name="terminationToDate" id="terminationToDate" value=""  placeholder="To"/>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row " style="margin-top:8px;">
+			<table class="table table-bordered table-hover" id="">			
+				<tbody>
+					<tr >
+						<td width="10%">
+						Comments
+						</td>
+						<td>
+						
+							<textarea class="form-control noresize  text" rows="3" placeholder='Comments' maxlength='1500' id="mainComments" name="mainComments" rel="tooltip" ></textarea>
+							
+							<h6 class="pull-right" id="count_message"></h6>
+
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+
+		<div class="row clearfix">
+			<h5 style="font-weight:bold;">Approvals:</h5><hr style="margin-top:0;margin-bottom:8px;">
+			<div class="col-md-6  ">
+				<table class="table table-bordered table-hover" id="tab_logic2">			
+					<thead>
+						<tr >
+							<th class="text-center" >
+								Sr.No..
+							</th>
+							<th class="text-center">
+								Department Head
+							</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						<tr id='addr20'>
+							<td class="text-center">
+							1
+							</td>
+							<td>
+							<select  class="form-control js-example-basic-single"  name="userDeptHead" id="userDeptHead" >
+								<option value = "0" >Select Emailid</option>
+								 <option value = '0' >Select Emailid</option>
+								 <option value = '0' >Select Emailid</option>
+								 <option value = '0' >Select Emailid</option>
+								 <option value = '0' >Select Emailid</option>
+								</select>
+							</td>
+															
+						</tr>					
+						<tr id='addr21'></tr>									
+					</tbody>				
+				</table>
+			</div>
+			
+			<div class="col-md-6 ">
+				<table class="table table-bordered table-hover" id="tab_logic3">			
+					<thead>
+						<tr >
+							<th class="text-center" >
+								Sr.No.
+							</th>
+							<th class="text-center">
+								Legal Head
+							</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						<tr id='addr30'>
+							<td class="text-center">
+							1
+							</td>
+							<td>
+							<select class="form-control js-example-basic-single" name="legalHead" id="legalHead" ><option value = '0' >Select Emailid</option>
+							<option value = '0' >Select Emailid</option>
+							<option value = '0' >Select Emailid</option>
+							<option value = '0' >Select Emailid</option></select>
+							<!-- <input type="text" class="form-control " placeholder="Branch B&C" name="branchHead" id="branchHead" value="">	 -->					
+							</td>
+															
+						</tr>					
+						<tr id='addr31'></tr>									
+					</tbody>										
+				</table>						
+			</div>	
+		</div>	
+
+		<input type="hidden" name="frmStatus" id="frmStatus" value="" />
+
+		
+		<!-- <div class="row">
+		<div class="col-md-6 col-md-offset-5 ">
+			<button type="button" class="btn btn-primary" onclick="document.location='viewrequestuser.html'">Submit</button>
+			<button type="reset" class="btn btn-warning">Reset</button>
+		</div>
+		</div> -->
+
+		<div class="row ">
+			<div class="col-xs-10">
+				<div class="form-actions" style="margin-top:30px;">
+				<div class="col-xs-offset-6 col-xs-5">
+					<!-- <button type="submit" class="btn btn-info " style="width:70px;">Submit</button>	 -->
+					<input type="button" class="btn btn-info" value="Submit" name="submitButton" height="20" onclick = "javascript:validate('inProcess');"/>
+					<button type="reset" class="btn btn-primary" style="width:70px;">Reset</button>
+					<input type="button"  class="btn btn-warning"  value="Save As Draft" name="submitButton" id="saveDraft" height="20" onclick = "javascript:validate('draft');"/>
+				</div>
+				</div>
+			</div>
+		</div>
+		
+		</div>
+	</div>			
+		</div>
+	<div class="col-xs-1"></div>
+	</div>
+	</div>
+</form>
+<footer class="footer text-center">
+	<div class="container">
+		<p style="margin-bottom:2px;" class="ex">Copyright @ 2016 Bennett, Coleman & Co. Ltd. All rights reserved. </p>
+	</div>
+</footer>
+</body>
+</html>
