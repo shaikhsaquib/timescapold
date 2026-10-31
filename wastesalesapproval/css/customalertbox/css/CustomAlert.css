@@ -1,0 +1,122 @@
+.alert{
+font-family:"Segoe UI",Helvetica, Arial, sans-serif;
+font-size:14px;
+padding: 1em;
+text-align: center;
+white-space: nowrap;
+width: auto;
+min-width:300px;
+word-wrap: normal;
+}
+
+
+.dummyclass{
+border-radius:0px !important;
+-moz-border-radius:0px !important;
+-webkit-border-radius:0px !important;
+}
+
+.dummyclass  .ui-widget-header{
+background-color:transparent !important;
+background-image:none !important;
+border-radius:0px !important;
+-moz-border-radius:0px !important;
+-webkit-border-radius:0px !important;
+border:none !important;
+}
+
+.dummyclass  .ui-dialog-titlebar-close{
+background-color:transparent !important;
+background-image:none !important;
+border-color:#fff !important;
+right:1px !important;
+}
+
+.dummyclass .ui-dialog-title{
+display:none;
+}
+
+.dummyclass .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button,.dummyclass .ui-state-active,.dummyclass .ui-state-active,.dummyclass ui-state-hover,.dummyclass .ui-state-focus{
+font-family:"Segoe UI",Helvetica, Arial, sans-serif;
+background-color:#bd3a0e !important;
+background-image:none !important;
+color:#fff !important;
+padding:4px 8px !important;
+font-size:12px;
+border-radius:0px !important;
+-moz-border-radius:0px !important;
+-webkit-border-radius:0px !important;
+border:none !important;
+}
+
+.dummyclass  .ui-dialog-buttonpane{
+border:none !important;
+text-align:center !important;
+}
+
+.dummyclass  .ui-dialog-buttonset{
+float:none !important;
+}
+
+
+/*.dummyclass .ui-widget-header{
+position:relative;
+}
+
+.dummyclass .ui-widget-header{
+position:relative;
+border-radius: 0 !important;
+-webkit-border-radius:0 !important;
+-moz-border-radius:0 !important;
+background:transparent !important;
+border:0 !important;
+
+}
+.dummyclass .ui-dialog-titlebar > a:hover{
+background:transparent !important;
+border-radius: 0 !important;
+-webkit-border-radius:0 !important;
+-moz-border-radius:0 !important;
+border:0 !important;
+}
+.dummyclass .ui-widget-header a{
+
+}
+.dummyclass .ui-widget-header a > span.ui-icon-closethick{
+background-image: url('Close_Icon.png') !important;
+background-repeat:no-repeat !important;
+background-position:0 0 !important;
+position: absolute;
+top: -18px;
+right: -18px;
+width: 30px;
+height: 30px;
+cursor: pointer;
+text-indent:-4444px;
+z-index: 8040;
+}
+
+
+.dummyclass .ui-widget-header a{
+}
+
+.dummyclass .ui-widget-header a span{
+background-image: url('../images/fancy_closebox.png');
+background-repeat:no-repeat;
+position: absolute;
+top: -18px;
+right: -18px;
+width: 30px;
+height: 30px;
+cursor: pointer;
+text-indent:-4444px;
+z-index: 8040;
+}
+.dummyclass{
+background:#fff;
+}
+
+
+
+
+*/

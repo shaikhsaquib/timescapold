@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>:: Custom Alert Box ::</title>
+<script type='text/javascript' src='js/jquery-1.10.2.js'></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="css/CustomAlert.css">
+<script type='text/javascript'>//<![CDATA[ 
+
+		//Custom Alert Script
+		window.alert = function(message){
+	    	$(document.createElement('div'))
+	        .attr({'class': 'alert'})
+	        .html(message)
+	        .dialog({
+	            buttons: {OK: function(){$(this).dialog('close');
+	            //$(".v4master").css("overflow-y","auto");           
+	            }},
+	            close: function(){$(this).remove();
+	 			 //$(".v4master").css("overflow-y","auto");           
+	            },
+	            draggable: false,
+	            modal: true,
+	            resizable: false,
+	            width: 'auto',	            
+	        });
+	        $(".alert").parent().addClass("dummyclass");
+	        $(".dummyclass").addClass("popupfixing");
+		};//]]>  
+
+</script>
+
+
+</head>
+<body>
+<a href="#" onclick="alert('This is a <strong>new</strong> alert!');">Alert</a><br />
+</body>
+</html>
+

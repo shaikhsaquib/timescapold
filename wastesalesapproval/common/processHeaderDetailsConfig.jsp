@@ -1,0 +1,8 @@
+<%
+	
+	String headerSection1 [ ]				= { "ApplicationName","statusType", "createdby", "documentstate","zonalType","reference","period","date","branch","oldRealisationHeader","oldRealisation","estRealisationHeader","estRealisation","currentRealisation","IncRealisation", "npRateQ1Header","npRateQ2Header","npRateQ3Header","npRateQ4Header","npRateQ5Header", "highlightsForTender","approvals","compAttachment","addAttachment", "npRateQ1","npRateQ2","npRateQ3","npRateQ4","npRateQ5"};
+
+	String detailSection2 [ ]				=  {"wcQ1Header","wcQ2Header","wcQ3Header","wcQ4Header","wcQ5Header","pwmQ1FinalRate","pwmQ2FinalRate","pwmQ3FinalRate","pwmQ4FinalRate","pwmQ5FinalRate","pwmPercentFinalRate","towQ1FinalRate","towQ2FinalRate","towQ3FinalRate","towQ4FinalRate","towQ5FinalRate","towPercentFinalRate","rspQ1FinalRate","rspQ2FinalRate","rspQ3FinalRate","rspQ4FinalRate","rspQ5FinalRate","rspPercentFinalRate","psQ1FinalRate","psQ2FinalRate","psQ3FinalRate","psQ4FinalRate","psQ5FinalRate","psPercentFinalRate","apQ1FinalRate","apQ2FinalRate","apQ3FinalRate","apQ4FinalRate","apQ5FinalRate","apPercentFinalRate","pwmQ1Index","pwmQ2Index","pwmQ3Index","pwmQ4Index","pwmQ5Index","towQ1Index","towQ2Index","towQ3Index","towQ4Index","towQ5Index","rspQ1Index","rspQ2Index","rspQ3Index","rspQ4Index","rspQ5Index","psQ1Index","psQ2Index","psQ3Index","psQ4Index","psQ5Index","apQ1Index","apQ2Index","apQ3Index","apQ4Index","apQ5Index" };
+
+
+%>

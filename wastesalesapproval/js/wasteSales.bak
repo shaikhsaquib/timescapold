@@ -1,0 +1,666 @@
+
+function validate(status,frmName) {
+	var objfrom = eval("document.forms."+frmName);
+	var alfa = "abcdefghijklmnopqrstuvwxyz";
+	var reference	 = document.getElementById("reference").value;
+	var wsaPeriod = document.getElementById("wsaPeriod");
+	var  selPeriod ="";
+	var valid;
+
+	for (var i = 0; i < wsaPeriod.length; i++){
+		if(wsaPeriod[i].selected == true)	{			
+			selPeriod = wsaPeriod[i].value+","+selPeriod;			
+		}
+	}
+	
+	var createdDate = document.getElementById("createdDate").value;	
+	/*if (document.getElementById("createdDate").disabled == true){
+		document.getElementById("createdDate").disabled=false;	
+		createdDate = document.getElementById("createdDate").value;	
+	}	*/
+
+	var realisationHeaderOnQurter = document.getElementById("realisationHeaderOnQurter").value;
+	var branch	= document.getElementById("branch").value;
+
+	var headerRealisation	= document.getElementById("headerRealisation").value;
+
+	var headerRealisationOnQnty = document.getElementById('realisationHeaderOnQurter').value; 
+	var headerEstimatedReal	 = document.getElementById('realisationOnQnty').innerHTML; 
+	var headerOnTopQurter = document.getElementById('headerOnTopQurter').value;
+	var headerRealisationOnQnty = document.getElementById('estimatedReal').innerHTML; 
+	var previousRealisation = document.getElementById("previousRealisation").value;
+	var currentRealisation	= document.getElementById("currentRealisation").value; 
+	var IncreaseRealisation  = document.getElementById("IncreaseRealisation").value; 
+	
+	selPeriod  = headerRealisationOnQnty;
+	
+	var PeriodRate1 = document.getElementById('PeriodRate3').textContent;
+	var PeriodRate2 = document.getElementById('PeriodRate2').textContent;
+	var PeriodRate3 = document.getElementById('PeriodRate1').textContent;
+	var PeriodRate4 = document.getElementById('PeriodRate0').textContent;
+	
+	var currPeriodRate5 = document.getElementById('currPeriodRate').innerHTML;
+	
+	var pwmQ1FinalRate	= document.getElementById("field1").value; 
+	var pwmQ2FinalRate	= document.getElementById("field2").value; 
+	var pwmQ3FinalRate	= document.getElementById("field3").value;
+	var pwmQ4FinalRate	= document.getElementById("field4").value;
+	var pwmQ5FinalRate	= document.getElementById("field5").value; 
+	
+	var pwmPercentFinalRate	= document.getElementById("finalPWM").value;
+	
+//	document.getElementById("finalPWM").disabled = false;	
+	
+	var towQ1FinalRate = document.getElementById("field6").value; 
+	var towQ2FinalRate = document.getElementById("field7").value;
+	var towQ3FinalRate = document.getElementById("field8").value; 
+	var towQ4FinalRate = document.getElementById("field9").value; 
+	var towQ5FinalRate = document.getElementById("field10").value; 
+	
+	var towPercentFinalRate	= document.getElementById("finalTOW").value; 
+	
+//	document.getElementById("finalTOW").disabled = false;	
+	
+	var rspQ1FinalRate 	= document.getElementById("field11").value;
+	var rspQ2FinalRate	= document.getElementById("field12").value;
+	var rspQ3FinalRate	= document.getElementById("field13").value;
+	var rspQ4FinalRate	= document.getElementById("field14").value;
+	var rspQ5FinalRate	= document.getElementById("field15").value;
+	
+	var rspPercentFinalRate = document.getElementById("finalRSP").value;
+	
+	//document.getElementById("finalRSP").disabled = false;
+	
+	var psQ1FinalRate = document.getElementById("field16").value;
+	var psQ2FinalRate = document.getElementById("field17").value;
+	var psQ3FinalRate = document.getElementById("field18").value;
+	var psQ4FinalRate = document.getElementById("field19").value;
+	var psQ5FinalRate = document.getElementById("field20").value;
+	var psPercentFinalRate = document.getElementById("finalPS").value;
+	
+	//document.getElementById("finalPS").disabled = false;
+	
+	var apQ1FinalRate = document.getElementById("field21").value;
+	var apQ2FinalRate = document.getElementById("field22").value;
+	var apQ3FinalRate = document.getElementById("field23").value;
+	var apQ4FinalRate = document.getElementById("field24").value;
+	var apQ5FinalRate	= document.getElementById("field25").value;
+	
+	var apPercentFinalRate	 = document.getElementById("finalAP").value;
+	
+	//document.getElementById("finalAP").disabled = false;
+	
+	var npRateQ1	 = document.getElementById("npRate1").value;
+	var npRateQ2	 = document.getElementById("npRate2").value;
+	var npRateQ3	 = document.getElementById("npRate3").value;
+	var npRateQ4	 = document.getElementById("npRate4").value;
+	var npRateQ5 = document.getElementById("npRate5").value;
+	
+	var npRateQ1Header	= document.getElementById('PeriodRate3').textContent;
+	var npRateQ2Header	= document.getElementById('PeriodRate2').textContent;
+	var npRateQ3Header	= document.getElementById('PeriodRate1').textContent;
+	var npRateQ4Header	= document.getElementById('PeriodRate0').textContent;
+	var npRateQ5Header	= document.getElementById('currPeriodRate').innerHTML;
+
+	var pwmQ1Index	= document.getElementById("pwm1").value;
+//	document.getElementById("pwm1").disabled = false;
+	var pwmQ2Index	= document.getElementById("pwm2").value;
+//	document.getElementById("pwm2").disabled = false;
+	
+	var pwmQ3Index	= document.getElementById("pwm3").value;
+//	document.getElementById("pwm3").disabled = false;
+	var pwmQ4Index	= document.getElementById("pwm4").value;
+//	document.getElementById("pwm4").disabled = false;
+	
+	var pwmQ5Index	= document.getElementById("pwm5").value;
+//	document.getElementById("pwm5").disabled = false;
+	var towQ1Index	= document.getElementById("tow1").value;
+//	document.getElementById("tow1").disabled = false;
+	
+	var towQ2Index	= document.getElementById("tow2").value;
+//	document.getElementById("tow2").disabled = false;
+	var towQ3Index	= document.getElementById("tow3").value;
+//	document.getElementById("tow3").disabled = false;
+	
+	var towQ4Index = document.getElementById("tow4").value;
+//	document.getElementById("tow4").disabled = false;
+	var towQ5Index	= document.getElementById("tow5").value;
+//	document.getElementById("tow5").disabled = false;
+	
+	var rspQ1Index = document.getElementById("resp1").value;
+//	document.getElementById("resp1").disabled = false;
+	var rspQ2Index	= document.getElementById("resp2").value;
+//	document.getElementById("resp2").disabled = false;
+	
+	var rspQ3Index	= document.getElementById("resp3").value;
+//	document.getElementById("resp3").disabled = false;
+	var rspQ4Index	= document.getElementById("resp4").value;
+//	document.getElementById("resp4").disabled = false;
+	
+	var rspQ5Index	= document.getElementById("resp5").value;
+//	document.getElementById("resp5").disabled = false;
+	var psQ1Index	= document.getElementById("ps1").value;
+//	document.getElementById("ps1").disabled = false;
+	
+	var psQ2Index	= document.getElementById("ps2").value;
+//	document.getElementById("ps2").disabled = false;
+	var psQ3Index	= document.getElementById("ps3").value;
+//	document.getElementById("ps3").disabled = false;
+	
+	var psQ4Index	= document.getElementById("ps4").value;
+//	document.getElementById("ps4").disabled = false;
+	var psQ5Index	= document.getElementById("ps5").value;
+//	document.getElementById("ps5").disabled = false;
+	
+	var apQ1Index	= document.getElementById("ap1").value;
+//	document.getElementById("ap1").disabled = false;
+	var apQ2Index	= document.getElementById("ap2").value;
+//	document.getElementById("ap2").disabled = false;
+	
+	var apQ3Index	= document.getElementById("ap3").value;
+//	document.getElementById("ap3").disabled = false;
+	var apQ4Index	= document.getElementById("ap4").value;
+//	document.getElementById("ap4").disabled = false;
+	
+	var apQ5Index	= document.getElementById("ap5").value;
+//	document.getElementById("ap5").disabled = false;
+
+	var approvals	 = document.getElementById("zonalHeadEmailid").value;
+	var highlightsForTender	= document.getElementById('editor').value;
+	
+	if(status == "inProcess"){
+		
+		/*if(document.getElementById("requestId").disabled == true){
+			document.getElementById("requestId").disabled = false;
+		}*/
+
+		stat = checkNull("Reference", reference);
+		if(!stat){
+			document.getElementById('reference').focus();
+			return;
+		}
+		stat = checkNull("Quarter", selPeriod);
+		if(!stat){
+			document.getElementById('wsaPeriod').focus();
+			return;
+		}		
+		stat = checkNull("Date", createdDate);
+		if(!stat){
+			document.getElementById('createdDate').focus();
+			return;
+		}
+
+		if(branch == '0'){
+			alert("Please select Branch");
+			document.getElementById('branch').focus();
+			return;
+		}
+		stat = checkNull("Branch", branch);
+		if(!stat){
+			document.getElementById('branch').focus();
+			return;
+		}
+
+		if(realisationHeaderOnQurter == '0' || realisationHeaderOnQurter == ''){
+			alert("Please select Header realisation");
+			document.getElementById('headerRealisation').focus();
+			return;
+		}
+
+		stat = checkNull("Header realisation Quarter", headerRealisation);
+		if(!stat){
+			document.getElementById('headerRealisation').focus();
+			return;
+		}
+
+
+		stat = checkNull("Previous Realisation", previousRealisation);
+		if(!stat){
+			document.getElementById('previousRealisation').focus();
+			return;
+		}
+		stat = checkNull("Current Realisation", currentRealisation);
+		if(!stat){
+			document.getElementById('currentRealisation').focus();
+			return;
+		}
+		for(var i = 1; i <26; i++){
+			if(document.getElementById("field"+i).value == ""){
+				alert("This field is required.")
+				document.getElementById("field"+i).focus();
+				return;
+			}
+		}
+		valid = checkChar("NP Rate", npRateQ1, alfa);
+		if(!valid){
+			document.getElementById('npRate1').focus();
+			document.getElementById('npRate1').value = "";
+			return;
+		}
+		stat = checkNull("NP Rate", npRateQ1);
+		if(!stat)	{ 
+			document.getElementById('npRate1').focus();
+			return;
+		}
+		valid = checkChar("NP Rate", npRateQ2, alfa);
+		if(!valid){
+			document.getElementById('npRate2').focus();
+			document.getElementById('npRate2').value = "";
+			return;
+		}
+		stat = checkNull("NP Rate", npRateQ2);
+		if(!stat){
+			document.getElementById('npRate2').focus();
+			return;
+		}
+		valid = checkChar("NP Rate", npRateQ3, alfa);
+		if(!valid){
+			document.getElementById('npRate3').focus();
+			document.getElementById('npRate3').value = "";
+			return;
+		}
+		stat = checkNull("NP Rate", npRateQ3);
+		if(!stat){
+			document.getElementById('npRate3').focus();
+			return;
+		}
+		valid = checkChar("NP Rate", npRateQ4, alfa);
+		if(!valid){
+			document.getElementById('npRate4').focus();
+			document.getElementById('npRate4').value = "";
+			return;
+		}
+		stat = checkNull("NP Rate", npRateQ4);
+		if(!stat){
+			document.getElementById('npRate4').focus();
+			return;
+		}
+		valid = checkChar("NP Rate", npRateQ5, alfa);
+		if(!valid){
+			document.getElementById('npRate5').focus();
+			document.getElementById('npRate5').value = "";
+			return;
+		}
+		stat = checkNull("NP Rate", npRateQ5);
+		if(!stat){
+			document.getElementById('npRate5').focus();
+			return;
+		}
+		if(approvals == '0'){
+			alert("Please select Regional Head.");
+			document.getElementById('zonalHeadEmailid').focus();
+			return;
+		}
+		stat = checkNull("highlights For Tender", highlightsForTender);
+		if(!stat){
+			document.getElementById('editor').focus();
+			return;
+		}
+		var hiddDirectoryCompulsarySize = document.getElementById("hiddDirectorySizecompulsory").value;
+		//		alert("hiddDirectoryCompulsarySize--"+hiddDirectoryCompulsarySize);
+
+
+		var hiddDirectoryAdditionalSize = document.getElementById("hiddDirectorySizeadditional").value;
+		//alert("hiddDirectoryAdditionalSize--"+hiddDirectoryAdditionalSize);
+
+		var compAttachmentName	 = "";
+		if(hiddDirectoryCompulsarySize > '0'){
+			for(ii=0; ii<hiddDirectoryCompulsarySize; ii++){
+				compAttachmentName = document.getElementById('hiddFilesName1compulsory'+ii).value;
+			}
+		}else{
+			alert("Please select atleast one Compulsory attachement.");
+			return;
+		}
+		if(hiddDirectoryAdditionalSize > '0'){
+			for(ii=0; ii<hiddDirectoryAdditionalSize; ii++){
+				addiAttachmentName	= document.getElementById('hiddFilesName1additional'+ii).value;
+			}
+		}
+		document.getElementById('action').value = 'I';
+
+	}else if(status == 'draft'){
+			
+		document.getElementById('action').value = 'D';
+
+		var valid = checkChar("NP Rate", npRateQ1, alfa);
+		if(!valid){
+			document.getElementById('npRate1').focus();
+			document.getElementById('npRate1').value = "";
+			return;
+		}
+
+	
+		valid = checkChar("NP Rate", npRateQ2, alfa);
+		if(!valid){
+			document.getElementById('npRate2').focus();
+			document.getElementById('npRate2').value = "";
+			return;
+		}
+		
+		valid = checkChar("NP Rate", npRateQ3, alfa);
+		if(!valid){
+			document.getElementById('npRate3').focus();
+			document.getElementById('npRate3').value = "";
+			return;
+		}
+		
+		valid = checkChar("NP Rate", npRateQ4, alfa);
+		if(!valid){
+			document.getElementById('npRate4').focus();
+			document.getElementById('npRate4').value = "";
+			return;
+		}
+		
+		valid = checkChar("NP Rate", npRateQ5, alfa);
+		if(!valid){
+			document.getElementById('npRate5').focus();
+			document.getElementById('npRate5').value = "";
+			return;
+		}
+		
+
+	}
+	if(frmName == 'frmCreateWasteSalesProcess'){
+		objfrom.action = "../user/processWasteSalesSubmit.jsp";
+		objfrom.submit( );
+	}else if(frmName == 'frmViewRequest'){
+		document.getElementById('headerOnTopQurter').value  = headerEstimatedReal;		
+		objfrom.action = "../common/WSRequestDetailsSubmit.jsp";
+		objfrom.submit( );
+	}
+}
+
+function calRealisation(field1 ,field2 ,field3,field4) {
+
+	var previousRealisation = document.getElementById(field1).value;
+	var currentRealisation =   document.getElementById(field2).value;
+	var res = "";
+	var percentage = "0.00";
+	var  midResult= "";
+
+	if (isNaN(previousRealisation)){
+		alert("Please enter only numbers .");
+		document.getElementById(field1).value="0.00";
+		document.getElementById(field1).focus();
+		return ;
+	}
+	if (isNaN(currentRealisation)){
+		alert("Please enter only numbers .");
+		document.getElementById(field2).value="0.00";
+		document.getElementById(field2).focus();
+		return ;
+	}	
+
+	if(previousRealisation != '' && previousRealisation !=null && currentRealisation !='' && currentRealisation!=null){
+		res = parseFloat(currentRealisation).toFixed(2) - parseFloat(previousRealisation).toFixed(2);		
+		midResult =  res.toFixed(2) /  parseFloat(previousRealisation).toFixed(2) ;
+		percentage =  midResult * 100;		
+
+		if(field4 == 1){
+			document.getElementById(field3).value =  (isNaN(  res.toFixed(2)) ? "0.00" :  res.toFixed(2)) + " ("+  (isNaN( percentage.toFixed(2)) ? "0.00" :  percentage.toFixed(2))+ "%)";
+		}else {
+		document.getElementById(field3).value = (isNaN( percentage.toFixed(2)) ? "0.00" :  percentage.toFixed(2));
+		}
+	}else {
+		if(previousRealisation == '' || previousRealisation ==null ){
+			previousRealisation = 0;
+		}
+		if(currentRealisation == '' || currentRealisation ==null ){
+			currentRealisation = 0;
+		}
+		res = parseFloat(currentRealisation).toFixed(2) - parseFloat(previousRealisation).toFixed(2);
+		midResult =  res.toFixed(2) /  parseFloat(previousRealisation).toFixed(2) ;
+		percentage =  midResult.toFixed(2) * 100;
+		if(field4==1){
+			document.getElementById(field3).value =  (isNaN(  res.toFixed(2)) ? "0.00" :  res.toFixed(2)) + " ("+  (isNaN( percentage.toFixed(2)) ? "0.00" :  percentage.toFixed(2))+ "%)";
+		}else {
+			document.getElementById(field3).value = (isNaN( percentage.toFixed(2)) ? "0.00" :  percentage.toFixed(2));
+			}
+	}
+}
+
+function indexCal2(field1 ,field2,field3) {
+	var index = "";
+	var  percentage ="";
+	var  midResult= "";
+	var finalRate = document.getElementById(field1).value;
+	var npRate =   document.getElementById(field2).value;
+	if (isNaN(finalRate)){	
+		document.getElementById(field1).value="0.00";
+		document.getElementById(field1).focus();
+		return ;
+	}
+	if (isNaN(npRate)){
+		document.getElementById(field2).value="0.00";
+		document.getElementById(field2).focus();
+		return ;
+	}	
+	midResult =   parseFloat(finalRate).toFixed(2) /  parseInt(npRate) ;		
+	percentage =  midResult.toFixed(10) * 1000;					
+	document.getElementById(field3).value =  (isNaN( percentage.toFixed(2)) ? "0.00" :  percentage.toFixed(2));
+}
+
+function indexCal(field1 ,field2,field3,field4,field5 ,npValue,wasteValue1,wasteValue2,wasteValue3 ,wasteValue4,wasteValue5) {
+	
+	var index = "";
+	var  percentage ="";
+	var  midResult= "";
+	var finalRate = document.getElementById(field1).value;
+	var npRate =   document.getElementById(npValue).value;
+
+	if (isNaN(npRate)){
+		alert("Please enter only numbers .");
+		document.getElementById(npValue).value="";
+		document.getElementById(npValue).focus();
+		return ;
+	}
+
+	midResult =   parseFloat(finalRate).toFixed(2) /  parseInt(npRate) ;		
+	percentage =  midResult.toFixed(10) * 1000;					
+	document.getElementById(wasteValue1).value =  (isNaN( percentage.toFixed(2)) ? "0.00" :  percentage.toFixed(2));
+
+	finalRate= document.getElementById(field2).value;
+	percentage = "";
+	midResult= "";
+	midResult =   parseFloat(finalRate).toFixed(2) /  parseInt(npRate) ;		
+	percentage =  midResult.toFixed(10) * 1000;					
+	document.getElementById(wasteValue2).value =  (isNaN( percentage.toFixed(2)) ? "0.00" :  percentage.toFixed(2));
+
+	finalRate= document.getElementById(field3).value;
+	percentage = "";
+	midResult= "";
+	midResult =   parseFloat(finalRate).toFixed(2) /  parseInt(npRate) ;		
+	percentage =  midResult.toFixed(10) * 1000;					
+	document.getElementById(wasteValue3).value =  (isNaN( percentage.toFixed(2)) ? "0.00" :  percentage.toFixed(2));
+
+	finalRate= document.getElementById(field4).value;
+	percentage = "";
+	midResult= "";
+	midResult =   parseFloat(finalRate).toFixed(2) /  parseInt(npRate) ;		
+	percentage =  midResult.toFixed(10) * 1000;					
+	document.getElementById(wasteValue4).value =  (isNaN( percentage.toFixed(2)) ? "0.00" :  percentage.toFixed(2));
+
+	finalRate= document.getElementById(field5).value;
+	percentage = "";
+	midResult= "";
+	midResult =   parseFloat(finalRate).toFixed(2) /  parseInt(npRate) ;		
+	percentage =  midResult.toFixed(10) * 1000;					
+	document.getElementById(wasteValue5).value  =  (isNaN( percentage.toFixed(2)) ? "0.00" :  percentage.toFixed(2));
+}
+
+function attachmentFile(attachDetails, str){			
+	var url			= "../upload/uploadFile.jsp?attachment="+attachDetails+"&str="+str;
+	window.open(url,"File","width=375,height=165, resizable=yes,status=no,toolbar=no,location=no,menubar=no,scrollbars=yes");	
+}
+
+function deleteFile(fileName,dirPath,str){
+	var url = "../common/deleteFile.jsp?fileName="+fileName+"&dirPath="+dirPath+"&id=delete&requestStr="+str;
+	window.open(url,"File","width=375,height=165, resizable=no,status=no,toolbar=no,location=no,menubar=no,scrollbars=no");
+}
+
+function onLoadDetail(str){	
+	if(str == '0'){
+		loadFragment("../common/dirListing.jsp?attachment=compulsory&str="+str,"attachment","Attachment");
+		loadFragment("../common/dirListing.jsp?attachment=additional&str="+str,"attachment1","Attachment");
+	}else 	{
+		loadFragment("../common/dirListing.jsp?attachment=compulsory&str=1","attachment","Attachment");
+		loadFragment("../common/dirListing.jsp?attachment=additional&str=1","attachment1","Attachment");
+	}
+}
+
+function showDetails(requestId){									
+	var objfrom	= document.forms.viewAllWasteSalesRequest;
+	objfrom.action = "../common/processWSRequestDetails.jsp?requestId="+requestId;
+	objfrom.submit( );
+}
+
+function showAttachmentFile(str, requestId, userEmailId){	
+	
+	loadFragment("../common/showDirListing.jsp?attachment=compulsory&str=1&requestId="+requestId+"&userEmailId="+userEmailId,"attachment","Attachment");
+	loadFragment("../common/showDirListing.jsp?attachment=additional&str=1&requestId="+requestId+"&userEmailId="+userEmailId,"attachment1","Attachment");
+}
+
+function unCheck(field){	
+	if(document.getElementById(field).checked){		
+		document.getElementById(field).checked=false;	
+	}
+}
+
+function submitReview (){
+
+	var reference =  document.getElementById("reference").value;
+	var counter =  document.getElementById("listSize").value;
+	var  counterApprovedBy= document.getElementById("counterApprovedBy").value;
+	var counterSupportedBy =  document.getElementById("counterSupportedBy").value;
+	var cities = ""; ; 
+	var pwm ="";
+	var tow ="";
+	var re ="";
+	var pg ="";
+	var ap ="";
+	var status ="";
+	var appReviewRemark ="";
+	var remark ="";
+	var supportedBy ="";
+	var approvedBy ="";
+
+	for (ii=0; ii < counter; ii++){
+	
+
+		if (document.getElementById("approve"+ii).checked == false && document.getElementById("review"+ii).checked == false)
+		{
+			alert("Please select the action ie. Approve or Review.");
+			return false;
+		}
+
+		if (document.getElementById("approve"+ii).checked){ 		
+			if (document.getElementById("approve"+ii).value == ''  || document.getElementById("approve"+ii).value ==  null){
+				status = status+"NA,";
+			}else {
+				status = status+document.getElementById("approve"+ii).value+",";
+			}
+		}else{
+			if (document.getElementById("review"+ii).checked){ 
+				if(document.getElementById("remark"+ii).value == '' ||document.getElementById("remark"+ii).value==null)	{
+					alert("Please enter remark");
+					document.getElementById("remark"+ii).focus();
+					return false;
+				}else {
+					status  =status+ document.getElementById("review"+ii).value+",";
+				}
+			}
+		}
+}
+
+	for (jj = 0 ; jj < counterSupportedBy ; jj++)	{
+		supportedBy  = supportedBy+document.getElementById("supportedBy"+jj).value+",";
+	}
+	for (kk=0 ; kk < counterApprovedBy ; kk++){
+		approvedBy  = approvedBy+document.getElementById("approvedBy"+kk).value+",";
+	}
+	document.forms.viewAllWasteSalesRequest.action = "../approvals/wasteDisposalNoteSubmit.jsp";
+	document.forms.viewAllWasteSalesRequest.submit( );
+}
+
+function showAppForm(requestId){
+
+	var objfrom	= document.forms.viewAllApprovalRequest;
+//	objfrom.action = "../common/viewWasteDisposalNote.jsp?requestId="+requestId;
+	objfrom.action = "../approvals/view.jsp?requestId="+requestId;
+	objfrom.submit( );
+}
+
+function submitApprovals(){
+
+	if(document.getElementById("reference").disabled == true){
+		document.getElementById("reference").disabled = false;
+	}
+	var counter =  document.getElementById("listSize").value;	
+	var status ="";
+
+	for (ii=0; ii < counter; ii++){
+			if (document.getElementById("approve"+ii).checked){ 		
+			if (document.getElementById("approve"+ii).value == ''  || document.getElementById("approve"+ii).value ==  null){
+				status = status+"NA,";
+			}else {
+				status = status+document.getElementById("approve"+ii).value+",";
+			}
+		}else{
+			if (document.getElementById("review"+ii).checked){ 
+				if(document.getElementById("remark"+ii).value == '' ||document.getElementById("remark"+ii).value==null)	{
+					alert("Please enter remark. ");
+					document.getElementById("remark"+ii).focus();
+					return;
+				}else {
+					status  =status+ document.getElementById("review"+ii).value+",";
+				}
+			}
+		}
+}
+	
+	document.forms.viewAllWasteSalesRequest.action = "../approvals/viewWasteDisposalNoteSubmit.jsp";
+	document.forms.viewAllWasteSalesRequest.submit( );
+}
+
+function closedApprovals(){
+	var objfrom	= document.forms.viewAllWasteSalesRequest;
+	objfrom.action = "../user/viewWSApprovals.jsp";
+	objfrom.submit( );
+}
+
+function loadFragment(fragment_url, element_id, for_what) {
+	var xmlhttp = "";
+	if (window.XMLHttpRequest) {
+		// code for Mozilla, etc.
+		xmlhttp = new XMLHttpRequest();
+	} else if (window.ActiveXObject) {
+		// code for IE
+		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}else {
+		alert("Sorry Your Browser is not Supported");
+	}
+	var element = document.getElementById(element_id);
+	//alert(element);
+	var message = "";
+	var processingRequest = '<table width="100%" height="100%"><tr><td align="center"><div align="center"><span class="table table-bordered table-hover"><img src="../images/loading.gif" valign="absmiddle">&nbsp;&nbsp;'
+	+ for_what + ' Loading...</span></div></td></tr></table>';
+	$("#"+element_id).html(processingRequest);
+	//element.innerHTML = processingRequest;
+	try {
+		xmlhttp.open("GET", fragment_url);
+		xmlhttp.onreadystatechange = function(){
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				var gotresponse = xmlhttp.responseText;
+				message = gotresponse;
+				//alert(message);
+				$("#"+element_id).html(message);
+				//element.innerHTML = message;
+			}
+		}
+		xmlhttp.send(null);
+	}// display an error in case of failure
+	catch (e) {
+		alert("Can't connect to server:\n" + e.toString());
+	}
+}

@@ -1,0 +1,343 @@
+<%@ page language="java" %>
+<%@ include file="../includes/sessionCheck.jsp" %>
+<%@ include file="../includes/empHeader.jsp" %>
+<%@ page import="java.util.Hashtable, java.util.ArrayList, java.util.GregorianCalendar, java.util.Calendar,com.bccl.util.Utility" %>
+<%@ page import="com.bccl.claim.web.util.Constants,com.bccl.claim.web.util.HtmlUtil,com.bccl.workflows.commonUtility.AppSignature"%>
+<jsp:useBean id="docChangeLogController" class="com.bccl.workflows.web.controller.DocumentChangeLogController"/>
+
+<% 
+    response.setHeader("Cache-Control","no-cache"); 
+    response.setHeader("Pragma","no-cache"); 
+    response.setDateHeader ("Expires", 0); 
+%>
+<!DOCTYPE >
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> Waste Approval Process </title>	
+        <link href="../css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="../jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet"/>  
+        <link href="../bootstrap-3.3.2-dist/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="../css/style_1.css" rel="stylesheet"/>
+        <link href="../css/select2.min.css" rel="stylesheet">
+        <link href="../css/bootstrap-multiselect.css" rel="stylesheet">
+        <link href="../css/bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />
+
+        <style>
+        .select2-container .select2-selection--single {
+            box-sizing: border-box;
+            cursor: pointer;
+            display: block;
+            height: 34px;		
+        }
+        .fa.fa-sig:after {
+            position: absolute;
+            content: "/";
+            color: GREY;
+            font-weight: 700;
+            font-size: 1.2em;
+            left: 7px;
+            top: -1px;
+            padding:0;
+            margin:0;
+        }
+        </style>	
+        <script src="../js/jquery-1.9.1.min.js"></script>
+        <script src="../jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+        <script src="../bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
+        <script src="../js/select2.min.js"></script>
+        <script src="../js/bootstrap-multiselect.js"></script>	
+        <script src="../js/wysihtml5-0.3.0.min.js"></script>
+        <script src="../js/bootstrap3-wysihtml5.js"></script>	
+        <script src="../js/jquery.validate.min.js"></script>
+        <script src="../js/additional-methods.min.js"></script>	
+        <script src="../js/util.js" type="text/javascript"></script>
+        <script src="../js/common.js" type="text/javascript"></script>
+        <script src="../js/wasteSales.js"></script>	
+    </head>
+    <%
+        ArrayList <String[]> wasteList = new ArrayList<String[]> ();	
+        Hashtable processWasteDetailsHash = new Hashtable();
+        String reference =  request.getParameter("reference");
+         String workItemOID =  request.getParameter("workItemOID");
+         String reqCreatedBy =  request.getParameter("reqCreatedBy");
+         String zoneType =  request.getParameter("zoneType");
+        out.println("  zoneType : " +zoneType);
+        
+        int counter  = 0;
+        int counterApprovedBy = 0;
+         int counterSupportedBy = 0;
+     
+         String remark  = "";
+        String requestNos = "";
+        String approvedBy = "";
+        String supportedBy = "";
+        String status = "";
+        String docRef = "";
+        String cityArray[] = null;
+        String pwmArray[] = null;
+        String towArray[] = null;
+        String reArray[] = null;
+        String pgArray[] = null;
+        String apArray[] = null;
+        String remarkArray[] = null;
+        String appArray[] = null;
+        String suppArray[] = null;
+        String reqNumber[] = null;
+        String statusArray[] = null;
+        String docRefArray[] = null;
+
+        String cities = "";
+        String pwm = "";
+        String tow = "";
+        String re = "";
+        String pg  = ""; 
+        String ap  = "";
+        counter = Integer.parseInt((request.getParameter("listSize") == null) ? "0" : request.getParameter("listSize"));
+        counterApprovedBy = Integer.parseInt((request.getParameter("counterApprovedBy") == null) ? "0" : request.getParameter("counterApprovedBy"));
+        counterSupportedBy = Integer.parseInt((request.getParameter("counterSupportedBy")== null) ? "0" : request.getParameter("counterSupportedBy"));
+
+        for (int kk = 0; kk < counter; kk++){
+             String city  = request.getParameter("city"+kk);
+            cities = cities + city +",";
+            String pwms =  request.getParameter("pwm"+kk);
+            pwm = pwm + pwms +",";
+            String tows =  request.getParameter("tow"+kk);
+            tow = tow + tows +",";
+            String res = request.getParameter("re"+kk);
+            re = re + res +",";
+            String pgs =  request.getParameter("pg"+kk);
+            pg = pg + pgs +",";
+            String aps =  request.getParameter("ap"+kk);
+            ap = ap + aps +",";
+             String requestNo = request.getParameter("requestNo"+kk);
+             requestNos = requestNos + requestNo+",";
+             String docReference = request.getParameter("docReference"+kk);
+             docRef = docRef + docReference+",";
+            String remarks =( request.getParameter("remark"+kk) == null || request.getParameter("remark"+kk) == ""  ) ? "NA" : request.getParameter("remark"+kk) ;
+            remark = remark + remarks +",";
+            String approves = (request.getParameter("approve"+kk) == null  || request.getParameter("approve"+kk) == ""  ) ? "NA" : request.getParameter("approve"+kk) ;
+            if (!"NA".equals(approves)) {
+                      status = status +approves +",";
+             }                 
+            String reviews = (request.getParameter("review"+kk) == null || request.getParameter("review"+kk) == "" ) ? "NA" : request.getParameter("review"+kk) ;                
+            if (!"NA".equals(reviews)) {
+                    status = status +reviews +",";
+            }   
+        }        
+
+         for (int aa = 0 ;aa < counterApprovedBy ;aa++){
+             String appBy  = request.getParameter("approvedBy"+aa);
+             approvedBy = approvedBy + appBy +",";
+        }
+        for (int jj = 0 ;jj < counterSupportedBy ;jj++){
+             String supportes  = request.getParameter("supportedBy"+jj);
+             supportedBy = supportedBy + supportes +",";
+        }
+        cities = cities.substring(0,cities.length()-1 );
+        cityArray = cities.split(",");     
+        pwm = pwm.substring(0,pwm.length()-1 );
+        pwmArray = pwm.split(",");   
+        tow = tow.substring(0,tow.length()-1 );
+        towArray = tow.split(",");   
+        re = re.substring(0,re.length()-1 );
+        reArray = re.split(",");     
+        pg = pg.substring(0,pg.length()-1 );
+        pgArray = pg.split(",");     
+        ap = ap.substring(0,ap.length()-1 );
+        apArray = ap.split(",");     
+        remark = remark.substring(0,remark.length()-1 );
+        remarkArray = remark.split(",");  
+        requestNos = requestNos.substring(0,requestNos.length()-1);
+        reqNumber = requestNos.split(","); 
+        status = status.substring(0,status.length()-1);   
+        statusArray = status.split(","); 
+        docRef = docRef.substring(0,docRef.length()-1);   
+        docRefArray = docRef.split(",");
+        approvedBy = approvedBy.substring(0,approvedBy.length()-1);
+        appArray = approvedBy.split(",");
+        supportedBy = supportedBy.substring(0,supportedBy.length()-1);
+        suppArray = supportedBy.split(","); 
+         for (int ii = 0; ii < counter; ii++) {  
+            String wasteArray[] = { reqNumber[ii],remarkArray[ii] ,statusArray[ii],reference, docRefArray[ii] ,cityArray[ii], pwmArray[ii], towArray[ii] , reArray[ii],pgArray[ii] ,apArray[ii] };
+         
+            wasteList.add(wasteArray);
+         }
+
+     //   String  jValue = session.getId(); 
+    //    String  appSign = wasteSalesHeaderController.createRequest(jValue,"");  
+       	String headerSection [ ]	 = {"REQUESTNO" ,"REMARK" , "STATUS" ,"REFERENCE","DOCREFERENCE","CITY", "PWM", "TOW","REW","PGW","APW"};
+        processWasteDetailsHash.put("HEADERSECTION", headerSection);
+        processWasteDetailsHash.put("HEADERSECTIONVAL", wasteList);	
+        processWasteDetailsHash.put("WORKITEMOID",workItemOID);
+        processWasteDetailsHash.put("ZONALTYPE",zoneType);
+        
+         if (reqCreatedBy.equals(emailId)){
+            processWasteDetailsHash.put("CREATEDBY",reqCreatedBy);
+            processWasteDetailsHash.put("LISTAPPROVEDBY",appArray);
+            processWasteDetailsHash.put("LISTSUPPORTEDBY",suppArray);
+         }else {
+            processWasteDetailsHash.put("EMAILID",emailId);
+         }
+        processWasteDetailsHash.put("DOCUMENTOID","DOC1001");
+      //  processWasteDetailsHash.put("STATUS","I");
+       // processWasteDetailsHash.put("ZONALTYPE","WEST ZONE");
+    //    processWasteDetailsHash.put("DOCUMENTSTATUS","Zonal Head Approved");
+		String  result  ="";
+		String message = "";
+        
+		result  = docChangeLogController.updateData( processWasteDetailsHash);
+	//out.println(" result "  +result);
+	//	if(result){
+          message = "<h5>Request " +result +" has been updated  successfully."
+					+"<br> Click <a href=\"../user/viewWSZonalRequests.jsp\">here</a> to view the Request.</h5>";
+		/*
+			int reviewCount = 0;
+
+			for (int jj = 0; jj < counter; jj++) 
+			{  			
+				if(statusArray[jj].equals("R"))
+				{
+					reviewCount++;
+
+					Hashtable approverHash = new Hashtable();
+					ArrayList approverList = new ArrayList();
+
+					approverHash.put("REQUESTID", reqNumber[jj]);
+					//approverHash.put("STATUS", "A");
+					approverHash.put("REQUESTIDSTATUS", "R");
+					approverList  = docChangeLogController.searchApproverMail( "sees","sdfsdf",approverHash);
+
+					for(int kk = 0; kk < approverList.size(); kk++)
+					{
+						String strArr[] = (String[])approverList.get(kk);
+						Hashtable mailDetailsHash = new Hashtable();
+
+						String requestNo	= strArr[1];
+						String mailTo		= strArr[4];
+						String mailCCTo		= strArr[6];
+
+						boolean mailFlag =false;
+
+					//	String  str = "<p>Dear All ,</p><p>Request number " +requestNo+ " has been Reviewed by  " +emailId+ ".</p><p> This is for your kind information. PlantHead " +mailTo+ " zonalHead " +mailCCTo+ " </p><p>Regards,</p><p> Timescape Admin</p>";
+
+						String str = "<b>Dear All </b>" + "<br>" //manager[2] + "<br>"
+							   + "<br>You have <span class=\"rednormal\">" +requestNo+ "</span> request On SAR application(s). <p> This is for your kind information.</p> " + "<br><br>"
+							   + "To browse these applications please click the 'SAR' link on the home page of TIMESCAPE. <br><br>"
+							   + "Alternatively you can also click on the following link: " + "<br>"
+							   + "<a href='http://tsqa.timesgroup.com/irj/portal?NavigationTarget=navurl://b02590634b92bea5072ed01cc1b3dac7 '></a><br><br>"
+							   + "<p>Regards,</p><p> Timescape Admin</p> ";
+
+						String subject= "SAR Request pending";
+
+						String imgHeaderStr = "timescape/sapep/collaboration/workflow/wastesalesapproval/images/header.jpg";
+						String imgFooterStr = "timescape/sapep/collaboration/workflow/wastesalesapproval/images/footer.jpg";		
+						
+						mailDetailsHash.put("CREATEDBYEMAILID", emailId);
+						mailDetailsHash.put("IMAGEHEADERSTR", imgHeaderStr);
+						mailDetailsHash.put("IMAGEFOOTERSTR", imgFooterStr);
+						mailDetailsHash.put("MAILTO", mailTo);
+						mailDetailsHash.put("MAILCCTO", mailCCTo);
+						mailDetailsHash.put("MAILSTATUS", "R");
+						mailDetailsHash.put("SUBJECT", subject);
+						mailDetailsHash.put("MESSAGE", str);
+						mailDetailsHash.put("REQUESTID", requestNo);
+
+						mailFlag  = docChangeLogController.sendMail("1A530637289A03B07199A44E8D531427","1A530637289A03B07199A44E8D531427",mailDetailsHash);
+
+						//out.println("mailFlag-------"+mailFlag);
+						//out.println("mailDetailsHash-------"+mailDetailsHash);
+					}
+					
+				}
+			}
+			if(reviewCount == 0)
+			{
+				Hashtable approverHash = new Hashtable();
+				ArrayList approverList = new ArrayList();
+
+				approverHash.put("REQUESTID", workItemOID);
+				approverHash.put("STATUS", "L");
+				approverList  = docChangeLogController.searchApproverMail( "sees","sdfsdf",approverHash);
+
+				if(approverList.size()>0)
+				{
+					for(int kk = 0; kk < approverList.size(); kk++)
+					{
+						String strArr[] = (String[])approverList.get(kk);
+						Hashtable mailDetailsHash = new Hashtable();
+
+						String workItemOId = strArr[1];
+						String mailTo = strArr[3];
+
+						boolean mailFlag =false;
+
+						//String  str = "<p>Dear All ,</p><p>Request number " +workItemOId+ " has been Approved by  " +emailId+ ".</p><p> This is for your kind information. Kindly Approve it.</p><p>Regards,</p><p> Timescape Admin</p>";
+						
+						String str = "<b>Dear All </b>" + "<br>" //manager[2] + "<br>"
+						//	   + "<br>You have<span class=\"rednormal\">" +workItemOId+ "</span> request for " +zoneType+ " On SAR application(s) pending for approval. <p> This is for your kind information. Kindly approve or review it.</p> <br><br>"
+                        + "<br>You have<span class=\"rednormal\">" +workItemOId+ "</span> request On SAR application(s) pending for approval. <p> This is for your kind information. Kindly approve or review it.</p> <br><br>"
+							   + "To browse these applications please click the 'SAR' link on the home page of TIMESCAPE. <br><br>"
+							   + "Alternatively you can also click on the following link: " + "<br>"
+							   + "<a href='http://tsqa.timesgroup.com/irj/portal?NavigationTarget=navurl://b02590634b92bea5072ed01cc1b3dac7 '></a><br><br>"
+							   + "<p>Regards,</p><p> Timescape Admin</p>";
+
+						String subject= "SAR Request pending for Approval";
+
+						String imgHeaderStr = "timescape/sapep/collaboration/workflow/wastesalesapproval/images/header.jpg";
+						String imgFooterStr = "timescape/sapep/collaboration/workflow/wastesalesapproval/images/footer.jpg";		
+						
+						mailDetailsHash.put("CREATEDBYEMAILID", emailId);
+						mailDetailsHash.put("MAILTO", mailTo);
+						mailDetailsHash.put("MAILSTATUS", "A");
+						mailDetailsHash.put("IMAGEHEADERSTR", imgHeaderStr);
+						mailDetailsHash.put("IMAGEFOOTERSTR", imgFooterStr);
+						mailDetailsHash.put("SUBJECT", subject);
+						mailDetailsHash.put("MESSAGE", str);
+						mailDetailsHash.put("REQUESTID", workItemOId);
+
+						mailFlag  = docChangeLogController.sendMail("1A530637289A03B07199A44E8D531427","1A530637289A03B07199A44E8D531427",mailDetailsHash);
+
+					//	out.println("mailFlag----"+mailFlag);
+					}
+				}
+			}
+
+	//	}
+*/
+	%>
+<body>
+<div class="container well">
+	<div class="row ">
+	<div class="col-xs-2"></div>
+		<div class="col-xs-8 bs-example  ">
+			<div class="portlet box blue">
+				<div class="portlet-title">
+					<div class="caption">
+					<i class="fa fa-th"></i>  <strong>Submit Process Waste Aprroval</strong>
+					</div>			
+					</div>
+					<div class="portlet-body">
+						<form class="form-horizontal" role="form" id="demo_form" name ="frmCreateWasteSalesProcess" method="post">
+						<div class="form-body">
+							<div class="row " style="margin-top:0px;margin-bottom:0;">
+								<table width="100%"  border="0" cellspacing="0" cellpadding="0" bgcolor="#F4F2F2"> 
+									<tr>
+										<td align="left" ><img src="../images/spacer.gif" width="1" height="40"></td>
+									</tr>
+									<tr>
+										<td align="center" class="normal" valign = "top" ><%=message%></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<div class="col-xs-2"></div>
+	</div>
+</div></body>
+</html>

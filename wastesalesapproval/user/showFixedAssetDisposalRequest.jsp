@@ -1,0 +1,1193 @@
+<%@ page language="java" %>
+<%@ include file="../includes/sessionCheck.jsp" %>
+<%@ include file="../includes/empHeader.jsp" %>
+<%@ page import="java.util.Hashtable, java.util.ArrayList, java.util.GregorianCalendar, java.util.Calendar" %>
+<%@ page import="com.bccl.claim.web.util.Constants,com.bccl.claim.web.util.HtmlUtil"%>
+<%@ page import="com.bccl.claim.web.util.Utility"%>
+<%@ page import="com.bccl.tsenvironment.EnvironmentProperties" %>
+<jsp:useBean id="wasteSalesHeaderController" class="com.bccl.workflows.web.controller.DocumentHeaderController"/>
+<jsp:useBean id="wasteSalesDetailsController" class="com.bccl.workflows.web.controller.DocumentDetailsController"/>
+<%
+response.setHeader("Cache-Control","no-cache"); //HTTP 1.1
+response.setHeader("Pragma","no-cache"); //HTTP 1.0
+response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
+%>
+	<link href="../css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet"/>  
+	<link href="../bootstrap-3.3.2-dist/css/bootstrap.min.css" rel="stylesheet"/>
+	<link href="../css/style_1.css" rel="stylesheet"/>
+	<link href="../css/select2.min.css" rel="stylesheet">
+	<link href="../css/bootstrap-multiselect.css" rel="stylesheet">
+	<link href="../css/bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />
+	<style>
+		.select2-container .select2-selection--single 
+		{
+			box-sizing: border-box;
+			cursor: pointer;
+			display: block;
+			height: 34px;		
+		}
+	</style>	
+<!-- 
+	<script src="../js/jquery-1.9.1.min.js"></script>
+	<script src="../jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+	<script src="../bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
+	<script src="../js/select2.min.js"></script>
+	<script src="../js/bootstrap-multiselect.js"></script>	
+	 <script src="../js/wysihtml5-0.3.0.min.js"></script>
+	<script src="../js/bootstrap3-wysihtml5.js"></script>	
+	<script src="../js/bootstrap-maxlength.min.js"></script>
+	<script src="../js/jquery.validate.min.js"></script>
+	<script src="../js/additional-methods.min.js"></script>	
+	<script src="../js/util.js"></script>	
+	<script src="../js/common.js"></script>	
+	<script src="../jscript/wsCommon.js"></script>	 -->
+	<script src="../jscript/wasteSalesDisposal.js"></script>	
+	
+	
+	<!-- <script type="text/javascript">
+	onload=function(){
+		var e=document.getElementById("refreshed");
+		if(e.value=="no"){
+			e.value="yes";
+		}
+
+		else{
+			e.value="no";
+			location.reload();
+		}
+	}
+    </script> -->
+
+<script>
+	
+	$(document).ready(function(){
+	
+
+	$(".js-example-basic-single").select2({ width: '100%'  });
+	$('body').on('focus',".textarea", function(){
+			$(this).maxlength({alwaysShow: true});		
+	});	
+	$('.text').wysihtml5({
+			"image": false,
+			"link": false
+		});
+
+	
+
+	$('.charLen').each(function () {
+        $(this).maxlength({alwaysShow: true});	
+	});
+
+	//var text_max = 200;
+//$('#count_message').html(text_max + ' remaining');
+
+//$('.text').keyup(function() {
+ // var text_length = $('.text').val().length;
+ // var text_remaining = text_max - text_length;
+  
+ // $('#count_message').html(text_remaining + ' remaining');
+//});
+	
+
+		
+		$('body').on('focus',".datepicker", function(){
+		$(this).datepicker({ dateFormat: 'dd-mm-yy',minDate:0   });		
+		});	
+		
+		$("#fixedasset_form").validate({
+		onkeyup: function (element, event) {
+            if (event.which === 9 && this.elementValue(element) === "") {
+                return;
+            } else {
+                this.element(element);
+            }
+        },
+		highlight: function(element) {
+			var id_attr = "#" + $( element ).attr("id") + "1";
+			$(element).closest('.grp').removeClass('has-success').addClass('has-error');
+			$(id_attr).removeClass('fa-check').addClass('fa-warning');         
+		},
+		unhighlight: function(element) {
+			var id_attr = "#" + $( element ).attr("id") + "1";
+			$(element).closest('.grp').removeClass('has-error').addClass('has-success');
+			$(id_attr).removeClass('fa-warning').addClass('fa-check'); 
+			
+		},
+		errorElement: 'span',
+			errorClass: 'help-block',
+			errorPlacement: function(error, element) {
+				if(element.length) {
+					error.insertAfter(element);
+				} else {
+				error.insertAfter(element);
+				}
+			} 
+		});
+
+	$("[name^=quantity]").each(function () {
+        $(this).rules("add", {
+            required: true,
+			pattern: /^(?:[1-9]\d*|0)?(?:\.\d+)?$/,
+			messages: {
+            pattern:  "Valid Format is : 0.00"
+        }
+            
+        });	
+	});	
+
+	$("[name^=finalNegotiatedAmt]").each(function () {
+        $(this).rules("add", {
+            required: true,
+			pattern: /^(?:[1-9]\d*|0)?(?:\.\d+)?$/,
+			messages: {
+            pattern:  "Valid Format is : 0.00"
+        }
+            
+        });	
+	});
+
+	//$( function() {
+		$('.two-digits').keyup(function(){
+			if($(this).val().indexOf('.')!=-1){         
+				if($(this).val().split(".")[1].length > 2){                
+					if( isNaN( parseFloat( this.value ) ) ) return;
+					this.value = parseFloat(this.value).toFixed(2);
+				}  
+			 }            
+			 return this; //for chaining
+		}); 
+
+	
+		$('.three-digits').keyup(function(){
+			if($(this).val().indexOf('.')!=-1){         
+				if($(this).val().split(".")[1].length > 3){                
+					if( isNaN( parseFloat( this.value ) ) ) return;
+					this.value = parseFloat(this.value).toFixed(3);
+				}  
+			 }            
+			 return this; //for chaining
+		});
+
+
+	$('.only-num').keypress(function(event) {
+
+		var val1  = this.value.split('.').length;
+
+		var unicode = event.charCode ? event.charCode : event.keyCode;
+
+		if((unicode == 46) && val1 > 1)
+		{
+			 return false;
+		}
+
+        // here i will get textbox contents and loop through it
+        if ((unicode == 8) || (unicode == 9) || (unicode == 45) || (unicode == 46) || (unicode > 47 && unicode < 58) ) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+		
+	});
+	
+
+	});
+	</script>
+	</head>
+
+<% 
+		String iboHead = (String)EnvironmentProperties.getValue("wastesalesapprovals", "IBO_HEAD");
+		String fdHead = (String)EnvironmentProperties.getValue("wastesalesapprovals", "FUNCT_DIR");
+		String exepHead = (String)EnvironmentProperties.getValue("wastesalesapprovals", "EXE_PRES");
+		String masdHead = (String)EnvironmentProperties.getValue("wastesalesapprovals", "MAS_DIR");
+
+
+		GregorianCalendar today		= new GregorianCalendar();
+        int todayDay				= today.get(Calendar.DAY_OF_MONTH);
+		String todayDay1  = todayDay+"";
+
+		String months[ ]			={"0","01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
+
+		String todayMon				= months[today.get(Calendar.MONTH)+1];
+	
+		int  todayYear				= today.get(Calendar.YEAR);
+
+		String todayYear1 = todayYear+"";
+
+		if(todayDay1.length()==1){
+
+			todayDay1 = "0"+todayDay1;
+		}
+
+		String dayMonYear			= todayDay1+"-"+todayMon+"-"+todayYear1;
+
+
+		String headDesignation = "'CHIEF INFORMATION OFFICER','MANAGING DIRECTOR'";
+
+		ArrayList emailidList			= new ArrayList();
+
+		ArrayList proposedEmailidList	= new ArrayList();
+
+		ArrayList deptHeadEmailidList	= new ArrayList();
+
+		ArrayList bncEmailidList		= new ArrayList();
+
+		ArrayList supportedEmailidList	= new ArrayList();
+
+		ArrayList approverEmailidList	= new ArrayList();
+
+		ArrayList branchList			= new ArrayList();
+		ArrayList locationList			= new ArrayList();
+
+		ArrayList unitsList				= new ArrayList();
+
+
+		//Hashtable emailHash				= new Hashtable();
+		Hashtable emailHash1				= new Hashtable();
+		Hashtable locationHash				= new Hashtable();
+
+		Hashtable deptHeadEmailHash		= new Hashtable();
+
+		Hashtable branchHash			= new Hashtable();
+		Hashtable supportedHash			= new Hashtable();
+		Hashtable approverHash			= new Hashtable();
+
+		//emailHash1.put("COMPANYCODE", companyCode);
+		//emailHash1.put("DEPTCODE", "1002");
+		//emailHash1.put("EMAILID", emailId);
+
+		//emailHash.put("COMPANYCODE", companyCode);
+		//emailHash.put("DEPTCODE", "1002");
+		//emailHash.put("EMAILID", emailId);
+
+
+		locationHash.put("COMPANYCODE", companyCode);
+
+		/*deptHeadEmailHash.put("COMPANYCODE", companyCode);
+		deptHeadEmailHash.put("DEPTCODE", deptGroup);
+
+
+		branchHash.put("COMPANYCODE", companyCode);
+		branchHash.put("DEPTCODE", "1002");
+
+		supportedHash.put("COMPANYCODE", companyCode);
+		//supportedEmailidList.put("DEPTCODE", "");
+
+		approverHash.put("COMPANYCODE", companyCode);
+		//approverHash.put("DEPTCODE", "");
+		approverHash.put("DESIGNATION", headDesignation);*/ 
+
+
+
+
+		branchHash.put("ZONENAME", "1002");
+		branchHash.put("STATUS", "A");
+
+		//emailidList = wasteSalesHeaderController.getEmailId(emailHash);
+
+	//	proposedEmailidList		= wasteSalesHeaderController.getEmailId(emailHash);
+	//	emailidList				= wasteSalesHeaderController.getEmailId(emailHash1);
+		unitsList				= wasteSalesDetailsController.getUnits();
+		locationList				= wasteSalesHeaderController.listLocationsOnly(locationHash);
+
+		String popupLocation = "";
+
+		for (int ii=0; ii<locationList.size(); ii++) 
+		{
+			String locationArr[] = (String[])locationList.get(ii);
+
+			//popupLocation += "<option value='"+locationArr[4]+"|"+locationArr[5]+"'>"+locationArr[5]+"</option>";             
+			popupLocation += "<option value='"+locationArr[0]+"'>"+locationArr[0]+"</option>";             
+        }
+
+
+
+		String popupEmailId = "";
+		String popupEmailId1 = "";
+		String popupUnit = "";
+/*
+		for (int ii=0; ii<proposedEmailidList.size(); ii++) 
+		{
+			String emailidArr[] = (String[])proposedEmailidList.get(ii);
+
+			popupEmailId += "<option value='"+emailidArr[0]+"|"+emailidArr[4]+"|"+emailidArr[6]+"'>"+emailidArr[6]+"</option>";             
+        }
+	
+		for (int ii=0; ii<emailidList.size(); ii++) 
+		{
+			String emailidArr[] = (String[])emailidList.get(ii);
+
+			popupEmailId1 += "<option value='"+emailidArr[0]+"|"+emailidArr[4]+"|"+emailidArr[6]+"'>"+emailidArr[6]+"</option>";             
+        }
+*/
+
+
+
+		for(int jj=0; jj< unitsList.size(); jj++)
+		{
+			String tmpArr[] = (String[])unitsList.get(jj);
+
+			popupUnit += "<option value='"+tmpArr[1]+"'>"+tmpArr[1]+"</option>";             
+
+		}
+
+		/*deptHeadEmailidList		= wasteSalesHeaderController.getEmailId(deptHeadEmailHash);
+
+		bncEmailidList			= wasteSalesHeaderController.getEmailId(branchHash);
+
+		supportedEmailidList	= wasteSalesHeaderController.getEmailId(supportedHash);
+
+		approverEmailidList		= wasteSalesHeaderController.getEmailId(deptHeadEmailHash);
+		*/
+		//branchList				= wasteSalesHeaderController.getBranch(branchHash);
+
+
+		
+		String formName			= "frmCreateFixedAsset";
+		
+		String type			= (String)request.getParameter("type");
+
+		String compAttachmentName="";
+		String addAttachmentName="";
+		String declenght ="two-digits";
+		String dispPropsed_Approved = "";
+
+		
+
+		if("Fixed Asset Disposal".equals(type))
+		{
+			compAttachmentName = "fixedassetcompulsory";
+			addAttachmentName = "fixedassetadditional"; 
+
+		}else if("One-off Miscellaneous".equals(type))
+		{
+			compAttachmentName = "oneoffcompulsory";
+			addAttachmentName = "oneoffadditional";
+
+		}else if("Damaged Newsprint Disposal".equals(type))
+		{
+
+			compAttachmentName = "damagedcompulsory";
+			addAttachmentName = "damagedadditional";
+			declenght ="three-digits ";
+			dispPropsed_Approved="display:none";
+		}
+
+%>
+	<div class="portlet box blue">
+			<div class="portlet-title"> 
+				<div class="caption">
+				<i class="fa fa-th"></i>  <strong>Create <%=type%> Request </strong>
+				</div>			
+			</div>			
+	
+	<div class="portlet-body">
+					<div class="row " >
+						<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-xs-4">Type of Disposal</label>
+							<div class="col-xs-8">
+								<div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-bars"></i>
+									</span><input type="text" class="form-control " readonly name="disposalType" id="disposalType" value="<%=type%>" />									
+								</div>
+							</div>
+						</div>
+						</div>
+						<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-xs-4">Approval Sought For Disposal Of:</label>
+							<div class="col-xs-8">
+								<div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-bars"></i>
+									</span><input type="text" class="form-control charLen "  name="disposalName" id="disposalName" maxlength = "100" placeholder="Disposal"  />									
+								</div>
+							</div>
+						</div>
+						</div>
+						
+					</div>
+					
+					<div class="row ">
+						<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-xs-4">Location:</label>
+							<div class="col-xs-8">
+								<div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-map-marker" style="width:11px;"></i>
+									</span>									
+									<input type="text" class="form-control charLen "  name="location1" id="location1" maxlength = "100" placeholder="Enter Location" onkeyup="lookupAll(this.value,'myLocSuggestions','myLocSuggestionsList','loc','location1');" />
+								</div>
+								<div class="suggestionsBox" id="myLocSuggestions" style="display:none;text-align:left;" class="form-control">
+									<div class="suggestionList Breakword" id="myLocSuggestionsList" style="padding-left:2px;text-align:left;">
+									</div>
+								</div>
+							</div>
+						</div>
+						</div>
+
+						<div class="col-xs-6 " >
+						<div class="form-group">
+							<label class="control-label col-xs-4">Date:</label>
+							<div class="col-xs-8">
+								<div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-calendar"></i>
+									</span>
+									<input type="text" class="form-control datepicker " name="createdDate" id="createdDate" value="<%=dayMonYear%>" disabled />
+								</div>
+							</div>
+						</div>
+						</div>
+					</div>	
+					<div class="row " id="dispProposedShow" style="<%=dispPropsed_Approved%>">	
+						<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-xs-4">Disposal Proposed By:</label>
+							<div class="col-xs-8">
+								<div class="input-group">
+									<span class="input-group-addon" >
+										<i class="fa fa-pencil-square-o"></i>
+									</span>
+									<input type="text" class="form-control charLen "  name="dispProposedBy" id="dispProposedBy" maxlength = "100" placeholder="Enter Emailid" onkeyup="lookupAll(this.value,'mySuggestions','myAutoSuggestionsList','email','dispProposedBy');" />									
+								</div>
+								<div class="suggestionsBox" id="mySuggestions" style="display:none;text-align:left;" class="form-control">
+									<div class="suggestionList Breakword" id="myAutoSuggestionsList" style="padding-left:2px;text-align:left;">
+									</div>
+								</div>
+							</div>
+						</div>
+						</div>
+						<div class="col-xs-6" >
+						<div class="form-group">
+							<label class="control-label col-xs-4">Disposal Approved By:</label>
+							<div class="col-xs-8">
+								<div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-user"></i>
+									</span>									
+									<input type="text" class="form-control charLen "  name="dispApprovedBy" id="dispApprovedBy" maxlength = "100" placeholder="Enter Emailid" onkeyup="lookupAll(this.value,'mySuggestions1','myAutoSuggestionsList1','email','dispApprovedBy');" />
+									</div>
+								<div class="suggestionsBox" id="mySuggestions1" style="display:none;text-align:left;" class="form-control">
+									<div class="suggestionList Breakword" id="myAutoSuggestionsList1" style="padding-left:2px;text-align:left;">
+									</div>
+								</div>
+								</div>
+							</div>
+						</div>						
+					</div>
+					<div class="row ">
+					<h5 class="pull-right" style="font-weight:bold;"></h5>
+						<table class="table table-bordered table-hover" id="tab_logic">			
+							<thead>
+								<tr class="info">
+									<th class="text-center">
+										Sr.<br>No.
+									</th>
+									<th class="text-center" width="18%">
+										Description 
+									</th>
+									<th class="text-center" width="12%">
+										Qty
+									</th>
+									<th class="text-center" width="8%">
+										UOM
+									</th>
+									<th class="text-center" width="12%">
+										Value Of Material<br>(Rs/UOM)
+									</th>
+									<th class="text-center" width="13%">
+										Final Negotiated Amt.<br>(Rs/UOM)
+									</th>
+									<th class="text-center" width="15%">
+										Final Highest Bidder
+									</th>
+									<th class="text-center" width="30%">
+										Comments
+									</th>
+								</tr>
+							</thead>
+							<tfoot>
+								<tr class="success">
+									<td></td>
+									<td></td>
+									<td></td>
+									<td>TOTAL VALUE</td>
+									<td class="text-right"><input type="text" class="form-control text-right" name="totalVOMValue" id="totalVOMValue" value="0"  readonly /></td>
+									<td class="text-right"><input type="text" class="form-control text-right" name="totalValue" id="totalValue" value="0"  readonly /></td>
+									<td></td>
+									<td width="16%"><input type="text" class="form-control" name="vatNtds" id="vatNtds" value="VAT & TDS extra" placeholder="VAT & TDS extra" /></td>
+								</tr>
+							  </tfoot>
+							<tbody>	
+<%
+								for(int i =0; i<5; i++)
+								{
+%>
+								<tr id='addr0'>
+									<td>
+									<%=i+1%>
+									</td>
+									<td class="text-center ">
+										<div class="form-group  " style="margin-left:5px;margin-right:5px;"><input type="text" class="form-control charLen " name="desc<%=i%>" id="desc<%=i%>" maxlength = "100"  placeholder="Description"></div>
+									</td>
+									<td class="text-center ">
+										<div class="form-group grp has-feedback " style="margin-left:5px;margin-right:5px;"><input type="text" class="form-control text-right <%=declenght%> only-num charLen" name="quantity<%=i%>" id="quantity<%=i%>"  maxlength = "10" placeholder="Qty" ></div>
+									</td>
+									<td class="text-center ">
+										
+										<select class="form-control " name="uom<%=i%>" id="uom<%=i%>"  style="padding-right:2px;" >
+										<%=popupUnit%>
+										</select>
+
+									</td>
+									<td class="text-center grp has-feedback">
+										<div class="form-group" style="margin-left:5px;margin-right:5px;"><input type="text" class="form-control text-right two-digits only-num charLen" name="valueOfMaterials<%=i%>"  maxlength = "10" id="valueOfMaterials<%=i%>" onblur="javascript:indexCal(<%=i%>);"  placeholder="NA"></div>
+									</td>
+									<td class="text-center ">
+										<div class="form-group grp has-feedback " style="margin-left:5px;margin-right:5px;"><input type="text" class="form-control text-right two-digits only-num charLen" name="finalNegotiatedAmt<%=i%>" id="finalNegotiatedAmt<%=i%>"  maxlength = "10" onblur="javascript:indexCal(<%=i%>);" placeholder="NA"></div>
+									</td>									
+									<td>
+										<textarea class="form-control noresize textarea " rows="2" name="finalHighestBidder<%=i%>" maxlength="100" id="finalHighestBidder<%=i%>" rel="tooltip"  placeholder="final Highest Bidder" ></textarea>
+									</td>
+									<td>
+										<textarea class="form-control noresize textarea " rows="2" name="comments<%=i%>" maxlength="255" id="comments<%=i%>" rel="tooltip"  placeholder="Remarks" ></textarea>
+									</td>
+								</tr>
+											
+<%
+								}
+%>								<input type="hidden" name="tabSize" id="tabSize" value = "5">
+								<tr id='addr1'></tr>									
+							</tbody>				
+						</table>
+							<a id='delete_row' class=" btn btn-default pull-right btn-sm" style="margin-left:10px;"><i class="fa fa-times"></i> Delete Row</a><a id="add_row" class="btn btn-default pull-right btn-sm"><i class="fa fa-plus"></i> Add Row</a>			
+					</div>
+					
+					<div class="row " style="margin-top:8px;">
+						<table class="table table-bordered table-hover" id="">			
+							<tbody>
+								<tr >
+									<td width="10%">
+									Comments
+									</td>
+									<td>
+									
+										<textarea class="form-control noresize  text" rows="3" placeholder='Comments' maxlength='1500' id="userTextComments" name="userTextComments" rel="tooltip" ></textarea>
+										
+										<h6 class="pull-right" id="count_message"></h6>
+		
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<h5 style="font-weight:bold;margin-top:0px;margin-bottom:0;">Attachments</h5>
+						<hr style="margin-top:10px;margin-bottom:10px;"/>
+						<div class="row " >
+							<div class=" col-xs-6 " >
+								<table class="table table-bordered table-hover" id="tab_logic8" >			
+									<thead>
+										<tr >
+											<th colspan="2" class="text-center" >
+												Compulsory Attachments
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td colspan="2"  > Click on image to attach file <a href="javascript:attachmentDisposalFile('<%=compAttachmentName%>','0');" > <img src="../images/attachment.png" border="0" /></a> </td>	
+										</tr>	
+										<tr>
+											<td colspan="2"  id="attachment"></td>	<!-- <input type="text" name="hiddDirectorySizecompulsary" id="hiddDirectorySizecompulsary" value="0"> -->
+											
+										</tr>
+									</tbody>				
+								</table>
+							</div>	
+							<div class="col-xs-6  ">
+								<table class="table table-bordered table-hover" id="tab_logic8">			
+									<thead>
+										<tr >
+											<th colspan="2" class="text-center" >
+												Additional Attachments
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td colspan="2"  > Click on image to attach file <a href="javascript:attachmentDisposalFile('<%=addAttachmentName%>','0');" ><img src="../images/attachment.png" border="0" /></a> </td>	
+										</tr>	
+										<tr>
+											<td colspan="2"  id="attachment1"></td><!-- <input type="text" name="hiddDirectorySizeadditional" id="hiddDirectorySizeadditional" value="0">	 -->
+											
+										</tr>
+									</tbody>			
+								</table>
+							</div>
+						</div>
+
+					<input type="hidden"   name="iboHead" id="iboHead" value="<%=iboHead%>"  />	
+					<input type="hidden"   name="fdHead" id="fdHead" value="<%=fdHead%>"  />	
+					<input type="hidden"   name="exepHead" id="exepHead" value="<%=exepHead%>"  />	
+					<input type="hidden"   name="masdHead" id="masdHead" value="<%=masdHead%>"  />	
+
+ 					<div class="row clearfix">
+ 					<h5 style="font-weight:bold;">Approvals:</h5><hr style="margin-top:0;margin-bottom:8px;">
+					<div class="col-xs-6  ">
+						<table class="table table-bordered table-hover" id="tab_logic2">			
+							<thead>
+								<tr >
+									<th class="text-center" >
+										Sr.No.
+									</th>
+									<th class="text-center">
+										User Department
+									</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+								<tr id='addr20'>
+									<td class="text-center">
+									1
+									</td>
+									<td>									
+									<input type="text" class="form-control charLen "  name="userDeptHead0" id="userDeptHead0" maxlength = "100" placeholder="Enter Email Id" onkeyup="lookupAll2(this.value,'0','0','userEmail');" onfocus="onLoadFixedDetail('1','<%=compAttachmentName%>','<%=addAttachmentName%>');"/>							
+									<div class="suggestionsBox" id="suggestions0" style="display:none;text-align:left;" class="form-control">
+									<div class="suggestionList Breakword" id="autoSuggestionsList0" style="padding-left:2px;text-align:left;">
+									</div>
+									</div>										
+									</td>																	
+								</tr>					
+								<tr id='addr21'></tr>									
+							</tbody>				
+						</table>
+							<a id='delete_row2' class=" btn btn-default pull-right btn-sm" style="margin-left:10px;margin-bottom:8px;"><i class="fa fa-times"></i> Delete Row</a><a id="add_row2" class="btn btn-default pull-right btn-sm"><i class="fa fa-plus"></i> Add Row</a>
+
+					<input type="hidden" name="userDeptHeadSize" id="userDeptHeadSize" value="1"  />
+					</div>
+					
+					<div class="col-xs-6 ">
+						<table class="table table-bordered table-hover" id="tab_logic3">			
+							<thead>
+								<tr >
+									<th class="text-center" >
+										Sr.No.
+									</th>
+									<th class="text-center">
+										B&C
+									</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+								<tr id='addr30'>
+									<td class="text-center">
+									1
+									</td>
+									<td>								
+									<input type="text" class="form-control charLen "  name="branchHead0" id="branchHead0" maxlength = "100" placeholder="Enter Email Id" onkeyup="lookupAll3(this.value,'0','0','branchEmail');" />	
+									<div class="suggestionsBox" id="suggestionsBNC0" style="display:none;text-align:left;" class="form-control">
+									<div class="suggestionList Breakword" id="autoSuggestionsBNCList0" style="padding-left:2px;text-align:left;">
+									</div>
+									</div>										
+									</td>
+																	
+								</tr>					
+								<tr id='addr31'></tr>									
+							</tbody>				
+						</table>
+							<a id='delete_row3' class=" btn btn-default pull-right btn-sm" style="margin-left:10px;"><i class="fa fa-times"></i> Delete Row</a><a id="add_row3" class="btn btn-default pull-right btn-sm"><i class="fa fa-plus"></i> Add Row</a>
+						
+						<input type="hidden" name="branchHeadSize" id="branchHeadSize" value="1" />
+					</div>	
+					</div>	
+				<div class="row clearfix">
+					<div class="col-xs-6  ">
+						<table class="table table-bordered table-hover" id="tab_logic5">			
+							<thead>
+								<tr >
+									<th class="text-center" >
+										Sr.No.
+									</th>
+									<th class="text-center">
+										MAS / Finance
+									</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+								<tr id='addr50'>
+									<td class="text-center">
+									1
+									</td>
+									<td>									
+									<input type="text" class="form-control charLen "  name="supportedHead0" id="supportedHead0" maxlength = "100" placeholder="Enter Email Id" onkeyup="lookupAll4(this.value,'0','0','supportEmail');" />	
+									<div class="suggestionsBox" id="suggestionsSupp0" style="display:none;text-align:left;" class="form-control">
+									<div class="suggestionList Breakword" id="autoSuggestionsSuppList0" style="padding-left:2px;text-align:left;">
+									</div>
+									</div>										
+									</td>
+																	
+								</tr>					
+								<tr id='addr51'></tr>									
+							</tbody>				
+						</table>
+							<a id='delete_row5' class=" btn btn-default pull-right btn-sm" style="margin-left:10px;"><i class="fa fa-times"></i> Delete Row</a><a id="add_row5" class="btn btn-default pull-right btn-sm"><i class="fa fa-plus"></i> Add Row</a>
+
+						<input type="hidden" name="supportedHeadSize" id="supportedHeadSize" value="1" />
+					</div>
+					
+					
+					<div class="col-xs-6 ">
+						<table class="table table-bordered table-hover" id="tab_logic7">			
+							<thead>
+								<tr >
+									<th class="text-center" >
+										Sr.No.
+									</th>
+									<th class="text-center">
+										Approved by
+									</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+								<tr id='addr70'>
+									<td class="text-center">
+									1
+									</td>
+									<td>									
+									<input type="text" class="form-control charLen "  name="approvedBy0" id="approvedBy0" maxlength = "100" placeholder="Enter Email Id" onkeyup="lookupAll5(this.value,'0','0','approveEmail');" />	
+									<div class="suggestionsBox" id="suggestionsAppr0" style="display:none;text-align:left;" class="form-control">
+									<div class="suggestionList Breakword" id="autoSuggestionsApprList0" style="padding-left:2px;text-align:left;">
+									</div>
+									</div>										
+									</td>
+
+																	
+								</tr>			
+						
+								<tr id='addr71'></tr>							
+							</tbody>				
+						</table>
+							<a id='delete_row7' class=" btn btn-default pull-right btn-sm" style="margin-left:10px;"><i class="fa fa-times"></i> Delete Row</a><a id="add_row7" class="btn btn-default pull-right btn-sm"><i class="fa fa-plus"></i> Add Row</a>
+						<input type="hidden" name="approvedBySize" id="approvedBySize" value="1"  />
+					</div>
+					</div> 
+					<input type="hidden" name="frmStatus" id="frmStatus" value="" />
+
+					<div class="row ">
+						<div class="col-xs-10">
+							<div class="form-actions" style="margin-top:30px;">
+							<div class="col-xs-offset-6 col-xs-5">
+								<!-- <button type="submit" class="btn btn-info " style="width:70px;">Submit</button>	 -->
+								<input type="button" class="btn btn-info" value="Submit" name="submitButton" height="20" onclick = "javascript:assetValidate('inProcess','<%=formName%>');"/>
+								<button type="reset" class="btn btn-primary" style="width:70px;">Reset</button>
+								<input type="button"  class="btn btn-warning"  value="Save As Draft" name="submitButton" id="saveDraft" height="20" onclick = "javascript:assetValidate('draft','<%=formName%>');"/>
+							</div>
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+	<!-- 	</div> -->
+
+	<script>
+
+	$(document).ready(function(){
+		onLoadFixedDetail('0','<%=compAttachmentName%>', '<%=addAttachmentName%>');
+	});
+	</script>
+
+	
+	<script>
+	$(document).ready(function(){
+ 		$("#add_row").click(function(){
+		var t=0;
+		var disposalName1 = $('#disposalType').val();
+		var declenght;
+
+		if(disposalName1 == "Damaged Newsprint Disposal")
+		{
+			declenght ="three-digits ";
+		}else
+			{
+			declenght ="two-digits ";
+			}
+
+		for (var i = 4; i < 8; i++) {	
+						
+		
+			$('#addr'+i).html("<td>"+(i+1)+"</td> <td class='text-center'><div class='form-group ' style='margin-left:5px;margin-right:5px;'><input name='desc"+i+"' id='desc"+i+"' type='text' placeholder='Description' class='form-control charLen' maxlength = '100'  /></div> </td><td class='text-center'><div class='form-group grp has-feedback ' style='margin-left:5px;margin-right:5px;'><input name='quantity"+i+"' id='quantity"+i+"' type='text' placeholder='Qty' class='form-control text-right "+declenght+" only-num charLen' maxlength = '10' /></div> </td><td class='text-center'><div class='form-group' style='margin-left:5px;margin-right:5px;'><select name='uom"+i+"' id='uom"+i+"' placeholder='UOM' class='form-control' style='padding-right:2px;'><%=popupUnit%></select></div></td>  <td class='text-center'><div class='form-group grp has-feedback ' style='margin-left:5px;margin-right:5px;'><input name='valueOfMaterials"+i+"' id='valueOfMaterials"+i+"'  type='text' placeholder='NA' class='form-control text-right two-digits only-num charLen'  onblur='javascript:indexCal("+i+")' maxlength = '10' /> </div> </td>  <td class='text-center'><div class='form-group grp has-feedback ' style='margin-left:5px;margin-right:5px;'><input name='finalNegotiatedAmt"+i+"' id='finalNegotiatedAmt"+i+"' type='text' placeholder='' class='form-control text-right two-digits only-num charLen' onblur='javascript:indexCal("+i+")' maxlength = '10' placeholder='NA' /> </div></td> <td class='text-center'><div class='form-group grp has-feedback ' style='margin-left:5px;margin-right:5px;'><textarea name='finalHighestBidder"+i+"' id='finalHighestBidder"+i+"' placeholder='final Highest Bidder' class='form-control noresize textarea' rows='2' maxlength='100' id='textarea' rel='tooltip' title=''/></textarea></div> </td> <td><div class='form-group  ' style='margin-left:5px;margin-right:5px;'><textarea name='comments"+i+"' id='comments"+i+"' placeholder='Remarks' class='form-control noresize textarea' rows='2' maxlength='255' id='textarea' rel='tooltip' title=''/></textarea> </div></td> ");		
+			$('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
+
+
+			$("#add_row").hide();
+			t = i+1;
+			};
+		//	alert("outside3 loop===="+i)
+			$('#tabSize').val(t);
+
+			$('.charLen').each(function () {
+			 $(this).maxlength({alwaysShow: true});	
+			});
+
+			$("[name^=quantity]").each(function () {
+				$(this).rules("add", {
+					required: true,
+					pattern: /^(?:[1-9]\d*|0)?(?:\.\d+)?$/,
+					messages: {
+					pattern:  "Valid Format is : 0.00"
+				}
+					
+				});	
+			});
+
+			/*$("[name^=valueOfMaterials]").each(function () {
+				$(this).rules("add", {
+					required: true,
+					pattern: /^(?:[1-9]\d*|0)?(?:\.\d+)?$/,
+					messages: {
+					pattern:  "Valid Format is : 0.00"
+				}
+					
+				});	
+			});*/
+
+			$("[name^=finalNegotiatedAmt]").each(function () {
+				$(this).rules("add", {
+					required: true,
+					pattern: /^(?:[1-9]\d*|0)?(?:\.\d+)?$/,
+					messages: {
+					pattern:  "Valid Format is : 0.00"
+				}
+					
+				});	
+			});
+
+			//$( function() {
+				$('.two-digits').keyup(function(){
+					if($(this).val().indexOf('.')!=-1){         
+						if($(this).val().split(".")[1].length > 2){                
+							if( isNaN( parseFloat( this.value ) ) ) return;
+							this.value = parseFloat(this.value).toFixed(2);
+						}  
+					 }            
+					 return this; //for chaining
+				});
+			//});
+			//$( function() {
+				$('.three-digits').keyup(function(){
+					if($(this).val().indexOf('.')!=-1){  
+						if($(this).val().split(".")[1].length > 3){                
+							if( isNaN( parseFloat( this.value ) ) ) return;
+							this.value = parseFloat(this.value).toFixed(3);
+						}  
+					 }            
+					 return this; //for chaining
+				});
+			//});
+
+			$('.only-num').keypress(function(event) {
+
+				var val1  = this.value.split('.').length;
+				var unicode = event.charCode ? event.charCode : event.keyCode;
+				if((unicode == 46) && val1 > 1)
+				{
+					 return false;
+				}
+				// here i will get textbox contents and loop through it
+				if ((unicode == 8) || (unicode == 9) || (unicode == 45) || (unicode == 46) || (unicode > 47 && unicode < 58) ) {
+					return true;
+				}
+				else {
+					return false;
+				}
+
+				/*if (((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57) || ((event.which == 46) && val1 > 1))) 
+				{
+					event.preventDefault();
+				}*/
+			});
+
+		});
+
+		$("#delete_row").click(function(){
+			var val1 = $('#tabSize').val();
+			//var x = parseInt(val1)+1;
+			var x = parseInt(val1);
+			if(x>5){
+				//alert("inside delete loop===="+i)
+
+				$("#addr"+(x-1)).html('');
+				x--;
+
+				//$('#tabSize').val(x-1);
+				$('#tabSize').val(x);
+			}
+			$("#add_row").show();
+		});
+});
+</script>
+
+<script>
+	$(document).ready(function(){
+      var j=1;
+    $("#add_row2").click(function(){
+		$(".js-example-basic-single").select2({ width: '100%'  });		  
+
+		$('#addr2'+j).html("<td class='text-center'>"+(j+1)+"</td> <td><input type='text' class='form-control charLen'  name='userDeptHead"+j+"' id='userDeptHead"+j+"' maxlength = '100' placeholder='Enter Emailid' onkeyup=\"lookupAll2(this.value,'"+j+"','"+j+"','userEmail');\" /><div class='suggestionsBox' id='suggestions"+j+"' style='display:none;text-align:left;' class='form-control'><div class='suggestionList Breakword' id='autoSuggestionsList"+j+"' style='padding-left:2px;text-align:left;'></div></div></td>");	
+			
+		$('#tab_logic2').append('<tr id="addr2'+(j+1)+'"></tr>');
+		j++; 
+		$('#userDeptHeadSize').val(j);
+		$(".js-example-basic-single").select2({ width: '100%'  });		
+	});
+    $("#delete_row2").click(function(){
+    	if(j>1){
+			$("#addr2"+(j-1)).html('');
+			j--;
+			$('#userDeptHeadSize').val(j);
+		}
+	});
+	});
+	</script>
+<script>
+ 
+	$(document).ready(function(){		
+		  var k=1; 
+		  var g=1;
+		$("#add_row3").click(function(){
+			var IBOHeadBranchEmailid = $('#iboHead').val();
+			var FDHeadEmailid = $('#fdHead').val();
+			//var totalValue = $('#totalValue').val();
+			var actBranchHeadSize = $('#branchHeadSize').val();
+			var disposalTypeFrm = $('#approvalsForm').val();
+
+
+
+			if(disposalTypeFrm == "Fixed Asset Disposal" || disposalTypeFrm =="One-off Miscellaneous")
+			{
+
+				if(disposalTypeFrm == "Fixed Asset Disposal")
+				{
+					totalValue = $('#totalVOMValue').val();
+				}else
+				{
+					totalValue = $('#totalValue').val();
+				}
+			
+				if(totalValue > 0.00 && totalValue < 100000.00)
+				{
+					k = parseInt(actBranchHeadSize);
+					//g=5;
+					$('#addr3'+k).html("<td  class='text-center'>"+ (k+1) +"</td> <td><input type='text' class='form-control charLen'  name='branchHead"+k+"' id='branchHead"+k+"' maxlength = '100' placeholder='Enter Emailid' onkeyup=\"lookupAll3(this.value,'"+k+"','"+k+"','branchEmail');\" /><div class='suggestionsBox' id='suggestionsBNC"+k+"' style='display:none;text-align:left;' class='form-control'><div class='suggestionList Breakword' id='autoSuggestionsBNCList"+k+"' style='padding-left:2px;text-align:left;'></div></div></td>");		
+					$('#tab_logic3').append('<tr id="addr3'+(k+1)+'"></tr>');
+					k++; 
+					$('#branchHeadSize').val(k);				
+					$(".js-example-basic-single").select2({ width: '100%'  });
+
+				}else
+				{
+				
+					if(totalValue >= 100000.00 && totalValue < 2000000.00)
+					{
+						g ="3";
+						$("#add_row3").hide();
+
+					}else if(totalValue >= 2000000.00 && totalValue < 10000000.00)
+					{
+						$("#add_row3").hide();
+						//g="4";
+						g="3";
+					}else if(totalValue >= 10000000.00)
+					{
+						$("#add_row3").hide();
+						//g="4";
+						g="3";
+
+					}else
+					{
+						alert("Please fill the values in a respective row!!");
+					}
+
+					if(actBranchHeadSize >1 && g>1)
+					{
+						for(m=g; m<actBranchHeadSize; m++)
+						{
+							$("#addr3"+(m)).html('');
+							//$('#branchHeadSize').val(m+1);
+						}
+					}
+
+					for(k=1;k<g;k++)
+					{
+
+						if(k==2)
+						{
+							emailidVal = IBOHeadBranchEmailid;
+							readonlyVal = "readonly";
+
+						}/*else if(k==3)
+						{
+							emailidVal = FDHeadEmailid;
+							readonlyVal = "readonly";
+						}*/
+						else
+						{
+							emailidVal = "";
+							readonlyVal = "";
+						}
+					
+						$('#addr3'+k).html("<td  class='text-center'>"+ (k+1) +"</td> <td><input type='text' class='form-control charLen'  name='branchHead"+k+"' id='branchHead"+k+"' maxlength = '100' placeholder='Enter Emailid'  value = '"+emailidVal+"'  onkeyup=\"lookupAll3(this.value,'"+k+"','"+k+"','branchEmail');\" "+readonlyVal+"/><div class='suggestionsBox' id='suggestionsBNC"+k+"' style='display:none;text-align:left;' class='form-control'><div class='suggestionList Breakword' id='autoSuggestionsBNCList"+k+"' style='padding-left:2px;text-align:left;'></div></div></td>");		
+						$('#tab_logic3').append('<tr id="addr3'+(k+1)+'"></tr>');
+						//k++; 
+						$('#branchHeadSize').val(k+1);					
+						
+					}
+					$(".js-example-basic-single").select2({ width: '100%'  });
+					
+				}
+			}else
+			{
+				
+				$('#addr3'+k).html("<td  class='text-center'>"+ (k+1) +"</td> <td><input type='text' class='form-control charLen'  name='branchHead"+k+"' id='branchHead"+k+"' maxlength = '100' placeholder='Enter Emailid' onkeyup=\"lookupAll3(this.value,'"+k+"','"+k+"','branchEmail');\" /><div class='suggestionsBox' id='suggestionsBNC"+k+"' style='display:none;text-align:left;' class='form-control'><div class='suggestionList Breakword' id='autoSuggestionsBNCList"+k+"' style='padding-left:2px;text-align:left;'></div></div></td>");		
+				$('#tab_logic3').append('<tr id="addr3'+(k+1)+'"></tr>');
+				k++; 
+				$('#branchHeadSize').val(k);
+				$(".js-example-basic-single").select2({ width: '100%'  });
+
+			}
+
+		});
+		$("#delete_row3").click(function(){
+			if(k>1){
+				$("#addr3"+(k-1)).html('');
+				k--;
+				
+				$('#branchHeadSize').val(k);
+				$("#add_row3").show();
+			}
+		});
+	});
+	</script>
+
+	<script>
+	$(document).ready(function(){		
+		  var q=1;
+		$("#add_row5").click(function(){
+
+			var masHeadBranchEmailid = $('#masdHead').val();
+			var disposalTypeFrm = $('#approvalsForm').val();
+			//var totalValue = $('#totalValue').val();
+			var totalValue;
+			var actSupportedHeadSize = $('#supportedHeadSize').val();
+
+			if(disposalTypeFrm == "Fixed Asset Disposal")
+			{
+				totalValue = $('#totalVOMValue').val();
+			}else
+			{
+				totalValue = $('#totalValue').val();
+			}
+
+			if(totalValue >= 10000000.00 && (disposalTypeFrm == "Fixed Asset Disposal" || disposalTypeFrm =="One-off Miscellaneous"))
+			{
+				h="3";
+
+				$("#add_row5").hide();
+
+				if(actSupportedHeadSize >1 && h>1)
+				{
+					for(n=h; n<actSupportedHeadSize; n++)
+					{
+						$("#addr5"+(n)).html('');
+						//$('#branchHeadSize').val(m+1);
+					}
+				}
+
+				for(q=1;q<h;q++)
+				{
+
+				    if(q==2)
+					{
+						masEmailidVal = masHeadBranchEmailid;
+
+						readonlyVal = "readonly";
+
+					}
+					else
+					{
+						masEmailidVal = "";
+						readonlyVal = "";
+					}
+
+					$('#addr5'+q).html("<td  class='text-center'>"+ (q+1) +"</td> <td><input type='text' class='form-control charLen '  name='supportedHead"+q+"' id='supportedHead"+q+"' value = '"+masEmailidVal+"' maxlength = '100' placeholder='Enter Email Id' onkeyup=\"lookupAll4(this.value,'"+q+"','"+q+"','supportEmail');\" "+readonlyVal+" /><div class='suggestionsBox' id='suggestionsSupp"+q+"' style='display:none;text-align:left;' class='form-control'><div class='suggestionList Breakword' id='autoSuggestionsSuppList"+q+"' style='padding-left:2px;text-align:left;'></div></div></td>");		
+					$('#tab_logic5').append('<tr id="addr5'+(q+1)+'"></tr>');
+
+					$('#supportedHeadSize').val(q+1);
+
+				}
+
+				$(".js-example-basic-single").select2({ width: '100%'  });
+
+			}else
+			{
+				masEmailidVal = "";
+				readonlyVal = "";
+				//alert("actSupportedHeadSize---"+actSupportedHeadSize);
+				q = parseInt(actSupportedHeadSize);	
+
+				$('#addr5'+q).html("<td  class='text-center'>"+ (q+1) +"</td> <td><input type='text' class='form-control charLen '  name='supportedHead"+q+"' id='supportedHead"+q+"' maxlength = '100' value = '"+masEmailidVal+"' placeholder='Enter Email Id' onkeyup=\"lookupAll4(this.value,'"+q+"','"+q+"','supportEmail');\" /><div class='suggestionsBox' id='suggestionsSupp"+q+"' style='display:none;text-align:left;' class='form-control'><div class='suggestionList Breakword' id='autoSuggestionsSuppList"+q+"' style='padding-left:2px;text-align:left;'></div></div></td>");		
+				$('#tab_logic5').append('<tr id="addr5'+(q+1)+'"></tr>');
+				q++; 
+
+				$('#supportedHeadSize').val(q);
+				$(".js-example-basic-single").select2({ width: '100%'  });
+			}
+
+		});
+		$("#delete_row5").click(function(){
+			if(q>1){
+				$("#addr5"+(q-1)).html('');
+				q--;
+
+				$('#supportedHeadSize').val(q);
+				$("#add_row5").show();
+			}
+		});
+	});
+	</script>
+
+
+	<script>
+	$(document).ready(function(){		
+		  var s=1;
+		$("#add_row7").click(function(){
+			$('#addr7'+s).html("<td  class='text-center'>"+ (s+1) +"</td> <td><input type='text' class='form-control charLen'  name='approvedBy"+s+"' id='approvedBy"+s+"' maxlength = '100' placeholder='Enter Email Id' onkeyup=\"lookupAll5(this.value,'"+s+"','"+s+"','approveEmail');\" /><div class='suggestionsBox' id='suggestionsAppr"+s+"' style='display:none;text-align:left;' class='form-control'><div class='suggestionList Breakword' id='autoSuggestionsApprList"+s+"' style='padding-left:2px;text-align:left;'></div></div> </td>");		
+			$('#tab_logic7').append('<tr id="addr7'+(s+1)+'"></tr>');
+			s++;
+			$('#approvedBySize').val(s);
+			$(".js-example-basic-single").select2({ width: '100%'  });
+
+		});
+		$("#delete_row7").click(function(){
+			if(s>1){
+				$("#addr7"+(s-1)).html(''); 
+				s--;
+				$('#approvedBySize').val(s);
+			}
+		});
+	});
+	</script>
+
+	
+
