@@ -1,0 +1,37 @@
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-image: url('../images/SAM_bg.gif');
+	background-repeat: repeat-x;
+}
+
+h3 {
+	margin: 0px;
+	padding: 0px;
+}
+.suggestionsBox {
+	position: absolute; 
+	/*left:92px;*/
+	margin: 0px 0px 0px 0px;
+	width: 249px;
+	background-color: #FFFFFF;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	border: 1px solid #DCDCDC;
+	color: #000;
+	z-index:4;
+}
+.suggestionList {
+	margin: 0px;
+	padding: 0px;
+}
+.suggestionList ul {
+	margin: 0px 0px 3px 0px;
+	padding: 3px;
+	cursor: pointer;
+}
+.suggestionList ul:hover {
+	background-color: #D3D3D3;
+}

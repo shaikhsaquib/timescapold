@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<%@ page language="java" %>
+<%@ include file="../includes/empHeader.jsp" %>
+<%@ include file="../includes/headerMenu.jsp" %>
+<%@ page import="java.util.Hashtable, java.util.ArrayList" %>
+<%@ page import="com.bccl.util.HtmlUtil,com.bccl.util.Utility"%>
+<%@ page import="java.text.*, java.util.Calendar, java.util.GregorianCalendar, java.util.Date" %>
+<jsp:useBean id="governanceadministrationcode" class="com.bccl.governanceadministrationcode.web.controller.GovernanceAdministrationCodeWebController"/>
+<head>
+<link href="../style/global.css" rel="stylesheet" type="text/css" />
+<link href="../style/compliance.css" rel="stylesheet" type="text/css" />
+<link href="../style/jquery.css" rel="stylesheet" type="text/css" />	
+<link href="../style/ajaxDropDown.css" rel="stylesheet" type="text/css" />	
+<script src="../jscripts/approver.js" type="text/javascript"></script>
+<script type="text/javascript" src="../jscripts/jquery.js"></script>
+<link href="../style/popup.css" rel="stylesheet" type="text/css" />
+
+<script src="../jscripts/ajaxDropDown.js"language="javascript"></script>
+<script Language="JavaScript" src="../jscripts/report.js"></script>
+
+<script  type="text/javascript" language="javascript">
+$(document).ready(function(){
+	//$(".QTPopup").css('display','none')
+	$("#delete").click(function(){
+		$(".QTPopup").animate({width: 'show'}, 'slow');})
+		$(".closeBtn").click(function(){			
+			$(".QTPopup").css('display', 'none');
+		})
+})
+</script>
+</head>
+<%
+	ArrayList detailsList = new ArrayList();
+	detailsList = governanceadministrationcode.getMyCurrentManager(timescapeUserOId);
+	String[] resultData = (String[])detailsList.get(0); 
+%>
+
+<body>
+<div class="QTPopup" style="display:none">
+	<div class="popupGrayBg"></div>
+	<div class="QTPopupCntnr">
+		<div class="gpBdrLeft">
+			<div class="gpBdrRight">
+				<a href="#" class="closeBtn" title="Close"></a>
+				<div style="width:645px" id="msg"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<a href ="javascript:void(0)" onClick="addUser()" id="addUser" class="underlineBig">Add Manager </a>
+
+</body>
+</html>

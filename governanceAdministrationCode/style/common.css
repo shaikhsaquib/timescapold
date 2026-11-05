@@ -1,0 +1,42 @@
+.normal {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 8pt; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+.nav {
+	TEXT-TRANSFORM: none; FONT-VARIANT: normal; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 10px; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.greyBG {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+	COLOR: #333333;
+	FONT-SIZE: 7pt;
+	FONT-WEIGHT: bolder;
+	TEXT-DECORATION: none;
+	background-image: url('../images/greybg.jpg');
+	background-repeat: repeat-x;
+	background-position: left top;
+}
+.budgetMenuBG {
+	FONT-FAMILY: Arial, Helvetica, sans-serif;
+	COLOR: #000000;
+	FONT-SIZE: 8pt;
+	FONT-WEIGHT: bolder;
+	TEXT-DECORATION: none;
+	background-image: url('../images/budget_menubg.jpg');
+	background-repeat: repeat-x;
+	background-position: left top;
+	letter-spacing: 0.8em;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+.whitenormal {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #ffffff; FONT-SIZE: 8pt; FONT-WEIGHT: normal; TEXT-DECORATION: none;
+}
+.underline {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 8pt; FONT-WEIGHT: bold; TEXT-DECORATION: underline;
+}
+.redbold {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; COLOR: #ab0000; FONT-SIZE: 8pt; FONT-WEIGHT: bold; TEXT-DECORATION: none;
+}

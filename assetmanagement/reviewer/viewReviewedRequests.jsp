@@ -1,0 +1,133 @@
+<%@ page language="java" %>
+<%@ include file="../includes/sessionCheck.jsp" %>
+<%@ page errorPage="../common/errorPage.jsp"%>
+<%@ include file="../includes/empHeader.jsp" %>
+<%@ include file="../includes/statusHash.jsp" %>
+
+<%
+response.setHeader("Cache-Control","no-cache"); //HTTP 1.1
+response.setHeader("Pragma","no-cache"); //HTTP 1.0
+response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
+%>
+<%@ page import="java.util.Hashtable,java.util.Enumeration, java.util.ArrayList, java.util.Calendar, java.util.Date" %>
+
+<jsp:useBean id="assetMgmt" class="com.bccl.assetmanagement.web.controllerbeans.AssetManagementWebController" />
+<%
+	ArrayList reqList = new ArrayList();
+	Hashtable detailsHash = new Hashtable();
+
+	detailsHash.put("STATUS", "'RA','RR','CL'");
+	detailsHash.put("REVIEWEDBY", timescapeUserOId+"");
+
+	reqList = assetMgmt.getMyRequests(detailsHash);
+
+	//out.println(reqList.size());
+	String roleCode = (String)session.getAttribute("roleCode");
+
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>SURPLUS ASSET MANAGEMENT</title>
+		<link href="../style/global.css" rel="stylesheet" type="text/css" />
+		<script src="../jscripts/viewDetails.js" type="text/javascript"></script>
+		<script src="../jscripts/jquery.js" type="text/javascript"></script>
+	</head>
+
+<body>
+<form name="viewAssets" method="post">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td width="50%"><img src="../images/SAM_header.jpg" width="576" height="72" /></td>
+		<td width="50%" valign="bottom">
+			<%@ include file="../includes/relatedLinks.jsp" %>
+		</td>
+	</tr>
+</table>
+<table width="100%" border="0" cellpadding="2" cellspacing="2">
+
+    <tr>
+    
+      <td height="20" bgcolor="#E7EAEF" class="budgetMenuBG">&nbsp;VIEW REVIEWED ASSETS</td>
+    </tr>
+  <td height="5"></tbody>
+</table>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="left" class="normal">In Process <img src="../images/inProcess.png" width="13" height="13"/> | Available<img src="../images/available.png" width="20" height="20" /> | Retained <img src="../images/retain.png" width="13" height="13"/> | Deleted <img src="../images/widraw.jpg" width="13" height="13"/>| Rejected <img src="../images/rejected.jpg" width="13" height="13"/>| ATN In Process <img src="../images/ATN_Process.png" width="50" height="20"/>| ATN Completed <img src="../images/ATN_com.png" width="50" height="20"/>| ADN In Process <img src="../images/ADN_Process.png" width="50" height="20"/>| ADN Completed <img src="../images/ADN_com.png" width="50" height="20"/></td>
+  </tr>
+  <tr>
+	<td colspan="100%" height="3px">&nbsp;</td>
+  </tr>
+</table>
+<table width="99%" align="center" cellpadding="0" cellspacing="2">
+  <tr class="greyBG">
+    <td width="2%" height="29" align="center" valign="middle" >NO.</td>
+    <td width="12%" align="left" valign="middle">ASSET</td>
+    <td width="5%" align="left" valign="middle">ASSET NO</td>
+    <td width="10%" align="center" valign="middle"> CATEGORY</td>
+    <td width="8%" align="center" valign="middle">TYPE</td>
+    <td width="17%" align="center" valign="middle">LOCATION</td>
+    <td width="10%" align="center" valign="middle">POSTING  DATE</td>
+    <td width="17%" align="center" valign="middle">OWNERSHIP</td>
+    <td width="8%" align="center" valign="middle">STATUS</td>
+    <td width="5%" align="left" valign="middle">&nbsp;REQUESTS</td>
+    <td width="10%" align="left" valign="middle">&nbsp;REQUESTS ID</td>
+   </tr>
+<%
+
+	if(reqList.size()==0){
+%>
+   <tr>
+    <td height="20" colspan="100%"><hr></td>
+  </tr>
+  <tr>
+    <td height="30" align="center" valign="middle" class="bold" colspan="100%">There are no asset(s) to view!!</td>
+  </tr>
+   <tr>
+    <td height="20" colspan="100%"><hr></td>
+  </tr>
+
+<%
+	}else {
+
+		for(int ii=0; ii< reqList.size(); ii++){
+			
+			String tmpArr[] = (String [])reqList.get(ii);
+
+			String showCheckbox ="";
+
+			showCheckbox = tmpArr[31].equals("0")? "-" : "Total :<br><a href=\"javascript:void(0);\" onclick=\"showUsers("+tmpArr[0]+")\" class=\"underline\">"+tmpArr[33]+" Interested</a>";
+%>
+  <tr>
+	<input type="hidden" name="updateStatus<%=ii%>" value="">
+	<input type="hidden" name="requestId<%=ii%>" value="<%=tmpArr[0]%>">
+	<input type="hidden" name="count" value="">
+
+    <td height="30" align="center" valign="middle" class="normal"><%=ii+1%></td>
+    <td height="30" align="left" valign="middle" class="boldunderline"><a href="javascript:void(0);" onclick="showDetails('<%=tmpArr[0]%>')" class="boldunderline" ><%=tmpArr[3]%></a></td>
+    <td height="30" align="left" valign="middle" class="normal"><%=tmpArr[1]%></td>
+    <td height="30" align="center" valign="middle" class="normal"><%=tmpArr[4]%></td>
+    <td align="center" valign="middle" class="normal"><%=tmpArr[5]%></td>
+    <td height="30" align="center" valign="middle" class="normal"><%=tmpArr[9].indexOf("-")>-1?tmpArr[9].substring(tmpArr[9].indexOf("-")+1).trim():tmpArr[9]%></td>
+    <td height="30" align="center" valign="middle" class="normal"><%=tmpArr[20].substring(0,tmpArr[20].indexOf(" "))%></td>
+    <td height="30" align="center" valign="middle" class="normal"><%=tmpArr[19]%></td>
+    <td height="30" align="center" valign="middle" class="normal"><img src="<%=statusImg.get(tmpArr[30].equals("CL")? tmpArr[69] : tmpArr[30])%>" border="0"></td>
+    <td height="30" align="center" valign="middle" class="normal">
+		<%=showCheckbox%>
+		<input type="hidden" name="review" id="review" value="review">
+	</td>
+<td height="30" align="left" valign="left" class="normal">&nbsp;<%=tmpArr[0]%></td>
+  </tr>
+  <tr>
+    <td height="1" colspan="100%" align="left" valign="middle" bgcolor="#F7F7F7"><img src="../images/spacer.gif" width="1" height="1" /></td>
+  </tr>
+<%	
+		}//end of for
+	}//end of else
+%>
+</table>
+</form>
+</body>
+</html>
