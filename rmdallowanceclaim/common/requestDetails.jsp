@@ -1,0 +1,271 @@
+<%@ page language="java" %>
+<%@ page import="java.util.Hashtable, java.util.ArrayList, java.util.Calendar, java.util.GregorianCalendar, java.util.Date" %>
+<%@ include file="../includes/sessionCheck.jsp" %>
+<%@ include file="../includes/empHeader.jsp" %>
+<%@ page import="com.bccl.claim.web.util.Constants,com.bccl.claim.web.util.HtmlUtil"%>
+<%@ page import="java.util.Hashtable, java.util.ArrayList, java.util.Calendar, java.util.Date" %>
+<jsp:useBean id="rmdAllowanceClaimDetails" class="com.bccl.rmdallowanceclaim.web.controllerbeans.RmdAllowanceClaimWebController" />
+
+<html>
+	<head>
+		<title>FIELD/NIGHT ALLOWANCE REIMBURSEMENT FORM</title>
+		<link rel="stylesheet" href="../style/global.css">
+    <script> 
+    function hideImage() { 
+        if (document.getElementById) { 
+            document.getElementById('printbutton').style.visibility = 'hidden'; 
+            document.getElementById('button').style.visibility = 'hidden'; 
+        } 
+    }
+    function showImage() { 
+        if (document.getElementById) { 
+            document.getElementById('printbutton').style.visibility = 'visible'; 
+            document.getElementById('button').style.visibility = 'visible'; 
+        } 
+    } 
+     </script>
+</head>
+
+ <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+
+<%
+	//List of all tags those are needed to read from the xml in the specific order
+	String[] tags = {"travelOn", "dId","vdId"};
+
+	//String txnId = (String)request.getParameter("id");
+	int id = Integer.parseInt((String)request.getParameter("id"));
+	//out.println("id==="+id);
+	String txnIds = (String)session.getAttribute("RMD_IDS");
+
+	String txnArr[] = txnIds.split(",");
+	//out.println("txnArr.length==="+txnArr.length);
+	
+	if(txnArr.length > id){
+
+	ArrayList viewClaimDetails = null;
+	viewClaimDetails = rmdAllowanceClaimDetails.viewTxnId(txnArr[id], tags);
+	session.setAttribute("claimDetailsArray",viewClaimDetails );
+	Hashtable icons = new Hashtable( );
+	Hashtable requestStatus = new Hashtable( );
+
+	icons.put("L",  "ico_inprocess.gif");
+	icons.put("RA",  "ico_approved.gif");
+	icons.put("A",  "ico_approved.gif");
+	icons.put("P",  "ico_approved.gif");
+	icons.put("R", "ico_rejected.gif");
+	icons.put("C",  "ico_cancelled.gif");
+	icons.put("D",  "ico_bapproved.gif");
+	icons.put("O", "save.gif");
+	icons.put("TB",  "images.jpg");
+
+
+	requestStatus.put("L", "In Process");
+	requestStatus.put("RA", "Accepted");
+	requestStatus.put("A", "Accepted");
+	requestStatus.put("P", "Processed");
+	requestStatus.put("R", "Rejected");
+	requestStatus.put("C", "Cancelled");
+	requestStatus.put("D", "Draft");
+	requestStatus.put("O", "Saved");
+	requestStatus.put("TB", "TimeBarred");
+
+	String[] header = (String[]) ((ArrayList)viewClaimDetails.get(0)).get(0);
+	Hashtable claimHash = (Hashtable) viewClaimDetails.get(1);
+	//Hashtable visitHash = (Hashtable) viewClaimDetails.get(2);
+	
+    ArrayList claimDate = (ArrayList)claimHash.get(tags[0]);
+	
+    ArrayList claimParticulars = (ArrayList)claimHash.get(tags[1]);
+	ArrayList VisitDetails = (ArrayList)claimHash.get(tags[2]);
+	
+%>
+
+		<table border = "0" cellspacing="0" cellpadding="0" width = "100%">
+		<tr>
+		<td class="whitesmall" bgcolor="#000000" align="center" colspan ="8" height="20" color="#ffffff">FIELD/NIGHT ALLOWANCE REIMBURSEMENT FORM</td>
+		</tr>
+		 <tr>
+            <td colspan="100%" height="5">&nbsp;</td>
+        </tr>
+		<tr>
+			<td colspan="100%" align="right" class="redbold">
+				<input name="printbutton" type="submit" class="style4" id="printbutton" value="Print" onclick="javascript:hideImage();window.print();showImage();"/>
+			</td>
+		</tr>
+	
+		<tr>
+			<td width="16%" align="right" class="bold" height="20" >Txn No :</td>
+			<td width="34%" align="left" class="normal" height="20" style="padding-left:10px"><%=header[0]%></td>
+			<td width="16%" align="right" class="bold" height="20" >Name of Company :</td>
+			<td width="34%" align="left" class="normal" height="20" style="padding-left:10px"><%=header[2]%></td>
+		</tr>
+		<tr>
+			<td width="16%" align="right" class="bold" height="20">SAP ID :</td>
+			<td width="34%" align="left" class="normal" height="20" style="padding-left:10px"><%=header[7]%></td>
+			<td width="16%" align="right" class="bold" height="20">Name of Requester :</td>
+			<td width="34%" align="left" class="normal" height="20" style="padding-left:10px"><%=header[3]%></td>
+        </tr>
+        <tr>
+			<td width="16%" align="right" class="bold" height="20">PAY ID :</td>
+			<td width="34%" align="left" class="normal" height="20" style="padding-left:10px"><%=header[4]%></td>
+			<td width="16%" align="right" class="bold" height="20">Department :</td>
+			<td width="34%" align="left" class="normal" height="20"style="padding-left:10px"><%=header[5]%></td>
+			
+            
+        </tr>
+        <tr>
+            <td width="16%" align="right" class="bold" height="20" >Applied For Month :</td>
+			<td width="34%" align="left" class="normal" height="20" style="padding-left:10px"><%=header[10]%></td>
+			<td width="16%" align="right" class="bold" height="20">Designation :</td>
+			<td width="34%" align="left" class="normal" height="20"style="padding-left:10px"><%=header[6]%></td>
+		</tr> 
+
+		 <tr>
+            <td width="16%" align="right" class="bold" height="20" >Approver EmailId:</td>
+			<td width="34%" align="left" class="normal" height="20" style="padding-left:10px"><%=header[11]%></td>
+			<td width="16%" align="right" class="bold" height="20"></td>
+			<td width="34%" align="left" class="normal" height="20"style="padding-left:10px"></td>
+		</tr> 
+		
+		<tr>
+			<td height="10"colspan="100%"><block type="spacer" height="15"></td>
+		</tr>
+		 
+	
+		</table>
+
+		<table width="99%" border="0" align="center" cellpadding="0" cellspacing="0">
+		<!-- <tr>
+			<td colspan="6" bgcolor="#CCCCCC"><img src="../images/spacer.gif" border="0"></td>
+		</tr> -->
+			<tr>
+				<td align="right"><div align="left"><span class="normal">
+				     <a href="../common/downloadReport.jsp">Open/Save to Excel <img src="../images/icon_excel.gif" width="15" height="15" border="0"/></a>
+				</td>
+				<td align="right" class="normal">In Process <img src="../images/ico_inprocess.gif" width="10" height="10"/>&nbsp;&nbsp; Verified <img src="../images/ico_approved.gif" width="10" height="10"/>&nbsp;&nbsp; Rejected <img src="../images/ico_rejected.gif" width="10" height="10"/>&nbsp;&nbsp; Draft <img src="../images/ico_bapproved.gif" width="10" height="10"/>&nbsp;&nbsp;</td>
+			</tr>
+
+		</table>
+
+		<table border = "0" cellspacing="0" cellpadding="0" width = "100%">
+		<tr bgcolor="#CCCCCC">
+			<td class="boldsmall" width="12%" height="20">&nbsp;DATE</td>
+			<td class="boldsmall" width="2%" height="20">DAY</td>
+			<!-- <td class="boldsmall" width="20%" height="20">DETAILS</td> -->
+			<td class="boldsmall" width="10%" height="20">ALLOWANCE TYPE</td>
+			<td class="boldsmall" width="2%" height="20">AMOUNT</td>
+			<td class="boldsmall" width="5%" height="20">APPROVER REMARKS</td>
+		
+		 <td class="boldsmall" width="55%" height="20">REMARKS / VISIT DETAILS</td> 
+	
+		    <td class="boldsmall" width="10%" height="20">STATUS</td> 
+			
+		</tr>
+
+<%
+		for(int ii=0; ii<claimDate.size(); ii++)
+		{
+			//Hashtable claimHashDetails = (Hashtable) claimParticulars.get(ii);
+
+			//out.println((Hashtable) claimParticulars.get(0));
+			
+%>
+		<tr>
+			<td class="normal"  width="12%" height="20"><%=((Hashtable) claimDate.get(ii)).get("date")%></td>
+			<td class="normal"  width="2%" height="20"><%=((Hashtable) claimDate.get(ii)).get("day")%></td>
+			<td class="normal"  width="10%" height="10"><%=((Hashtable) claimDate.get(ii)).get("type")%></td>
+		
+<%
+
+			if (claimParticulars==null){
+%>
+            <td class="normal"  width="2%" height="20"><%=((Hashtable) claimDate.get(ii)).get("amt")%></td>
+            <td class="normal"  width="20%" height="20">-</td>
+			<!-- <td class="normal"  width="10%" height="20">-</td> -->
+
+			<td class="normal"  width="20%" height="10"><%=((Hashtable) VisitDetails.get(ii)).get("visitDetails")%></td>
+
+<%
+				if(header[14].equals("R"))
+				{
+%>
+					<td class="normal"  width="10%" height="20"><img src="../images/ico_rejected.gif"></td> 
+<%
+				}else{
+%>
+					<td class="normal"  width="10%" height="20"><img src="../images/ico_inprocess.gif"></td> 
+<%
+				}
+			}else{
+%>
+			<td class="normal"  width="2%" height="10"><%=((Hashtable) claimParticulars.get(ii)).get("AM")%></td>
+			<td class="normal"  width="5%" height="10"><%=((Hashtable) claimParticulars.get(ii)).get("AR")%></td>
+		    <td class="normal"  width="55%" height="10"><%=((Hashtable) VisitDetails.get(ii)).get("visitDetails")%></td>
+			<input type="hidden" name ="amount" value="<%=((Hashtable) claimParticulars.get(ii)).get("AT")%>">
+<%
+			Hashtable claimHashDetails = (Hashtable) claimParticulars.get(ii);
+			
+			String processorStatus = "ST" + ii;
+			
+			 processorStatus	= ( String ) claimHashDetails.get("ST");	
+%>
+			<!--  <td class="normal"  width="15%" height="20"><%//=processorStatus%></td>   -->
+<%
+		
+	if(processorStatus.equals ("RA"))
+	{
+%>	
+	<td class="normal"  width="10%" height="20"><img src="../images/ico_approved.gif"></td> 
+	
+<%	
+	} else {
+%>
+	<td class="normal"  width="10%" height="20"><img src="../images/ico_rejected.gif"></td> 
+<%		
+	}
+
+%>
+</tr>
+
+<%
+		}
+	}
+	
+%>
+		<tr>
+			<td colspan="7" bgcolor="#000000"><img src="../images/spacer.gif" border="0"></td>
+		</tr>
+
+		<tr >
+			<td class="boldsmall" height="25" width="10%" align="right" >Total Amount In &nbsp;</td>
+			<td class="boldsmall" height="25" width="15%">Rs.<%=header[8]%></td>
+			<td class="boldsmall" height="25" width="15%"></td>
+			<td class="boldsmall" height="25" width="15%"></td>
+			<td class="boldsmall" height="25" width="20%" align="right" >Processed Amount In &nbsp;</td>
+			<td class="boldsmall" height="25" width="20%">Rs.<%=header[9]%></td>
+		</tr>
+    	<tr>
+			<td colspan="7" bgcolor="#000000"><img src="../images/spacer.gif" border="0"></td>
+		</tr>
+		<tr>
+			<td colspan="6"><img src="../images/spacer.gif" border="0"></td>
+		</tr>
+		
+		<!-- 
+		<tr>
+			<td colspan="6" align="center" height="40"><a href="javascript:void window.close()"><img src="../images/but_close.gif" border="0"></a></td>
+		</tr> -->
+
+		<tr>
+			<td colspan="6" align="center" height="40"> <input name="button" type="submit" class="style4" id="button" value="Close" onclick="javascript:window.close();"/></td>
+		</tr>
+</table>
+<%
+}else{
+		response.sendRedirect("/timescape/includes/unauthorized.html");
+	}
+
+
+%>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<%@ page language="java" %>
+<%@ include file="../includes/empHeader.jsp" %>
+<%@ page import="java.util.Hashtable,java.util.Enumeration, java.util.ArrayList, java.util.GregorianCalendar" %>
+<%@page import="com.bccl.workflow.web.util.Constants,com.bccl.workflow.web.util.HtmlUtil"%>
+<jsp:useBean id="rmdAllowanceClaimDetails" class="com.bccl.rmdallowanceclaim.web.controllerbeans.RmdAllowanceClaimWebController" />
+ <html>
+	<head>
+		<title>B2E</title>
+		<link rel="stylesheet" href="../style/global.css">
+		<script Language="JavaScript" src="../jscripts/processRequest.js"> </script>
+		<script src="../jscripts/util.js" type="text/javascript"></script>
+	 </head>
+
+ <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+ <form name="frmProcessDetails" method="post">
+
+<%
+	//List of all tags those are needed to read from the xml in the specific order
+	String[] tags = {"travelOn","dId"};
+
+	String txnId = (String)request.getParameter("id");
+	
+	ArrayList viewClaimDetails = null;
+	viewClaimDetails = rmdAllowanceClaimDetails.viewTxnId(txnId, tags);
+	
+	Hashtable icons = new Hashtable( );
+
+	Hashtable requestStatus = new Hashtable( );
+
+	ArrayList claimAmount = null;
+
+	icons.put("L",  "ico_inprocess.gif");
+	icons.put("A",  "ico_approved.gif");
+	icons.put("P",  "ico_approved.gif");
+	icons.put("R", "ico_rejected.gif");
+	icons.put("C",  "ico_cancelled.gif");
+	icons.put("O", "save.gif");
+
+	requestStatus.put("L", "In Process");
+	requestStatus.put("A", "Accepted");
+	requestStatus.put("P", "Processed");
+	requestStatus.put("R", "Rejected");
+	requestStatus.put("C", "Cancelled");
+	requestStatus.put("O", "Saved");
+
+	String[] header = (String[]) ((ArrayList)viewClaimDetails.get(0)).get(0);
+	Hashtable claimHash = (Hashtable) viewClaimDetails.get(1);
+
+	//out.println(claimHash);
+
+	ArrayList claimDate = (ArrayList)claimHash.get(tags[0]);
+
+
+	int rows = claimDate.size();
+
+	String amount = header[8];
+
+	String type1 = "";
+
+	String allwanceType = "";
+
+	String amt = "";
+
+	int reqestorAmount = 0;
+
+	int reqestorAmount1 = 0;
+
+	int reqestorAmount2 = 0;
+
+	claimAmount = rmdAllowanceClaimDetails.getAmount(header[17], header[18], header[19], header[20]);
+
+		for(int mm=0; mm<claimAmount.size() ; mm++)
+		{
+			String[] reqAmount = (String[]) claimAmount.get(mm);
+
+			reqestorAmount		= Integer.parseInt(reqAmount[3]);
+			//out.println(reqestorAmount);
+
+			 allwanceType		= reqAmount[4];
+			
+
+			if(allwanceType.equals("NA"))
+			{
+				
+				reqestorAmount1 = reqestorAmount;
+				//out.println("reqestorAmount1"+reqestorAmount1);
+
+
+			}
+			else if(allwanceType.equals("FA"))
+			{
+				
+				reqestorAmount2 = reqestorAmount;
+				//out.println("reqestorAmount2"+reqestorAmount2);
+
+			}
+		}
+
+%>
+        <input type="hidden"  name="companyCode" value="<%=header[17]%>">
+        <input type="hidden"  name="txnId" value="<%=header[0]%>">
+        <input type="hidden"  name="sapNumber" value="<%=header[7]%>">
+        <input type="hidden"  name="appliedDate" value="<%=header[16]%>">
+
+		<table border = "0" cellspacing="0" cellpadding="0" width = "100%">
+		<tr>
+		<td class="whitesmall" bgcolor="#000000" align="center" colspan ="8" height="20" color="#ffffff">FIELD/NIGHT ALLOWANCE REIMBURSEMENT FORM</td>
+		</tr>
+		 <tr>
+            <td colspan="100%" height="5">&nbsp;</td>
+        </tr>
+		<tr>
+			<td width="16%" align="right" class="bold" height="20" >Txn No :</td>
+			<td width="34%" align="left" class="normal" height="20" style="padding-left:10px"><%=header[0]%></td>
+			<td width="16%" align="right" class="bold" height="20" >Name of Company :</td>
+			<td width="34%" align="left" class="normal" height="20" style="padding-left:10px"><%=header[2]%></td>
+		</tr>
+		<tr>
+			
+			<td width="16%" align="right" class="bold" height="20">SAP ID :</td>
+			<td width="34%" align="left" class="normal" height="20" style="padding-left:10px"><%=header[7]%></td>
+			<td width="16%" align="right" class="bold" height="20">Name of Requester :</td>
+			<td width="34%" align="left" class="normal" height="20" style="padding-left:10px"><%=header[3]%></td>
+			
+        </tr>
+        <tr>
+			<td width="16%" align="right" class="bold" height="20">PAY ID :</td>
+			<td width="34%" align="left" class="normal" height="20" style="padding-left:10px"><%=header[4]%></td>
+			<td width="16%" align="right" class="bold" height="20">Department :</td>
+			<td width="34%" align="left" class="normal" height="20"style="padding-left:10px"><%=header[5]%></td>
+		</tr>
+        <tr>
+            <td width="16%" align="right" class="bold" height="20" >Applied For Month :</td>
+			<td width="34%" align="left" class="normal" height="20" style="padding-left:10px"><%=header[10]%></td>
+			<td width="16%" align="right" class="bold" height="20">Designation :</td>
+			<td width="34%" align="left" class="normal" height="20"style="padding-left:10px"><%=header[6]%></td>
+            
+		</tr>
+		<tr><td>&nbsp;&nbsp;</td></tr>
+		
+<!-- 		<tr>
+			<td class="bold"  width="20%" height="30" >&nbsp;&nbsp;
+			<a href="../common/attendance.jsp?payId=<%//=header[4]%>&appliedMonth=<%//=header[15]%>" target="_blank" style="padding-left:10px" height="20">Check attendance</a> </td>
+			<input type="hidden"  name="payId"        value="<%//=header[4]%>">
+			<input type="hidden"  name="appliedMonth" value="<%//=header[15]%>">
+		
+		</tr> -->
+
+		</table>
+		<table border = "0" cellspacing="0" cellpadding="0" width = "100%">
+		<tr bgcolor="#CCCCCC">
+			<td class="boldsmall" width="15%" height="20">&nbsp;DATE</td>
+			<td class="boldsmall" width="5%" height="20">DAY</td>
+			<!-- <td class="boldsmall" width="20%" height="20">DETAILS</td> -->
+			<td class="boldsmall" width="20%" height="20">ALLOWANCE TYPE</td>
+			<td class="boldsmall" width="10%" height="20">AMOUNT</td>
+			<td class="boldsmall" width="15%" height="20">SELECT/DESELECT</td>
+			<td class="boldsmall" width="25%" height="20">REASON</td>
+			
+		</tr>
+
+<%
+		for(int ii=0; ii<rows; ii++)
+		{
+			Hashtable claimHashDetails = (Hashtable) claimDate.get(ii);
+			//out.println(claimHashDetails);
+			String date = "date" + ii;
+			String day	= "day" + ii;
+			String type	= "type" + ii;
+
+			date	= ( String ) claimHashDetails.get("date");
+			day		= ( String ) claimHashDetails.get("day");
+			type = ( String ) claimHashDetails.get("type");
+			amt = ( String ) claimHashDetails.get("amt");
+
+			 //out.println(req_Amount);
+
+%>
+		<tr>
+			<td class="normal"  width="10%" height="20"><%=date%></td>
+			<td class="normal"  width="10%" height="20"><%=day%></td>
+<%
+			if(type.equals("FA"))
+			{
+			  type1 = "Field Allowance";
+%>
+			<td class="normal"  width="20%" height="20"><%=type1%></td>
+<%
+			}else if(type.equals("NA"))
+			{
+				type1 = "Night Allowance";
+%>
+			<td class="normal"  width="20%" height="20"><%=type1%></td>
+<%
+			}
+%>
+			<td class="normal"  width="10%" height="20"><%=amt%></td>
+
+			<td class="normal"  width="25%" height="20"> <input type="checkbox" id="particularsChk" name="particularsChk<%=ii%>"  onClick="onClickCheck(<%=rows%>,<%=amount%>,<%=ii%>)" checked/></td>
+			<td class="normal"  width="25%" height="20"> <input type="text" id="approverRemarks<%=ii%>" name="approverRemarks<%=ii%>"  maxlength="15" /><br>
+			
+</td>
+		</tr>
+
+			<input type="hidden"  name="date<%=ii%>" value="<%=date%>">
+			<input type="hidden"  name="day<%=ii%>" value="<%=day%>">			
+			<input type="hidden"  name="type<%=ii%>" value="<%=type1%>" id = "type">			
+			<input type="hidden"  name="amt<%=ii%>" value="<%=amt%>" >			
+			<!-- <input type="hidden"  name="remarks<%//=ii%>" value="<%//=remarks%>"> -->
+<%
+
+}
+
+%>
+		<input type="hidden"  name="rows" value="<%=rows%>">
+		<input type="hidden"  name="txnId" value="<%=txnId%>">
+		<input type="hidden"  name="nightAllowance" value="<%=reqestorAmount1%>">
+		<input type="hidden"  name="fieldAllowance" value="<%=reqestorAmount2%>">
+		
+
+		<tr>
+			<td colspan="6" bgcolor="#000000"><img src="../images/spacer.gif" border="0"></td>
+		</tr>
+
+		<tr >
+			
+			<td class="boldsmall" height="20" width="25%" align="right">(Claimed Amount In Rs.) :</td>
+			<td class="boldsmall" height="20" width="15%"><input type="text" id = "amount" name="amount" value="<%=amount%>" class="normal" readonly /></td>
+			<td class="boldsmall" height="20" width="10%" ></td>
+			<td class="boldsmall" height="20" width="15%" > </td>
+			<td class="boldsmall" height="20" width="20%" align="right">(Processed Amount In Rs.):&nbsp;</td>
+			<td class="boldsmall" height="20" width="15%"><input type="text" id="approverAmount" name="approverAmount" value="<%=amount%>"  class="normal" readOnly/></td>
+		</tr>
+        <input type="hidden"  name="claimAmount" value="<%=amount%>">
+        <input type="hidden"  name="processAmount" value="<%=amount%>">
+    	<tr>
+			<td colspan="6" bgcolor="#000000"><img src="../images/spacer.gif" border="0"></td>
+		</tr>
+		<tr>
+			<td colspan="6"><img src="../images/spacer.gif" border="0"></td>
+		</tr>
+		<tr><td>&nbsp;&nbsp;&nbsp;</td></tr>
+		<tr>
+			<td colspan="6" align="center" height="40"><a href="javascript:requestAccept(<%=rows%>);"><img src="../images/but_accept.gif" border="0"><a/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="javascript:requestReject();"> <img src="../images/but_reject.jpg" border="0"></a>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp; 
+			<a href="javascript:window.close();"><img src="../images/but_close.gif" border="0"><a/></td>
+		</tr>
+	
+</table>
+</body>
+</html>

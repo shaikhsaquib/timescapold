@@ -1,0 +1,14 @@
+RmdAllowanceClaimController
+
+rmdallowanceclaim
+
+RmdAllowanceClaimWebController
+
+<jsp:useBean id="rmdAllowanceClaimDetails" class="com.bccl.rmdallowanceclaim.web.controllerbeans.RmdAllowanceClaimWebController" />
+
+
+RMDALLOWANCEAMOUNT
+
+RMDALLOWANCECLAIM
+
+RMDALLOWANCECLAIMDETAILS
