@@ -1,0 +1,157 @@
+<%--
+ -- @(#)createRequestSubmit.jsp	15/05/2008
+ --
+ -- Copyright 2004 BCCL. All Rights Reserved.
+ --
+ -- This software is the proprietary information of BCCL.
+ -- Use is subject to license terms.
+ --
+ --%>
+
+ <%--
+ -- Comments....
+ -- @author		Viraj Patil
+ -- @version 	1.00, 15/05/2008
+ --%>
+
+<%@ page language="java" %>
+<%@ page import="java.util.Hashtable, java.util.ArrayList, java.util.Calendar, java.util.GregorianCalendar, java.util.Date" %>
+<%@ include file="../includes/sessionCheck.jsp" %>
+<%@ page errorPage="../common/errorPage.jsp"%>
+<%@ include file="../includes/empHeader.jsp" %>
+<%@ include file="../common/config.jsp"%>
+<%@ page import="com.bccl.claim.web.util.Constants,com.bccl.claim.web.util.HtmlUtil"%>
+<%@ page import="com.bccl.claim.web.util.Utility"%>
+
+ <jsp:useBean id="medicalClaimController" class="com.bccl.claim.web.controllerbeans.MedicalClaimController" /> 
+<%
+
+	String noOfRows			= request.getParameter("actualRows");
+
+	String[] medicalClaim = {"FAYEAR","TIMESCAPEUSEROID","CLAIMAMOUNT","CREATEDBY","TRANSACTIONID"};
+
+	Hashtable medicalClaimHeader	= new Hashtable( );
+	ArrayList medicalClaimDetail	= new ArrayList( );
+
+	String year				= "";
+	String claimTotal		= "";
+	String actionNumber		= "";
+	String txnId			= null;
+	int savedBills			= 1;
+	int ii					= 1;
+
+	String strBalanceAmt			= "";
+	String balanceAmt				= "";
+	float floatBalAmt				= 0;
+
+//System.out.println("Balance Cov before= "+balanceAmt);
+
+	ArrayList  compListSAP = new ArrayList();
+	compListSAP.add("1000");
+	compListSAP.add("1002");
+	compListSAP.add("1003");
+	compListSAP.add("1004");
+	compListSAP.add("1005");
+	compListSAP.add("1006");
+	compListSAP.add("1007");
+	compListSAP.add("1009");
+	compListSAP.add("1019");
+	compListSAP.add("1021");
+	compListSAP.add("1023");
+
+    if(compListSAP.contains(companyCode)){
+		String balanceAmt2 = medicalClaimController.getBalances(timescapeUserOId, sapId, faYear, "MEDICALBAL");
+		floatBalAmt = Float.parseFloat(balanceAmt2);
+		balanceAmt = floatBalAmt+"";
+
+	}else{	
+		ArrayList entlBalancesLst		= medicalClaimController.viewBalances(timescapeUserOId, faYear, entlCode, legacyCompanyCode);
+	    if(entlBalancesLst.size() > 0){
+			strBalanceAmt						= ((String[]) entlBalancesLst.get(0))[5];
+			floatBalAmt = Float.parseFloat(strBalanceAmt);
+			balanceAmt = floatBalAmt+"";
+		}
+	}
+	//System.out.println("Balance Cov after= "+balanceAmt);
+
+	medicalClaimHeader.put("BALANCEAMT", balanceAmt);
+
+	medicalClaimHeader.put("FAYEAR", faYear);
+
+	Long timescapeUserOIdLong = new Long(timescapeUserOId);
+	medicalClaimHeader.put("TIMESCAPEUSEROID", timescapeUserOIdLong);
+
+	claimTotal = (String) request.getParameter("total");
+	medicalClaimHeader.put("CLAIMAMOUNT", claimTotal);
+
+	actionNumber = (String) request.getParameter("actionNumber");
+	if(actionNumber.equals("sub_req"))
+	{actionNumber = "L";}
+	else{actionNumber = "O";;}
+	medicalClaimHeader.put("ACTIONNUMBER", actionNumber);
+
+	medicalClaimHeader.put("CREATEDBY", emailId);
+	medicalClaimHeader.put("MODIFIEDBY", "timescape.admin@timesgroup.com");
+
+	savedBills = Integer.parseInt(request.getParameter("savedBills"));
+	txnId = request.getParameter("txnId");
+	
+	if(txnId!=null && !txnId.equals("null") && !txnId.trim().equals(""))
+	{medicalClaimHeader.put("TRANSACTIONID", txnId);}
+
+	if((request.getParameter("savedBills")) == null)
+	{savedBills = 1;}
+
+	int rows = Integer.parseInt(noOfRows);
+	rows= rows+1;
+	int arraySize = (rows-savedBills+1);
+
+	String[] billDate			= new String[arraySize];
+	String[] billNo			    = new String[arraySize];
+	String[] billDesc			= new String[arraySize];
+	String[] billAmount			= new String[arraySize];
+
+//Saved bills are only updated , New bills will be inserted(hence we only pass new bills)
+		
+	for(ii=savedBills;ii<rows;ii++)
+	{	
+		
+		int index = ((ii-savedBills)+1);
+
+		billDate[index]		= request.getParameter("billDate"+ii);
+		billNo[index]		= request.getParameter("billNo"+ii);
+		billNo[index] = Utility.replaceQuoteOracle(billNo[index]);
+		billDesc[index]		= request.getParameter("billDesc"+ii);
+		billDesc[index] = Utility.replaceQuoteOracle(billDesc[index]);
+		billAmount[index]	= request.getParameter("billAmount"+ii);
+	}
+
+	medicalClaimDetail.add(0,billDate);
+	medicalClaimDetail.add(1,billNo);
+	medicalClaimDetail.add(2,billDesc);
+	medicalClaimDetail.add(3,billAmount);
+
+	boolean status = false;
+
+	status = medicalClaimController.create(medicalClaimHeader,medicalClaimDetail);
+if(actionNumber.equals("L"))
+{
+	if(status){
+		response.sendRedirect("../common/promptPage.jsp?msg=suc_req");
+		return;
+	}else{
+		response.sendRedirect("../common/promptPage.jsp?msg=err_req");
+		return;
+	}
+}
+else
+{
+		if(status){
+		response.sendRedirect("../common/promptPage.jsp?msg=opn_suc_req");
+		return;
+	}else{
+		response.sendRedirect("../common/promptPage.jsp?msg=opn_err_req");
+		return;
+	}
+}
+%>

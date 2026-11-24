@@ -1,0 +1,97 @@
+<%--
+ -- @(#)governanceExcelReports1.jsp - 11-APR-2011
+ --
+ -- Copyright 2009 BCCL. All Rights Reserved.
+ --
+ -- This software is the proprietary information of BCCL.
+ -- Use is subject to license terms.
+ --
+ --%>
+ <%--
+ -- Comments -  This page is called from the Reports 1 Page of Governance.
+ -- @author  -  Sachin Mehta
+ -- @version -  1.0
+ -- This page is used forr initial declaration by employee
+ --%>
+<%@ page import = "java.util.Hashtable, java.util.ArrayList" %>
+<%@ page import = "com.bccl.util.Utility" %>
+<%@ page import = "java.util.GregorianCalendar,java.util.Calendar" %>
+<%@ page import = "java.io.*,jxl.*,java.util.*,jxl.write.DateFormat" %>
+<%@ page import = "java.text.SimpleDateFormat"%>
+<%@ page import = "java.io.File" %>
+<%@ page import = "java.io.IOException" %>
+<%@ page import = "java.util.Locale" %>
+<%@ page import = "jxl.CellView" %>
+<%@ page import = "jxl.Workbook" %>
+<%@ page import = "jxl.WorkbookSettings" %>
+<%@ page import = "jxl.format.UnderlineStyle" %>
+<%@ page import = "jxl.write.Formula" %>
+<%@ page import = "jxl.write.Label" %>
+<%@ page import = "jxl.write.Number" %>
+<%@ page import = "jxl.write.WritableCellFormat" %>
+<%@ page import = "jxl.write.WritableFont" %>
+<%@ page import = "jxl.write.WritableSheet" %>
+<%@ page import = "jxl.write.WritableWorkbook" %>
+<%@ page import = "jxl.write.WriteException" %>
+<%@ page import = "jxl.write.biff.RowsExceededException" %>
+<jsp:useBean id="GovernancequizApproverWebController" class="com.bccl.governancequiz.web.controllerbeans.GovernancequizApproverWebController" />
+<%
+
+    String compCode = (String) request.getParameter("compCode");
+    
+	ArrayList usersList  = new ArrayList();
+
+    ArrayList numIndex = new ArrayList();
+	ArrayList lstXls = new ArrayList();
+	String[] listArray = null;
+    String headerStr = "";
+	String fileName = "Total Not Attempted Users Report.csv";
+	StringBuffer csvContent = new StringBuffer();
+
+	String userPortalid            =   "";
+	String userEmailid         =   "";	
+	String userLocation         =   "";	
+	String department          =   "";
+    String userSapId             =   "";
+	String userScore          =   "";
+	String lastattempteddate          =   "";
+    
+
+
+                usersList = GovernancequizApproverWebController.getFailReport(compCode);
+
+
+                for(int ii=0;ii<usersList.size();ii++)
+
+                        {
+                            String tempArr[] = (String[])usersList.get(ii);
+
+                            userEmailid        =   tempArr[0];
+                            userPortalid        =   tempArr[1];
+                            userSapId          =   tempArr[2];
+                            userLocation       =   tempArr[3];
+                            department         =   tempArr[4];
+                            userScore              =   tempArr[5];
+                            lastattempteddate              =   tempArr[6];
+
+
+    headerStr = "USER EMAILID, USER PORTALID, USER SAPNUMBER, USER LOCATION, DEPARTMENT NAME, SCORE, LAST ATTEMPTED DATE \n";
+
+    String[] xlsArray = {userEmailid, userPortalid, userSapId, userLocation, department, userScore, lastattempteddate};
+
+					lstXls.add(xlsArray);
+				
+		}
+
+			StringBuffer requests = Utility.toStringBuffer(lstXls, numIndex);
+			csvContent.append(headerStr).append(requests);
+
+			PrintWriter writer = null;
+			response.setContentType("text/csv");
+			response.setHeader("Content-disposition","attachment;filename="+fileName);
+			writer = response.getWriter();
+			writer.println(csvContent);
+			writer.flush();
+			writer.close();
+
+%>

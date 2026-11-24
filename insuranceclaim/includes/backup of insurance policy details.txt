@@ -1,0 +1,77 @@
+<%@ page language="java" %>
+<%@ page import="java.util.Hashtable, java.util.ArrayList" %>
+<%@ page import="com.bccl.util.Constants,com.bccl.util.HtmlUtil,com.bccl.util.Utility"%>
+<%
+response.setHeader("Cache-Control","no-cache"); //HTTP 1.1
+response.setHeader("Pragma","no-cache"); //HTTP 1.0
+response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
+%>
+<jsp:useBean id="insuranceClaimController" class="com.bccl.insuranceclaim.web.controllerbeans.InsuranceClaimController"/>
+<%
+            String policyInsuComapnyStr ="";
+
+			policyNumberStr+="<input type= \"text\" class=\"style3\" name=\"policyInsuComapny\" id=\"policyInsuComapny\"";
+
+			String entity = (String)request.getParameter("entity");
+			String policyId = (String)request.getParameter("policyId");
+			String policyNo = (String)request.getParameter("policyNo");
+
+			if(entity.equals("0") || entity== null){
+
+                policyInsuComapnyStr+="<option value=0>Select Insurance Comapny</option>";
+
+            }else{
+                policyInsuComapnyStr+="<option value=0>Select Insurance Comapny</option>";
+
+					//edition = "'"+edition+"'";
+					Object objArr[] = new Object[5];
+					objArr[0] = "'DD-MON-YYYY'";
+					objArr[1] = entity;
+					objArr[2] = policyId;
+					objArr[3] = "'"+policyNo+"'";
+					objArr[4] = "'A'";
+
+					Hashtable searchHash = new Hashtable();
+					searchHash.put("queryId","1002");
+					searchHash.put("arguments",objArr);
+
+					ArrayList policyList = new ArrayList();
+					policyList = insuranceClaimController.viewPolicyDetails(searchHash);
+	
+                    for (int ii=0; ii<policyList.size(); ii++){
+                        String policyListArr[] = (String[])policyList.get(ii);
+                          policyInsuComapnyStr+="<option value=\""+policyListArr[7]+"\">"+policyListArr[7]+"</option>";
+					}
+			}
+
+            policyInsuComapnyStr+="</select> <img src=\"../images/tick.png\" border=\"0\" />";
+            out.println(policyInsuComapnyStr);
+			
+			String policyNumberStr ="";
+
+           
+
+			String policyName = (String)request.getParameter("policyName");
+
+					//edition = "'"+edition+"'";
+					Object objArr[] = new Object[3];
+					objArr[0] = "'DD-MON-YYYY'";
+					objArr[1] = "'"+policyName+"'";
+					objArr[2] = "'A'";
+
+					Hashtable searchHash = new Hashtable();
+					searchHash.put("queryId","1001");
+					searchHash.put("arguments",objArr);
+
+					ArrayList policyList = new ArrayList();
+					policyList = insuranceClaimController.viewPolicyDetails(searchHash);
+	
+                    for (int ii=0; ii<policyList.size(); ii++){
+                        String policyListArr[] = (String[])policyList.get(ii);
+                          policyNumberStr+="value= \"" +policyListArr[1]+"\" onchange=\"showInsuCompany()\">";
+					}
+
+
+            policyNumberStr+="<img src=\"../images/tick.png\" border=\"0\" />";
+            out.println(policyNumberStr);
+%>

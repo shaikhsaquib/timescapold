@@ -1,0 +1,35 @@
+<!-- <tr>
+      <td align="left" valign="middle" bgcolor="#F5F8E0" class="style3">No. of users acted on all questions</td>
+      <td bgcolor="#F5F8E0"><span class="style3Underline"><a href="#"  onclick="userReport('<%=compCode%>', '<%=frequency%>','<%=createdDate%>','<%="userAll"%>')" class="style3"><%=userAllOid.size()%></a></span></td>
+      <td bgcolor="#F5F8E0" class="style3"> No. of approvers acted on all questions </td>
+      <td bgcolor="#F5F8E0"><span class="style3Underline"><a href="#" onclick="approverReport('<%=compCode%>', '<%=frequency%>','<%=createdDate%>','<%="apprAll"%>')" class="style3"><%=apprAllOid.size()%></a></span></td>
+    </tr> -->
+    
+    <tr>
+      <td align="left" valign="middle" bgcolor="#FBFCEF" class="style3">No. of users acted on all questions</td>
+      <td bgcolor="#F5F8E0"><span class="style3Underline"><a href="#" class="style3" onclick="userReport('<%=compCode%>', '<%=frequency%>','<%=createdDate%>','<%="userAll"%>')"><%=userAllOid.size()%></a></span></td>
+      <td bgcolor="#FBFCEF" class="style3"> No. of approvers acted on all questions </td>
+      <td bgcolor="#FBFCEF"><span class="style3Underline"><a href="#" class="style3" onclick="approverReport('<%=compCode%>', '<%=frequency%>','<%=createdDate%>','<%="apprAll"%>')"><%=apprAllOid.size()%></a></span></td>
+    </tr>
+
+    <tr>
+      <td align="left" valign="middle" bgcolor="#FBFCEF" class="style3"> No. of uesrs acted on partial questions </td>
+      <td bgcolor="#FBFCEF"><span class="style3Underline"><a href="#" class="style3" onclick="userReport('<%=compCode%>', '<%=frequency%>','<%=createdDate%>','<%="userPart"%>')"><%=userPartOid.size()%></a></span></td>
+      <td bgcolor="#FBFCEF" class="style3"> No. of approvers acted on partial questions </td>
+      <td bgcolor="#FBFCEF"><span class="style3Underline"><a href="#" class="style3" onclick="approverReport('<%=compCode%>', '<%=frequency%>','<%=createdDate%>','<%="apprPart"%>')"><%=apprPartOid.size()%></a></span></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle" bgcolor="#F5F8E0" class="style3"> No. of users not acted </td>
+      <td bgcolor="#F5F8E0"><span class="style3Underline"><a href="#" class="style3" onclick="userReport('<%=compCode%>', '<%=frequency%>','<%=createdDate%>','<%="userNtAct"%>')"><%=userNtActOid.size()%></a></span></td>
+      <td bgcolor="#F5F8E0" class="style3"> No. of approvers not acted </td>
+      <td bgcolor="#F5F8E0"><span class="style3Underline"><a href="#" class="style3" onclick="approverReport('<%=compCode%>', '<%=frequency%>','<%=createdDate%>','<%="apprNtAct"%>')"><%=apprNtActOid.size()%></a></span></td>
+    </tr>
+    <tr>
+      <td width="43%" align="left" valign="middle">&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+
+ <tr>
+	<td colspan="100%" height="3px" ><block type="spacer" height="4px"></td>
+  </tr>

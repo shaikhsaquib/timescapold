@@ -1,0 +1,17 @@
+.grey { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #999999; text-decoration: none ; font-weight: bold}
+.normal { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #000000; text-decoration: none ; font-weight: normal}
+.bold { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #000000; text-decoration: none ; font-weight: bold}
+.bold1 { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px; color: #000000; text-decoration: none ; font-weight: bold}
+.small { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 7.5pt; color: #000000; text-decoration: none ; font-weight: normal}
+.underline { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #000000; font-weight: normal; text-decoration: underline}
+.white { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #FFFFFF; text-decoration: none ; font-weight: normal}
+.whitenormal { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #FFFFFF; text-decoration: none ; font-weight: normal }
+.smallbold { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 7.5pt; color: #000000; text-decoration: none ; font-weight: bold }
+.big { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12pt; color: #000000; text-decoration: none ; font-weight: bold }
+.bigoffblue { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 13pt; color: #A8C6E5; text-decoration: none ; font-weight: bold }
+.whitesmall { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 7.5pt; color: #FFFFFF; text-decoration: none ; font-weight: bold }
+ a:hover {  text-decoration: underline}
+.boldunderline { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #000000; text-decoration: underline; font-weight: bold }
+.bigblue { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #6097CF; text-decoration: none ; font-weight: bold }
+.greynormal { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #999999; text-decoration: none ; font-weight: normal}
+

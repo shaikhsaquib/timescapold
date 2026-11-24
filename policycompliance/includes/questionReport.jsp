@@ -1,0 +1,221 @@
+<%@ page language="java" %>
+<%@ include file="../includes/sessionCheck.jsp" %>
+<%//@ page errorPage="../common/errorPage.jsp"%>
+<%@ include file="../includes/empHeader.jsp" %>
+<%@ page import="java.util.Hashtable, java.util.ArrayList" %>
+<%@ page import="com.bccl.util.HtmlUtil,com.bccl.util.Utility"%>
+<%@ page import="java.text.*, java.util.Calendar, java.util.GregorianCalendar, java.util.Date" %>
+<jsp:useBean id="policyController" class="com.bccl.policycompliance.web.controllerbeans.PolicyWebController" /> 
+<%@page import="com.bccl.tsenvironment.EnvironmentProperties"%>
+<%
+   String compCode = request.getParameter("compCode");
+   int frequency = Integer.parseInt(request.getParameter("frequency"));
+  // int frequency = 2;
+  String createdDate = request.getParameter("createdDate");
+  // String createdDate = "26-MAY-2011";
+   ArrayList reportResult = new ArrayList();
+   ArrayList criteriaSel = new ArrayList();
+
+   String criteria = request.getParameter("criteria");
+  
+  String orderBy = "txnReport"
+   reportResult = policyController.dashBoardReport(compCode, frequency, createdDate, orderBy);
+
+   if(criteria .equals("1")){
+	   criteriaSel.add("Yes");
+	   criteriaSel.add("No");
+	   criteriaSel.add("Not Applicable");
+   }else{
+       criteriaSel.add(criteria);
+   }
+	   
+%>
+
+<html>
+<head>
+<title>OCA Report</title>
+<link href="../style/compliance.css" rel="stylesheet" type="text/css" />
+<!-- <script Language="JavaScript" src="../jscripts/approveDaily.js"></script> -->
+<script Language="JavaScript" src="../jscripts/common.js"></script>
+<script Language="JavaScript" src="../jscripts/report.js"></script>
+</title>
+</head>
+
+<body>
+<form name="frmReport" method = "post" action = "">
+<%//@ include file="../includes/policyComplianceMenu.jsp" %>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td bgcolor="#98BF00"><img src="../images/header.jpg" width="519px" height="39" /></td>
+  </tr>
+
+  <tr>
+		<td height="20px" colspan = "100%" valign="middle" bgcolor="#FFFFFF"><span style="width:90%;align:left" class="headCompliance"  ></span><span style="align:right" class= "style3"><a href="#" onclick="downloadQuestionReport(<%=compCode%>, '<%=frequency%>','<%=createdDate%>','<%=criteria%>')"	class="normal">Download All</a></span></td>
+	</tr>
+</table>
+
+  <table width="100%" border="0" cellpadding="1" cellspacing="1">
+ <tr>
+		<td width="3%" height="26" align="left" valign="middle" bgcolor="#4498C6" class="style1">No.</td>
+		<td width="36%" align="left" valign="middle" bgcolor="#4498C6" class="style1">Control</td>
+		<td width="6%" align="left" valign="middle" bgcolor="#4498C6" class="style1">Risk  Category </td>
+		<td width="8%" align="left" valign="middle" bgcolor="#4498C6" class="style1">Sample Size</td>
+		<td width="15%" align="left" valign="middle" bgcolor="#4498C6" class="style1">Team Member Feedback</td>
+		<td width="10%" align="left" valign="middle" bgcolor="#4498C6" class="style1">Team Member <img src="../images/attachment_head.gif" title="attachment" border="0">&nbsp;/&nbsp;<img src="../images/remark_head.png" border="0"></td>
+		<td width="12%" align="left" valign="middle" bgcolor="#4498C6" class="style1">Feedback</td>
+		<td width="15%" align="left" valign="middle" bgcolor="#4498C6" class="style1">Remark</td>
+		<td width="5%" align="left" valign="middle" bgcolor="#4498C6" class="style1">Attachment</td>
+	</tr>
+
+ <%
+		String userEmailid = "";
+        String userName="";
+		String approverName="";
+		int jj=0;
+		String header = "";
+		String subHeader = "";
+		String disDate="";
+		String sampleColor="#C5CFA5";
+    	String DPATH = EnvironmentProperties.getValue("policycompliance", "uploadPath");
+
+		for(int i = 0; i< reportResult.size(); i++){
+
+			String policyFeedbackId = "policyFeedbackId"+i;
+			String policyId = "policyId"+i;
+			String remark = "remark"+i;
+			String feedBackOption = "feedBackOption"+i;
+			String bgcolor="#F7F7F7";
+			String bgName="";
+			String apprFdbk="-";
+			String apprRmrks="-";
+			String style2="style3";
+			String toDate="";
+
+			String[] tmpArr = (String [] )reportResult.get(i); 
+            
+			if(criteriaSel.contains(tmpArr[11])){ 
+			if(i%2==0)
+				bgcolor="";
+/*
+			if(tmpArr[4].equals("No") || tmpArr[4].equals("No")){
+				style2="rednormal";
+			}
+   */         
+			
+			
+			if (!disDate.equals(tmpArr[27])){
+				disDate=tmpArr[27];
+				toDate = disDate;
+   //             header = "";
+	//			subHeader = "";
+
+%>
+	
+<%	
+			}//end of date check
+            
+			if (!header.equals(tmpArr[03])){
+				header=tmpArr[03];
+			
+%>
+	<tr>
+		<td height="20px" colspan = "100%" align="left" valign="middle" bgcolor="#E0E78F" class="headCompliance"><%=header%></td>
+	</tr>         
+<%	
+			}//end of header check
+             	if (!subHeader.equals(tmpArr[4])){
+				subHeader=tmpArr[4];
+				userName="";
+                approverName="";
+%>
+	<tr>
+		<td align="left" colspan = "100%"  valign="middle" bgcolor="#F3F5D6" class="subHeadCompliance"><img src="../images/greenArrow.png"border="0">&nbsp;<%=subHeader%></td>
+	</tr>
+<%	
+			}//end of sub header check
+             
+			if (!userName.equals(tmpArr[17])){
+				userName=tmpArr[17];
+				approverName = tmpArr[23];
+				//jj=1;
+				bgName="#e8e8e8";
+				 
+	/*			userEmailid = tmpArr[22];
+				 if (userEmailid.indexOf("@") > -1) {
+                  userEmailid = userEmailid.substring(0, userEmailid.indexOf("@"));        
+		  }   
+
+
+ */
+
+%>
+
+<!-- policy id or policyfeebackid --><input type="hidden" name="policyId<%=i%>" value="<%=tmpArr[1]%>">
+<input type="hidden" name="disDate<%=i%>" value="<%=disDate%>">
+
+	<tr>
+		<td align="left" colspan = "100%"  valign="middle" bgcolor="<%=bgName%>" class="name"><%=userName%>/<%=approverName%></td>
+	</tr>
+<%	
+			}//end of user name check
+%>
+
+	<tr bgcolor="<%=bgcolor%>">
+		<td width="3%" height="26" align="center" valign="middle" class="<%=style2%>"><%=++jj%></td>
+		<td width="36%" align="left" valign="middle" class="<%=style2%>"><%=tmpArr[8]%></td>
+		<td width="5%" align="center" valign="middle" class="<%=style2%>"><%=tmpArr[9]%></td>
+		<td width="5%" align="center" valign="middle" class="<%=style2%>"><%=tmpArr[10]%></td>
+		<td width="10%" align="left" valign="middle" class="<%=style2%>"><%=tmpArr[11]%></td>
+        <td width="7%" align="left" valign="middle" class="<%=style2%>">
+<%   if(!tmpArr[13].equals("NA")){
+		//out.println(tmpArr[5]);
+%>
+		 <a href="../common/download.jsp?f=<%=DPATH%>/<%=userEmailid%>/<%=tmpArr[5]%>"><img src="../images/attachment.gif" border="0" title="Team Member Attachment"></a>&nbsp;/&nbsp;
+<%
+	 }else{
+%> 
+  &nbsp;- &nbsp;&nbsp;/&nbsp;   
+<%  }
+%>
+        <img src="../images/remark.png" border="0" title="Team Member Remark" id="requestInfo<%=i%>" class="<%=style2%>" onmouseover="show('<%=tmpArr[12]%>');xstooltip_show('tooltip', 'requestInfo<%=i%>',10,25,200);" onmouseout="xstooltip_hide('tooltip');">
+		<div id="tooltip" class="xstooltip" width="100%"></div></td>
+
+        <td width="10%" align="left" valign="middle" class="style3"><%=tmpArr[19]%></td>
+		<!-- <td width="15%" align="center" valign="middle" class="style3"><%=tmpArr[9]%></td> -->
+		<td width="10%" align="left" valign="middle" class="style3"><img src="../images/remark.png" border="0" title="Team Member Remark" id="requestInfo<%=i%>" class="<%=style2%>" onmouseover="show('<%=tmpArr[21]%>');xstooltip_show('tooltip', 'requestInfo<%=i%>',10,25,200);" onmouseout="xstooltip_hide('tooltip');">
+		<div id="tooltip" class="xstooltip" width="100%"></div></td>
+		 <td width="7%" align="left" valign="middle" class="<%=style2%>">
+<%   if(!tmpArr[20].equals("NA")){
+		//out.println(tmpArr[5]);
+%>
+		 <a href="../common/download.jsp?f=<%=DPATH%>/<%=userEmailid%>/<%=tmpArr[5]%>"><img src="../images/attachment.gif" border="0" title="Team Member Attachment"></a>&nbsp;/&nbsp;
+    
+<%
+	     }else{
+%> 
+  &nbsp;- &nbsp;&nbsp;/&nbsp;   
+<%     } 
+%>
+         
+<%
+			}// end of if 
+		}//en of policy result for loop
+%>
+           <tr>
+       <td colspan="3" class="normal" height="30px">&nbsp;
+       </td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+       <td colspan="100" align="center" class="normal">&nbsp;
+          <input type="button" name="Return" value="Return" onclick="javascript:history.go(-1)">
+       </td>
+    </tr>
+
+				
+		
+
+
+</table>
+</table>
+</body>
+</html>

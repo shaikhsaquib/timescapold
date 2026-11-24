@@ -1,0 +1,341 @@
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+.normal {
+	color: #666666;
+	font-size: 11px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-style: normal;
+	text-transform: none;
+
+}
+
+.style1 {
+	color: #FFFFFF;
+	font-size: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.style2 {
+	color: #333333;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+
+.style3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #666666;
+}
+
+.style4 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #666666;
+	text-transform: none;
+}
+
+.style5 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #666666;
+	font-style: normal;
+	text-transform: none;
+	font-variant: normal;
+	word-spacing: normal;
+	letter-spacing: normal;
+
+}
+
+.style6 {font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #FFFFFF; }
+
+.style7 {
+	color: #333333;
+	font-size: 11px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: 300;
+	
+	
+}
+.name {
+	color: #000000;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: 550;
+	text-decoration: none;
+	
+	
+}
+.style5Copy {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-weight: normal;
+	color: #FFFFFF;
+	font-style: normal;
+	font-variant: normal;
+	word-spacing: normal;
+	letter-spacing: 10px;
+	line-height: normal;
+	background-position: center center;
+	text-transform: lowercase;
+}
+.redButton {
+	color: #FFFFFF;
+	font-size: 11px;
+	font-family: Arial, Helvetica, sans-serif;
+	background: url(/irj/go/km/docs/timesgroupcontent/generic/Insurance/webcontent/documents/image/redButton.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	font-style: normal;
+	text-transform: uppercase;
+	font-weight: normal;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	line-height: 20px;
+	width: 65px;
+	height: 21px;
+}
+.blueButton {
+	color: #FFFFFF;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	background-repeat: no-repeat;
+	background-position: center center;
+	font-style: normal;
+	text-transform: uppercase;
+	font-weight: bold;
+	border:0;
+	line-height: 30px;
+	width: 65px;
+	height: 30px;
+	background-image: url(../../InvestmentDeclaration/style/blueButton.png);
+	white-space: normal;
+	display: inline;
+	font-variant: normal;
+}
+
+.style5White {
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #e8e8e8;
+	font-style: normal;
+	text-transform: none;
+	font-variant: normal;
+	word-spacing: normal;
+	letter-spacing: normal;
+	text-decoration: none;
+}
+.menu1 {
+font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #999999;
+}
+.menu2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #34B6C3;
+}
+.menu2Copy {
+
+font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold; color: #999999;
+}
+.headBox {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #666666;
+	background-image: url(/irj/go/km/docs/timesgroupcontent/generic/Insurance/webcontent/documents/image/menubg.jpg);
+	background-repeat: repeat-x;
+}
+.style3Underline {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #666666;
+	text-decoration: underline;
+}
+.style4Underline {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #666666;
+	font-weight: normal;
+	text-decoration: underline;
+}
+
+.style5Underline {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #666666;
+	text-decoration: underline;
+}
+.style4selected {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #2563B4;
+	text-transform: lowercase;
+	background-image: url(../../InvestmentDeclaration/images/head.jpg);
+	background-repeat: repeat-x;
+}
+.style4menu {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #2563B4;
+	text-transform: uppercase;
+	background-repeat: no-repeat;
+	background-color: #D4DFE1;
+}
+.style3italic {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #999999;
+	font-style: italic;
+	font-weight: bold;
+}
+.button {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	color: #FFFFFF;
+	font-style: normal;
+	font-variant: normal;
+	word-spacing: normal;
+	letter-spacing: 10px;
+	height: 33px;
+	width: 558px;
+	line-height: 15px;
+	clear: none;
+	float: none;
+	text-align: left;
+	display: block;
+	position: absolute;
+	visibility: visible;
+	background-color: #0099CC;
+	text-decoration: blink;
+	left: 80px;
+	top: 40px;
+}
+.headBoxReverse {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #CCCCCC;
+	background-repeat: no-repeat;
+	background-color: #333333;
+}
+.Rs {
+
+font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: normal; color: #0099cc;
+}
+.headCompliance {
+	color: #333333;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	letter-spacing: 3pt;
+	
+}
+.headComplianceU {
+	color: #333333;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	letter-spacing: 3pt;
+	text-decoration: underline;
+}
+.subHeadCompliance {
+	color: #666666;
+	font-size: 11px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	letter-spacing: 1pt;
+}
+
+.redbold {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #ab0000; FONT-FAMILY: Arial; TEXT-DECORATION: none
+}
+
+.rednormal {
+	FONT-FAMILY: Arial, Arial, Helvetica, sans-serif; COLOR: #ff0000; FONT-SIZE: 10pt; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+
+.xstooltip {
+    visibility: hidden; 
+    position: absolute; 
+    top: 0;  
+    left: 0; 
+    z-index: 2; 
+    width:250px;
+    font: normal 8pt sans-serif; 
+    padding: 3px; 
+    border: solid 1px;
+    background-repeat: repeat;
+    background-color:#CCCCCC;
+    color:#993333;
+}
+
+.aLink {
+	color: #333333;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+
+
+.aLinkVisited {
+	color: #333333;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	text-decoration:none;
+}
+.style3Blue {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #006699;
+	font-weight: bold;
+}
+.travelMenuBG {
+	FONT-FAMILY: Arial, Helvetica, sans-serif;
+	COLOR: #000000;
+	FONT-SIZE: 6.5pt;
+	FONT-WEIGHT: bolder;
+	TEXT-DECORATION: none;
+	background-image: url('../images/travel_menubg.jpg');
+	background-repeat: repeat-x;
+	background-position: left top;
+	letter-spacing: 0.7em;
+}
+.greyBG {
+	FONT-FAMILY: Arial, Helvetica, sans-serif;
+	COLOR: #000000;
+	FONT-SIZE: 8pt;
+	FONT-WEIGHT: bolder;
+	TEXT-DECORATION: none;
+	background-image: url('../images/greybg.png');
+	background-repeat: repeat-x;
+	background-position: left top;
+	letter-spacing: 0.1em;
+}
+.greyBGselected {
+	FONT-FAMILY: Arial, Helvetica, sans-serif;
+	COLOR: #000000;
+	FONT-SIZE: 6.5pt;
+	FONT-WEIGHT: bolder;
+	TEXT-DECORATION: none;
+	background-image: url(../images/greybg.png);
+	background-repeat: repeat-x;
+	background-position: left top;
+	letter-spacing: 0.2em;
+	background-color:#99DADF; 
+}

@@ -1,0 +1,9 @@
+<span class = "bold">How do I select an Institute ?</span>
+
+<ol>
+<li>Click on the <img src = "../images/but_review.jpg" border = "0"> which will open an Institute Popup.</li><br><br>
+<li>Select your Institute from the list-box.</li><br><br>
+<li>In case the name of your Institute is not available in the list-box,enter the name of your institute in the textbox available below the list-box.</li><br><br>
+<li>Please enter the complete name of your Institute e.g. Narsee Monjee Institute Of Management Studies.</li><br><br>
+<li>Click on the "submit" button to post your details.</li><br><br>
+</ol>

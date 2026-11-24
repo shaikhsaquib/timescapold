@@ -1,0 +1,146 @@
+<%@ include file="../includes/sessionCheck.jsp" %>
+<%@ page import="java.util.Hashtable, java.util.ArrayList, java.util.Calendar"%> 
+<%@ page import="java.text.SimpleDateFormat, java.util.Calendar, java.text.SimpleDateFormat" %>
+
+<% 
+      SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MMM-yyyy");
+      Calendar c1 = Calendar.getInstance();
+	  Calendar c2 = Calendar.getInstance();
+      c1.setTime(sdf1.parse(date));
+      c2.setTime(sdf1.parse(currDate));
+
+	  int date1 = c1.get(Calendar.DAY_OF_MONTH);
+      int month1 = c1.get(Calendar.MONTH) +1;
+	  int month2 = c2.get(Calendar.MONTH) + 1;
+
+
+      if((frequency == 2) && date.equals(currDate)){
+		  
+         int day = c1.get(Calendar.DAY_OF_WEEK);
+
+		  if(day == 5 || day == 6){
+%>
+	<tr>
+		<td height="15" colspan="100%" align="center" valign="middle" class="style4">
+			<div align="center">
+			<input type="button" name="Submit" value="Submit"  onclick="validate(<%=policyResult.size()%>,<%=roleId%>)"/>  
+			<input type="reset" name="reset" value="Reset"/>
+			</div>
+		</td>
+	</tr>
+<%	
+          }// end of inner if
+        }//end of frequency=2 weekly
+	  
+	   if(roleId.equals("1"))	{
+
+         if((frequency == 3)){  
+
+	/*		if(((date1 >= 13 || date1 == 14 || date1 == 15 || date1 == 16 ||  date1 == 26 || date1 == 27 || date1 == 28 || date1 == 29 || date1 == 30 || date1 == 31 || date1 == 1 || date1 == 2) && (month1 == month2)) || ((month2 == month1+1) && (date1 == 1 || date1 == 2)))
+	*/
+	
+	if((((date1 >=13 && date1<= 16) || (date1 >= 26 && date1<= 31) || (date1 >=01 && date1<= 03) ) && (month1 == month2)) ){
+%>
+	<tr>
+		<td height="15" colspan="100%" align="center" valign="middle" class="style4">
+			<div align="center">
+			<input type="button" name="Submit" value="Submit"  onclick="validate(<%=policyResult.size()%>,<%=roleId%>)"/>  
+			<input type="reset" name="reset" value="Reset"/>
+			</div>
+		</td>
+	</tr>
+
+<%
+			}	
+		 } // end of frequency=3 fortnightly
+		  
+		  if((frequency == 4)){  
+
+			if((((date1 >=26 && date1<= 31) || (date1 >=01 && date1<= 03) ) && (month1 == month2)) ){
+%>
+	<tr>
+		<td height="15" colspan="100%" align="center" valign="middle" class="style4">
+			<div align="center">
+			<input type="button" name="Submit" value="Submit"  onclick="validate(<%=policyResult.size()%>,<%=roleId%>)"/>  
+			<input type="reset" name="reset" value="Reset"/>
+			</div>
+		</td>
+	</tr>
+
+<%
+			}	
+		 }  // end of frequency=4 monthly
+
+		  if((frequency == 5)){  
+
+			if(  ( (date1 >=26 && date1<= 31) && ( month1 == 3 || month1 == 6 || month1 == 9 || month1 == 12) ) || ((date1 >=1 && date1<= 3) && (month1 == 4 || month1 == 7 || month1 == 10|| month1 == 1)) ){
+%>
+	<tr>
+		<td height="15" colspan="100%" align="center" valign="middle" class="style4">
+			<div align="center">
+			<input type="button" name="Submit" value="Submit"  onclick="validate(<%=policyResult.size()%>,<%=roleId%>)"/>  
+			<input type="reset" name="reset" value="Reset"/>
+			</div>
+		</td>
+	</tr>
+
+<%
+			}	
+		 } // end of Frequency = 5 quaterly
+
+		  if((frequency == 6)){  
+
+			if(  ( (date1 >=26 && date1<= 31) && ( month1 == 6 || month1 == 12) ) || ((date1 >=1 && date1<= 3) && ( month1 == 7 || month1 == 1)) ){
+%>
+	<tr>
+		<td height="15" colspan="100%" align="center" valign="middle" class="style4">
+			<div align="center">
+			<input type="button" name="Submit" value="Submit"  onclick="validate(<%=policyResult.size()%>,<%=roleId%>)"/>  
+			<input type="reset" name="reset" value="Reset"/>
+			</div>
+		</td>
+	</tr>
+
+<%
+			}	
+		 } // end of Frequency = 6 half yearly
+
+		  if((frequency == 7)){  
+
+			if(  ( (date1 >=26 && date1<= 31) && ( month1 == 12 ) ) || ((date1 >=1 && date1<= 3) && (month1 == 1)) ){
+%>
+	<tr>
+		<td height="15" colspan="100%" align="center" valign="middle" class="style4">
+			<div align="center">
+			<input type="button" name="Submit" value="Submit"  onclick="validate(<%=policyResult.size()%>,<%=roleId%>)"/>  
+			<input type="reset" name="reset" value="Reset"/>
+			</div>
+		</td>
+	</tr>
+
+<%
+			}	
+		 } // end of Frequency = 7 yearly
+	  } // end of roleId = 1 
+
+       if(roleId.equals("2")){
+
+         if((frequency == 3)){  
+
+	if((((date1 >=13 && date1<= 17) || (date1 >= 26 && date1<= 31) || (date1 >=01 && date1<= 04) ) && (month1 == month2)) ){
+%>
+	<tr>
+		<td height="15" colspan="100%" align="center" valign="middle" class="style4">
+			<div align="center">
+			<input type="button" name="Submit" value="Submit"  onclick="validate(<%=policyResult.size()%>,<%=roleId%>)"/>  
+			<input type="reset" name="reset" value="Reset"/>
+			</div>
+		</td>
+	</tr>
+
+<%
+				
+		 } // end of frequency=3
+	}
+	   } // end of roleId==2
+%>

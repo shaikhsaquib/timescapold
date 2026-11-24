@@ -1,0 +1,246 @@
+<%@ page language="java" %>
+
+<%
+response.setHeader("Cache-Control","no-cache"); //HTTP 1.1
+response.setHeader("Pragma","no-cache"); //HTTP 1.0
+response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
+%>
+
+<%@ include file="../includes/sessionCheck.jsp" %>
+<%@ page errorPage="../common/errorPage.jsp"%>
+<%@ include file="../includes/empHeader.jsp" %>
+<%@ page import="java.util.Hashtable, java.util.ArrayList"%>
+<%@ page import="java.text.*, java.util.Calendar, java.util.GregorianCalendar, java.util.Date" %>
+<%@ page import="com.bccl.util.HtmlUtil,com.bccl.util.Utility"%>
+<jsp:useBean id="policyController" class="com.bccl.policycompliance.web.controllerbeans.PolicyWebController" /> 
+
+<%
+	String flag = "";
+	String currDate= "";
+
+	String weekArr[] = {"","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
+	String monthArr[] = {"JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"};
+
+	GregorianCalendar thisDay = new GregorianCalendar( );
+	String date = (String)request.getParameter("date");
+	//System.out.println("requestdate"+ date);
+
+	String queryDate ="26";
+	queryDate += "-" +monthArr[thisDay.get(Calendar.MONTH)]+ "-" + thisDay.get(Calendar.YEAR);
+
+	int day2 = thisDay.get(Calendar.DAY_OF_MONTH);
+
+	if(day2 >=1 && day2 <=25){
+
+		queryDate = "26";
+		if(thisDay.get(Calendar.MONTH)-1 <= -1){
+			queryDate += "-" +monthArr[11]+ "-" + (thisDay.get(Calendar.YEAR)-1);
+		}else{
+			queryDate += "-" +monthArr[thisDay.get(Calendar.MONTH)-1]+ "-" + thisDay.get(Calendar.YEAR);
+		}
+	}
+
+	currDate = Integer.toString(thisDay.get(Calendar.DAY_OF_MONTH));
+
+	if(currDate.length() == 1){
+		currDate = "0" + currDate;
+	}
+
+	currDate += "-" +monthArr[thisDay.get(Calendar.MONTH)]+ "-" + thisDay.get(Calendar.YEAR);
+    
+	
+      if(date == null || date.equals("")){
+		 date=currDate;
+	}
+
+	 
+	int frequency = 4;   //frequency 1 stands for monthly controls
+	ArrayList policyResult = new ArrayList();   
+	String status = "'L','C','A','P'";   // which controls should get in query
+
+	String roleId = (String)session.getAttribute("roleId");  // rolecode of the user
+     roleId = "1";
+	policyResult = policyController.viewPolicies(timescapeUserOId, frequency, roleId, status,queryDate);
+	//out.println("policyResult size :" + policyResult.size());
+
+	//Set session attribute for the link of current page
+	//session.setAttribute("currLink", "../requestor/monthly.jsp");
+	//session.setAttribute("topLink", "1");
+%>
+
+<input type="hidden" name="questSize" value="<%=policyResult.size()%>">
+<table width="100%" border="0" cellpadding="1" cellspacing="1">
+<tr>
+		<td colspan="3" class="style4" style="border-bottom:1px solid #EFEFEF">	Select Date : &nbsp;&nbsp;
+		<input type="text" class="style2" id="date" name="date" onfocus="showCalendarControl(this);" readOnly value="<%=date%>">&nbsp;&nbsp;<img src="../images/orangearrow.gif" border="0" onclick="changeDate(<%=4%>)">
+		</td>
+		<!-- <td colspan="6" class="style4" style="border-bottom:1px solid #EFEFEF">	Submission Date : &nbsp;&nbsp;<input type="text" class="style2" disabled> To <input type="text" class="style2" disabled> 
+		</td>-->
+	</tr> 
+<%
+	if ( policyResult.size() > 0){
+%>
+<!-- 
+	<tr>
+		  <td height="26">&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td colspan="2" align="left" valign="middle" bgcolor="#FFFFFF"><div align="right"><img src="../images/compulsory.jpg" width="55" height="18"></div></td>
+		  <td colspan="3" align="left" valign="middle" bgcolor="#FFFFFF" class="style3">: to be filled in with immediate effect </td>
+     </tr>
+ -->
+ 	<tr>
+		<td width="4%" height="26" align="left" valign="middle" bgcolor="#4498C6" class="style1">No.</td>
+		<td width="20%" align="left" valign="middle" bgcolor="#4498C6" class="style1">Control</td>
+		<td width="10%" align="left" valign="middle" bgcolor="#4498C6" class="style1">RCM Reference number</td>
+		<td width="5%" align="left" valign="middle" bgcolor="#4498C6" class="style1">Risk  Category </td>
+		<td width="10%" align="left" valign="middle" bgcolor="#4498C6" class="style1">Risk  Statement </td>
+		<td width="8%" align="left" valign="middle" bgcolor="#4498C6" class="style1">Sample Size</td>
+		<td width="5%" align="left" valign="middle" bgcolor="#4498C6" class="style1">Attachment</td>
+		<td width="12%" align="left" valign="middle" bgcolor="#4498C6" class="style1">Feedback </td>
+		<td width="6%" align="left" valign="middle" bgcolor="#4498C6"><span class="style1">Remarks(if ANY)</span></td>
+		<td width="10%" align="left" valign="middle" bgcolor="#4498C6" class="style1">Supervisor Feedback</td>
+		<td width="10%" align="left" valign="absmiddle" bgcolor="#4498C6" class="style1"><span valign="middle">Supervisor</span> <img src="../images/attachment_head.gif" title="Attachment" border="0">&nbsp;/&nbsp;<img src="../images/remark_head.png" title="Remark" border="0"></td>
+		<td width="10%" align="left" valign="absmiddle" bgcolor="#4498C6" class="style1"><span valign="middle">Lst Modified</span> </td>
+	</tr>
+ 
+ <%
+	String header="";
+	String subHeader="";
+	String sampleColor="E0F4FE";
+	int jj = 0;
+	for(int i = 0; i< policyResult.size(); i++){
+
+		String policyFeedbackId = "policyFeedbackId"+i;
+		String policyTxnId = "policyTxnId"+i;
+		String remark = "remark"+i;
+		String feedBackOption = "feedBackOption"+i;
+		String bgcolor="#F7F7F7";
+		String apprFdbk="-";
+		String apprRmrks="";
+		String attachment="";
+		String lastModified="";
+
+		String[] tmpArr = (String [] )policyResult.get(i); 
+
+		if(i%2==0)
+			bgcolor="";
+
+		if(tmpArr[8]!=null && !tmpArr[8].equals(" ")&&!tmpArr[8].equals("Not Acted")&& tmpArr[16].equals("A"))
+			apprFdbk=tmpArr[8];
+
+		if(tmpArr[9]!=null && !tmpArr[9].equals(" "))
+			apprRmrks=tmpArr[9];
+
+		if("A".equals(tmpArr[16]))   
+			attachment = tmpArr[17].equals("NA")?"-":tmpArr[17];
+		else
+			attachment ="<a href=\"javascript:void window.open('../upload/uploadFile.jsp?attachNo="+i+"','','resizable=yes,scrollbars=no,toolbars=no,status=yes,width=350,height=150,top=0,left=0')\" ><img src=\"../images/attachment.gif\" border=\"0\"></a>";
+
+		if (!header.equals(tmpArr[18])){
+			header=tmpArr[18];
+%>
+	<tr>
+		<td height="20px" colspan = "100%" align="left" valign="middle" bgcolor="#E0E78F" class="headCompliance"><%=header%></td>
+	</tr>         
+<%	
+		 }//end of header check
+
+		 if (!subHeader.equals(tmpArr[19])){
+				subHeader=tmpArr[19];
+
+%>
+	<tr>
+		<td align="left" colspan = "100%"  valign="middle" bgcolor="#F3F5D6" class="subHeadCompliance"><img src="../images/greenArrow.png" border="0">&nbsp;<%=subHeader%></td>
+	</tr>
+<%	
+		  }//end of subheader check
+%>
+
+	<input type="hidden" name="<%=policyTxnId%>" value="<%=tmpArr[1]%>">
+	<input type="hidden" name="policyId<%=i%>" value="<%=tmpArr[2]%>">
+	<input type="hidden" name="<%=policyFeedbackId%>" value="<%=tmpArr[0]%>">
+	<input type="hidden" name="apprOId<%=i%>" value="<%=tmpArr[7]%>">
+	<input type="hidden" name="apprFdbk<%=i%>" value="<%=apprFdbk%>">
+	<input type="hidden" name="apprRmrks<%=i%>" value="<%=apprRmrks%>">
+	<input type="hidden" name="status<%=i%>" value="<%=tmpArr[16]%>">
+  <!--  	<input type="hidden" name="isUpload<%=i%>" value=""> -->
+	<input type="hidden" name="isAttach<%=i%>" value="<%=tmpArr[23]%>">
+    <input type="hidden" name="approverAttachmentName<%=i%>" value="<%=tmpArr[21]%>">
+ <!-- here attahmentName is the user's attached file name -->
+<%  if(tmpArr[17].equals("NA")){ 
+%>
+	<input type="hidden" name="attachmentName<%=i%>" value="">
+<%  }else{
+%>
+    <input type="hidden" name="attachmentName<%=i%>" value="<%=tmpArr[17]%>"> 
+<% 
+    }
+%>
+
+	<tr bgcolor="<%=bgcolor%>">
+		<td width="3%" height="26" align="center" valign="middle" class="style3"><%=++jj%></td>
+		<td width="7%" align="left" valign="middle" class="style3"><%=tmpArr[3]%> </td>
+		<td width="7%" align="left" valign="middle" class="style3"><%=tmpArr[25]%> </td>
+		<td width="5%" align="center" valign="middle" class="style3"><%=tmpArr[4]%></td>
+		<td width="5%" align="center" valign="middle" class="style3"><%=tmpArr[24]%></td>
+		<td width="5%" align="center" valign="middle" class="style3"><%=tmpArr[22]%></td>
+		<td width="5%" align="center" valign="middle" class="style3"><%=attachment%></td>
+		<td width="12%" align="left" valign="middle" class="normal">
+			<%@ include file="../includes/feedbackOptions.jsp"%>
+		</td>
+		<input type="hidden" name="newFeedback1<%=i%>" value="<%=tmpArr[5]%>">
+		<td width="15%" align="center" valign="middle" class="style3">
+			<%@ include file="../includes/remark.jsp"%>
+		</td>
+		<td width="13%" align="center" valign="middle" class="style3"><%=apprFdbk%></td>
+		<td width="10%" align="center" valign="middle" class="style3"><%=apprRmrks%></td>
+		<td width="10%" align="center" valign="middle" class="style3"><%=tmpArr[13]%></td>
+	</tr>         
+	<tr>
+		<td colspan="100%" height="1px" bgcolor="#cccccc"><block type="spacer" height="1px"></td>
+	</tr>
+
+<%	
+	}//end of for
+%>
+	<tr>
+		<td colspan="100%" height="10px"><block type="spacer" height="10px"></td>
+	</tr>
+ 
+  <%@ include file="../common/checkDateRequestor.jsp"%>
+ 
+<%
+//	currDate = "17-APR-2011";
+	//if (!flag.equals("1") || date.equals(currDate)){
+%>
+	<!-- <tr>
+		<td height="15" colspan="100%" align="center" valign="middle" class="style4">
+			<div align="center">
+			<input type="button" name="Submit" value="Submit"  onclick="validate(<%//=policyResult.size()%>,<%//=roleId%>)"/>  
+			<input type="reset" name="reset" value="Reset"/>
+			</div>
+		</td>
+	</tr> -->
+<%	
+//}
+	 }// end of main if size > 0
+	 else{
+%>
+	<tr>
+		<td colspan="100%" height="25px"><block type="spacer" height="25px"></td>
+	<tr>
+		<td colspan="100%" height="1px" bgcolor="#cccccc"><block type="spacer" height="1px"></td>
+	</tr>
+	<tr>
+		<td colspan="100%" align="center" height="40px" style="normal">No Operational Controls to be filled.</td>
+	</tr>
+	<tr>
+		<td colspan="100%" height="1px" bgcolor="#cccccc"><block type="spacer" height="1px"></td>
+	</tr>
+<%	
+			
+	}// end of else
+%>
+</table>

@@ -1,0 +1,605 @@
+<%
+//System.out.println("companyCode===="+companyCode); 
+//System.out.println("Questionno===="+tmpArr[0]); 
+
+String Questionno = tmpArr[0];
+
+if (companyCode.equals("1000") || companyCode.equals("1002")){
+
+if (Questionno.equals("316") || Questionno.equals("317") || Questionno.equals("321") || Questionno.equals("322") || Questionno.equals("324") || Questionno.equals("325") || Questionno.equals("326") || Questionno.equals("327") || Questionno.equals("328") || Questionno.equals("333") || Questionno.equals("334") || Questionno.equals("335") || Questionno.equals("336") || Questionno.equals("337") || Questionno.equals("338") || Questionno.equals("339") || Questionno.equals("349") || Questionno.equals("350") || Questionno.equals("355") || Questionno.equals("356") || Questionno.equals("357") || Questionno.equals("359") || Questionno.equals("360") || Questionno.equals("361") || Questionno.equals("362") || Questionno.equals("364") || Questionno.equals("366")|| Questionno.equals("367") || Questionno.equals("368") || Questionno.equals("369") || Questionno.equals("370") || Questionno.equals("371") || Questionno.equals("372") || Questionno.equals("373") || Questionno.equals("374") || Questionno.equals("232") || Questionno.equals("233") || Questionno.equals("242") || Questionno.equals("243") || Questionno.equals("244") || Questionno.equals("246") || Questionno.equals("247") || Questionno.equals("248") || Questionno.equals("249") || Questionno.equals("250") || Questionno.equals("251") || Questionno.equals("260") || Questionno.equals("261") || Questionno.equals("262") || Questionno.equals("263") || Questionno.equals("268") || Questionno.equals("269") || Questionno.equals("270") || Questionno.equals("271") || Questionno.equals("272") || Questionno.equals("273") || Questionno.equals("196") || Questionno.equals("197") || Questionno.equals("202") || Questionno.equals("203") || Questionno.equals("205") || Questionno.equals("537") || Questionno.equals("206") || Questionno.equals("207") || Questionno.equals("220") || Questionno.equals("221") || Questionno.equals("222") || Questionno.equals("223") || Questionno.equals("224") || Questionno.equals("225") || Questionno.equals("552") || Questionno.equals("226") || Questionno.equals("164") || Questionno.equals("165") || Questionno.equals("171") || Questionno.equals("172") || Questionno.equals("173") || Questionno.equals("174") || Questionno.equals("176") || Questionno.equals("177") || Questionno.equals("178") || Questionno.equals("179") || Questionno.equals("185") || Questionno.equals("186") || Questionno.equals("187") || Questionno.equals("188") || Questionno.equals("189") || Questionno.equals("190") || Questionno.equals("191") || Questionno.equals("553") || Questionno.equals("554") || Questionno.equals("560") || Questionno.equals("561") || Questionno.equals("562") || Questionno.equals("563") || Questionno.equals("565") || Questionno.equals("566") || Questionno.equals("567") || Questionno.equals("568") || Questionno.equals("569") || Questionno.equals("570") || Questionno.equals("575") || Questionno.equals("576") || Questionno.equals("577") || Questionno.equals("578") || Questionno.equals("579") || Questionno.equals("580") || Questionno.equals("581") || Questionno.equals("583") || Questionno.equals("478") || Questionno.equals("479") || Questionno.equals("483") || Questionno.equals("484") || Questionno.equals("485") || Questionno.equals("486") || Questionno.equals("487") || Questionno.equals("488") || Questionno.equals("493") || Questionno.equals("494") || Questionno.equals("495") || Questionno.equals("496") || Questionno.equals("497") || Questionno.equals("498") || Questionno.equals("412") || Questionno.equals("413") || Questionno.equals("417") || Questionno.equals("418") || Questionno.equals("419") || Questionno.equals("420") || Questionno.equals("421") || Questionno.equals("422") || Questionno.equals("423") || Questionno.equals("424") || Questionno.equals("426") || Questionno.equals("430") || Questionno.equals("431") || Questionno.equals("432") || Questionno.equals("433") || Questionno.equals("434") || Questionno.equals("435") || Questionno.equals("436") || Questionno.equals("437") || Questionno.equals("129") || Questionno.equals("130") || Questionno.equals("136") || Questionno.equals("137") || Questionno.equals("138") || Questionno.equals("139") || Questionno.equals("141") || Questionno.equals("142") || Questionno.equals("143") || Questionno.equals("144") || Questionno.equals("150") || Questionno.equals("151") || Questionno.equals("152") || Questionno.equals("153") || Questionno.equals("154") || Questionno.equals("155") || Questionno.equals("156") || Questionno.equals("669") || Questionno.equals("670") || Questionno.equals("675") || Questionno.equals("676") || Questionno.equals("677") || Questionno.equals("678") || Questionno.equals("679") || Questionno.equals("680") || Questionno.equals("681") || Questionno.equals("683") || Questionno.equals("686") || Questionno.equals("687") || Questionno.equals("688") || Questionno.equals("689") || Questionno.equals("690") || Questionno.equals("691") || Questionno.equals("692") || Questionno.equals("693") || Questionno.equals("698") || Questionno.equals("699") || Questionno.equals("704") || Questionno.equals("705") || Questionno.equals("707") || Questionno.equals("708") || Questionno.equals("709") || Questionno.equals("710") || Questionno.equals("712") || Questionno.equals("715") || Questionno.equals("716") || Questionno.equals("717") || Questionno.equals("718") || Questionno.equals("719") || Questionno.equals("720") || Questionno.equals("721") || Questionno.equals("722") || Questionno.equals("727") || Questionno.equals("728") || Questionno.equals("733") || Questionno.equals("734") || Questionno.equals("736") || Questionno.equals("737") || Questionno.equals("738") || Questionno.equals("739") || Questionno.equals("741") || Questionno.equals("744") || Questionno.equals("745") || Questionno.equals("746") || Questionno.equals("747") || Questionno.equals("748") || Questionno.equals("749") || Questionno.equals("750") || Questionno.equals("751") || Questionno.equals("149") || Questionno.equals("184") || Questionno.equals("267") || Questionno.equals("301") || Questionno.equals("332") || Questionno.equals("366") || Questionno.equals("492") || Questionno.equals("540") || Questionno.equals("574") || Questionno.equals("657") || Questionno.equals("108") || Questionno.equals("146") || Questionno.equals("181") || Questionno.equals("208") || Questionno.equals("264") || Questionno.equals("298") || Questionno.equals("329") || Questionno.equals("363") || Questionno.equals("427") || Questionno.equals("489") || Questionno.equals("571") || Questionno.equals("654") || Questionno.equals("682") || Questionno.equals("711") || Questionno.equals("740") || Questionno.equals("147") || Questionno.equals("182") || Questionno.equals("265") || Questionno.equals("299") || Questionno.equals("331") || Questionno.equals("364") || Questionno.equals("429") || Questionno.equals("490") || Questionno.equals("572") || Questionno.equals("655") || Questionno.equals("683") || Questionno.equals("712") || Questionno.equals("741") || Questionno.equals("109") || Questionno.equals("148") || Questionno.equals("183") || Questionno.equals("266") || Questionno.equals("300") || Questionno.equals("330") || Questionno.equals("365") || Questionno.equals("428") || Questionno.equals("491") || Questionno.equals("573") || Questionno.equals("656") || Questionno.equals("684") || Questionno.equals("713") || Questionno.equals("742") || Questionno.equals("757") || Questionno.equals("758") || Questionno.equals("766")|| Questionno.equals("767")|| Questionno.equals("768")|| Questionno.equals("769")|| Questionno.equals("771")|| Questionno.equals("772")|| Questionno.equals("773")|| Questionno.equals("774")|| Questionno.equals("796")|| Questionno.equals("797")|| Questionno.equals("799")|| Questionno.equals("800") || Questionno.equals("801")){ 
+
+String optArr[]={"Not Rated","Yes","No","NA"};
+String optValArr[]={"Not Rated","Yes","No","NA"};
+String disabled ="";
+String selected ="";
+
+%>
+<select name="<%=feedBackOptions%>" class="normal" >
+<%
+
+ // for user option array will start from 1 as "No action Required" is "NA for user
+
+
+	//out.println(optArr); 
+	for(int kk=0;kk<optArr.length;kk++){ 
+		
+		if(feedbackopt.equalsIgnoreCase(optArr[kk]))
+					
+			selected	 = "selected";
+		else
+			selected	 = "";
+
+%>
+	<option value="<%=optArr[kk]%>" <%=selected%>><%=optValArr[kk]%></option>
+
+<%
+
+	}//end of for
+
+    }else{
+    
+    String optArr[]={"Not Rated","Yes","No"};
+    String optValArr[]={"Not Rated","Yes","No"};
+    String disabled ="";
+    String selected ="";
+
+%>
+<select name="<%=feedBackOptions%>" class="normal" >
+<%
+
+ // for user option array will start from 1 as "No action Required" is "NA for user
+
+
+	//out.println(optArr); 
+	for(int kk=0;kk<optArr.length;kk++){ 
+		
+		if(feedbackopt.equalsIgnoreCase(optArr[kk]))
+					
+			selected	 = "selected";
+		else
+			selected	 = "";
+
+%>
+	<option value="<%=optArr[kk]%>" <%=selected%>><%=optValArr[kk]%></option>
+
+<%
+
+	}//end of for
+
+    }
+    }else if (companyCode.equals("1003") || companyCode.equals("1024") || companyCode.equals("1025") || companyCode.equals("1026")){
+
+    if (Questionno.equals("843") || Questionno.equals("844") || Questionno.equals("852") || Questionno.equals("854") || Questionno.equals("855") || Questionno.equals("856") || Questionno.equals("858") || Questionno.equals("859") || Questionno.equals("860") || Questionno.equals("861") || Questionno.equals("863") || Questionno.equals("864") || Questionno.equals("865") || Questionno.equals("868") || Questionno.equals("869") || Questionno.equals("870") || Questionno.equals("875") || Questionno.equals("876") || Questionno.equals("877") || Questionno.equals("878") || Questionno.equals("879") || Questionno.equals("880")|| Questionno.equals("400") || Questionno.equals("874") || Questionno.equals("22") || Questionno.equals("397") || Questionno.equals("871") || Questionno.equals("23") || Questionno.equals("398") || Questionno.equals("872") || Questionno.equals("399") || Questionno.equals("873")){ 
+
+String optArr[]={"Not Rated","Yes","No","NA"};
+String optValArr[]={"Not Rated","Yes","No","NA"};
+String disabled ="";
+String selected ="";
+
+%>
+<select name="<%=feedBackOptions%>" class="normal" >
+<%
+
+ // for user option array will start from 1 as "No action Required" is "NA for user
+
+
+	//out.println(optArr); 
+	for(int kk=0;kk<optArr.length;kk++){ 
+		
+		if(feedbackopt.equalsIgnoreCase(optArr[kk]))
+					
+			selected	 = "selected";
+		else
+			selected	 = "";
+
+%>
+	<option value="<%=optArr[kk]%>" <%=selected%>><%=optValArr[kk]%></option>
+
+<%
+
+	}//end of for
+
+    }else{
+    
+    String optArr[]={"Not Rated","Yes","No"};
+    String optValArr[]={"Not Rated","Yes","No"};
+    String disabled ="";
+    String selected ="";
+
+%>
+<select name="<%=feedBackOptions%>" class="normal" >
+<%
+
+ // for user option array will start from 1 as "No action Required" is "NA for user
+
+
+	//out.println(optArr); 
+	for(int kk=0;kk<optArr.length;kk++){ 
+		
+		if(feedbackopt.equalsIgnoreCase(optArr[kk]))
+					
+			selected	 = "selected";
+		else
+			selected	 = "";
+
+%>
+	<option value="<%=optArr[kk]%>" <%=selected%>><%=optValArr[kk]%></option>
+
+<%
+
+	}//end of for
+
+    }
+    }else if (companyCode.equals("1001")){
+
+    if (Questionno.equals("886") || Questionno.equals("887") || Questionno.equals("891") || Questionno.equals("892") || Questionno.equals("893") || Questionno.equals("895") || Questionno.equals("896") || Questionno.equals("897") || Questionno.equals("898") || Questionno.equals("899") || Questionno.equals("900") || Questionno.equals("901") || Questionno.equals("902") || Questionno.equals("903") || Questionno.equals("904") || Questionno.equals("905") || Questionno.equals("907")|| Questionno.equals("911") || Questionno.equals("915")|| Questionno.equals("916") || Questionno.equals("917") || Questionno.equals("918") || Questionno.equals("919") || Questionno.equals("920") || Questionno.equals("921")){
+
+String optArr[]={"Not Rated","Yes","No","NA"};
+String optValArr[]={"Not Rated","Yes","No","NA"};
+String disabled ="";
+String selected ="";
+
+%>
+<select name="<%=feedBackOptions%>" class="normal" >
+<%
+
+ // for user option array will start from 1 as "No action Required" is "NA for user
+
+
+	//out.println(optArr); 
+	for(int kk=0;kk<optArr.length;kk++){ 
+		
+		if(feedbackopt.equalsIgnoreCase(optArr[kk]))
+					
+			selected	 = "selected";
+		else
+			selected	 = "";
+
+%>
+	<option value="<%=optArr[kk]%>" <%=selected%>><%=optValArr[kk]%></option>
+
+<%
+
+	}//end of for
+
+    }else{
+    
+    String optArr[]={"Not Rated","Yes","No"};
+    String optValArr[]={"Not Rated","Yes","No"};
+    String disabled ="";
+    String selected ="";
+
+%>
+<select name="<%=feedBackOptions%>" class="normal" >
+<%
+
+ // for user option array will start from 1 as "No action Required" is "NA for user
+
+
+	//out.println(optArr); 
+	for(int kk=0;kk<optArr.length;kk++){ 
+		
+		if(feedbackopt.equalsIgnoreCase(optArr[kk]))
+					
+			selected	 = "selected";
+		else
+			selected	 = "";
+
+%>
+	<option value="<%=optArr[kk]%>" <%=selected%>><%=optValArr[kk]%></option>
+
+<%
+
+	}//end of for
+
+    }
+    }else if (companyCode.equals("1004")){
+
+    if (Questionno.equals("380") || Questionno.equals("381") || Questionno.equals("387") || Questionno.equals("388") || Questionno.equals("389") || Questionno.equals("390") || Questionno.equals("392") || Questionno.equals("393") || Questionno.equals("394") || Questionno.equals("395") || Questionno.equals("401") || Questionno.equals("402") || Questionno.equals("403") || Questionno.equals("404") || Questionno.equals("405") || Questionno.equals("406") || Questionno.equals("407") || Questionno.equals("400") || Questionno.equals("22") || Questionno.equals("397") || Questionno.equals("23") || Questionno.equals("398") || Questionno.equals("399")){ 
+
+String optArr[]={"Not Rated","Yes","No","NA"};
+String optValArr[]={"Not Rated","Yes","No","NA"};
+String disabled ="";
+String selected ="";
+
+%>
+<select name="<%=feedBackOptions%>" class="normal" >
+<%
+
+ // for user option array will start from 1 as "No action Required" is "NA for user
+
+
+	//out.println(optArr); 
+	for(int kk=0;kk<optArr.length;kk++){ 
+		
+		if(feedbackopt.equalsIgnoreCase(optArr[kk]))
+					
+			selected	 = "selected";
+		else
+			selected	 = "";
+
+%>
+	<option value="<%=optArr[kk]%>" <%=selected%>><%=optValArr[kk]%></option>
+
+<%
+
+	}//end of for
+
+    }else{
+    
+    String optArr[]={"Not Rated","Yes","No"};
+    String optValArr[]={"Not Rated","Yes","No"};
+    String disabled ="";
+    String selected ="";
+
+%>
+<select name="<%=feedBackOptions%>" class="normal" >
+<%
+
+ // for user option array will start from 1 as "No action Required" is "NA for user
+
+
+	//out.println(optArr); 
+	for(int kk=0;kk<optArr.length;kk++){ 
+		
+		if(feedbackopt.equalsIgnoreCase(optArr[kk]))
+					
+			selected	 = "selected";
+		else
+			selected	 = "";
+
+%>
+	<option value="<%=optArr[kk]%>" <%=selected%>><%=optValArr[kk]%></option>
+
+<%
+
+	}//end of for
+
+    }
+    }else if (companyCode.equals("1005") || companyCode.equals("1006")){
+
+    if (Questionno.equals("506") || Questionno.equals("507") || Questionno.equals("514") || Questionno.equals("515") || Questionno.equals("516") || Questionno.equals("518") || Questionno.equals("519") || Questionno.equals("520") || Questionno.equals("521") || Questionno.equals("534") || Questionno.equals("541") || Questionno.equals("542") || Questionno.equals("543") || Questionno.equals("544") || Questionno.equals("545") || Questionno.equals("546") || Questionno.equals("547") ||Questionno.equals("757") ||Questionno.equals("758") ||Questionno.equals("766") ||Questionno.equals("767") ||Questionno.equals("768") ||Questionno.equals("769") ||Questionno.equals("771") ||Questionno.equals("772") ||Questionno.equals("773") ||Questionno.equals("774") ||Questionno.equals("786") ||Questionno.equals("787") ||Questionno.equals("788") ||Questionno.equals("789") ||Questionno.equals("796") ||Questionno.equals("797") ||Questionno.equals("798") ||Questionno.equals("799") ||Questionno.equals("800") ||Questionno.equals("801") ||Questionno.equals("540")){ 
+
+String optArr[]={"Not Rated","Yes","No","NA"};
+String optValArr[]={"Not Rated","Yes","No","NA"};
+String disabled ="";
+String selected ="";
+
+%>
+<select name="<%=feedBackOptions%>" class="normal" >
+<%
+
+ // for user option array will start from 1 as "No action Required" is "NA for user
+
+
+	//out.println(optArr); 
+	for(int kk=0;kk<optArr.length;kk++){ 
+		
+		if(feedbackopt.equalsIgnoreCase(optArr[kk]))
+					
+			selected	 = "selected";
+		else
+			selected	 = "";
+
+%>
+	<option value="<%=optArr[kk]%>" <%=selected%>><%=optValArr[kk]%></option>
+
+<%
+
+	}//end of for
+
+    }else{
+    
+    String optArr[]={"Not Rated","Yes","No"};
+    String optValArr[]={"Not Rated","Yes","No"};
+    String disabled ="";
+    String selected ="";
+
+%>
+<select name="<%=feedBackOptions%>" class="normal" >
+<%
+
+ // for user option array will start from 1 as "No action Required" is "NA for user
+
+
+	//out.println(optArr); 
+	for(int kk=0;kk<optArr.length;kk++){ 
+		
+		if(feedbackopt.equalsIgnoreCase(optArr[kk]))
+					
+			selected	 = "selected";
+		else
+			selected	 = "";
+
+%>
+	<option value="<%=optArr[kk]%>" <%=selected%>><%=optValArr[kk]%></option>
+
+<%
+
+	}//end of for
+
+    }
+    } else if (companyCode.equals("1007")){
+
+    if (Questionno.equals("809") || Questionno.equals("810") || Questionno.equals("814") || Questionno.equals("817") || Questionno.equals("818") || Questionno.equals("820") || Questionno.equals("821") || Questionno.equals("822") || Questionno.equals("823") || Questionno.equals("825") || Questionno.equals("830") || Questionno.equals("831") || Questionno.equals("832") || Questionno.equals("833") || Questionno.equals("834") || Questionno.equals("835") || Questionno.equals("836") || Questionno.equals("837")){ 
+
+String optArr[]={"Not Rated","Yes","No","NA"};
+String optValArr[]={"Not Rated","Yes","No","NA"};
+String disabled ="";
+String selected ="";
+
+%>
+<select name="<%=feedBackOptions%>" class="normal" >
+<%
+
+ // for user option array will start from 1 as "No action Required" is "NA for user
+
+
+	//out.println(optArr); 
+	for(int kk=0;kk<optArr.length;kk++){ 
+		
+		if(feedbackopt.equalsIgnoreCase(optArr[kk]))
+					
+			selected	 = "selected";
+		else
+			selected	 = "";
+
+%>
+	<option value="<%=optArr[kk]%>" <%=selected%>><%=optValArr[kk]%></option>
+
+<%
+
+	}//end of for
+
+    }else{
+    
+    String optArr[]={"Not Rated","Yes","No"};
+    String optValArr[]={"Not Rated","Yes","No"};
+    String disabled ="";
+    String selected ="";
+
+%>
+<select name="<%=feedBackOptions%>" class="normal" >
+<%
+
+ // for user option array will start from 1 as "No action Required" is "NA for user
+
+
+	//out.println(optArr); 
+	for(int kk=0;kk<optArr.length;kk++){ 
+		
+		if(feedbackopt.equalsIgnoreCase(optArr[kk]))
+					
+			selected	 = "selected";
+		else
+			selected	 = "";
+
+%>
+	<option value="<%=optArr[kk]%>" <%=selected%>><%=optValArr[kk]%></option>
+
+<%
+
+	}//end of for
+
+    }
+    }else if (companyCode.equals("1017")){
+
+    if (Questionno.equals("445") || Questionno.equals("446") || Questionno.equals("450") || Questionno.equals("453") || Questionno.equals("454") || Questionno.equals("456") || Questionno.equals("457") || Questionno.equals("458") || Questionno.equals("459") || Questionno.equals("461") || Questionno.equals("466") || Questionno.equals("467") || Questionno.equals("468") || Questionno.equals("469") || Questionno.equals("470") || Questionno.equals("471") || Questionno.equals("472") || Questionno.equals("465") || Questionno.equals("462") || Questionno.equals("464") || Questionno.equals("463")){ 
+
+String optArr[]={"Not Rated","Yes","No","NA"};
+String optValArr[]={"Not Rated","Yes","No","NA"};
+String disabled ="";
+String selected ="";
+
+%>
+<select name="<%=feedBackOptions%>" class="normal" >
+<%
+
+ // for user option array will start from 1 as "No action Required" is "NA for user
+
+
+	//out.println(optArr); 
+	for(int kk=0;kk<optArr.length;kk++){ 
+		
+		if(feedbackopt.equalsIgnoreCase(optArr[kk]))
+					
+			selected	 = "selected";
+		else
+			selected	 = "";
+
+%>
+	<option value="<%=optArr[kk]%>" <%=selected%>><%=optValArr[kk]%></option>
+
+<%
+
+	}//end of for
+
+    }else{
+    
+    String optArr[]={"Not Rated","Yes","No"};
+    String optValArr[]={"Not Rated","Yes","No"};
+    String disabled ="";
+    String selected ="";
+
+%>
+<select name="<%=feedBackOptions%>" class="normal" >
+<%
+
+ // for user option array will start from 1 as "No action Required" is "NA for user
+
+
+	//out.println(optArr); 
+	for(int kk=0;kk<optArr.length;kk++){ 
+		
+		if(feedbackopt.equalsIgnoreCase(optArr[kk]))
+					
+			selected	 = "selected";
+		else
+			selected	 = "";
+
+%>
+	<option value="<%=optArr[kk]%>" <%=selected%>><%=optValArr[kk]%></option>
+
+<%
+
+	}//end of for
+
+    }
+    }else if (companyCode.equals("1009")){
+
+    if (Questionno.equals("281") || Questionno.equals("282") || Questionno.equals("288") || Questionno.equals("289") || Questionno.equals("290") || Questionno.equals("291") || Questionno.equals("293") || Questionno.equals("294") || Questionno.equals("295") || Questionno.equals("296") || Questionno.equals("302") || Questionno.equals("303") || Questionno.equals("304") || Questionno.equals("305") || Questionno.equals("306") || Questionno.equals("307") || Questionno.equals("308")|| Questionno.equals("301") || Questionno.equals("298") || Questionno.equals("299") || Questionno.equals("300")){ 
+
+String optArr[]={"Not Rated","Yes","No","NA"};
+String optValArr[]={"Not Rated","Yes","No","NA"};
+String disabled ="";
+String selected ="";
+
+%>
+<select name="<%=feedBackOptions%>" class="normal" >
+<%
+
+ // for user option array will start from 1 as "No action Required" is "NA for user
+
+
+	//out.println(optArr); 
+	for(int kk=0;kk<optArr.length;kk++){ 
+		
+		if(feedbackopt.equalsIgnoreCase(optArr[kk]))
+					
+			selected	 = "selected";
+		else
+			selected	 = "";
+
+%>
+	<option value="<%=optArr[kk]%>" <%=selected%>><%=optValArr[kk]%></option>
+
+<%
+
+	}//end of for
+
+    }else{
+    
+    String optArr[]={"Not Rated","Yes","No"};
+    String optValArr[]={"Not Rated","Yes","No"};
+    String disabled ="";
+    String selected ="";
+
+%>
+<select name="<%=feedBackOptions%>" class="normal" >
+<%
+
+ // for user option array will start from 1 as "No action Required" is "NA for user
+
+
+	//out.println(optArr); 
+	for(int kk=0;kk<optArr.length;kk++){ 
+		
+		if(feedbackopt.equalsIgnoreCase(optArr[kk]))
+					
+			selected	 = "selected";
+		else
+			selected	 = "";
+
+%>
+	<option value="<%=optArr[kk]%>" <%=selected%>><%=optValArr[kk]%></option>
+
+<%
+
+	}//end of for
+
+    }
+    }else if (companyCode.equals("1008")){
+
+    if (Questionno.equals("634") || Questionno.equals("635") || Questionno.equals("644") || Questionno.equals("645") || Questionno.equals("646") || Questionno.equals("647") || Questionno.equals("649") || Questionno.equals("650") || Questionno.equals("651") || Questionno.equals("652") || Questionno.equals("658") || Questionno.equals("659") || Questionno.equals("660") || Questionno.equals("661") || Questionno.equals("662") || Questionno.equals("663") || Questionno.equals("664")|| Questionno.equals("657") || Questionno.equals("654") || Questionno.equals("655") || Questionno.equals("656")){ 
+
+String optArr[]={"Not Rated","Yes","No","NA"};
+String optValArr[]={"Not Rated","Yes","No","NA"};
+String disabled ="";
+String selected ="";
+
+%>
+<select name="<%=feedBackOptions%>" class="normal" >
+<%
+
+ // for user option array will start from 1 as "No action Required" is "NA for user
+
+
+	//out.println(optArr); 
+	for(int kk=0;kk<optArr.length;kk++){ 
+		
+		if(feedbackopt.equalsIgnoreCase(optArr[kk]))
+					
+			selected	 = "selected";
+		else
+			selected	 = "";
+
+%>
+	<option value="<%=optArr[kk]%>" <%=selected%>><%=optValArr[kk]%></option>
+
+<%
+
+	}//end of for
+
+    }else{
+    
+    String optArr[]={"Not Rated","Yes","No"};
+    String optValArr[]={"Not Rated","Yes","No"};
+    String disabled ="";
+    String selected ="";
+
+%>
+<select name="<%=feedBackOptions%>" class="normal" >
+<%
+
+ // for user option array will start from 1 as "No action Required" is "NA for user
+
+
+	//out.println(optArr); 
+	for(int kk=0;kk<optArr.length;kk++){ 
+		
+		if(feedbackopt.equalsIgnoreCase(optArr[kk]))
+					
+			selected	 = "selected";
+		else
+			selected	 = "";
+
+%>
+	<option value="<%=optArr[kk]%>" <%=selected%>><%=optValArr[kk]%></option>
+
+<%
+
+	}//end of for
+
+    }
+    }else{
+    
+    String optArr[]={"Not Rated","Yes","No"};
+    String optValArr[]={"Not Rated","Yes","No"};
+    String disabled ="";
+    String selected ="";
+
+%>
+<select name="<%=feedBackOptions%>" class="normal" >
+<%
+
+ // for user option array will start from 1 as "No action Required" is "NA for user
+
+
+	//out.println(optArr); 
+	for(int kk=0;kk<optArr.length;kk++){ 
+		
+		if(feedbackopt.equalsIgnoreCase(optArr[kk]))
+					
+			selected	 = "selected";
+		else
+			selected	 = "";
+
+%>
+	<option value="<%=optArr[kk]%>" <%=selected%>><%=optValArr[kk]%></option>
+
+<%
+
+	}//end of for
+
+    }
+%>

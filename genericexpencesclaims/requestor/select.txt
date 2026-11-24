@@ -1,0 +1,24 @@
+<%--
+ -- @(#)checkMedicalClaimRequest.jsp	15/3/2008
+ --
+ -- Copyright 2004 BCCL. All Rights Reserved.
+ --
+ -- This software is the proprietary information of BCCL.
+ -- Use is subject to license terms.
+ --
+ --%>
+
+ <%--
+ -- Comments....
+ -- @author		Anagha More
+ -- @version 	1.00, 15/3/2008
+ --%>
+
+<%@ page language="java" %>
+<%@ include file="../includes/sessionCheck.jsp" %>
+<%@ page errorPage="../common/errorPage.jsp"%>
+<%@ include file="../includes/empHeader.jsp" %>
+<%@ page import="java.util.Hashtable, java.util.ArrayList, java.util.GregorianCalendar, java.util.Calendar" %>
+<%@ page import="com.bccl.util.HtmlUtil"%>
+
+<jsp:useBean id="genericsclaimController" class="com.bccl.claim.web.controllerbeans.GenericsclaimClaimController" /> 

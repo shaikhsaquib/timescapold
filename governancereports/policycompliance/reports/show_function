@@ -1,0 +1,16 @@
+<!-- 	<table width="100%" border="0" cellpadding="1" cellspacing="1">
+		<tr>
+		<td width="30%" class="style4" style="border-bottom:1px solid #EFEFEF">Select Date : &nbsp;&nbsp;
+		<input type="text" class="style2" id="date" name="date" onfocus="showCalendarControl(this);" readOnly value="<%=date%>">&nbsp;&nbsp;<img src="../images/orangearrow.gif" border="0" onclick="allReportChange(<%=frequency%>)">
+        <td bgcolor="#fbfbfb">
+		<td bgcolor="#fbfbfb">Company</td>
+		<td bgcolor="#fbfbfb">
+		 <%@ include file="../reports/showCompaniesDashboard.jsp" %></td>
+		 <td class = "bold" height = "30" width = "10%" align = "left">&nbsp;&nbsp;&nbsp;&nbsp;Department&nbsp;<span class = "rednormal"></span></td>
+		 <td class = "normal" height = "30" width = "65%" align = "left" id = "compDepartment"></td><td><img src="../images/orangearrow.gif" border="0" onclick="allReportChange(<%=frequency%>)"></td>
+		</td>
+        <!-- <td width="70%" align="right"><%//@ include file="../includes/dashBoardTabs.jsp" %> -->
+        <td width="70%" align="right"><%@ include file="../includes/allDashBoardTabs.jsp" %>
+		</table>
+
+ -->

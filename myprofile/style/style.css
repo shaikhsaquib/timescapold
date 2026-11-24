@@ -1,0 +1,29 @@
+/* CSS Document */
+
+body{ margin:0px; padding:0px;}
+
+.dear-txt-main{padding-top:5px; padding-left:12px;}
+
+.dear-txt-heading{font:normal 20px Arial; color:#1089c6;}
+.welcome{font:normal 18px Arial; color:#39699c; padding-top:2px;}
+.txt{font:normal 11px Arial; color:#404040; padding-top:5px; padding-bottom:5px; padding-right:7px;}
+
+.you-txt{font:bold 12px Arial; color:#39699c; padding-top:5px;}
+.nom{padding-top:5px;}
+
+.male{font:normal 11px Arial; color:#585858; padding-top:3px;}
+.male-heading{font:bold 11px Arial; color:#585858; padding-top:3px;}
+.line{ background:url(images/line.gif) no-repeat; width:561px; height:1px; margin-top:3px; margin-bottom:2px;}
+.line2{ background:url(images/line.gif) repeat-x;  height:1px; margin-top:3px; margin-bottom:2px;}
+.txt-either{font:normal 11px Arial; color:#9c9c9c;}
+
+.types-bold{font:bold 12px Arial; color:#39699c; padding-top:2px;}
+.types-txt{font:normal 11px Arial; color:#404040; padding-top:2px;}
+.types{ padding-left:60px;}
+.types1{ padding-left:60px;padding-top:2px;}
+.dicimilar-hesding{font:bold 10px Arial; color:#919191;}
+
+.footer{ font:normal 10px Arial; color:#919191; line-height:18px;}
+
+.linkOrg{ color:#d76000; text-decoration:underline;}
+.linkOrg:hover{ color:#d76000; text-decoration:none;}

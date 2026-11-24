@@ -1,0 +1,25 @@
+<%
+	
+	Hashtable backDesign = new Hashtable();
+	
+	/*backDesign.put("fr","FlamingRed1.jpg");
+	backDesign.put("tc","TILcorporate1.jpg");
+	backDesign.put("cb","CorporateBlue1.jpg");
+	backDesign.put("do1","DigitalOrange1.jpg");
+	backDesign.put("dc","DigitalCells1.jpg");
+	backDesign.put("bs","BlueStripes1.jpg");
+	backDesign.put("dw","DigitalWave1.jpg");
+	backDesign.put("dp","DigitalPink1.jpg");
+	backDesign.put("db","DigitalBlue1.jpg");
+	backDesign.put("lg","LeafGreens1.jpg");*/
+
+	backDesign.put("b1","Back-1.jpg");
+	backDesign.put("b2","Back-2.jpg");
+	backDesign.put("b3","Back-3.jpg");
+	backDesign.put("b4","Back-4.jpg");
+	backDesign.put("b5","Back-5.jpg");
+	backDesign.put("b6","Back-6.jpg");
+
+	 
+%>
+		<img  src="../images/<%= backDesign.get(backDesignVal)%>" class ="ImageBorder" border="2" cellpadding="0" cellspacing="0">

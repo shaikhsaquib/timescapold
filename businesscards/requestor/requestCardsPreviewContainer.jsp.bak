@@ -1,0 +1,200 @@
+<table width="98%" cellpadding="2" cellspacing="0" border="0">
+    <tr height="30">
+        <td colspan="4" align="left" valign="top" class="normal"> <span class="boldsmall">Please Note</span><br />
+          All fields marked with <img src="../images/tickmark.gif" width="13" height="13" />are mandatory but editable.<br />
+          This is just a web-preview of the Business Card. The fonts appearing on the Business Card are web fonts,<br />
+      the actual appearance of the printed Business Card would be in accordance with the pre-defined true-type font. <br/><br/>
+<%
+    if(compCode.equals("1000"))
+    {	
+%>
+        <span class="bold">&nbsp;-</span>&nbsp;For all BCCL departments, the design template is Times Group. Kindly choose your relavent template if required.</span>
+<%	
+    }else{
+%>
+        </td>
+<%
+    }
+%>
+        <%@ include file="../includes/cardTemplateCode.jsp" %>
+		
+	</tr>
+</table>
+<table width="53%" cellpadding="2" cellspacing="0" border="0" align="left">
+    <tr>
+        <td height="30" width="40%" align="left" valign="top" class="bold1">Card Template</td>
+        <td width="1%" align="center" valign="top" class="normal">:</td>
+        <td width="59%" align="left" valign="top" class="normal">
+            <select name = "cardTemplate" class = "small" onchange="showCardDesign('<%=firstName%>','<%=lastName%>','<%=Utility.replaceAmparsandURL(designation)%>','<%=activityName%>','<%=Utility.replaceAmparsandURL(addressLine1)%>','<%=Utility.replaceAmparsandURL(addressLine2)%>','<%=directPhoneNo%>','<%=fax%>','<%=mobileNumber%>','<%=userBoardNumber%>','<%=extensionNumber%>','<%=Utility.replaceAmparsandURL(workArea)%>','<%=Utility.replaceAmparsandURL(compName)%>','<%=website%>')">
+<%
+		String deptKey = "";
+		String sel = "";
+
+		for (Enumeration e = deptCode.keys(); e.hasMoreElements();){
+
+			deptKey = (String)e.nextElement();
+			
+			//if (deptCode.containsKey(deptName)){
+				sel = (deptKey.equals(deptName))?"SELECTED":(deptKey.equals("TG"))?"SELECTED":"";
+%>				
+				<option value = "<%=deptKey%>" <%=sel%>><%=deptCode.get(deptKey)%></option>
+<%
+			//}
+	    }
+%>
+        </select>
+		</td>
+    </tr>
+    <tr>
+      <td height="30" width="15%" align="left" valign="top" class="bold1">First Name</td>
+      <td width="1%" align="center" valign="top" class="normal">:</td>
+      <td align="left" valign="top" class="normal"><%=firstName%></td>
+    </tr>
+    <tr>
+      <td height="30" width="15%" align="left" valign="top" class="bold1">Last Name</td>
+      <td width="1%" align="center" valign="top" class="normal">:</td>
+      <td align="left" valign="top" class="normal"><%=lastName%></td>
+    </tr>
+    <tr>
+      <td height="30" width="15%" align="left" valign="top" class="bold1">Designation</td>
+      <td width="1%" align="center" valign="top" class="normal">:</td>
+      <td align="left" valign="top" class="normal"><%=designation%></td>
+    </tr>
+    <tr>
+      <td height="30" width="15%" align="left" valign="top" class="bold1">Department</td>
+      <td width="1%" align="center" valign="top" class="normal">:</td>
+      <td align="left" valign="top" class="normal"><%=department%></td>
+    </tr>
+<%
+	if(compCode.equals("1000"))
+	{
+%>
+	<tr>
+		<td height="30" width="15%" align="left" valign="top" class="bold1">Activity Name</td>
+		<td width="1%" align="center" valign="top" class="normal">:</td>
+		<td align="left" valign="top" class="normal"><%=activityName%></td>
+	</tr>
+<%
+	}else{
+%>
+	<input type = "hidden" name = "activityName" value = "<%=activityName%>" class = "input" size = "50">
+<%
+	}
+
+	if(compCode.equals("1000"))
+	{
+%>
+    <tr>
+      <td height="30" width="15%" align="left" valign="top" class="bold1">Work Area</td>
+      <td width="1%" align="center" valign="top" class="normal">:</td>
+      <td align="left" valign="top" class="normal"><%=workArea%></td>
+    </tr>
+
+<%
+	}else{
+%>
+	<input type = "hidden" name = "workArea" value = "<%=workArea%>" class = "input" size = "50">
+<%
+	}
+%>
+
+    <tr>
+      <td height="30" width="15%" align="left" valign="top" class="bold1">EmailId</td>
+      <td width="1%" align="center" valign="top" class="normal">:</td>
+      <td align="left" valign="top" class="normal"><%=emailId%></td>
+    </tr>
+    <tr>
+      <td height="30" width="15%" align="left" valign="top" class="bold1">Website</td>
+      <td width="1%" align="center" valign="top" class="normal">:</td>
+      <td align="left" valign="top" class="normal"><%=website%></td>
+    </tr>
+    <tr>
+      <td height="30" width="15%" align="left" valign="top" class="bold1">Company Name</td>
+      <td width="1%" align="center" valign="top" class="normal">:</td>
+      <td align="left" valign="top" class="normal"><%=compName%></td>
+    </tr>
+
+
+
+    <tr>
+      <td height="30" width="15%" align="left" valign="top" class="bold1">Address</td>
+      <td width="1%" align="center" valign="top" class="normal">:</td>
+      <td align="left" valign="top" class="normal"> <div class="normal" id="add" style="display:none"><B>CORP. OFFICE </B>: 7, BAHADURSHAH ZAFAR MARG, NEW DELHI 110103<br><br></div><%=addressLine1%><br/><%=addressLine2%><br><br></td>
+    </tr>
+<%
+	if(compCode.equals("1000")&& toShowPersonalBelief!=null&&!toShowPersonalBelief.equals("")){
+%>
+		<tr>
+		<td height="30" width="15%" align="left" valign="top" class="bold1">Personal Belief</td>
+		<td width="1%" align="center" valign="top" class="normal">:</td>
+		<td align="left" valign="top" class="normal"><%=toShowPersonalBelief%></td>
+		</tr>
+<%	
+	}
+%>
+    <tr>
+      <td height="30" width="15%" align="left" valign="top" class="bold1">Quantity</td>
+      <td width="1%" align="center" valign="top" class="normal">:</td>
+      <td align="left" valign="top" class="normal"><%=quantity%></td>
+    </tr>
+    <tr>
+      <td height="30" width="15%" align="left" valign="top" class="bold1">Approver Email Id</td>
+      <td width="1%" align="center" valign="top" class="normal">:</td>
+      <td align="left" valign="top" class="normal"><%=approverEmailId%></td>
+    </tr>
+<%
+
+		if("1003".equals(compCode) || "1024".equals(compCode) || "1026".equals(compCode) || "1027".equals(compCode) || "1030".equals(compCode) ||  "1032".equals(compCode)) {
+%>
+
+    <tr>
+      <td height="30" width="15%" align="left" valign="top" class="bold1">Back Design Template</td>
+      <td width="1%" align="center" valign="top" class="normal">:</td>
+      <td colspan="2" align="left" valign="top" class="normal">
+	  <a href="javascript:void window.open('../includes/CardBackDesign.jsp?compCode=<%=compCode%>&addressLine1=<%=Utility.replaceAmparsandURL(addressLine1)%>&addressLine2=<%=Utility.replaceAmparsandURL(addressLine2)%>&directPhoneNo=<%=directPhoneNo%>&userBoardNumber=<%=userBoardNumber%>&extensionNumber=<%=extensionNumber%>&fax=<%=fax%>&website=<%=website%>','','resizable=yes,border=0,scrollbars=yes,toolbars=no,width=1000,height=1000,top=0,left=0')" class="normal"><u>Click Here to select the Card Back Design</select><img src="../images/tickmark.gif" border ="0" width="15" height="13" /></u></a></td>
+<%
+		}
+%>
+	</tr>
+<tr>
+<td>&nbsp;</td>
+</tr>
+<tr>
+		<td colspan = "100%" class = "normal" align = "center" height = "20">
+			<a href = "javascript:confirmRequest( )" class = "normal"><img src = "../images/but_submit.gif" border = "0"></a>&nbsp;&nbsp;
+			<a href = "javascript:history.back( )" class = "normal"><img src = "../images/but_back.gif" border = "0"></a>&nbsp;&nbsp;
+		</td>
+</tr>
+</table>
+<table width="40%" cellpadding="2" cellspacing="0" border="0">
+<tr>
+    <td id="Card-Area"></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+</tr>
+<%
+	//if ( compCode.equals("1025") ) {
+	// for tml there is no option to choose back design so we have shown it to them the default image
+
+%>
+	<!-- <tr><td align = "center"><table width='394' height='238' cellpadding='0' cellspacing='0' border='1'><tr><td align = "center"><img src="../images/DigitalBlue1.jpg"></td></tr></table></td></tr>
+	</td></tr> -->
+<%
+	//} else {
+%>
+	<tr>
+		<td id="CardBack-Area" style="display:none;"></td>
+	</tr>
+	<tr>
+		<td id="CardBack-Area-Default" style="display:none;" ></td>
+	</tr>
+<%
+	//}
+%>
+</table>
+<!--
+    <div id="Card-Area" style="height:90px;padding:1px;padding-top:1px;text-align:center;"></div>
+    <div id="CardBack-Area" style="height:90px;padding:1px;padding-top:1px;text-align:left;"></div>
+ -->
+

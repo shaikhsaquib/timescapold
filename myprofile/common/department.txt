@@ -1,0 +1,8 @@
+<span class = "bold">What value do I select as Department ?</span>
+
+<ol>
+<li>Select the name of the Department for which you are currently working from the list-box.</li><br><br>
+<li>In case you have been transferred from one Department to another, please mention the details in the next row.</li><br><br>
+<li>Please provide details in reverse chronological order.</li><br><br>
+<li>In case you have worked with any company within Timesgroup e.g. Times Internet Ltd, please mention details of you employment under Employment History - Previous Organizations.</li><br><br>
+</ol>

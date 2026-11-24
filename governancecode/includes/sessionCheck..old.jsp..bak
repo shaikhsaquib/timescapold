@@ -1,0 +1,6 @@
+<%
+	if(session.getAttribute("userHash") == null)	{
+	 response.sendRedirect("/timescape/login/index.jsp?msg=1");
+     return;
+}
+%>

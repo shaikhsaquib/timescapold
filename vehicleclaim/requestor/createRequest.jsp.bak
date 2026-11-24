@@ -1,0 +1,364 @@
+<%--
+ -- @(#)createRequest.jsp	12/3/2008
+ --
+ -- Copyright 2004 BCCL. All Rights Reserved.
+ --
+ -- This software is the proprietary information of BCCL.
+ -- Use is subject to license terms.
+ --
+ --%>
+
+ <%--
+ -- Comments....
+ -- @author		Viraj Patil
+ -- @version 	1.00, 12/3/2008
+ --%>
+<%@ page language="java" %>
+<%@ include file="../includes/sessionCheck.jsp" %>
+<%//@page errorPage="../common/errorPage.jsp"%>
+<%@ page errorPage="../common/statusPage.jsp"%>
+<%@ include file="../includes/empHeader.jsp" %>
+<%@ include file="../common/config.jsp"%>
+<%@ page import="java.util.Hashtable, java.util.ArrayList, java.util.GregorianCalendar, java.util.Calendar" %>
+<%@ page import="com.bccl.claim.web.util.Constants,com.bccl.claim.web.util.HtmlUtil"%>
+<%@ page import="com.bccl.claim.web.util.Utility"%>
+ 
+<jsp:useBean id="medicalClaimController" class="com.bccl.claim.web.controllerbeans.MedicalClaimController" /> 
+
+<html>
+	<head>
+		<title>
+		</title>
+		<link rel="stylesheet" href="../style/global.css">
+		<link rel="stylesheet" href="../style/common.css">
+		 <script Language="JavaScript" src="../jscripts/util.js"></script>
+		 <script Language="JavaScript" src="../jscripts/common.js"></script>
+		 <script Language="JavaScript" src="../jscripts/createRequest.js"></script>
+		<link href="../style/calendarControl.css"rel="stylesheet">
+		<script src="../jscripts/calendarControl.js"language="javascript"></script>
+	 </head>
+
+<%
+	//Set session attribute for the link of current page
+	session.setAttribute("currLink", "../requestor/createRequest.jsp");
+	session.setAttribute("topLink", "1");
+
+%>
+ 
+<%
+	GregorianCalendar today = new GregorianCalendar();
+	//ArrayList approvers = new ArrayList();
+	String [] billDate		= null;
+	String [] billNo		= null;
+	String [] billDesc		= null;
+	String [] billAmount	= null;
+	int filledRows;
+	int count;
+	int savedBills = 1;
+	int addToSave	= 1;
+	String applyDate	= "";
+	String noOfBills	= "0";
+	String actionAdd	= "add_req";
+	String actionSubmit = "sub_req";
+	String actionSave	= "sav_req";
+	String option = null;
+    String strBalanceAmt="";
+	float balanceAmt = 0;
+    int newFilledRows=0;
+    int getNewRows=0;
+	
+
+	ArrayList  compListSAP = new ArrayList();
+	compListSAP.add("1000");
+	compListSAP.add("1002");
+	compListSAP.add("1003");
+	compListSAP.add("1004");
+	compListSAP.add("1005");
+	compListSAP.add("1006");
+	compListSAP.add("1007");
+	compListSAP.add("1009");
+	compListSAP.add("1019");
+	compListSAP.add("1021");
+	compListSAP.add("1023");
+
+    if(compListSAP.contains(companyCode)){
+		String balanceAmt2 = medicalClaimController.getBalances(timescapeUserOId, sapId, faYear, "MEDICALBAL");
+		balanceAmt = Float.parseFloat(balanceAmt2);
+	}else{
+
+		ArrayList entlBalancesLst		= medicalClaimController.viewBalances(timescapeUserOId, faYear, entlCode, legacyCompanyCode);
+		if(entlBalancesLst.size() > 0){
+			strBalanceAmt						= ((String[]) entlBalancesLst.get(0))[5];
+			balanceAmt = Float.parseFloat(strBalanceAmt);
+		}
+	}
+
+
+
+	option  = (String)request.getParameter("option");
+	String txtId = (String)request.getParameter("id");
+    
+    ArrayList editMedicalClaimDetails = null;
+	if(txtId != null)		// (if available)fetches all the details of previously saved Bills
+	{
+		editMedicalClaimDetails = medicalClaimController.viewTxnId(txtId);
+		savedBills = (editMedicalClaimDetails.size())+1;
+    }
+	
+	int todayDay = today.get(Calendar.DAY_OF_MONTH);
+	int todayMonth = today.get(Calendar.MONTH);
+	int todayYear = today.get(Calendar.YEAR);
+	applyDate = Utility.returnDate(todayDay, (todayMonth+1), todayYear);
+
+		if(option == null && txtId == null)// condition for a new Request
+{
+	filledRows	  = 0;
+	count = 5;
+	noOfBills = String.valueOf((filledRows+5));
+}
+		else
+{	
+		if(txtId != null)		//get the size of saved Bills
+		{
+            filledRows = editMedicalClaimDetails.size();
+             if(request.getParameter("actualRows")==null){
+                newFilledRows=filledRows;
+             }else{
+                newFilledRows = (int)Integer.parseInt(request.getParameter("actualRows"));
+             }
+            getNewRows=newFilledRows;
+        }
+
+		else	// get the size of added Bills(link:add more bills)
+		{
+            filledRows  = (int)Integer.parseInt(request.getParameter("actualRows"));
+        }
+
+		count = filledRows-1;
+		noOfBills = String.valueOf((newFilledRows+5));
+}
+
+	String savedBillsCount	= "";
+	savedBillsCount = request.getParameter("savedBills");
+	if(savedBillsCount == null)
+	{/*do nothing*/}
+	else
+	{savedBills = (int)Integer.parseInt(savedBillsCount);
+	addToSave = 2;}
+
+if((txtId == null || txtId.equals("null") || txtId.equals("")) && savedBills >1)
+{
+	 txtId = (String)request.getParameter("txnId");
+}
+
+       if(balanceAmt > 0){
+
+%>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onload="addAll(<%=newFilledRows+5%>)">
+
+ <%@ include file="../includes/medicalClaimHeader.html" %>
+ <%@ include file="../includes/medicalClaimMenu.jsp" %> 
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+	<form name="frmCreateRequest" method="post" >
+		<input type="hidden" name="noOfRows" value="<%=newFilledRows+5%>">
+		<input type="hidden" name="option" value="1">
+		<input type="hidden" name="actionNumber" value="0">
+		<input type="hidden" name="txnId" value="<%=txtId%>">
+		<input type="hidden" name="savedBills" value="<%=savedBills%>">
+		<input type="hidden" name="delBillNo" value="0">
+		<input type="hidden" name="delBillDate" value="0">
+		<input type="hidden" name="delBillAmt" value="0">
+		<input type="hidden" name="id2" value="0">
+        
+
+		<tr>
+			<td class="whitesmall" bgcolor="#000000" align="center" colspan ="8" height="20" color="#ffffff">MEDICAL REIMBURSEMENT CLAIM FORM</td>
+		</tr>
+		
+		<tr>
+			<td height="15"colspan="100%"><block type="spacer" height="15"></td>
+		</tr>
+        <tr>
+            <td colspan="100%" align="left" class="normal" height="20">
+                Your Balance Amount is <span class="bold"><u>Rs. <%=balanceAmt%></u></span>
+            &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td colspan="100%" align="center" class="bold" height="15">&nbsp;</td>
+        </tr>
+
+		<tr>
+			<td colspan="100%" class="normal">
+				<p>Accounts Department<br><br>Please find attached medical bills worth Rs.<input type="text" class="normal" id="amountTotal"name="amountTotal" size="10"maxlength="100" readOnly/>&nbsp;
+				for Reimbursement with Month&nbsp;<select id="forMonth" name="forMonth" class="normal" >
+					<%= HtmlUtil.getMonthList(String.valueOf(today.get(Calendar.MONTH)+1)) %>
+				</select>&nbsp;Year&nbsp;<select id="forYear" name="forYear" class="normal" >
+					<%= HtmlUtil.getYearList(2007,2100,today.get(Calendar.YEAR),"asc") %>&nbsp;
+				</select>&nbsp;Salary
+			</td>
+		</tr>
+		<tr>
+			<td height="25"colspan="100%"><block type="spacer" height="25"></td>
+             
+		</tr>
+
+<%
+			if(txtId != null && !txtId.equals("null") && !txtId.trim().equals("")){
+%>
+		<tr>
+			<td class="bold" align="left" colspan ="8" height="20" color="#ffffff">Request Transaction Number : <%=txtId%></td>
+            
+		</tr>
+<%          }
+%>
+
+
+		<tr>
+		<td colspan="100%">
+			<table width="100%" border="0" cellspacing="1" cellpadding="2">
+				<tr bgcolor="#CCCCCC">
+					<td class="bold" width="5%"style="border-bottom:1px solid #E8E8E8">SR. NO.</td>
+					<td class="bold" width="20%"style="border-bottom:1px solid #E8E8E8">BILL DATE</td>
+					<td class="bold" width="20%"style="border-bottom:1px solid #E8E8E8">BILL NO.</td>
+					<td class="bold" width="20%"style="border-bottom:1px solid #E8E8E8">BILL DESCRIPTION</td>
+					<td class="bold" width="20%"style="border-bottom:1px solid #E8E8E8">&nbsp;&nbsp;AMOUNT</td>
+					<td class="bold" width="15%"style="border-bottom:1px solid #E8E8E8">&nbsp;&nbsp;ACTION</td>
+				</tr>
+<% 
+    String[] arr = null;
+	if(option != null || txtId != null)//Added or Saved Bills
+	{
+        billDate			= new String[newFilledRows+1];
+        billNo			    = new String[newFilledRows+1];
+        billDesc			= new String[newFilledRows+1];
+        billAmount			= new String[newFilledRows+1];
+    
+	for(int ii = 1;ii<(newFilledRows+1);ii++)
+		{
+ 
+		if(txtId != null && addToSave == 1 && (filledRows>=ii))//Fetch Saved Bills
+			{
+			arr = (String[])editMedicalClaimDetails.get((ii-1));
+			billDate[ii]	= arr[1];
+			billNo[ii]		= arr[0];
+			billDesc[ii]	= arr[2];
+			billAmount[ii]	= arr[3];
+			}
+        else if(txtId != null && newFilledRows >0)			//Fetch new Added Bills
+		{
+		billDate[ii] = request.getParameter("billDate"+ii);
+		billNo[ii] = request.getParameter("billNo"+ii);
+		billDesc[ii] = request.getParameter("billDesc"+ii);
+		billAmount[ii] = request.getParameter("billAmount"+ii);
+        }
+        else			//Fetch Added Bills
+		{
+		billDate[ii] = request.getParameter("billDate"+ii);
+		billNo[ii] = request.getParameter("billNo"+ii);
+		billDesc[ii] = request.getParameter("billDesc"+ii);
+		billAmount[ii] = request.getParameter("billAmount"+ii);
+		}
+	%>
+		
+			
+			<input type="hidden" name="billDate<%=ii%>" value="<%=billDate[ii]%>">
+			<input type="hidden" id="billNo" name="billNo<%=ii%>" value="<%=billNo[ii]%>">
+			<input type="hidden" id="billDesc" name="billDesc<%=ii%>" value="<%=billDesc[ii]%>">
+			<input type="hidden" id="billAmount" name="billAmount<%=ii%>" value="<%=billAmount[ii]%>">
+            <input type="hidden" id="newFilledRows" name="newFilledRows" value="<%=newFilledRows%>">
+            <input type="hidden" id="editDetailsSize" name="editDetailsSize" value="<%=editMedicalClaimDetails.size()%>">
+           
+
+
+				<tr>
+					<td class="normal" width="5%"style="border-bottom:1px solid #E8E8E8"><%=ii%>.</td>
+					<td class="normal" width="20%"style="border-bottom:1px solid #E8E8E8"><%=billDate[ii]%></td>
+					<td class="normal" width="20%"style="border-bottom:1px solid #E8E8E8"><%=billNo[ii]%></td>
+					<td class="normal" width="20%"style="border-bottom:1px solid #E8E8E8"><%=billDesc[ii]%></td>
+					<td class="normal" width="20%"style="border-bottom:1px solid #E8E8E8">Rs.&nbsp;<%=billAmount[ii]%>&nbsp;</td>
+					<td class="normal"width="15%"style="border-bottom:1px solid #E8E8E8">
+<%if(ii<savedBills){%>
+			<a href="javascript:removeBill(<%=ii%>,<%=txtId%>,<%=newFilledRows%>)" class="normal"><u>delete</u></a>
+<%}else{%>&nbsp;&nbsp;-
+<%}%>
+					</td>
+				</tr>
+
+<%	}}
+%>		
+<%	
+	for(int ii = (newFilledRows+1);ii<=(newFilledRows+5);ii++)
+		{
+  
+	%>
+				<tr>
+					<td class="normal" style="border-bottom:1px solid #EFEFEF"><%=ii%>.</td>
+
+					<td class="normal" style="border-bottom:1px solid #EFEFEF"><input type="text" class="normal" id="billDate"name="billDate<%=ii%>" onfocus="showCalendarControl(this);" readOnly></td>
+
+					<td class="normal" style="border-bottom:1px solid #EFEFEF"><input class="normal" TYPE="text" id="billNo" name="billNo<%=ii%>"></td>
+
+					<td class="normal" style="border-bottom:1px solid #E8E8E8; width:160px;"><textarea class="normal" id="billDesc" name="billDesc<%=ii%>" size="10"maxlength="255"></textarea></td>
+
+					<td class="normal" style="border-bottom:1px solid #EFEFEF">Rs.<input type="text" class="normal" id="billAmount"name="billAmount<%=ii%>" size="10" maxlength="100" onblur="addAll(<%=newFilledRows+5%>)"/>
+					</td>
+					<td class="normal" style="border-bottom:1px solid #EFEFEF">&nbsp;&nbsp;-</td>
+				</tr>
+
+	<%   
+		}
+	%>
+			
+				</tr>
+				<tr>
+					<td class="normal" width="5%"style="border-bottom:1px solid #E8E8E8">&nbsp;</td>
+					<td class="normal"   width="20%"style="border-bottom:1px solid #E8E8E8">&nbsp;</td>
+					<td class="normal" width="20%"style="border-bottom:1px solid #E8E8E8">&nbsp;</td>
+					<td class="bold" width="20%"style="border-bottom:1px solid #E8E8E8">TOTAL</td>
+					<td class="normal" width="20%"style="border-bottom:1px solid #E8E8E8">Rs.<input type="text" class="normal" id="total" name="total" value="0" size="10" maxlength="100"/></td>
+					<td class="normal" width="15%"style="border-bottom:1px solid #E8E8E8">&nbsp;</td>
+				</tr>
+			</table>
+		</tr>
+		<tr>
+			<td width="100%"align="right"colspan="7">
+			<a href="javascript:validate(<%=noOfBills%>,'add_req')" class="bold"><img src="../images/but_addMoreBills.gif" border="0"></a>&nbsp;&nbsp;</td>
+		</tr>
+		<tr>
+			<td width="100%"align="center"colspan="7">
+			<a href="javascript:validate(<%=noOfBills%>,'pre_req')"><img src="../images/but_preview.gif" border="0"><a/>&nbsp;&nbsp;
+			<a href="javascript:clear()"><img src="../images/but_reset.gif" border="0"></a></td>
+		</tr>
+    </form>
+</table>
+</body>
+<%
+         }else{
+%>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+ <%@ include file="../includes/medicalClaimHeader.html" %>
+ <%@ include file="../includes/medicalClaimMenu.jsp" %> 
+   <table width="100%" border="0" cellspacing="1" cellpadding="2">
+        <tr>
+			<td class="whitesmall" bgcolor="#000000" align="center" colspan ="8" height="20" color="#ffffff">MEDICAL REIMBURSEMENT CLAIM FORM</td>
+		</tr>
+		
+		<tr>
+			<td height="15"colspan="100%"><block type="spacer" height="15"></td>
+		</tr>
+         <tr>
+            <td colspan="100%" align="left" class="normal" height="20">Your Balance Amount is <span class="bold"><u>Rs. <%=balanceAmt%></u></span></td>
+        </tr>
+        <tr>
+            <td colspan="100%" align="center" class="bold" height="15">&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="100%" align="center" class="bold" height="20">	YOU ARE NOT ENTITLED TO FILE THE CLAIM OR NO BALANCE IS AVAILABLE !!!</td>
+        </tr>
+   </table>
+</body>
+<%        
+         }
+%>
+</html>

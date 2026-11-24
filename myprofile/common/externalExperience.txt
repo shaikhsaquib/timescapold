@@ -1,0 +1,33 @@
+<span class = "bold">Note:</span><br>
+<ol>
+<li>Please use Internet Explorer version 5.0 or above as your web browser while browsing Timescape.</li><br><br>
+
+<li>Please avoid the usage of the following characters while filling out the form !,@,#,$,%,^,&,*,(,),~,`,-,. These characters will not be accepted as valid values while submitting your data.</li><br><br>
+</ol>
+
+<br>
+<span class = "bold">What do I mention in Company Name ?</span><br><br>
+
+<p align = "justify" style="line-height: 150%">
+<ol>
+<li>Enter the full name of the Company for which you were working e.g. Silverline Technologies.</li><br><br>
+<li>Please provide details in reverse chronological order (Last Company name should appear first).<br><br>
+<li>In case you have worked with any Company within Timesgroup e.g. Times Internet Ltd, please mention details of you employment under Employment History - Previous Organizations.</li><br><br>
+</ol>
+</p>
+
+<span class = "bold">What do I enter / select as an appropriate value for Designation ?</span><br><br>
+
+<p align = "justify" style="line-height: 150%">
+<ol>
+<li>  Mention details of the Designation at which you joined the company as the value for Joined As. </li><br><br>
+
+<li>  Mention details about the Last Designation held by you while leaving the company.</li><br><br>
+
+</ol>
+</p>
+
+<span class = "bold">What do I mention in Job Description ?</span><br><br>
+<ol>
+<li>Give a brief description of the kind of work that you are/were doing in your Company.</li><br><br>
+</ol>

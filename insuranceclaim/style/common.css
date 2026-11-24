@@ -1,0 +1,54 @@
+/*css for tooltip */
+.redfont {
+	FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #993333; FONT-FAMILY:  Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+
+.xstooltip {
+    visibility: hidden; 
+    position: absolute; 
+    top: 0;  
+    left: 0; 
+    z-index: 2; 
+    width:250px;
+    font: normal 8pt sans-serif; 
+    padding: 3px; 
+    border: solid 1px;
+    background-repeat: repeat;
+    background-color:#CCCCCC;
+    color:#993333;
+}
+
+
+.style1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.style2 {
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 12px; 
+    font-weight: bold; 
+    color: #00BFF3; 
+}
+.commonText{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+}
+
+.trayTitle{
+	color:#000000;
+	font-weight:bold;
+	padding-left:3px;
+	height:20px;
+	text-decoration:none;
+}
+
+.trayUnderline{
+	border-bottom:1px solid #52A1C8;
+}
+
+.date{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:10px;
+}

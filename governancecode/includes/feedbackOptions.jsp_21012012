@@ -1,0 +1,101 @@
+<%
+//System.out.println("companyCode===="+companyCode); 
+//System.out.println("Questionno===="+tmpArr[0]); 
+
+String Questionno = tmpArr[0];
+
+if (companyCode.equals("1000")){
+
+if (Questionno.equals("196") || Questionno.equals("197") || Questionno.equals("202") || Questionno.equals("203") || Questionno.equals("205") || Questionno.equals("537") || Questionno.equals("206") || Questionno.equals("207") || Questionno.equals("220") || Questionno.equals("221") || Questionno.equals("222") || Questionno.equals("223") || Questionno.equals("224") || Questionno.equals("225") || Questionno.equals("552") || Questionno.equals("226")){ 
+
+String optArr[]={"Not Acted","Yes","No","NA"};
+String optValArr[]={"Not Acted","Yes","No","NA"};
+String disabled ="";
+String selected ="";
+
+%>
+<select name="<%=feedBackOptions%>" class="normal" >
+<%
+
+ // for user option array will start from 1 as "No action Required" is "NA for user
+
+
+	//out.println(optArr); 
+	for(int kk=0;kk<optArr.length;kk++){ 
+		
+		if(feedbackopt.equalsIgnoreCase(optArr[kk]))
+					
+			selected	 = "selected";
+		else
+			selected	 = "";
+
+%>
+	<option value="<%=optArr[kk]%>" <%=selected%>><%=optValArr[kk]%></option>
+
+<%
+
+	}//end of for
+
+    }else{
+    
+    String optArr[]={"Not Acted","Yes","No"};
+    String optValArr[]={"Not Acted","Yes","No"};
+    String disabled ="";
+    String selected ="";
+
+%>
+<select name="<%=feedBackOptions%>" class="normal" >
+<%
+
+ // for user option array will start from 1 as "No action Required" is "NA for user
+
+
+	//out.println(optArr); 
+	for(int kk=0;kk<optArr.length;kk++){ 
+		
+		if(feedbackopt.equalsIgnoreCase(optArr[kk]))
+					
+			selected	 = "selected";
+		else
+			selected	 = "";
+
+%>
+	<option value="<%=optArr[kk]%>" <%=selected%>><%=optValArr[kk]%></option>
+
+<%
+
+	}//end of for
+
+    }
+    }else{
+    
+    String optArr[]={"Not Acted","Yes","No"};
+    String optValArr[]={"Not Acted","Yes","No"};
+    String disabled ="";
+    String selected ="";
+
+%>
+<select name="<%=feedBackOptions%>" class="normal" >
+<%
+
+ // for user option array will start from 1 as "No action Required" is "NA for user
+
+
+	//out.println(optArr); 
+	for(int kk=0;kk<optArr.length;kk++){ 
+		
+		if(feedbackopt.equalsIgnoreCase(optArr[kk]))
+					
+			selected	 = "selected";
+		else
+			selected	 = "";
+
+%>
+	<option value="<%=optArr[kk]%>" <%=selected%>><%=optValArr[kk]%></option>
+
+<%
+
+	}//end of for
+
+    }
+%>

@@ -1,0 +1,151 @@
+<style type="text/css">
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #333;
+	font-weight: bold;
+}
+body {
+	background-color: #CCC;
+}
+</style>
+<script Language="JavaScript" src="../jscripts/requestCardsPreview.js"></script>
+<%
+String compCode = (String)request.getParameter("compCode");
+String addressLine1 = (String)request.getParameter("addressLine1");
+String addressLine2 = (String)request.getParameter("addressLine2");
+String directPhoneNo = (String)request.getParameter("directPhoneNo");
+String userBoardNumber = (String)request.getParameter("userBoardNumber");
+String extensionNumber = (String)request.getParameter("extensionNumber");
+String fax = (String)request.getParameter("fax");
+String website = (String)request.getParameter("website");
+%>
+
+<body>
+<form name="frmBackDesign" method="post">
+
+<table width="800" bgcolor="#cccccc" border="0" cellspacing="5" cellpadding="5">
+<% 
+
+if(compCode.equals("1029")){
+%>
+<tr>
+    <td width="394"><img src="../images/Back-4.jpg" width="394" height="238" /></td>
+</tr>
+<tr>
+	<td><label>
+      Design 1
+    </label></td>
+ </tr>
+<%
+}else if (compCode.equals("1028")){%>
+<tr>
+    <td width="394"><%@ include file="TCLL_back.jsp"%></td>
+</tr>
+<tr>
+	<td><label>
+      Design 1
+    </label></td>
+ </tr>
+<%
+}else if (compCode.equals("1025")){%>
+<tr>
+    <td width="394"><img src="../images/Back-5.jpg" width="394" height="238" /></td>
+</tr>
+<tr>
+	<td><label>
+      Design 1
+    </label></td>
+ </tr>
+<%
+}else if (compCode.equals("1031")){%>
+<tr>
+    <td width="394"><img src="../images/Back-6.jpg" width="394" height="238" /></td>
+</tr>
+<%
+}else if (compCode.equals("1007")){%>
+<tr>
+    <td width="394"><img src="../images/wwmback.jpg" width="394" height="238" /></td>
+</tr>
+<tr>
+	<td><label>
+      Design 1
+    </label></td>
+ </tr>
+ <%
+}else if (compCode.equals("1049")){%>
+<tr>
+    <td width="394"><img src="../images/MX-Back.jpg" width="394" height="237" ></td>
+</tr>
+<tr>
+	<td><label>
+      <input type="radio" name="radioGroup" value="MX-Back.jpg" id="radioMXPlayerBack" /> Design 1
+    </label></td>
+ </tr>
+<%
+}else if("1003".equals(compCode) || "1024".equals(compCode) || "1026".equals(compCode) || "1027".equals(compCode) || "1030".equals(compCode) || "1032".equals(compCode) || "1036".equals(compCode)|| "1040".equals(compCode) || "1041".equals(compCode) || "1043".equals(compCode) || "1039".equals(compCode) || "1048".equals(compCode) ){
+%>
+  <tr>
+    <!-- <td width="394"><img src="../images/NewBackSide-1.jpg" width="394" height="238" /></td>
+    <td width="406"><img src="../images/NewBackSide-2.jpg" width="394" height="238" /></td> -->
+	<td width="394"><img src="../images/NewBackside-Option1.jpg" width="394" height="251" /></td>
+    <td width="406"><img src="../images/NewBackside-Option2.jpg" width="394" height="251" /></td>
+  </tr>
+  <tr>
+    <td><label>
+      <input type="radio" name="radioGroup" value="NewBackside-Option1.jpg" id="radioGroup1" />
+      Design 1
+    </label></td>
+    <td><input type="radio" name="radioGroup" value="NewBackside-Option2.jpg" id="radioGroup2" /> 
+      Design 2
+</td>
+  </tr>
+  <!-- <tr>
+    <td><img src="../images/NewBackSide-3.jpg" width="394" height="238" /></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><label>
+      <input type="radio" name="radioGroup" value="NewBackSide-3.jpg" id="radioGroup3" />
+       Design 3</label></td>
+    <td></td>
+  </tr> -->
+  <!-- <tr>
+    <td><img src="../images/DigitalCells1.jpg" width="394" height="238" /></td>
+    <td><img src="../images/BlueStripes1.jpg" width="394" height="238" /></td>
+  </tr>
+  <tr>
+    <td><label>
+      <input type="radio" name="radioGroup" value="DigitalCells1.jpg" id="radioGroup5" />
+      Digital Cells</label></td>
+    <td><input type="radio" name="radioGroup" value="BlueStripes1.jpg" id="radioGroup6" />
+      Blue Stripes</td>
+  </tr>
+  <tr>
+    <td><img src="../images/DigitalWave1.jpg" width="394" height="238" /></td>
+    <td><img src="../images/DigitalPink1.jpg" width="394" height="238" /></td>
+  </tr>
+  <tr>
+    <td><label>
+      <input type="radio" name="radioGroup" value="DigitalWave1.jpg" id="radioGroup7" />
+      Digital Wave</label></td>
+    <td><input type="radio" name="radioGroup" value="DigitalPink1.jpg" id="radioGroup8" />
+      Digital Pink</td>
+  </tr>
+  <tr>
+    <td><img src="../images/DigitalBlue1.jpg" width="394" height="238" /></td>
+    <td><img src="../images/LeafGreens1.jpg" width="394" height="238" /></td>
+  </tr>
+  <tr>
+    <td><label>
+      <input type="radio" name="radioGroup" value="DigitalBlue1.jpg" id="radioGroup9" />
+      Digital Blue</label></td>
+    <td><input type="radio" name="radioGroup" value="LeafGreens1.jpg" id="radioGroup10" />
+      Leaf Greens</td>
+  </tr> -->
+ <%}%>
+  <input name="Submit" type="button"  value="submit" onclick = "submitTemplate(<%=compCode%>)"/>
+<!--   10 is the no of templates -->
+</table>
+</body>
+</html>

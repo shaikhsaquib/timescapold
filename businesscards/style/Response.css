@@ -1,0 +1,41 @@
+
+@font-face {
+	font-family: 'Franklin Gothic Medium Cond';
+	src: url('../font/FranklinGothic-MediumCond.eot');
+	src: url('../font/FranklinGothic-MediumCond.eot?#iefix') format('embedded-opentype'),
+		url('../font/FranklinGothic-MediumCond.woff2') format('woff2'),
+		url('../font/FranklinGothic-MediumCond.woff') format('woff'),
+		url('../font/FranklinGothic-MediumCond.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+}
+
+
+table{
+	font-family: 'Franklin Gothic Medium Cond' !important;
+}
+
+.BCCLaddress {
+    font-family: 'Franklin Gothic Medium Cond' !important;
+    font-size: 9pt;
+    font-style: normal;
+    text-decoration: none;
+    color: #999999 !important;
+	line-height: 1.3;
+	}
+
+	.BCCLname {
+	font-family: 'Franklin Gothic Medium Cond' !important;
+	font-size: 11pt;
+	font-style: normal;
+	font-weight: bold;
+    text-decoration: none;
+	color: #C00;
+}	
+.BCCLdesign {
+	font-family: 'Franklin Gothic Medium Cond' !important;
+	font-size: 8pt;
+	font-weight: normal;
+    text-decoration: none;
+	color: #999999;
+}	

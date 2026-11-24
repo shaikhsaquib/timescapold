@@ -1,0 +1,219 @@
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	height:100%;
+	width:100%;
+	font-family: Arial,Helvetica, sans-serif; 
+	font-size:12px; color:#000000; font-weight:normal; text-align:left;
+}
+
+.normal{
+
+}
+.pageContainer {
+	width:100%;
+	position:absolute;
+	background-color:#FFFFFF;
+}
+
+.dataContainer {	
+	width:100%;
+	padding-bottom:20px;
+	}
+
+.pageTitle {
+	width:100%;
+	height:40px;
+	background-color:#D0E0F0;
+	font-size:12px; font-weight:bold;
+	
+} 
+
+.pageTitle2 {
+padding:10px 10px 0px 10px;
+} 
+
+.comm {
+	padding-top:4px;
+	height:25px;
+	font-size:11px;font-weight:bold;
+	float:left;
+	position:relative;
+}
+
+.fields{
+	width:100%;
+	padding-left:10px;
+	padding-bottom:5px;
+	text-align:left;
+	float:left;
+}
+
+.dataFields {
+	width:34%;
+	padding-left:10px;
+	float:left;
+}
+
+.parameters {
+	width:15%;
+	text-align:right;
+	
+}
+
+.formFields {
+	
+	font-size:11px; color:#6F6F6F; font-weight:normal; text-align:left;
+}
+
+.bottom{
+	width:100%;
+	padding-top:20px;
+	text-align:center;
+	
+}
+
+.details{
+	width:18%;
+	text-align:left;
+	position:relative;
+}
+
+.detailsSmall{
+	width:16%;
+	font-weight:bold; text-align:left;
+	
+}
+
+
+.fieldsvalue {
+	width:100%;
+	padding-left:10px;
+	padding-bottom:5px;
+	position:absolute;	
+}
+
+.detailsSmall1{
+	height:30px;
+	width:16%;
+	font-weight:bold; text-align:left;
+	
+}
+
+.parameters1 {
+	border-bottom:1px solid #EFEFEF;
+	width:23%;
+	padding-top:4px;
+	text-align:left;
+	}
+
+.dataFields1 {
+	border-bottom:1px solid #EFEFEF;
+	width:5%;
+	text-align:center;
+	}
+
+.parameters2 {
+	border-bottom:1px solid #EFEFEF;
+	width:63%;
+	text-align:left;
+	}
+
+.parameters3 {
+	border-bottom:1px solid #EFEFEF;
+	width:63%;
+	font-weight:normal;
+	text-align:left;
+	}
+
+/* Preview */
+
+.previewParameters {
+	width:50%;
+	height:8px;
+	 
+	font-size:11px; color:#000000; font-weight:bold; text-align:right;
+	position:absolute;
+}
+
+.previewDataFields {
+	width:50%;
+	height:8px;
+	padding-left:10px;
+	
+	font-size:11px; color:#000000; font-weight:normal; text-align:left;
+	position:absolute;		
+}
+
+.previewDataContainer {
+	width:100%;
+	padding-top:2px;
+	padding-bottom:2px;
+position:absolute;	
+}
+
+/*--------------class for approveRequest----------------------------------------------------*/
+.approveRequest
+{
+	text-align:center; 
+	height:35px; 
+}
+/*--------------end of class for approveRequest----------------------------------------------------*/
+
+
+/*--------------class for Conveyance.jsp----------------------------------------------------*/
+
+.headerConveyance
+{
+	text-align:center; 
+	height:35px; 
+	background-color:#000000; 
+	color: #ffffff;
+}
+
+.headerConveyance
+{
+	text-align:center; 
+	height:35px; 
+	background-color:#000000; 
+	color: #ffffff;
+}
+
+.detailsConveyance
+{
+	width:18%;
+	text-align:center;
+	position:relative;
+}
+
+.detailsSmallConveyance{
+	width:16%;
+	font-weight:bold;
+	text-align:center;
+	
+}
+
+.detailsFull{
+	width:100%;
+	text-align:left;
+	position:relative;
+}
+
+.spacer{
+height:1px;
+width:100%;
+background-color:red;
+color:red;
+}
+
+.button {
+    border: 0px solid #006;
+    background: #0080C0;
+    height: 15px;
+    width: 53px;
+    display: block;
+    cursor: pointer;
+}
+/*---------------------------End of Classes used in Conveyance------*/

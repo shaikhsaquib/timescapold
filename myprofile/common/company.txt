@@ -1,0 +1,9 @@
+<span class = "bold">What do I mention in Company Name ?</span><br><br>
+
+<p align = "justify" style="line-height: 150%">
+<ol>
+<li>Enter the full name of the Company for which you were working e.g. Silverline Technologies.</li><br><br>
+<li>Please provide details in reverse chronological order (Last Company name should appear first).<br><br>
+<li>In case you have worked with any company within Timesgroup e.g. Times Internet Ltd, please mention details of you employment under Employment History - Previous Organizations.</li><br><br>
+</ol>
+</p>

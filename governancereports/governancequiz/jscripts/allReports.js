@@ -1,0 +1,247 @@
+function submit(questionSize,optionSize,opt)
+{
+		frmObj = document.governanceQuiz;
+		var url     = ''
+		var counter = 0; 
+		//alert(questionSize);
+	
+				
+	
+		for(var i=1;i<=questionSize;i++)
+		{ 
+			//temp1 = eval("frmObj.QField"+i).value;
+			//alert(temp1);
+			temp1 = eval("frmObj.optionsHash"+i).value;
+			//alert(temp1);
+			
+			for(var j=1;j<=temp1;j++)
+			{
+				
+				//alert("frmObj.option"+i+j);
+				if (eval('frmObj.option'+i+j).checked == true)
+				{   
+					counter++;   
+					url = url + '-' + eval('frmObj.option'+i+j).value;   
+					//alert(url);
+				}
+				else
+				{
+					//alert("test");
+				}
+				if (counter == 0)
+				{ 
+					url="";
+				} 
+			//return url;
+
+			}
+			//alert(url);
+			eval("frmObj.selectedOptionsHash"+i).value = url;
+			url='';
+			
+		}
+	
+		d = 2;
+		frmObj.action="governanceQuizSubmit.jsp";
+		frmObj.submit();
+}
+
+function clear()
+	{
+		frmObj = document.governanceQuiz;
+		frmObj.reset();
+	}
+
+function viewUserDetail(timescapeuserOId)
+	
+	{
+		//alert("timescapeuserOId--------- :"+timescapeuserOId);
+
+		frmObj = document.governanceQuiz;
+		//alert(username);
+		frmObj.action="../approver/governancequizReview.jsp?timescapeuserOId="+timescapeuserOId;
+		frmObj.submit();
+	}
+
+
+function viewStatusDetail()
+	
+	{
+		//alert("timescapeuserOId--------- :"+timescapeuserOId);
+
+		frmObj = document.governanceQuiz;
+		//alert(username);
+		frmObj.action="../approver/governancequizStatusReport.jsp";
+		frmObj.submit();
+	}
+
+function viewFailedUsers()
+	
+	{
+		
+		//alert("Hi");
+		window.navigate("../approver/governancequizFailStatusReport.jsp");
+		
+		
+	}
+
+function viewPassedUsers()
+	
+	{
+		//alert("Hi");
+		window.navigate("../approver/governancequizStatusReport.jsp");
+	}
+function viewQuestionDetail()
+	
+	{
+		//alert("timescapeuserOId--------- :"+timescapeuserOId);
+
+		frmObj = document.governanceQuiz;
+		//alert(username);
+		frmObj.action="../approver/governanceQuestionReports.jsp";
+		frmObj.submit();
+	}
+
+	
+function viewoverAllDetail()
+	
+	{
+		//alert("timescapeuserOId--------- :"+timescapeuserOId);
+
+		frmObj = document.governanceQuiz;
+		//alert(username);
+		frmObj.action="../approver/governanceReports.jsp";
+		frmObj.submit();
+	}
+
+
+function viewDetail(status,deptname)
+	
+	{
+		//alert('HI');
+		
+		//alert(status);	
+		//alert(deptname);
+		frmObj = document.governanceQuiz;
+		//alert(username);
+		frmObj.action="../reports/governancequizReviewDetails.jsp?status="+status+"&deptname="+deptname;
+		frmObj.submit();
+	}
+
+
+	
+
+function viewQuestionPerUser(userId,userName)
+	
+	{
+		frmObj = document.governanceQuiz;
+		frmObj.action="../reports/governancequizquestionPerUserReport.jsp?userId="+userId+"&userName="+userName;
+		frmObj.submit();
+	}
+
+
+function callValidate()
+{
+	var r=confirm("Assuming you have read all documents...");
+	if (r)
+	{
+		document.location.href = "governanceQuiz.jsp";
+	}
+}
+
+
+function downloadReportForReviewer(status,dept){
+	frmObj = document.governanceQuiz;
+	url = "../common/downloadReportsAll.jsp?status="+status+"&dept="+dept;
+	win = window.open(url,"Reports","top=20,left=0,width=470,height=600,status=no,toolbar=no,location=no,menubar=no,scrollbars=yes");
+}
+
+
+function downloadReportPerUser(userId){
+	frmObj = document.governanceQuiz;
+	url = "../common/downloadReportsPerUser.jsp?userId="+userId;
+	win = window.open(url,"Reports","top=20,left=0,width=470,height=600,status=no,toolbar=no,location=no,menubar=no,scrollbars=yes");
+}
+
+
+/*function showDepartments()
+{	
+	frmObj = document.governanceQuiz;
+	compCodeValues = frmObj.company2.value;
+	compCode = compCodeValues.substring(0,compCodeValues.indexOf("|"))
+	alert(compCode);
+				if((compCode == null) || (compCode == "" ))
+				{
+					compCode = 0;
+				}
+	 loadFragment('../reports/showDepartments.jsp?companyCode='+compCode,'compDepartment','Departments');
+}*/
+
+/*function loadFragment(fragment_url, element_id, for_what){
+    var xmlhttp = "";
+    if (window.XMLHttpRequest){
+        // code for Mozilla, etc.
+        xmlhttp=new XMLHttpRequest();
+    }else if (window.ActiveXObject){ 
+        // code for IE
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }else{
+        alert("Sorry Your Browser is not Supported");
+    }
+    
+    var element = document.getElementById(element_id);
+
+    var message = "";
+    var processingRequest='<table width="30%" height="100%"><tr><td align="center"><div align="center"><span class="loading normal"><img src="../images/loading.gif" valign="absmiddle">&nbsp;&nbsp;'+for_what+' Loading...</span></div></td></tr></table>';
+        
+    element.innerHTML = processingRequest;
+
+    try{
+        xmlhttp.open("GET", fragment_url);
+        xmlhttp.onreadystatechange = function(){
+
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+                var gotresponse	=	xmlhttp.responseText;
+                
+				message =  gotresponse;
+                   
+                element.innerHTML = message;
+             }
+		}
+		xmlhttp.send(null);
+	 }// display an error in case of failure
+	 catch (e){
+	  alert("Can't connect to server:\n" + e.toString());
+	 }
+}*/
+
+
+function changeDate1(){
+frmObj = document.governanceQuiz;
+selectedModule = frmObj.module.value;
+	compCodeValues = frmObj.company2.value;
+	compCode = compCodeValues.substring(0,compCodeValues.indexOf("|"))
+				if((compCode == null) || (compCode == "" ))
+				{
+					compCode = 0;
+				}
+				if((compCode == 0))
+				{
+					alert("Please select the Company first!!");
+				}
+	
+	department = frmObj.department.value;
+	dept = department.substring(department.indexOf("|")+1);
+	if((dept == 0) && (compCode != 0)) {
+		dept="all"
+	}
+
+	frmObj.action="../reports/governanceReports.jsp?compCode="+compCode+"&dept="+dept+"&selectedCompany="+compCode+"&selectedModule="+selectedModule;
+	frmObj.submit();
+}
+
+function returnMainPage(){
+frmObj = document.governanceQuiz;
+	frmObj.action="../../common/governanceAllReports.jsp";
+	frmObj.submit();
+}

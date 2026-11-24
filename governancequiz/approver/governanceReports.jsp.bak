@@ -1,0 +1,235 @@
+<%@ page language="java" %>
+<%@ include file="../includes/sessionCheck.jsp" %>
+<%//@ page errorPage="../common/errorPage.jsp"%>
+<%@ include file="../includes/empHeader.jsp" %>
+<%@ page import="java.util.Hashtable, java.util.ArrayList"%>
+<%@ page import="java.text.*, java.util.Calendar, java.util.GregorianCalendar, java.util.Date" %>
+<%@ page import="java.util.Hashtable, java.util.ArrayList"%>
+<%@ page import="com.bccl.util.HtmlUtil,com.bccl.util.Utility,com.bccl.util.SQLUtility"%>
+<jsp:useBean id="GovernancequizApproverWebController"class="com.bccl.governancequiz.web.controllerbeans.GovernancequizApproverWebController" />
+
+<%		
+		//out.println(timescapeUserOId);
+		String status="";
+        String deptnm = "";
+        String passStatus = "";
+        int passCount = 0;
+        int failCount = 0;
+        int attemptedCount = 0;
+        int naCount = 0;
+        int totalCount = 0;
+        //String department = "";
+        String department = deptName;
+
+        String[] tmpArr = new String[500];
+
+        //String compnyCode = "1004";
+        String compnyCode = companyCode;
+
+		ArrayList totalReport = new ArrayList();	
+
+        if((department == null) || (department == "" ))
+				{
+					department = "all";
+				}
+
+		
+		totalReport = GovernancequizApproverWebController.viewallStatus(compnyCode,department);
+
+       //System.out.println(totalReport.size());
+%>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script Language="JavaScript" src="../jscripts/governanceQuiz.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+<link href="../style/governance.css" rel="stylesheet" type="text/css" />
+<script Language="JavaScript" src="../jscripts/governanceQuiz.js"></script>
+<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+
+}
+-->
+</style>
+
+<link href="../style/governance.css" rel="stylesheet" type="text/css" />
+
+</head>
+<%
+//Set session attribute for the link of current page
+	session.setAttribute("currLink", "../approver/governanceReports.jsp");
+	session.setAttribute("topLink", "2");
+	
+	
+%>
+<body>
+<form name="governanceQuiz" method="post">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td bgcolor="#74cad3"><img src="../images/governanceCodeQuiz.jpg" width="615" height="64" /></td>
+  </tr>
+</table>
+<br>
+<%@ include file="../includes/governanceQuizMenu.jsp"%>
+<!-- <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+  <td width="100%" colspan="0" align="right" class="style1"><a href="#" onclick="downloadReportForReviewer(<%=compnyCode%>)" class="normal">Download All</a></td>
+  </tr>
+ </table> -->
+
+<table width="100%" border="0" cellpadding="0" cellspacing="1" bordercolor="#FFFFFF">
+	
+	<tr>
+
+	<td width="20%" height="26" align="center" valign="middle" bgcolor="#74CAD3" class="travelMenuBG"> Dept. Name</td>
+
+    <td width="20%" height="26" align="center" valign="middle" bgcolor="#74CAD3" class="travelMenuBG"> Total Count</td>
+
+    <td width="20%" height="26" align="center" valign="middle" bgcolor="#74CAD3" class="travelMenuBG"> Attempted Users Count</td>
+
+    <td width="20%" align="center" valign="middle" bgcolor="#74CAD3" class="travelMenuBG">Pass Count</td>
+
+    <td width="20%" align="center" valign="middle" bgcolor="#74CAD3" class="travelMenuBG">Fail Count</td> 
+   
+  </tr>
+  
+    </table>
+	<div style="height:275px; overflow:scroll">
+    <table width="100%" border="0" cellpadding="0" cellspacing="1" bordercolor="#FFFFFF">
+<%		
+        int counter = 0;
+        String[] deptArr = new String[50];
+        String[] totalArr = new String[50];
+        String[] attemptedArr = new String[50];
+        String[] passArr = new String[50];
+        String[] failArr = new String[50];
+
+			for(int j=0;j<totalReport.size();j++) 
+			{      
+                tmpArr = (String[])totalReport.get(j);
+                passStatus = tmpArr[1];
+                //System.out.println("====="+deptnm);
+                if(passStatus==null && !(deptnm.equals(tmpArr[0]))){      
+                    totalCount = Integer.parseInt(tmpArr[3]);
+                    attemptedCount = 0;
+                    passCount = 0;
+                    failCount = 0;                    
+                    counter += 1; 
+                    deptnm = tmpArr[0];
+                    deptArr[counter] = deptnm;
+                    totalArr[counter] = Integer.toString(totalCount);  
+                    attemptedArr[counter] = Integer.toString(attemptedCount);  
+                    passArr[counter] = Integer.toString(passCount);  
+                    failArr[counter] = Integer.toString(failCount);
+                }                
+                else if("F".equals(passStatus) && !(deptnm.equals(tmpArr[0]))){                   
+                    totalCount = Integer.parseInt(tmpArr[3]);
+                    attemptedCount =  Integer.parseInt(tmpArr[2]);
+                    passCount = 0;
+                    failCount =  Integer.parseInt(tmpArr[2]);
+                    counter += 1; 
+                    deptnm = tmpArr[0];
+                    deptArr[counter] = deptnm;
+                    totalArr[counter] = Integer.toString(totalCount);  
+                    attemptedArr[counter] = Integer.toString(attemptedCount);  
+                    passArr[counter] = Integer.toString(passCount);  
+                    failArr[counter] = Integer.toString(failCount);
+                }
+                else if("F".equals(passStatus) && (deptnm.equals(tmpArr[0]))){                      
+                    totalCount = totalCount + Integer.parseInt(tmpArr[3]);
+                    attemptedCount = attemptedCount +  Integer.parseInt(tmpArr[2]);
+                    failCount =  Integer.parseInt(tmpArr[2]);
+                    totalArr[counter] = Integer.toString(totalCount);  
+                    attemptedArr[counter] = Integer.toString(attemptedCount);  
+                    failArr[counter] = Integer.toString(failCount);
+                }
+               else if("P".equals(passStatus) && (deptnm.equals(tmpArr[0]))){                         
+                    totalCount = totalCount + Integer.parseInt(tmpArr[3]);
+                    attemptedCount = attemptedCount +  Integer.parseInt(tmpArr[2]);
+                    passCount =  Integer.parseInt(tmpArr[2]);
+                    totalArr[counter] = Integer.toString(totalCount);  
+                    attemptedArr[counter] = Integer.toString(attemptedCount);  
+                    passArr[counter] = Integer.toString(passCount);  
+                }
+                else if("P".equals(passStatus) && !(deptnm.equals(tmpArr[0]))){                         
+                    totalCount = Integer.parseInt(tmpArr[3]);
+                    attemptedCount =  Integer.parseInt(tmpArr[2]);
+                    passCount =  Integer.parseInt(tmpArr[2]);
+                    failCount = 0;
+                    counter += 1; 
+                    deptnm = tmpArr[0];
+                    deptArr[counter] = deptnm;
+                    totalArr[counter] = Integer.toString(totalCount);  
+                    attemptedArr[counter] = Integer.toString(attemptedCount);  
+                    passArr[counter] = Integer.toString(passCount);  
+                    failArr[counter] = Integer.toString(failCount);
+                }
+                else  if(passStatus==null && (deptnm.equals(tmpArr[0]))){      
+                    totalCount = totalCount + Integer.parseInt(tmpArr[3]);
+                    totalArr[counter] = Integer.toString(totalCount);  
+                }
+            }
+            for(int k=1;k<counter+1;k++) 
+			{
+                //System.out.println(deptArr[k]+","+totalArr[k]+","+attemptedArr[k]+","+passArr[k]+","+failArr[k]);
+                
+%>
+                 <tr>
+                    <td width="20%" height="26" align="left" valign="middle" bgcolor="#f6f6f6" class="style3"> <%=deptArr[k]%></td>
+                    <td width="20%" height="26" align="right" valign="middle" bgcolor="#f6f6f6" class="style3"><%=totalArr[k]%></td>
+                    <td width="21%" align="right" valign="middle" bgcolor="#f6f6f6" class="style3"> <%=attemptedArr[k]%></td>
+<%
+                if("0".equals(passArr[k])){
+                
+%>                
+                    <td width="20%" align="right" valign="middle" bgcolor="#f6f6f6" class="style3"><%=passArr[k]%></td>
+<%
+                }else if(!("0".equals(passArr[k]))){
+%>                
+                    <td width="20%" align="right" valign="middle" bgcolor="#f6f6f6" class="style3"><a href="javascript:viewDetail(1,'<%=deptArr[k]%>')"><font color = "grey"><%=passArr[k]%></a></td>
+<%
+                }
+                if("0".equals(failArr[k])){                
+%>                
+                    <td width="20%" align="right" valign="middle" bgcolor="#f6f6f6" class="style3"><%=failArr[k]%></td>
+<%
+                }else if(!("0".equals(failArr[k]))){
+%>                
+                    <td width="20%" align="right" valign="middle" bgcolor="#f6f6f6" class="style3"><a href="javascript:viewDetail(0,'<%=deptArr[k]%>')"><font color = "grey"><%=failArr[k]%></a></td>
+<%
+                }
+
+            }
+%>
+   
+<input type="hidden" name="timescapeId" value="<%=timescapeUserOId%>">
+
+</table>
+</div>
+
+<!-- <table width="100%" height="40" border="0" cellpadding="2" cellspacing="2">
+
+  <tr>
+
+    <td width="100%" height="17" colspan="4" align="center" valign="middle" bgcolor="#CBECEF" class="style4"><div align="center">&nbsp;
+      
+	<input type="submit" name="back" value="Back" onclick="javascript:history.back()"/>
+
+    &nbsp;</div></td>
+
+  </tr>
+
+</table> -->
+
+</form>
+
+<p>&nbsp;</p>
+
+</body>
+</html>

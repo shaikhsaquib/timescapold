@@ -1,0 +1,164 @@
+<html>
+<%@ page language="java" %>
+<%@ include file="../includes/sessionCheck.jsp" %>
+<%//@ page errorPage="../common/errorPage.jsp"%>
+<%@ include file="../includes/empHeader.jsp" %>
+
+<%@ page import="java.util.Hashtable, java.util.ArrayList"%>
+<%@ page import="java.text.*, java.util.Calendar, java.util.GregorianCalendar, java.util.Date" %>
+<%@ page import="java.util.Hashtable, java.util.ArrayList"%>
+<%@ page import="com.bccl.util.HtmlUtil,com.bccl.util.SQLUtility,com.bccl.util.SendMessage"%>
+<%@ page import="com.bccl.governancequiz.domain.GovernancequizUser"%>
+<%@ page import=" java.util.StringTokenizer"%>
+<jsp:useBean id="governancequizWebController" class="com.bccl.governancequiz.web.controllerbeans.GovernancequizWebController" /> 
+
+<head>
+
+</head>
+<script type="text/javascript">
+	//javascript:window.history.forward(1);
+	function noBack(){window.history.forward()}
+	noBack();
+	window.onload=noBack;
+	window.onpageshow=function(evt){if(evt.persisted)noBack()}
+	window.onunload=function(){void(0)}
+</script>
+<body>
+
+<%
+
+	//	out.println(request.getParameter("option11"));
+	///	out.println(request.getParameter("option21"));
+	//	out.println(request.getParameter("option31"));
+	boolean status=false;
+	boolean scoreStatus=false;
+	boolean userStatus=false;
+
+	Hashtable optionsHash = new Hashtable();
+	String temp = (String) request.getParameter("questionSize");
+	String timescapeuserOId =(String)request.getParameter("timescapeUserOId");
+	String emailId1 =(String)request.getParameter("emailId1");
+	String toDate = (String) request.getParameter("toDate");
+	String startDate = (String) request.getParameter("startDate");
+
+	ArrayList correctOptions = new ArrayList();
+
+    int questionSize = Integer.parseInt(temp);
+	
+	//out.println("questionSize"+questionSize);
+	int finalScore = 0;
+	String answers="";
+	
+	String ANS="";
+	String correctAns="";
+	
+	for(int k=1;k<=questionSize;k++)
+	{	
+		ANS="";
+	    correctAns="";
+		String questionID =(String) request.getParameter("questionID"+k);
+		//out.println(questionID);
+		answers = (String) request.getParameter("selectedOptionsHash"+k);	
+		//out.println("answers========"+answers);
+		optionsHash.put("question"+k,answers);
+		StringTokenizer st2 = new StringTokenizer(answers,"-");
+		//String pipe = "-";
+		String[] answers1 = new String[10];//answers.split(pipe);
+		int count=0;
+		while(st2.hasMoreElements()){
+    		answers1[count] = (String) st2.nextElement();
+			//out.println(answers1[count]);
+		
+			count++;
+			
+    	}
+	
+if(timescapeuserOId!=null && questionID!=null && answers1!=null && emailId1!=null)
+		{
+		status = governancequizWebController.insertFeedback(timescapeuserOId,questionID,answers1,emailId1);		
+		}
+		//get the correct options
+		correctOptions = governancequizWebController.correctAnswers(questionID);
+
+        System.out.println("correctOptions size=="+correctOptions.size());
+	
+		String[] correctOptionArr = (String[])correctOptions.get(0);
+		
+		for(int i=0;i<correctOptionArr[0].length();i++)
+		{
+			correctAns = correctAns+"-"+correctOptionArr[i];
+			
+		}
+        System.out.println("correctAns=="+correctAns);
+
+		ANS = ANS+answers;
+
+        System.out.println("ANS=="+ANS);
+		
+		//compare with correct options
+		if(correctAns.equals(ANS))
+			{
+				finalScore= finalScore+10;
+
+				System.out.println("%%%%"+finalScore);
+			}
+			else
+			{
+				System.out.println("no change");	
+
+			}
+	}
+
+	scoreStatus = governancequizWebController.insertScore(timescapeuserOId,finalScore,emailId1);
+	
+	String sDate = (String)session.getAttribute("startTime");  
+	String eDate = (String)session.getAttribute("endTime");
+
+	status = governancequizWebController.insertStartEndTime(timescapeuserOId,sDate,eDate);
+
+	userStatus = governancequizWebController.updateStatus(timescapeuserOId);
+
+	if(userStatus)
+	{
+        SendMessage postMan = new SendMessage( );
+
+			String fromAddr = "timescape.admin@timesgroup.com";
+			String toAddr = emailId1;
+			String content = "Governance Quiz Score.\n\n";
+				content = content + "Your Score is: "+finalScore+"\n\n";
+				content = content + "Regards,\n\n\n\n";
+				content = content + "TIMESCAPE Admin.";
+			String emailsubject = "Governance Quiz Score";
+			Hashtable mailer = new Hashtable();
+
+			mailer.put("fromAddr", fromAddr);
+			mailer.put("toAddr", toAddr);
+			mailer.put("subject", emailsubject);
+			mailer.put("content", content);
+            boolean mailSendStatus = false;
+			//mailSendStatus = postMan.sendPinMail(mailer);
+
+		if(finalScore==100)
+		{
+			response.sendRedirect("../requestor/certificatePage.jsp?toDate="+toDate+"&startDate="+startDate);
+		}
+		else {
+			//out.println("Final Score :  "+finalScore);
+				response.sendRedirect("../requestor/scorePage.jsp?score="+finalScore);
+		}
+	}
+	else
+	{
+		out.println
+			("<td clospan=\"100%\" class=\"normal\" align=\"center\">Sorry, <br> There was an error while submitting your feedback, Please Try again !!</td></tr><tr><td clospan=\"100%\" class=\"normal\" align=\"center\">Click <a href=\"#\" onclick=\"javascript:history.back();\">here</a> to return.</td>");
+
+	}
+%>
+
+<%
+		
+    
+%>
+
+</body>
+</html>

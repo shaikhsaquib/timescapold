@@ -1,0 +1,247 @@
+<%--
+ -- @(#)viewNomineeDetails.jsp	8/6/2002
+ --
+ -- Copyright 2002 BCCL. All Rights Reserved.
+ --
+ -- This software is the proprietary information of BCCL.
+ -- Use is subject to license terms.
+ --
+ --%>
+
+ <%--
+ -- Comments....
+ -- @author  Amey Divekar
+ -- @version 	1.00, April 29, 2007
+
+ -- Comments...
+ --		Included sendMail.jsp file to send an email to HR on alteration of nominee list.
+ -- @author		Manisha Wadhawane
+ -- @version 	2.00, May 07, 2008
+
+ -- Comments...
+ --		Added Medicalim policy for ZEN.
+ -- @author		Manisha Wadhawane
+ -- @version 	3.00, Sep 24, 2009
+ --%>
+
+<%@ page language="java" %>
+<%@ include file="../includes/sessionCheck.jsp" %>
+<%@ page import="java.util.Hashtable, java.util.HashMap, java.util.Vector,java.util.GregorianCalendar,java.util.Calendar, java.util.ArrayList, java.text.DateFormat, java.text.SimpleDateFormat" %>
+<%@page import="com.bccl.profile.web.util.Constants,com.bccl.util.Breadcrumbs,com.bccl.util.Breadcrumbs,com.bccl.util.HtmlUtil,com.bccl.util.Utility"%>
+
+<jsp:useBean id="profileController" class="com.bccl.profile.web.controllerbeans.ProfileController" scope="session"/>
+<jsp:useBean id="mediclaimController" class="com.bccl.profile.web.controllerbeans.MediclaimController" scope="session"/>
+
+<%!
+String monthArr[] = {"JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"};
+Hashtable gender = new Hashtable();
+Hashtable maritalStatus = new Hashtable();
+Hashtable isHandicapped = new Hashtable();
+%>
+
+
+<%
+String selfGender= "M";
+String parentGender="";
+String lastUpdated="";
+gender.put("M","Male");
+gender.put("F","Female");
+gender.put("O","Organization");
+//out.println(parentGender);
+maritalStatus.put("S","Single");
+maritalStatus.put("U","Single");
+maritalStatus.put("M","Married");
+maritalStatus.put("."," ");
+maritalStatus.put(""," ");
+
+isHandicapped.put("N"," ");
+
+
+String tempStr = "";
+session.setAttribute("currLink","personal information");
+session.setAttribute("leftLink","0");
+String breadcrumbs = Breadcrumbs.get("myProfileBreadcrumbs","myProfile.breadcrumb");
+session.setAttribute("leftLink","3");
+String displayMessage = "";
+%>
+
+
+<html>
+	<head>
+        <title>B2E</title>
+		<link rel="stylesheet" href="/timescape/sapep/myprofile/style/global.css">
+	    <meta http-equiv="no-cache">
+		<meta http-equiv="expires" content="0">
+
+        <script Language="JavaScript" src="../jscripts/util.js"></script>
+		<script Language="JavaScript">
+			function openMediclaimNominee()
+			{
+				window.open('../utils/mediclaimInsurance.html','MediclaimNominee','resizable=yes,scrollbars=yes,toolbars=no,width=900,height=550,top=100,left=50');
+				//window.focus();
+				return;
+			}
+			function openTimlMediclaimNominee()
+			{
+				window.open('../utils/mediclaimInsuranceTiml.html','MediclaimNominee','resizable=yes,scrollbars=yes,toolbars=no,width=900,height=550,top=100,left=50');
+				//window.focus();
+				return;
+			}
+        </script>
+	</head>
+	<%@ include file="../includes/empHeader.jsp" %>
+    <% long timescapeUserOID = Long.parseLong(profile.get("timescapeUserOID") + "");
+        String userTitle=(String)profile.get("title");
+        userTitle=userTitle.trim();
+        String company=(String)profile.get("companyCode");
+        String deptCode=(String)profile.get("deptGroup");
+    %>
+	<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" 
+    <%
+        if (company.equals("1000")) {
+    %>
+          onload="javascript:void openMediclaimNominee()"
+    <%
+        }
+		else if (company.equals("1017")) {
+    %>
+          onload="javascript:void openTimlMediclaimNominee()"
+    <%
+        }
+    %>
+    >
+
+
+
+<table border = "0" cellspacing="0" cellpadding="0" width = "100%">
+	<tr>
+		<td valign = "top">
+			<%@ include file="../includes/profileTabs.jsp" %>
+			<%@ include file="../includes/mediclaimDetails.jsp"%>		
+		</td>
+	</tr>
+</table>
+
+<%
+
+//	out.println(daysCompleted);
+//out.println("User Title- -"+userTitle+"-");
+	
+	
+	if( (company.equals("1000") && deptCode.equalsIgnoreCase("ZOOM")) || (company.equals("1000") && deptCode.equalsIgnoreCase("TJ"))){	
+				
+		displayMessage = "This Medical Insurance Scheme is available for BCCL Employees only.";
+
+	//}else if(company.equals("01") && (daysCompleted+1) < 365){
+		
+	//	displayMessage = "Please note that you are eligible to nominate your dependant family members <br> only if you have completed one year service.";
+
+//	}else if(!(company.equals("01")||company.equals("27")||company.equals("20")||timescapeUserOID==20661)) {
+		
+//		displayMessage = "This Medical Insurance Scheme is available for BCCL, TIL & TGBCL Employees only.";
+
+	}else if(!(company.equals("1000")||company.equals("1005")||company.equals("1003")||company.equals("1006")||company.equals("1004")||company.equals("1002")||company.equals("1017"))) {
+		
+		displayMessage = "This Medical Insurance Scheme is available for BCCL, TIL, TGBCL, TBSL, ZEN, BETL & TIML Employees only.";
+
+	}else{
+		
+		displayMessage = "";
+
+	}
+
+    
+//	if(daysCompleted+1 >= 365 && company.equals("01") && displayMessage.equals(""))
+	if((company.equals("1000")||company.equals("1005")||company.equals("1003")||company.equals("1006")|| company.equals("1004")||company.equals("1002")||company.equals("1017")) && displayMessage.equals(""))
+	{
+		//out.println(daysCompleted);
+%>
+
+<%
+
+			
+			GregorianCalendar today =  new GregorianCalendar( );
+		
+			String curDay=today.get(Calendar.DATE)+"";
+			String curMonth=(today.get(Calendar.MONTH)+1)+"";
+			String curYear=today.get(Calendar.YEAR)+"";
+
+			
+			int nomineeCount=0;
+			int spouseCount=0;
+			int parentCount=0;
+			int inlawCount=0;
+			int childrenCount=0;
+			
+
+     		ArrayList nomineeDetails = null;
+			nomineeDetails = mediclaimController.getNominees(timescapeUserOID);
+
+			nomineeCount=nomineeDetails.size();
+	
+			int iCompany = Integer.parseInt(company);
+            //out.println("nomineeCount "+nomineeCount);
+			switch(iCompany){
+			case 1000:
+%>
+					<%@ include file="bcclPolicy.jsp"%>			
+<%			
+			break;
+			case 1003:
+%>
+					<%@ include file="tilPolicy.jsp"%>
+<%		
+			break;
+			case 1005:
+%>
+					<%@ include file="tgbclPolicy.jsp"%>
+<%		
+			break;
+			case 1006:
+%>
+					<%@ include file="zenPolicy.jsp"%>
+<%		
+			break;
+			case 1004:
+%>
+					<%@ include file="tbslPolicy.jsp"%>
+<%		
+			break;
+			case 1002:
+%>
+					<%@ include file="betlPolicy.jsp"%>
+<%		
+			break;
+			case 1017:
+%>					
+					<%@ include file="timlPolicy.jsp"%>			
+<%		
+			break;
+			
+			
+			default:
+			break;
+			}//switch		
+	} // if -ends
+%>
+		  <tr>
+			 <td colspan = "100%" height = "30" class="rednormal" align = "center">
+				&nbsp;
+			 </td>
+		  </tr>
+
+		
+
+		  <tr>
+			 <td colspan = "100%" align = "center" class="rednormal">
+				<div align="center" class="rednormal"><%=displayMessage%></div>			 
+			</td>
+		  </tr>
+
+			<input type="hidden" name="selfGender" value="<%=selfGender%>">
+			<input type="hidden" name="parentGender" value="<%=parentGender%>">
+			<input type="hidden" name="lastUpdated" value="<%=lastUpdated%>">
+</form>
+</table>
+</body>
+</html>

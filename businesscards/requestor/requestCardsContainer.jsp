@@ -1,0 +1,292 @@
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+		<input type = "hidden" name = "compCode" value = "<%= companyCode %>">
+
+	<tr>
+	   <td class = "bold" height="50" valign="top">
+			&nbsp;Note<br>
+			&nbsp;-&nbsp;All fields marked with <img src="../images/tickmark.gif" width="13" height="13"/> are mandatory but editable.<br>
+			&nbsp;-&nbsp;All fields marked with a grey background are non-editable.<br>
+			&nbsp;-&nbsp;Please view the demo card before submitting your details.<br><br>
+<%
+	if(companyCode.equals("1000"))
+	{	
+%>
+			<!-- &nbsp;-&nbsp;<font color="#127da9">User is requested to follow-up with relevant teams after <br>&nbsp;&nbsp;&nbsp;checking the status of their request.<br> -->
+			<!-- &nbsp;-&nbsp;First escalation level at B&C is local B&C representative who <br>&nbsp;&nbsp;&nbsp;in turn will liaise with B&C, Mumbai.<br> -->
+			&nbsp;-&nbsp;<font color="#ff0000">Kindly give 05 days time for delivery of cards, after which you may query with the printer Mr. Parag - 9920177667 for cards status</font>
+<%	
+	}else{
+%>
+		</td>
+
+		<%
+	}
+	if(companyCode.equals("1000")){
+%>
+
+		<td align="left">
+			<img src="../images/img11.jpg" border="0">
+		</td>
+		<%
+}else if(companyCode.equals("1003")){
+%>
+		<td align="left">
+			<img src="../images/TIL.jpg" border="0">
+		</td>
+<%
+		}else if(companyCode.equals("1026")){
+%>
+		<td align="left">
+			<img src="../images/Co_Gaana.jpg" border="0">
+		</td>
+<%
+		}else if(companyCode.equals("1024")){
+%>
+		<td align="left">
+			<img src="../images/Co_A2Z_Shopping.jpg" border="0">
+		</td>
+<%
+		}else if(companyCode.equals("1025")){
+%>
+		<td align="left">
+			<img src="../images/Co_timesMobile.jpg" border="0">
+		</td>
+<%
+		}else if(companyCode.equals("1027")){
+%>
+		<td align="left">
+			<img src="../images/Co_Bennett_BoxTV.jpg" border="0">
+		</td>
+<%
+		}
+%>
+
+
+
+	</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+	<tr>
+		<td colspan = "3" align = "center">&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td bgcolor="#E6E6E6" colspan="100%" class="bold" height="20" align="left">
+			&nbsp;User Details
+		</td>
+	</tr>
+
+	<tr>
+		<td class = "bold" align = "right" height = "30" width = "30%">First Name</td>
+		<td class = "bold" align = "center" height = "30" width = "2%">:</td>
+		<td class = "small" align = "left" height = "30" width = "68%"><input type = "text" name = "firstName" value = "<%=firstName%>" class="small" size = "50"><img src="../images/tickmark.gif" width="13" height="13"/></td>
+	</tr>
+
+	<tr>
+		<td class = "bold" align = "right" height = "30" width = "30%">Last Name</td>
+		<td class = "bold" align = "center" height = "30" width = "2%">:</td>
+		<td class = "small" align = "left" height = "30" width = "68%"><input type = "text" name = "lastName" value = "<%=surName%>" class="small" size = "50"><img src="../images/tickmark.gif" width="13" height="13"/></td>
+	</tr>
+
+	<tr>
+		<td class = "bold" align = "right" height = "30" width = "30%">Designation</td>
+		<td class = "bold" align = "center" height = "30" width = "2%">:</td>
+		<td class = "small" align = "left" height = "30" width = "68%"><input type = "text" name = "designation" value = "<%=designation%>" class="small" size = "50"><img src="../images/tickmark.gif" width="13" height="13"/></td>
+	</tr>
+
+	<tr>
+		<td class = "bold" align = "right" height = "30" width = "30%">Department</td>
+		<td class = "bold" align = "center" height = "30" width = "2%">:</td>
+		<td class = "small" align = "left" height = "30" width = "68%"><input type = "text" name = "department" value = "<%=deptName%>" class = "input" size = "50" READONLY></td>
+	</tr>
+<% 
+	if(companyCode.equals("1000")){
+%>
+
+	<tr>
+		<td class = "bold" align = "right" height = "30" width = "30%">Activity</td>
+		<td class = "bold" align = "center" height = "30" width = "2%">:</td>
+		<td class = "small" align = "left" height = "30" width = "68%"><input type = "text" name = "activityName" value = "<%=activityName%>" class = "input" size = "50" READONLY></td>
+	</tr>
+<%
+	}else{
+%>
+		<input type = "hidden" name = "activityName" value = "<%=activityName%>" class = "input" size = "50">
+<%
+	}
+	if ((companyCode.equals("1000"))|| (companyCode.equals("1007")))
+		{
+%>
+
+
+	<tr>
+		<td class = "bold" align = "right" height = "30" width = "30%">Work Area</td>
+		<td class = "bold" align = "center" height = "30" width = "2%">:</td>
+		<td class = "small" align = "left" height = "30" width = "68%"><input type = "text" name = "workArea" value ="" class="small" size = "50"><img src="../images/tickmark.gif" width="13" height="13"/>(e.g. Information Technology)</td>
+	</tr>
+<%
+	}else{
+%>
+		<input type = "hidden" name = "workArea" value = "NA" class = "input" size = "50">
+<%
+	}
+%>
+
+	<tr>
+		<td class = "bold" align = "right" height = "30" width = "30%">Email Id</td>
+		<td class = "bold" align = "center" height = "30" width = "2%">:</td>
+		<td class = "small" align = "left" height = "30" width = "68%"><input type = "text" name = "emailId" value = "<%=emailId%>" class = "input" size = "50" READONLY maxlength="255"></td>
+	</tr>
+
+	<tr>
+		<td class = "bold" align = "right" height = "30" width = "30%">Website URL</td>
+		<td class = "bold" align = "center" height = "30" width = "2%">:</td>
+		<td class = "small" align = "left" height = "30" width = "68%"><input type = "text" name = "website" class = "small" size = "50" maxlength="255">&nbsp;(e.g. http://timescape.timesgroup.com)</td>
+	</tr>
+
+	<tr>
+		<td class = "bold" align = "right" height = "30" width = "30%">Company Name</td>
+		<td class = "bold" align = "center" height = "30" width = "2%">:</td>
+		<td class = "small" align = "left" height = "30" width = "68%">
+			<input type = "text" name = "compName" value = "<%=companyName%>" class = "input" size = "50" READONLY maxlength="255">
+			<input type = "hidden" name = "compCode" value = "<%=companyCode%>">
+		</td>
+	</tr>
+
+	<tr>
+		<td class = "bold" align = "right" height = "30" width = "30%">Location</td>
+		<td class = "bold" align = "center" height = "30" width = "2%">:</td>
+		<td class = "small" align = "left" height = "30" width = "68%">
+            <select name = "branchCode" class="small" onchange="showAddress()">
+<%
+			for (int ii=0; ii<locationDetails.size(); ii++){
+				
+				String location[] = (String[])locationDetails.get(ii);
+				if (location[2].equals(locationCode)){
+%>
+					<option value = "<%=location[1]%>|<%=location[2]%>" SELECTED><%=location[3]%></option>
+<%
+				}else{
+%>
+					<option value = "<%=location[1]%>|<%=location[2]%>"><%=location[3]%></option>
+<%
+				}
+	}
+%>
+				</select><img src="../images/tickmark.gif" width="13" height="13"/>
+           </td>
+	</tr>
+
+	<tr>
+		<td class = "bold" align = "right" height = "30" width = "30%">Address</td>
+		<td class = "bold" align = "center" height = "30" width = "2%">:</td>
+		<td class = "small" align = "left" height = "30" width = "68%">
+			<div id="addressArea" style="height:30px;padding:1px;padding-top:1px;text-align:left;"></div>
+		</td>
+	</tr>
+
+	<tr>
+		<td colspan = "3" align = "center">&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td bgcolor="#E6E6E6" colspan="100%" class="bold" height="20" align="left">
+			&nbsp;User Contact Details
+		</td>
+	</tr>
+
+	<tr>
+	   <td colspan = "3" class = "small" height="50">
+			<span class="bold">&nbsp;Note : Click on "Update contact" to update your contact details.<br></span>
+		</td>
+	</tr>
+
+	<tr>
+		<td class = "bold" align = "right" height = "30" width = "30%">Direct Number</td>
+		<td class = "bold" align = "center" height = "30" width = "2%">:</td>
+		<td class = "small" align = "left" height = "30" width = "68%"><input type = "text" name = "directPhoneNo" value = "<%=directPhoneNo%>" class = "input" size = "50" READONLY maxlength="255"></td>
+	</tr>
+
+	<tr>
+		<td class = "bold" align = "right" height = "30" width = "30%">Board Number</td>
+		<td class = "bold" align = "center" height = "30" width = "2%">:</td>
+		<td class = "small" align = "left" height = "30" width = "68%"><input type = "text" name = "userBoardNumber" value = "<%=userBoardNumber%>" class = "input" size = "50" READONLY maxlength="255"></td>
+	</tr>
+
+	<tr>
+		<td class = "bold" align = "right" height = "30" width = "30%">Extension Number</td>
+		<td class = "bold" align = "center" height = "30" width = "2%">:</td>
+		<td class = "small" align = "left" height = "30" width = "68%"><input type = "text" name = "extensionNumber" value = "<%=extensionNumber%>" class = "input" size = "50" READONLY maxlength="255"></td>
+	</tr>
+
+<%	if (!(companyCode.equals("1000"))){
+	%>
+	 <tr>
+		<td class = "bold" align = "right" height = "30" width = "30%">Fax Number</td>
+		<td class = "bold" align = "center" height = "30" width = "2%">:</td>
+		<!--<td class = "small" align = "left" height = "30" width = "68%"><input type = "text" name = "fax" value = "<%//=fax%>"  class="small" size = "50"  maxlength="255"></td>-->
+		<td class = "small" align = "left" height = "30" width = "68%"><input type = "text" name = "fax" value = "<%//=fax%>"  class="small" size = "50"  maxlength="255"></td>
+	</tr>
+ <%}%>
+	<tr>
+		<td class = "bold" align = "right" height = "30" width = "30%">Mobile Number</td>
+		<td class = "bold" align = "center" height = "30" width = "2%">:</td>
+		<td class = "small" align = "left" height = "30" width = "68%"><input type = "text" name = "mobileNumber" value = "<%=mobileNumber%>" class = "input" size = "50" READONLY maxlength="255"><a href="#" onclick="javascript:window.open('../utils/updateContact.jsp','_blank','top=100, left=100, height=500, width=500, status=no, menubar=no, resizable=no, scrollbars=yes, toolbar=no, location=no, directories=no');" class = "underline">update contact</a></td>
+	</tr>
+
+	<tr>
+		<td colspan = "3" align = "center">&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td bgcolor="#E6E6E6" colspan="100%" class="bold" height="20" align="left">
+			&nbsp;Other Details
+		</td>
+	</tr>
+	<tr>
+		<td colspan="100%" height="5px"><block type="spacer" height="5px"></td>
+	</tr>
+
+	<tr>
+		<td class = "bold" align = "right" height = "30" width = "30%">Quantity</td>
+		<td class = "bold" align = "center" height = "30" width = "2%">:</td>
+		<td class = "small" align = "left" height = "30" width = "68%">
+			<select name  = "quantity" class="small">
+				<%@include file="../includes/cardQuantity.jsp" %>
+			</select><img src="../images/tickmark.gif" width="13" height="13"/>
+           </td>
+	</tr>
+
+	<tr>
+		<td class = "bold" align = "right" height = "30" width = "30%">Approver Email ID</td>
+		<td class = "bold" align = "center" height = "30" width = "2%">:</td>
+		<td class = "small" align = "left" height = "30" width = "68%">
+			<select name="approverEmailId" class="small">
+				<option value = "0" SELECTED>Select Approver</option>
+<%
+				for(int ii=0; ii < approverList.size( ); ii++){
+
+					String approver[] = (String[]) approverList.get(ii);
+%>
+					<option value = "<%=approver[0]%>"><%=approver[0]%></option>
+<%
+				}
+%>
+			</select><img src="../images/tickmark.gif" width="13" height="13"/>
+		</td>
+	</tr>
+
+	<tr>
+		<td colspan = "3" align = "center">&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td colspan = "3" align = "center">
+			<a href = "javascript:validate('<%= companyCode %>')" class = "small"><img src = "../images/but_next.jpg" border = "0"></a>&nbsp;&nbsp;
+			<a href = "javascript:clear()" class = "small"><img src = "../images/but_reset.gif" border = "0"></a>
+		</td>
+	</tr>
+
+
+</table>

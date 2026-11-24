@@ -1,0 +1,167 @@
+function validate(size){
+
+   var i = 0;
+   
+
+   frmObj = document.frmSaveChklist;
+	while (i < size )
+		{ 
+		temp = eval("frmObj.feedBackOptions"+i).value;
+		temp1 = eval("frmObj.remarks"+i).value;
+		//temp2 = eval("frmObj.isAttach"+i).value;
+		//alert(temp2);
+		
+			i++;	
+		}
+		frmObj.action="../requestor/governanceSubmit.jsp?action=Save";
+		frmObj.submit();
+}
+
+function validateAppr(size){
+
+   var i = 0;
+   alert(size);
+
+   frmObj = document.frmSaveChklist;
+	while (i < size )
+		{ 
+		temp = eval("frmObj.feedBackOptions"+i).value;
+		//temp1 = eval("frmObj.remarks"+i).value;
+		//temp2 = eval("frmObj.isAttach"+i).value;
+		//alert(temp2);
+		
+			i++;	
+		}
+		frmObj.action="../approver/governanceApproverSubmit.jsp?action=Save";
+		frmObj.submit();
+}
+
+
+//?action"+Save
+
+function signoff(size){
+
+   var i = 0;
+   var j = 0;
+
+   frmObj = document.frmSaveChklist;
+		//alert(i);
+		//alert(size);
+	while (i < size )
+		{ 
+		temp = eval("frmObj.feedBackOptions"+i).value;
+		temp1 = eval("frmObj.remarks"+i).value;
+		
+		if (temp == 'Not Rated')
+		{  
+			alert("Please Enter Feedback!!")
+			eval("frmObj.feedBackOptions"+i).focus();
+			return;
+		}
+		
+		alert(temp);
+		for (i=0;i<temp.length;j++)
+		{
+			alert(temp.length);
+			//alert(i);
+			//alert(temp);
+			//alert("hi");
+			
+		}				
+		
+			i++;	
+		}
+		//frmObj.action="../requestor/governanceSubmit.jsp?action=SignOff";
+		//frmObj.submit();
+	}
+	
+
+
+	function signoffAppr(size){
+
+   var i = 0;
+  // alert(size);
+   frmObj = document.frmSaveChklist;
+		//alert(i);
+	while (i < size )
+		{ 
+		temp = eval("frmObj.feedBackOptions"+i).value;
+		temp2 = eval("frmObj.overriddenRemarks"+i).value;
+		
+		//alert(temp2);
+		if(eval("frmObj.overriddenRating"+i).checked && (temp2 == 'NA' || temp2 == '' )){
+			temp1 = eval("frmObj.overriddenRating"+i).value;
+			alert("Please Enter overridden remarks!!")
+			eval("frmObj.overriddenRemarks"+i).focus();
+			return;
+			
+			//alert(temp1);
+		}
+
+
+		temp3 = eval("frmObj.feedBackOptions"+i).value;
+     	temp4 = eval("frmObj.remark"+i).value;
+		temp5 = eval("frmObj.noncomplianceText"+i).value;
+		alert(temp5);
+		//alert(temp3);
+
+		if(temp3 == temp5 && (temp4 == 'NA' || temp4 == '')){
+
+			alert("Please Enter Remarks!!")
+			eval("frmObj.remark"+i).focus();
+			return;
+
+		}
+			
+
+		
+		if (temp == 'NOT RATED')
+		{  
+			alert("Please Enter Feedback!!")
+			eval("frmObj.feedBackOptions"+i).focus();
+			return;
+		}
+				
+		
+			i++;	
+		}
+		frmObj.action="../approver/governanceApproverSubmit.jsp?action=SignOff";
+		frmObj.submit();
+	}
+	
+
+function viewfeedback(timescapeuserOId)
+	
+	{
+		//alert("timescapeuserOId--------- :"+timescapeuserOId);
+		frmObj = document.frmSaveChklist;
+
+		frmObj.action="../approver/governanceReview.jsp?timescapeuserOId="+timescapeuserOId;
+		frmObj.submit();
+	}
+	
+
+	
+	function submitFeedback()
+	
+	{
+		//alert("timescapeuserOId--------- :");
+		 frmObj = document.frmSaveChklist;
+		 approverRemarks = frmObj.approverRemarks.value;
+		 //alert(approverRemarks);
+		if(approverRemarks == '	') { 
+			
+			alert("Please enter your remarks");  
+			frmObj.approverRemarks.focus();
+			return;
+		} 
+		
+		
+		frmObj.action="../approver/userDetailsSubmit.jsp";
+			frmObj.submit();
+		
+	}
+
+
+
+

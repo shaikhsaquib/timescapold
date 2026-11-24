@@ -1,0 +1,162 @@
+<%@ page language="java" %>
+<%
+response.setHeader("Cache-Control","no-cache"); //HTTP 1.1
+response.setHeader("Pragma","no-cache"); //HTTP 1.0
+response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
+%>
+<%@ page errorPage="../common/errorPage.jsp"%>
+<%@ include file="../includes/sessionCheck.jsp" %>
+<%@ include file="../includes/empHeader.jsp" %>
+<%@ page import="java.util.Hashtable, java.util.ArrayList,java.util.Date"%>
+<%@ page import="com.bccl.util.HtmlUtil,com.bccl.util.Utility"%>
+<jsp:useBean id="policyController" class="com.bccl.policycompliance.web.controllerbeans.PolicyWebController" /> 
+
+
+<%
+	
+	Hashtable dailyFeedback = new Hashtable();
+
+	String questSize = (String)request.getParameter("questSize");
+	String policyTxnId ="";
+	String policyId ="";
+	String policyFeedbackId ="";
+	String userFeedback ="";
+	String remark ="";
+	String apprOId ="";
+	String apprFdbk ="";
+	String apprRmrks ="";
+	String status ="";
+	String createdBy =Long.toString(timescapeUserOId);
+	String modifiedBy =Long.toString(timescapeUserOId);
+    String userAttachmentName ="";
+	String approverAttachmentName ="";
+%>
+
+<%
+	for(int ii=0;ii<Integer.parseInt(questSize);ii++){
+	
+	policyFeedbackId = (String)request.getParameter("policyFeedbackId"+ii);
+	policyTxnId = (String)request.getParameter("policyTxnId"+ii);
+	policyId = (String)request.getParameter("policyId"+ii);
+	userFeedback = (String)request.getParameter("feedBackOption"+ii);
+	remark = (String)request.getParameter("remark"+ii);
+    remark = Utility.replaceQuoteOracle(remark);
+	apprOId = (String)request.getParameter("apprOId"+ii);
+	apprFdbk = (String)request.getParameter("apprFdbk"+ii);
+	apprRmrks = (String)request.getParameter("apprRmrks"+ii);
+    apprRmrks = Utility.replaceQuoteOracle(apprRmrks);
+	status = (String)request.getParameter("status"+ii);
+	userAttachmentName = (String)request.getParameter("attachmentName"+ii);
+    userAttachmentName = Utility.replaceQuoteOracle(userAttachmentName);
+	approverAttachmentName = (String)request.getParameter("approverAttachmentName"+ii);
+    approverAttachmentName = Utility.replaceQuoteOracle(approverAttachmentName);
+
+	//out.println(attachmentName);
+	if("".equals(remark))
+		remark="-";
+
+	if(apprFdbk==null|| "".equals(apprFdbk)||"-".equals(apprFdbk))
+		apprFdbk="Not Acted";
+
+	if(apprRmrks == null||"".equals(apprRmrks))
+		apprRmrks="-";
+//out.println(apprFdbk);
+
+	if(status==null||" ".equals(status))
+		status="L";
+
+	if(userAttachmentName==null||userAttachmentName.equals(""))
+		userAttachmentName="NA";
+
+	if(approverAttachmentName==null||approverAttachmentName.equals(""))
+		approverAttachmentName="NA";
+
+//System.out.println(attachmentName);
+
+//out.println(status);
+//out.println("<br>");
+
+	if(!"0".equals(apprOId))
+		modifiedBy = apprOId;
+	
+	String fdbkArr[] = {policyFeedbackId,policyId,userFeedback,remark,apprOId,apprFdbk,apprRmrks,createdBy,modifiedBy,status,userAttachmentName,approverAttachmentName};
+
+	//for(int kk=0;kk<fdbkArr.length;kk++)
+		//out.println(fdbkArr[kk]);
+	
+	dailyFeedback.put(ii+"",fdbkArr);
+		//out.println("<br>");
+	}//end of for
+
+//out.println(dailyFeedback);
+	boolean fdbkStatus= false;
+	
+	fdbkStatus = policyController.insertFeedback(dailyFeedback);
+
+	//out.println("fdbk insert Status :" + fdbkStatus);
+		
+%>
+<html>
+<head>
+<meta http-equiv="Cache-control" content="no-cache">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Daily Controls</title>
+	<link href="../style/compliance.css" rel="stylesheet" type="text/css" />
+	<script Language="JavaScript" src="../jscripts/daily.js"></script>
+	<script Language="JavaScript" src="../jscripts/common.js"></script>
+</title>
+</head>
+<body>
+<%@ include file="../includes/headerMenu.jsp" %>
+<form name="frmRequestSubmit" method = "post" action = "">
+<table  width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td colspan="3"><img height="2" src="../images/spacer.gif" width="1"></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+    <td width="34%" align="right" class="normal">&nbsp;</td>
+    <td width="1%" height="20" align="right" class="normal">&nbsp;</td>
+    <td width="65%"height="20" align="middle" class="normal">&nbsp;</td>
+</tr>
+<%
+	if(fdbkStatus){
+	
+%>
+	<tr>
+		<td class="normal" colspan="3" align="center">
+            Your controls has been submitted successfully
+		</td>
+	</tr>
+   <tr>
+       <td colspan="3" class="normal" height="30px">&nbsp;
+       </td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+       <td colspan="3" align="center" class="normal">&nbsp;
+            <!-- <a href="../requestor/daily.jsp"> --><!-- <input type="button" name="Return" value="Return" onclick="javascript:history.go(-1)"> --><input type="button" name="Return" value="Return" onclick="javascript:goBack('daily')"><!-- </a> -->
+       </td>
+    </tr>
+<%
+	}else{
+%>
+	<tr>
+		<td class="normal" colspan="3" align="center" height = "30" bgcolor="#EFEFEF">
+            Sorry there was an error while processing your request,<br>
+            kindly try after some time. 
+		</td>
+	</tr>
+     <tr>
+       <td colspan="3" class="normal" height="30px">&nbsp;
+       </td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+       <td colspan="3" align="center" class="normal">&nbsp;
+            <input type="button" name="Back" value="Back" onclick="javascript:history.back()">
+       </td>
+    </tr>
+<%
+	}
+%>
+</body>
+</form>
+</html>

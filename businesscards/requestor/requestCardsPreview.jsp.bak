@@ -1,0 +1,165 @@
+<%--
+ -- Business Card Requestor
+ -- @(#) requestCardsPreview.jsp	12-NOV-2008
+ --
+ -- Copyright 2004 BCCL. All Rights Reserved.
+ --
+ -- This software is the proprietary information of BCCL.
+ -- Use is subject to license terms.
+ --
+ --%>
+
+ <%--
+ -- Comments....
+ -- @author		Amruta Gangan
+ -- @version 	1.00, 12-NOV-2008
+ --%>
+<%@ page language="java" %>
+<%@ include file="../includes/sessionCheck.jsp" %>
+<%@ page errorPage="../common/errorPage.jsp"%>
+<%//@ include file="../includes/empHeader.jsp" %>
+<%@ page import="java.util.Hashtable, java.util.ArrayList, java.util.GregorianCalendar, java.util.Calendar" %>
+<%@ page import="java.util.Enumeration"%>
+<%@ page import="com.bccl.util.Constants,com.bccl.util.HtmlUtil"%>
+<%@ page import="com.bccl.util.Utility"%>
+
+<%
+response.setHeader("Cache-Control","no-cache"); //HTTP 1.1
+response.setHeader("Pragma","no-cache"); //HTTP 1.0
+response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
+%>
+<%
+
+//Retrieve the data from service.jsp
+
+		String firstName			= (String)request.getParameter("firstName");
+		String lastName				= (String)request.getParameter("lastName");
+		String designation			= (String)request.getParameter("designation");
+		String workArea				= (String)request.getParameter("workArea");
+		String userBoardNumber		= (String)request.getParameter("userBoardNumber");
+		String directPhoneNo		= (String)request.getParameter("directPhoneNo");
+		String fax					= (String)request.getParameter("fax");
+		String mobileNumber			= (String)request.getParameter("mobileNumber");
+		String extensionNumber		= (String)request.getParameter("extensionNumber");
+		String website				= (String)request.getParameter("website");
+		if (website.equals("") || website == null){
+			website = "-";
+		}
+		String compName				= (String)request.getParameter("compName");
+		String compCode				= (String)request.getParameter("compCode");
+		String address				= (String)request.getParameter("address");
+		String addressCode			= address.substring(0,address.indexOf("|"));
+		String addressSubString		= address.substring(address.indexOf("|")+1);
+		String addressLine1			= addressSubString.substring(0,addressSubString.indexOf("|"));
+		addressSubString			= addressSubString.substring(addressSubString.indexOf("|")+1);
+		String addressLine2			= addressSubString.substring(0,addressSubString.indexOf("|"));
+		String changedLocnCode		= addressSubString.substring(addressSubString.indexOf("|")+1);
+
+		String quantity				= (String)request.getParameter("quantity");
+		String approverEmailId		= (String)request.getParameter("approverEmailId");
+
+		String department			= (String)request.getParameter("department");
+		String activityName			= (String)request.getParameter("activityName");
+		String emailId				= (String)request.getParameter("emailId");
+		String deptName				= (String)request.getParameter("deptName");
+%>
+
+<html>
+	<head>
+		<title>B2E</title>
+<%	
+	
+	if( compCode.equals("1003") || compCode.equals("1024") ||compCode.equals("1025")  ||compCode.equals("1032") ||compCode.equals("1026") ||compCode.equals("1027") ||compCode.equals("1030"))
+	{	
+%>
+		<link rel="stylesheet" href="../style/TIL.css">
+<%
+	}else if ( compCode.equals("1029") || compCode.equals("1028")){
+%>
+		<link rel="stylesheet" href="../style/tcl.css">
+<%
+	}else if ( (compCode.equals("1000")) && (department.equalsIgnoreCase("BCCL - BRAND CAPITAL"))){
+%>
+		<link rel="stylesheet" href="../style/globalBC.css">
+<%
+	}else{
+%>
+		<link rel="stylesheet" href="../style/global.css">
+<%	
+		}
+%>
+
+		<link rel="stylesheet" href="../style/common.css" />
+		<script Language="JavaScript" src="../jscripts/requestCardsPreview.js"></script>
+		<script Language="JavaScript" src="../jscripts/util.js"></script>
+	</head>
+
+<%
+		String personalBelief		= "";
+		String personalBeliefDropdn	= "";
+		String toShowPersonalBelief ="-";
+
+		if(compCode.equals("1000")){
+			 personalBelief = (String)request.getParameter("personalBelief");
+			 personalBeliefDropdn	= (String)request.getParameter("personalBeliefDropdn");
+
+			if(personalBeliefDropdn.equals("0")&& personalBelief!=null){
+				toShowPersonalBelief = personalBelief;
+			}else if(!personalBeliefDropdn.equals("0")){
+				toShowPersonalBelief = personalBeliefDropdn;
+			}
+		}
+
+		//out.println("<br>"+personalBeliefDropdn);
+		//out.println(Utility.replaceAmparsandURL(addressLine1));
+
+%>
+
+	<body onload="showCardDesign('<%=firstName%>','<%=lastName%>','<%=Utility.replaceAmparsandURL(designation)%>','<%=activityName%>','<%=Utility.replaceAmparsandURL(addressLine1)%>','<%=Utility.replaceAmparsandURL(addressLine2)%>','<%=directPhoneNo%>','<%=fax%>','<%=mobileNumber%>','<%=userBoardNumber%>','<%=extensionNumber%>','<%=Utility.replaceAmparsandURL(workArea)%>','<%=Utility.replaceAmparsandURL(compName)%>','<%=website%>')" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+		
+		<form name="frmPreview" method="post">
+
+			<%@ include file="../includes/header.jsp" %>
+			<%@ include file="../includes/businessCardMenu.jsp" %>
+
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+			<tr>
+       			<input type ="hidden" name ="backDesign" id="backDesign" value = "NA"/>
+				<td bgcolor="#000000" colspan="100%" class="whitesmall" height="20" align="center">
+					CARD PREVIEW
+				</td>
+			</tr>
+            <tr>
+            <td colspan="100%">
+	    		<%@ include file="../requestor/requestCardsPreviewContainer.jsp"%>
+            </td>
+            </tr>
+			<input type="hidden" name="firstName" value="<%=firstName%>"/>
+			<input type="hidden" name="lastName" value="<%=lastName%>"/>
+			<input type="hidden" name="designation" value="<%=designation%>"/>
+			<input type="hidden" name="workArea" value="<%=workArea%>"/>
+			<input type="hidden" name="userBoardNumber" value="<%=userBoardNumber%>"/>
+			<input type="hidden" name="directPhoneNo" value="<%=directPhoneNo%>"/>
+			<input type="hidden" name="fax" value="<%=fax%>"/>
+			<input type="hidden" name="mobileNumber" value="<%=mobileNumber%>"/>
+			<input type="hidden" name="extensionNumber" value="<%=extensionNumber%>"/>
+			<input type="hidden" name="website" value="<%=website%>"/>
+			<input type="hidden" name="compName" value="<%=compName%>"/>
+			<input type="hidden" name="compCode" value="<%=compCode%>"/>
+			<input type="hidden" name="addressCode" value="<%=addressCode%>"/>
+			<input type="hidden" name="quantity" value="<%=quantity%>"/>
+			<input type="hidden" name="approverEmailId" value="<%=approverEmailId%>"/>
+
+			<input type="hidden" name="department" value="<%=department%>"/>
+			<input type="hidden" name="activityName" value="<%=activityName%>"/>
+			<input type="hidden" name="emailId" value="<%=emailId%>"/>
+			<input type="hidden" name="addressLine1" value="<%=addressLine1%>"/>
+			<input type="hidden" name="addressLine2" value="<%=addressLine2%>"/>
+			<input type="hidden" name="changedLocnCode" value="<%=changedLocnCode%>"/>
+			<input type="hidden" name="personalBelief" value="<%=personalBelief%>"/>
+			<input type="hidden" name="personalBeliefDropdn" value="<%=personalBeliefDropdn%>"/>
+		</table>
+		</form>	
+	</body>
+</html>

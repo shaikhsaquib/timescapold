@@ -1,0 +1,83 @@
+<%
+	int noOfColumns = 4;
+
+	String currLink		= (String) session.getAttribute("currLink");
+	String topLink		= (String) session.getAttribute("topLink");
+
+	String litecolor 			= "#74cad3";
+	String darkcolor 			= "#AFDCEC";
+
+	ArrayList menus = (ArrayList) session.getAttribute("governanceQuizMenu");
+	//out.println(menus);
+%>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="<%=litecolor%>">
+	<tr>
+<%
+	int cnt = 0;
+	for(int kk=0; kk<menus.size(); kk++)
+	{
+		String[] arr = (String[])menus.get(kk);
+		if(arr[0].equals(arr[1]))
+		{
+			cnt++;
+			if(topLink.equals(arr[1]))
+			{
+%>
+		<td bgcolor="<%=litecolor%>" class="normal" width="20%" align="center" height="20">
+			<a href="<%=arr[3]%>" class="underline"><%=arr[2]%></a>
+		</td>
+<%
+			}
+			else
+			{
+%>
+		<td bordercolor="#DCE5B6" bgcolor="<%=darkcolor%>" class="normal" width="20%" align="center" height="20">
+			<a href="<%=arr[3]%>" class="underline"><%=arr[2]%></a>
+		</td>
+<%
+			}
+		}
+	}
+	for(; cnt<noOfColumns;cnt++)
+	{
+%>
+		<td bgcolor="<%=darkcolor%>" class="normal" width="20%" align="center" height="20">
+		</td>
+<%
+	}
+%>
+	</tr>
+<!-- <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="<%=litecolor%>"> -->
+	<tr>
+<%
+	for(int kk=0; kk<menus.size(); kk++)
+	{
+		
+		String[] arr = (String[])menus.get(kk);
+		//out.println(arr[0]);
+		//out.println(arr[1]);
+		//out.println(arr[2]);
+		//out.println(arr[3]);
+		if(!arr[0].equals(arr[1]) && topLink.equals(arr[0]))
+		{	
+			if(arr[3].equalsIgnoreCase(currLink))
+			{
+%>
+		<td bgcolor="<%=litecolor%>" class="style3" align="center" width="200px" height="30">
+			<a href="<%=arr[3]%>" class= "style3"><u><%=arr[2]%></u></a>
+		</td>
+<%
+			}
+			else
+			{
+%>
+		<td bgcolor="<%=litecolor%>" class="style3" align="center" width="200px" height="30">
+			<a href="<%=arr[3]%>" class=" underline style3"><u><%=arr[2]%></u></a>
+		</td>
+<%
+			}
+		}
+	}
+%>
+	</tr>
+</table>

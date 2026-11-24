@@ -1,0 +1,40 @@
+<span class = "bold">Note:</span><br>
+<ol>
+<li>Please use Internet Explorer version 5.0 or above as your web browser while browsing Timescape.</li><br><br>
+
+<li>Please avoid the usage of the following characters while filling out the form !,@,#,$,%,^,&,*,(,),~,`,-,. These characters will not be accepted as valid values while submitting your data.</li><br><br>
+</ol>
+
+<br>
+<span class = "bold">How do I enter my Employment History ?</span>
+<ol>
+	<li>Employment History should be entered in the reverse chronological order. i.e. Most recent work experience should be entered first.</li><br><br>
+</ol>
+
+
+<span class = "bold">What value do I select as Department ?</span>
+
+<ol>
+	<li>Select the name of the Department for which you are currently working from the list-box.</li><br><br>
+	<li>In case you have been transferred from one Department to another, please mention the details in the subsequent row.</li><br><br>
+	<li>In case you have worked with any company within Timesgroup e.g. Times Internet Ltd, please mention details of you employment under Employment History - Previous Organizations.</li><br><br>
+</ol>
+
+
+<span class = "bold">What do I enter / select as an appropriate value for Designation ?</span><br><br>
+
+<p align = "justify" style="line-height: 150%">
+<ol>
+<li>  Mention details of the designation at which you joined the department as the value for Joined As. </li><br><br>
+<li>  Mention details about your current Designation as the value for Last Designation Held.</li><br><br>
+
+</ol>
+</p>
+
+
+<span class = "bold">What do I mention in Job Description ?</span><br><br>
+
+
+<ol>
+<li>  Give a brief description of the kind of work that you are/were doing in your company/department.</li><br><br>
+</ol>

@@ -1,0 +1,9 @@
+<span class = "bold">How do I select an appropriate Board/University ?</span>
+
+<ol>
+<li>Click on the <img src = "../images/but_review.jpg" border = "0"> which will open a Board/University Popup.</li><br><br>
+<li>Select your Board/University from the list-box.</li><br><br>
+<li>In case the name of your Board/University is not available in the list-box, enter your Board/University in the textbox available below the list-box.</li><br><br>
+<li>Please enter the complete name of your Board/University as it appears on your degree e.g. University of Chennai.</li> <br><br>
+<li>Click on the "submit" button to post your details.</li><br><br>
+</ol>

@@ -1,0 +1,121 @@
+<span class = "bold">Note:</span><br>
+<ol>
+<li>Please use Internet Explorer version 5.0 or above as your web browser while browsing Timescape.</li><br><br>
+
+<li>Please avoid the usage of the following characters while filling out the form !,@,#,$,%,^,&,*,(,),~,`,-,. These characters will not be accepted as valid values while submitting your data.</li><br><br>
+</ol>
+
+<br>
+<span class = "bold">How do I select an appropriate value for Qualification ?</span>
+
+<ol>
+
+	<li>
+		Enter your Qualifications in the reverse chronological order 
+		i.e. the most recent qualification should be entered first.
+	</li><br><br>    
+
+
+	<li>
+	  Qualifications that are currently being pursued should not be entered.
+	</li><br><br>
+
+	<li>
+	  Click on the <img src = "../images/but_review.jpg" border = "0"> 
+	  which will open a Qualification Popup.
+	</li><br><br>
+
+
+	<li>
+		Select your qualification from the list-box.
+	</li><br><br>
+
+	<li>
+		Click on the "submit" button to post your details.
+	</li><br><br>
+
+</ol>
+
+<span class = "bold">How do I select / enter an appropriate value for Institute ?</span>
+
+<ol>
+	<li>Click on the <img src = "../images/but_review.jpg" border = "0"> 
+		which will open an Institute Popup.
+	</li><br><br>
+	
+	<li>
+		Select your Institute from the list-box.
+	</li><br><br>
+	
+	<li>
+		In case the name of your Institute is not available in the 
+		list-box,enter the name of your institute in the textbox 
+		available below the list-box.
+	</li><br><br>
+	
+	<li>
+		Please enter the complete name of your Institute 
+		e.g. Narsee Monjee Institute Of Management Studies.
+	</li><br><br>
+	
+	<li>
+		Click on the "submit" button to post your details.
+	</li><br><br>
+</ol>
+
+<span class = "bold">How do I select / enter an appropriate value for Specialization ?</span>
+
+<ol>
+	<li>
+		Click on the <img src = "../images/but_review.jpg" border = "0"> 
+		which will open a Specialization Popup.
+	</li><br><br>
+	
+	<li>
+		Select your Specialization from the list-box.
+	</li><br><br>
+	
+	<li>
+		In case the description of your Specialization is not available 
+		in the list-box, enter your Specialization in the textbox available 
+		below the list-box.
+	</li><br><br>
+	
+	<li>
+		Please enter the complete name of your Specialization 
+		e.g. Post Graduate Diploma In Business Administration.
+	</li><br><br>
+	
+	<li>
+		Click on the "submit" button to post your details.
+	</li><br><br>
+</ol>
+
+<span class = "bold">How do I select / enter an appropriate value for Board/University ?</span>
+
+<ol>
+	<li>
+		Click on the <img src = "../images/but_review.jpg" border = "0"> 
+		which will open a Board/University Popup.
+	</li><br><br>
+	
+	<li>
+		Select your Board/University from the list-box.
+	</li><br><br>
+	
+	<li>
+		In case the name of your Board/University is not available 
+		in the list-box, enter your Board/University in the textbox 
+		available below the list-box.
+	</li><br><br>
+	
+	<li>
+		Please enter the complete name of your Board/University as it 
+		appears on your degree e.g. University of Chennai.
+	</li><br><br>
+	
+	<li>
+		Click on the "submit" button to post your details.
+	</li><br><br>
+</ol>
+

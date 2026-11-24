@@ -1,0 +1,94 @@
+<%@ include file="../includes/sessionCheck.jsp" %>
+
+<%@ page import="java.util.Hashtable, java.util.HashMap, java.util.Iterator,java.util.GregorianCalendar,java.util.Calendar, java.util.ArrayList" %>
+<%@page import="com.bccl.profile.web.util.Constants,com.bccl.util.Breadcrumbs,com.bccl.util.HtmlUtil"%>
+
+
+
+<%
+
+ArrayList personalDetails = mediclaimController.getPersonalDetails(timescapeUserOID);
+double daysCompleted = 0.0;
+
+%>
+
+<table border = "0" cellspacing="0" cellpadding="0" width = "100%">
+<%
+	for(int ii=0; ii < personalDetails.size(); ii++){
+	
+	String detail[ ] = (String[ ]) personalDetails.get(ii);
+%>
+	<tr>
+		<td class="bold" height = "30" width = "24%" align="right">Company</td>
+		<td class="bold" height = "30" width = "6%"><div align="center">:</div></td>
+		<td class="small" height = "30" width = "70%"><%=detail[0]%></td>
+	</tr>
+
+	<tr>
+		<td class="bold" height = "30" width = "24%" align="right">Branch</td>
+		<td class="bold" height = "30" width = "6%"><div align="center">:</div></td>
+		<td class="small" height = "30" width = "70%"><%=detail[1]%></td>
+	</tr>
+
+	<tr>
+		<td class="bold" height = "30" width = "24%" align="right">Location</td>
+		<td class="bold" height = "30" width = "6%"><div align="center">:</div></td>
+		<td class="small" height = "30" width = "70%"><%=detail[2]%></td>
+	</tr>
+
+	<tr>
+		<td class="bold" height = "30" width = "24%" align="right">Department</td>
+		<td class="bold" height = "30" width = "6%"><div align="center">:</div></td>
+		<td class="small" height = "30" width = "70%"><%=detail[3]%></td>
+	</tr>
+
+	<tr>
+		<td class="bold" height = "30" width = "24%" align="right">Activity Description</td>
+		<td class="bold" height = "30" width = "6%"><div align="center">:</div></td>
+		<td class="small" height = "30" width = "70%"><%=detail[4]%></td>
+	</tr>
+
+	<tr>
+		<td class="bold" height = "30" width = "24%" align="right">Payroll ID</td>
+		<td class="bold" height = "30" width = "6%"><div align="center">:</div></td>
+		<td class="small" height = "30" width = "70%"><%=detail[5]%></td>
+	</tr>
+
+	<tr>
+		<td class="bold" height = "30" width = "24%" align="right">SAP Number</td>
+		<td class="bold" height = "30" width = "6%"><div align="center">:</div></td>
+		<td class="small" height = "30" width = "70%"><%=detail[6]%></td>
+	</tr>
+
+	<tr>
+		<td class="bold" height = "30" width = "24%" align="right">Email Id</td>
+		<td class="bold" height = "30" width = "6%"><div align="center">:</div></td>
+		<td class="small" height = "30" width = "70%"><%=detail[7]%></td>
+	</tr>
+
+	<tr>
+		<td class="bold" height = "30" width = "24%" align="right">Designation</td>
+		<td class="bold" height = "30" width = "6%"><div align="center">:</div></td>
+		<td class="small" height = "30" width = "70%"><%=detail[8]%></td>
+	</tr>
+
+	<tr>
+		<td class="bold" height = "30" width = "24%" align="right">Date Of Birth</td>
+		<td class="bold" height = "30" width = "6%"><div align="center">:</div></td>
+		<td class="small" height = "30" width = "70%"><%=detail[9]%></td>
+	</tr>
+
+	<tr>
+		<td class="bold" height = "30" width = "24%" align="right">Date Of Joining</td>
+		<td class="bold" height = "30" width = "6%"><div align="center">:</div></td>
+		<td class="small" height = "30" width = "70%"><%=detail[10]%></td>
+	</tr>
+
+<%
+    daysCompleted =  Double.parseDouble(detail[11]);
+    //daysCompleted = 555;
+    //out.println("her"+detail.length);
+    
+	}
+%>
+</table>

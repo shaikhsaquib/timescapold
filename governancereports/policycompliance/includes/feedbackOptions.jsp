@@ -1,0 +1,52 @@
+<%
+String optArr[]={"Not Acted","Yes","No","Not Applicable"};
+String optValArr[]={"Not Acted","Yes","No","Not Applicable"};
+String disabled ="";
+String selected ="";
+
+// if it is already approved dont allow him to select -- make it disable
+//out.println(tmpArr[16]);
+if("A".equals(tmpArr[16])&& roleId.equals("1"))   
+	disabled = "disabled";
+//out.println(tmpArr[16]);
+%>
+
+<select name="<%=feedBackOption%>" id="feedBackOption" class="normal" <%=disabled%>>
+<%
+
+	
+if(roleId.equals("1")|| roleId.equals("3")){
+
+ // for user option array will start from 1 as "No action Required" is "NA for user
+ 
+	for(int kk=0;kk<optArr.length;kk++){   
+
+		if(tmpArr[5].equals(optArr[kk]))
+			selected	 = "selected";
+		else
+			selected	 = "";
+
+%>
+	<option value="<%=optArr[kk]%>" <%=selected%>><%=optValArr[kk]%></option>
+
+<%
+
+	}//end of for
+
+}else if(roleId.equals("2")){
+
+	for(int kk=0;kk<optArr.length;kk++){
+		if(tmpArr[8].equals(optArr[kk])||(tmpArr[4].equals("No") && optArr[kk].equals("No")&& tmpArr[8].equals("Not Acted")))
+			selected	 = "selected";
+		else
+			selected	 = "";
+
+%>
+	<option value="<%=optArr[kk]%>" <%=selected%>><%=optValArr[kk]%></option>
+<%
+
+	}//end of for
+}//end of else
+
+%>
+</select>

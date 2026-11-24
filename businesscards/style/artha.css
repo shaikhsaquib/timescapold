@@ -1,0 +1,235 @@
+ .grey {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #999999; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.normal {
+	FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.normal1 {
+	FONT-WEIGHT: normal; FONT-SIZE: 7.5pt; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.bold {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-FAMILY: Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.small {
+	FONT-WEIGHT: normal; FONT-SIZE: 7.5pt; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.underline {
+	FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: underline
+}
+.underline_small {
+	FONT-WEIGHT: normal; FONT-SIZE: 7.5pt; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: underline
+}
+.white {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.whitenormal {
+	FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.boldsmall {
+	FONT-WEIGHT: bold; FONT-SIZE: 7.5pt; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.big {
+	FONT-WEIGHT: bold; FONT-SIZE: 12pt; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.bigoffblue {
+	FONT-WEIGHT: bold; FONT-SIZE: 13pt; COLOR: #a8c6e5; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.whitesmall {
+	FONT-WEIGHT: bold; FONT-SIZE: 7.5pt; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+A:hover {
+	TEXT-DECORATION: underline
+}
+.boldunderline {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: underline
+}
+.notile {
+	BACKGROUND-IMAGE: url(images/vignettebar.jpg); BACKGROUND-REPEAT: no-repeat
+}
+.bold1 {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.bigblue {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #6097cf; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.smallblue {
+	FONT-WEIGHT: bold; FONT-SIZE: 7.5pt; COLOR: #6097cf; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: underline
+}
+.hrblue {
+	FONT-WEIGHT: bold; FONT-SIZE: 7.5pt; COLOR: #37577b; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.whitesmallCopy {
+	FONT-WEIGHT: normal; FONT-SIZE: 7.5pt; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.whitesmallnormal {
+	FONT-WEIGHT: normal; FONT-SIZE: 7.5pt; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.redbold {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #ab0000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.whiteCopy {
+	FONT-WEIGHT: normal; FONT-SIZE: 8.5pt; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.greysmall {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #c1c1c1; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.blue {
+	FONT-WEIGHT: normal; FONT-SIZE: 7.5pt; COLOR: #99ccff; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.rednormal {
+	FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #ff0000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.redunderline {
+	FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #ff0000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: underline
+}
+.brownnormal {
+	FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #cc6633; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.bluenormal {
+	FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #6097cf; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.greytitle {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #999999; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.bigblue1 {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #6097cf; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.whitebig {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.header {
+	FONT-WEIGHT: bold; FONT-SIZE: 14pt; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+
+.brownnormal { 
+	font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #CC6633; text-decoration: none ; font-weight: normal
+}
+
+.bluenormal { 
+	font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #6097CF; text-decoration: none ; font-weight: normal
+}
+.timescapeHeaderLink {
+	FONT-WEIGHT: normal; FONT-SIZE: 7.5pt; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.input {
+FONT-WEIGHT: normal; FONT-SIZE: 7.5pt; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none;background-color: #e8e8e8
+}
+.readonly {
+FONT-WEIGHT: normal; FONT-SIZE: 7.5pt; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none;background-color: #FFF000
+}
+.fieldset { 
+margin-bottom: 6px;
+}
+
+/*business card Styles*/
+.name {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 8.5pt;
+	font-style: normal;
+	line-height: normal;
+	font-weight: normal;
+	text-transform: capitalize;
+	color: #000000;
+}
+.designation {
+	font-family: "Arial";
+	font-size: 7pt;
+	font-style: normal;
+	line-height: normal;
+	font-weight: normal;
+	text-transform: capitalize;
+	color: #000000;
+}
+.email {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 8pt;
+	font-style: normal;
+	line-height: 7pt;
+	font-weight: normal;
+	text-transform: lowercase;
+	color: #000000;
+}
+.address {
+	font-family: "Arial", Times, serif;
+	font-size: 8pt;
+	font-style: normal;
+	line-height: 9pt;
+	font-weight: normal;
+	text-transform: capitalize;
+	color: #000000;
+}
+.addressBPHCL {
+	font-family: "Arial";
+	font-size: 9pt;
+	font-style: normal;
+	line-height: 8pt;
+	font-weight: normal;
+	color: #000000;	
+}
+.namereverse {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 8.5pt;
+	font-style: normal;
+	line-height: normal;
+	font-weight: bold;
+	text-transform: capitalize;
+	color: #FFFFFF;
+}
+.designationreverse {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 7pt;
+	font-style: normal;
+	line-height: normal;
+	font-weight: bold;
+	text-transform: capitalize;
+	color: #FFFFFF;
+}
+.addressreverse {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 7pt;
+	font-style: normal;
+	line-height: 8pt;
+	font-weight: normal;
+	text-transform: capitalize;
+	color: #FFFFFF;
+}
+.namereverse {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 8.5pt;
+	font-style: normal;
+	line-height: normal;
+	font-weight: bold;
+	text-transform: capitalize;
+	color: #FFFFFF;
+}
+.emailreverse {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 8pt;
+	font-style: normal;
+	line-height: 7pt;
+	font-weight: normal;
+	text-transform: lowercase;
+	color: #FFFFFF;
+}
+.style2 {
+font-family: "Times New Roman", Times, serif; font-size: 7pt; font-style: normal; line-height: 8pt; font-weight: bold; text-transform: capitalize; color: #FFFFFF; 
+}
+.style5 {
+font-weight: bold
+}
+.ARTHA {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+	text-decoration: none;
+}
+.ARTHA2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-style: normal;
+	font-weight: normal;
+	text-decoration: none;
+	line-height: 13px;
+	letter-spacing: .001px;
+}

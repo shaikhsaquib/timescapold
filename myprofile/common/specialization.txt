@@ -1,0 +1,9 @@
+<span class = "bold">How do I select an appropriate Specialization ?</span>
+
+<ol>
+<li>Click on the <img src = "../images/but_review.jpg" border = "0"> which will open a Specialization Popup.</li><br><br>
+<li>Select your Specialization from the list-box.</li><br><br>
+<li>In case the description of your Specialization is not available in the list-box, enter your Specialization in the textbox available below the list-box.</li><br><br>
+<li>Please enter the complete name of your Specialization e.g. Post Graduate Diploma In Business Administration. </li><br><br>
+<li>Click on the "submit" button to post your details.</li><br><br>
+</ol>

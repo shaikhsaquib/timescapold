@@ -1,0 +1,488 @@
+/*Report Css*/
+.report-section .search-part input[type="text"] { float: left; margin-right: 15px; width: 80%}
+.report-section .qrn-tree { display: table-cell; vertical-align: middle}
+.report-section .qrn-tree span { color: #d10a0d; padding-left: 5px}
+.report-section .qrn-tree span .glyphicon { height: 18px; width: 18px; border: 1px solid red; :100%; color: #d10a0d !important; font-size: 18px; text-align: center; border-radius: 100%; line-height: 16px; margin-right: 10px}
+.report-section .report-icon { display: table-cell; text-align: right; vertical-align: middle}
+.report-section .report-icon img { padding-left: 15px; position: relative; top: -4px}
+.reference-num-row .last-block { display: table}
+.report-section { color: #4d4d4d }
+.form-field, input[type="text"].form-field { -webkit-appearance: none; outline: none !important; box-shadow: none !important; border: solid 1px #cccccc; -webkit-border-radius: 2px; -moz-border-radius: 2px; -ms-border-radius: 2px; -o-border-radius: 2px; border-radius: 2px; height: 40px; margin-right: 0px !important; padding: 0px 10px 0px; width: 100% !important}
+.report-section .detail-info-row label { font-size: 12px; font-weight: bold }
+.report-section .detail-info-row  ul li { padding-bottom: 25px}
+.report-section .detail-info-row { padding-top: 30px }
+.report-section .search-table .form-table th { text-align: center; background: #e8e7e7; text-transform: uppercase; padding: 10px 0px !important; font-size: 13px}
+.report-section .search-table { padding-top: 10px; position: relative}
+.report-section .search-table .form-table tr td { padding: 10px 10px 10px 5px; vertical-align: top}
+.report-section .search-table .form-table tr:first-child td { padding-top: 25px }
+.report-section .search-table .form-table tr td:first-child { padding-left: 0px }
+.report-section .search-table .form-table tr td:last-child { padding-right: 0px; position: relative}
+.report-section .search-table .form-table tr td  .form-field { font-size: 12px; color: #a9a6a6; height: 32px }
+.report-section .final-deal-row { padding-top: 40px; padding-left: 20px}
+.report-section .final-deal-row .button-price { margin-top: 25px; margin-left: 10px}
+.section-title { font-size: 20px; color: #333333; text-transform: uppercase; font-family: 'Roboto-Regular'; text-shadow: 1px 0px #000}
+.form-field::-webkit-input-placeholder { color: #a9a6a6 }
+.form-field:-moz-placeholder { color: #a9a6a6; font-weight: bold }
+.form-field:-ms-input-placeholder { color: #a9a6a6 }
+.form-field:-ms-input-placeholder { color: #a9a6a6 }
+.detail-info-row .last-btn { margin-top: 25px; margin-left: 15px}
+.select-box, select { background: #fff url("../images/down-arrow.png") no-repeat scroll 97% 50%; -webkit-appearance: none; -moz-appearance: none; -o-appearance: none; -ms-appearance: none; appearance: none; padding-right: 20px}
+select::-ms-expand { display: none}
+.tooltip-inner { max-width: 200px; padding: 8px 10px !important; color: #ffffff; text-align: left; background-color: #3f3e3e !important; border-radius: 4px; opacity: 1 !important; text-transform: capitalize !important}
+.tooltip.bottom .tooltip-arrow { border-bottom-color: #3f3e3e !important}
+.tooltip.in { opacity: 1 !important; filter: alpha(opacity=90)}
+.report-section .detail-info-row .details-info-block ul li { padding-bottom: 15px}
+.report-section .detail-info-row .details-info-block { background: #fff; border: 2px solid #cccccc; padding: 10px 25px}
+.report-section .detail-info-row .details-info-block label { text-transform: uppercase}
+.report-section #detailed_report_form .accordion-toggle { max-width: 960px; width: 100%}
+.report-section #detailed_report_form  .form-table tr:first-child td .indicator-icon { top: 30px !important}
+.report-section #detailed_report_form .form-table tr td  .indicator-icon { position: absolute; right: -33px; top: 15px !important; display: inline-block; width: 20px; height: 20px; border: 1px solid #d10a0d; color: #d10a0d; font-size: 19px; line-height: 20px; text-align: center; border-radius: 100%; top: 5px; font-style: normal; font-weight: normal}
+.table-block { display: table; width: 100%; table-layout: fixed}
+.table-block .head-row { display: table-row}
+.table-block .head-row .head-cell { text-align: center; background: #e8e7e7; text-transform: uppercase; padding: 10px 0px !important; font-size: 13px; display: table-cell}
+.table-block .div-row { display: table-row}
+.table-block .detailed_report { display: table-row}
+.main-heading { padding: 30px 0px 5px }
+.main-heading .section-title { font-size: 20px; color: #4d4d4d; text-transform: uppercase; font-family: 'Roboto-Regular'; text-shadow: 1px 0px #4d4d4d}
+.package-location .title-theme { float: none; background: #f3f3f3; box-shadow: 0px 0px 0px 1px #ececec; padding: 5px 15px}
+.package-location .package-insert { padding: 15px 15px 10px}
+.package-location .panel-default { margin-bottom: 15px !important}
+.edition-calculate .package-location, .edition-calculate .package-insertion { margin-bottom: 0px }
+.package-location .panel-default label { font-size: 13px }
+.edition-calculate .package-location .accordion-toggle .indicator { width: 20px; height: 20px; display: inline-block; background: #d10a0d; color: #fff; font-size: 16px; line-height: 21px; text-align: center; float: left; margin-right: 15px; font-weight: bold}
+.col-md { width: 31% !important}
+.last-block { padding-right: 15px !important }
+.package-location .title-theme a { font-size: 15px}
+.panel { border: none; box-shadow: none !important }
+.visible { display: block}
+.panel-box { position: relative; clear: both}
+.panel-box:before, .panel-box:after, .inner-block:before, .inner-block:after { content: ''; display: table}
+.panel-box .check-item-box { top: 20px }
+#packages-cal-calculation .calculation .proceed-btn { margin-top: 20px}
+.form-fields { margin-bottom: 20px }
+.inner-block { margin-top: 10px; display: table; table-layout: fixed; width: 100%}
+.inner-block input.form-field[type="text"], .inner-block .form-field { display: table-cell; width: 47% !important; float: left; margin-right: 5px !important; height: 34px !important}
+#report_quote_search .nav-tabs.nav-justified > .active > a, #report_quote_search .nav-tabs.nav-justified > .active > a:focus, #report_quote_search .nav-tabs.nav-justified > .active > a:hover { background: #3f3e3e; color: #fff}
+#report_quote_search .tab-content { padding: 20px; background: #fff}
+#report_quote_search .nav-tabs.nav-justified > li > a { border-bottom: none !important; border-radius: 0px !important; background: #e1e1e1; font-size: 15px; color: #4d4d4d; outline: none !important; text-transform: capitalize; font-family: 'Roboto-Bold'; padding: 8px !important; border-radius: 0px !important; border: 0px !important}
+.table-striped th { border-bottom: 0px !important; background: #e8e7e7; text-transform: uppercase; font-size: 11px}
+.table-striped td a { color: #d10a0d }
+.table-striped td a:hover { text-decoration: underline}
+.final-deal-row .button-price { margin-top: 26px; display: inline-block; float: none}
+.modal-header { background: #d10a0d; color: #fff; border-bottom: 0px !important; padding: 15px 20px !important}
+.modal-body { padding: 20px !important; padding-bottom: 25px !important}
+.report-tab-section .panel-title { padding: 10px !important; border: none !important}
+.modal-content { overflow: hidden}
+.final-deal-row { margin-top: 20px; border-top: 1px solid #efefef; padding-top: 20px}
+.modal-body .reference-num-row { text-align: right; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; margin-bottom: 15px}
+.modal-body .reference-num-row .dropdown .qrn-tree span .glyphicon { position: relative}
+.modal-body .reference-num-row .dropdown .qrn-tree span .glyphicon:after { content: "\002b"; height: 20px; width: 20px; border: 1px solid red; color: #d10a0d !important; font-size: 18px; text-align: center; border-radius: 100%; line-height: 20px; margin-right: 10px; display: inline-block}
+.modal-body .reference-num-row .open .qrn-tree span .glyphicon:after { content: "\2212"}
+.modal-body .reference-num-row .qrn-tree span { cursor: pointer; color: #d10a0d; padding-left: 5px}
+.reference-num-row .dropdown { display: inline-block}
+.reference-num-row .dropdown-menu { right: 0px !important; min-width: 130px !important; float: right !important; box-shadow: 0px 0px 1px #e4e0e0; left: auto !important; padding: 0px !important; border: none !important}
+.reference-num-row .dropdown-menu > li > a { display: block; padding: 5px 10px; clear: both; font-weight: normal; line-height: 1.42857143; color: #333333; white-space: nowrap; border-bottom: 1px solid #e6e6e6}
+.inner-block input.form-field[type="text"]:last-child, .inner-block .form-field { margin-right: 0px !important; float: right}
+.tab-panel-modal label { font-size: 13px; font-weight: bold}
+.detail-info-row .reference-num-row { text-align: right}
+.detail-info-row .block-right { text-align: right; display: inline-block}
+.block-title { display: block; font-size: 20px; position: absolute; font-family: 'Roboto-Bold'; margin-bottom: 20px; padding-left: 0px; margin-left: 0px; top: -35px}
+.tab-panel-modal { height: 400px}
+.panel-block-row { margin-bottom: 30px; border-bottom: 1px solid #efefef; padding-bottom: 20px}
+.detail-fields .row { margin-bottom: 15px}
+.dataTables_filter input[type="search"] { border: solid 1px #cccccc; -webkit-border-radius: 2px; -moz-border-radius: 2px; -ms-border-radius: 2px; -o-border-radius: 2px; border-radius: 2px; height: 29px; margin-right: 0px !important; padding: 0px 10px 0px; width: 70% !important}
+.tab-panel-modal .table > thead > tr > th, .tab-panel-modal .table > tbody > tr > th, .tab-panel-modal .table > tfoot > tr > th, .tab-panel-modal .table > thead > tr > td, .tab-panel-modal .table > tbody > tr > td, .tab-panel-modal .table > tfoot > tr > td { padding: 8px 5px; font-size: 13px}
+.indicator.glyphicon.mycsparent::before { content: "\002b"; font-family: 'Glyphicons Halflings'; font-style: normal}
+.indicator.glyphicon.mycsparent.glyphicon-minus::before { content: "\2212"; font-family: 'Glyphicons Halflings'; font-style: normal}
+.count-cutom-modal .close { float: right; font-size: 21px; font-weight: normal !important; line-height: 8px !important; color: #fff; text-shadow: none !important; opacity: 0.9 !important; border: 2px solid !important; width: 22px; text-align: center; height: 22px; margin-top: 0px; border-radius: 100%; -webkit-border-radius: 100%; -o-border-radius: 100%; -moz-border-radius: 100%; -ms-border-radius: 100%; padding: 1px}
+.count-cutom-modal .close:hover, .count-cutom-modal .close:focus { color: #fff; text-decoration: none; cursor: pointer; opacity: 0.8; filter: alpha(opacity=50)}
+.package-desc { margin-bottom: 25px}
+.panel-body, .panel-tabel { -ms-overflow-style: none}
+.panel-box:last-child .check-item-box {
+    top: auto;
+    bottom: -20px;
+    
+}
+
+.panel-box:nth-last-child(2) .check-item-box {
+    top: auto;
+    bottom: -20px;
+    height: 130px !important;
+}
+
+@media only screen and (max-width: 325px){
+	.panel-box:nth-last-child(2) .check-item-box {
+    bottom: -10px !important;
+}
+}
+
+ .panel-box:nth-last-child(3) .check-item-box {
+    top: auto;
+    bottom: -70px;
+    height: 130px !important;
+} 
+.panel-box:first-child .check-item-box {
+    top: auto;
+    bottom: inherit;
+}
+body::-webkit-scrollbar { display: none}
+[class*="block-grid-"] { display: block; padding: 0; margin: 0 -7px; *zoom: 1 }
+[class*="block-grid-"]:before, [class*="block-grid-"]:after { content: " "; display: table }
+[class*="block-grid-"]:after { clear: both }
+[class*="block-grid-"]>li { display: block; height: auto; float: left; padding: 0 7px 1.25rem }
+button, html input[type="button"], input[type="reset"], input[type="submit"] { outline: none !important}
+@media only screen {
+	.small-block-grid-1>li { width: 100%; list-style: none }
+	.small-block-grid-1>li:nth-of-type(n) { clear: none }
+	.small-block-grid-1>li:nth-of-type(1n+1) { clear: both }
+	.small-block-grid-2>li { width: 50%; list-style: none }
+	.small-block-grid-2>li:nth-of-type(n) { clear: none }
+	.small-block-grid-2>li:nth-of-type(2n+1) { clear: both }
+	.small-block-grid-3>li { width: 33.33333%; list-style: none }
+	.small-block-grid-3>li:nth-of-type(n) { clear: none }
+	.small-block-grid-3>li:nth-of-type(3n+1) { clear: both }
+	.small-block-grid-4>li { width: 25%; list-style: none }
+	.small-block-grid-4>li:nth-of-type(n) { clear: none }
+	.small-block-grid-4>li:nth-of-type(4n+1) { clear: both }
+	.small-block-grid-5>li { width: 20%; list-style: none }
+	.small-block-grid-5>li:nth-of-type(n) { clear: none }
+	.small-block-grid-5>li:nth-of-type(5n+1) { clear: both }
+	.small-block-grid-6>li { width: 16.66667%; list-style: none }
+	.small-block-grid-6>li:nth-of-type(n) { clear: none }
+	.small-block-grid-6>li:nth-of-type(6n+1) { clear: both }
+	.small-block-grid-7>li { width: 14.28571%; list-style: none }
+	.small-block-grid-7>li:nth-of-type(n) { clear: none }
+	.small-block-grid-7>li:nth-of-type(7n+1) { clear: both }
+	.small-block-grid-8>li { width: 12.5%; list-style: none }
+	.small-block-grid-8>li:nth-of-type(n) { clear: none }
+	.small-block-grid-8>li:nth-of-type(8n+1) { clear: both }
+	.small-block-grid-9>li { width: 11.11111%; list-style: none }
+	.small-block-grid-9>li:nth-of-type(n) { clear: none }
+	.small-block-grid-9>li:nth-of-type(9n+1) { clear: both }
+	.small-block-grid-10>li { width: 10%; list-style: none }
+	.small-block-grid-10>li:nth-of-type(n) { clear: none }
+	.small-block-grid-10>li:nth-of-type(10n+1) { clear: both }
+	.small-block-grid-11>li { width: 9.09091%; list-style: none }
+	.small-block-grid-11>li:nth-of-type(n) { clear: none }
+	.small-block-grid-11>li:nth-of-type(11n+1) { clear: both }
+	.small-block-grid-12>li { width: 8.33333%; list-style: none }
+	.small-block-grid-12>li:nth-of-type(n) { clear: none }
+	.small-block-grid-12>li:nth-of-type(12n+1) { clear: both }
+}
+@media only screen and (min-width:767px) {
+	.medium-block-grid-1>li { width: 100%; list-style: none }
+	.medium-block-grid-1>li:nth-of-type(n) { clear: none }
+	.medium-block-grid-1>li:nth-of-type(1n+1) { clear: both }
+	.medium-block-grid-2>li { width: 50%; list-style: none }
+	.medium-block-grid-2>li:nth-of-type(n) { clear: none }
+	.medium-block-grid-2>li:nth-of-type(2n+1) { clear: both }
+	.medium-block-grid-3>li { width: 33.33333%; list-style: none }
+	.medium-block-grid-3>li:nth-of-type(n) { clear: none }
+	.medium-block-grid-3>li:nth-of-type(3n+1) { clear: both }
+	.medium-block-grid-4>li { width: 25%; list-style: none }
+	.medium-block-grid-4>li:nth-of-type(n) { clear: none }
+	.medium-block-grid-4>li:nth-of-type(4n+1) { clear: both }
+	.medium-block-grid-5>li { width: 20%; list-style: none }
+	.medium-block-grid-5>li:nth-of-type(n) { clear: none }
+	.medium-block-grid-5>li:nth-of-type(5n+1) { clear: both }
+	.medium-block-grid-6>li { width: 16.66667%; list-style: none }
+	.medium-block-grid-6>li:nth-of-type(n) { clear: none }
+	.medium-block-grid-6>li:nth-of-type(6n+1) { clear: both }
+	.medium-block-grid-7>li { width: 14.28571%; list-style: none }
+	.medium-block-grid-7>li:nth-of-type(n) { clear: none }
+	.medium-block-grid-7>li:nth-of-type(7n+1) { clear: both }
+	.medium-block-grid-8>li { width: 12.5%; list-style: none }
+	.medium-block-grid-8>li:nth-of-type(n) { clear: none }
+	.medium-block-grid-8>li:nth-of-type(8n+1) { clear: both }
+	.medium-block-grid-9>li { width: 11.11111%; list-style: none }
+	.medium-block-grid-9>li:nth-of-type(n) { clear: none }
+	.medium-block-grid-9>li:nth-of-type(9n+1) { clear: both }
+	.medium-block-grid-10>li { width: 10%; list-style: none }
+	.medium-block-grid-10>li:nth-of-type(n) { clear: none }
+	.medium-block-grid-10>li:nth-of-type(10n+1) { clear: both }
+	.medium-block-grid-11>li { width: 9.09091%; list-style: none }
+	.medium-block-grid-11>li:nth-of-type(n) { clear: none }
+	.medium-block-grid-11>li:nth-of-type(11n+1) { clear: both }
+	.medium-block-grid-12>li { width: 8.33333%; list-style: none }
+	.medium-block-grid-12>li:nth-of-type(n) { clear: none }
+	.medium-block-grid-12>li:nth-of-type(12n+1) { clear: both }
+	.modal-pw-fs .modal-dialog {width: 650px !important;}
+}
+@media only screen and (min-width:1025px) {
+	.large-block-grid-1>li { width: 100%; list-style: none }
+	.large-block-grid-1>li:nth-of-type(n) { clear: none }
+	.large-block-grid-1>li:nth-of-type(1n+1) { clear: both }
+	.large-block-grid-2>li { width: 50%; list-style: none }
+	.large-block-grid-2>li:nth-of-type(n) { clear: none }
+	.large-block-grid-2>li:nth-of-type(2n+1) { clear: both }
+	.large-block-grid-3>li { width: 33.33333%; list-style: none }
+	.large-block-grid-3>li:nth-of-type(n) { clear: none }
+	.large-block-grid-3>li:nth-of-type(3n+1) { clear: both }
+	.large-block-grid-4>li { width: 25%; list-style: none }
+	.large-block-grid-4>li:nth-of-type(n) { clear: none }
+	.large-block-grid-4>li:nth-of-type(4n+1) { clear: both }
+	.large-block-grid-5>li { width: 20%; list-style: none }
+	.large-block-grid-5>li:nth-of-type(n) { clear: none }
+	.large-block-grid-5>li:nth-of-type(5n+1) { clear: both }
+	.large-block-grid-6>li { width: 16.66667%; list-style: none }
+	.large-block-grid-6>li:nth-of-type(n) { clear: none }
+	.large-block-grid-6>li:nth-of-type(6n+1) { clear: both }
+	.large-block-grid-7>li { width: 14.28571%; list-style: none }
+	.large-block-grid-7>li:nth-of-type(n) { clear: none }
+	.large-block-grid-7>li:nth-of-type(7n+1) { clear: both }
+	.large-block-grid-8>li { width: 12.5%; list-style: none }
+	.large-block-grid-8>li:nth-of-type(n) { clear: none }
+	.large-block-grid-8>li:nth-of-type(8n+1) { clear: both }
+	.large-block-grid-9>li { width: 11.11111%; list-style: none }
+	.large-block-grid-9>li:nth-of-type(n) { clear: none }
+	.large-block-grid-9>li:nth-of-type(9n+1) { clear: both }
+	.large-block-grid-10>li { width: 10%; list-style: none }
+	.large-block-grid-10>li:nth-of-type(n) { clear: none }
+	.large-block-grid-10>li:nth-of-type(10n+1) { clear: both }
+	.large-block-grid-11>li { width: 9.09091%; list-style: none }
+	.large-block-grid-11>li:nth-of-type(n) { clear: none }
+	.large-block-grid-11>li:nth-of-type(11n+1) { clear: both }
+	.large-block-grid-12>li { width: 8.33333%; list-style: none }
+	.large-block-grid-12>li:nth-of-type(n) { clear: none }
+	.large-block-grid-12>li:nth-of-type(12n+1) { clear: both }
+}
+
+/* The side navigation menu End */
+@-moz-document url-prefix() { }
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	::i-block-chrome, label { font-weight: normal !important}
+}
+@media only screen and (min-width:980px) and (max-width:1170px) {
+	.price-wise { margin-left: 29%}
+	.cat-select-quad .btn-quad { margin-left: 27px}
+}
+@media only screen and (min-width:1024px) and (max-width:1024px) {
+	.price-wise { margin-left: 30%}
+	.cat-select-quad .btn-quad { margin-left: 26px}
+}
+@media screen and (max-width:1024px) {
+	.report-section .search-part input[type="text"] { width: 74%}
+	.search-table { padding-top: 10px; overflow-x: auto}
+	.report-section #detailed_report_form .accordion-toggle .form-table { width: 1000px}
+	.tab-panel-modal .report-data-table { width: 1024px; max-width: unset !important}
+	.table-striped.table { width: 1000px !important; max-width: 1000px !important}
+	.dataTables_wrapper .dataTables_filter, .dataTables_paginate { padding-right: 12px}
+	.search-table-scroll { padding-bottom: 10px; height: 300px}
+	.edition-calculate, .calculation-inner-quad-2 { width: 95% !important; margin-left: 2%}
+	.calculate-box-1 select { width: 80%}
+	.cat-box.last { margin-right: 0px; padding: 0px; width: 45%; margin-left: 2%}
+	.block-title { margin-left: 3%}
+}
+@media only screen and (min-width:768px) and (max-width:900px) {
+	.report-section .search-part input[type="text"] { width: 67% }
+	.reference-num-row .last-block { padding-left: 0px}
+	.price-wise { margin-left: 25%}
+}
+@media only screen and (min-width:768px) and (max-width:768px) {
+	.price-wise { margin-left: 21%}
+	.cat-select-quad .btn-quad { margin-left: 20px}
+	.empty-field { width: 31% !important}
+}
+@media only screen and (min-width:768px) and (max-width:1024px) {
+	.package-location .cal-select { width: 14% !important}
+	.package-input { width: 14% !important}
+	.package-location .cal-select .cat-box.last { width: 45%; margin-left: 3%}
+	.location-part input[type="text"] { width: 17%}
+	.location-part select { width: 17%}
+	.calculate-box-1 { width: 48%}
+	.calculate-box-1 input[type="text"] { width: 70%}
+	.navigat_quad { margin-left: 25px}
+	ul.menu li a { padding: 27px 15px 26px 15px; font-size: 12px }
+	.cat-box { width: 94%; margin-left: 6%; margin-right: 0px }
+	.select-edition { font-size: 16px}
+}
+/*
+@media screen and (max-width:767px) {
+	.calculation-inner-quad .package-location .input-label { width: 30%}
+	.calculation-inner-quad .package-input { width: 63%; margin-right: 0px; margin-bottom: 20px}
+	.calculation-inner-quad .package-location .cal-select { width: 100%; margin-right: 0px; margin-bottom: 20px}
+	.calculation-inner-quad-2 .package-location .input-label { width: 30%}
+	.calculation-inner-quad-2 .package-input { width: 63%; margin-right: 0px; margin-bottom: 20px}
+	.calculation-inner-quad-2 .package-location .cal-select { width: 100%; margin-right: 0px; margin-bottom: 20px}
+	.cat-select-quad .btn-quad { text-align: center}
+	.packages-section { width: 100%}
+	.edition-section { width: 100%}
+	.calculate-box-1 { min-height: auto}
+	.location-part input[type="text"] { width: 17%}
+	.location-part select { width: 17%}
+	.title-calculation { font-size: 16px; margin-top: 15px}
+	.home-quad { margin: 15px 0px 0px}
+	.search-part input[type="text"] { margin-right: 0px; width: 100%; margin-bottom: 15px}
+	.form-label { width: 100%; margin-right: 0%}
+	.location-part .input-label { width: 100%; margin: 0px 0px 10px 0px}
+	.calculate-box-1 { width: 100%; margin-bottom: 25px; margin-right: 0px }
+	.id-no { margin-top: 15px}
+	.guideline-title { margin-top: 0px}
+	.sidenav { margin-top: 118px}
+	.mob-edition { }
+	.tooltips { display: block !important}
+	.button { width: 83px}
+	.packages span { display: none; width: auto}
+	.edition span { display: none; width: auto}
+	.report span { display: none; width: auto}
+	.packages i { margin-right: 0px; margin-left: 5px}
+	.edition i { margin-right: 0px; margin-left: 5px}
+	.report i { margin-right: 0px; margin-left: 8px}
+	.section-btn { float: left; width: 100%; text-align: center; padding-left: 15px; margin-bottom: 20px}
+	.section-inner { display: inline-block}
+	.button { margin-bottom: 0px; margin-right: 10px}
+	.select-cat { width: 75%}
+	.cat-box { width: 100%; margin-right: 0px}
+	.home-quad-inner { margin: 25px 0px 25px}
+	.cat-box.last { margin-top: 25px; height: auto !important; display: none !important}
+	.select-edition { font-size: 16px; display: none}
+	.cat-select-quad { padding-right: 15px}
+	.navigat_quad { display: none }
+	.home-logo { width: 100%; text-align: right}
+	.mob-menu { display: block !important}
+	.header_quad { border-bottom: solid 2px #fd665f; -webkit-box-shadow: 0px 2px 1px -1px #666; -moz-box-shadow: 0px 2px 1px -1px #666; box-shadow: 0px 2px 1px -1px #666}
+	header { top: 13px }
+	.price-wise { margin-left: 0%; position: absolute; top: 0px; width: 100%; text-align: center; left: 0px; right: 0px}
+	.login-inner-quad { width: 100% }
+*/  /* comment because design issues in page search qrn */
+	/*Report Css*/
+	/*
+	.detail-info-row .small-block-grid-2 > li { padding-bottom: 15px !important }
+	.report-section .search-part input[type="text"] { margin-bottom: 0px !important}
+	.report-section .final-deal-row { padding-left: 0px}
+	.reference-num-row .last-block { display: table; width: 100%; padding-top: 25px}
+	.report-section .search-part input[type="text"] { width: 100%}
+	.reference-num-row .button-price { margin-top: 15px}
+	.report-section .detail-info-row { padding-top: 25px}
+	.detail-info-row .last-btn { margin-top: 0px; margin-left: 0px}
+	.panel-box .check-item-box { top: 35px }
+	.col-md, .last-block { width: 100% !important}
+	.package-location .package-insert { height: 250px; overflow-y: auto }
+	.report-tab-section .panel-default > .panel-heading + .panel-collapse > .panel-body { border-top-color: #dddddd; overflow-x: scroll}
+	.nav-tabs.nav-justified > li { float: left; display: table-cell; width: 50%}
+	#report_quote_search .tab-content { padding: 10px; background: #fff; padding-right: 0px}
+	.edition-calculate, .calculation-inner-quad-2 { width: 100% !important; margin-left: 0%}
+	.block-title { position: relative; top: 0px}
+	.navigationmenulight { background-color: none !important; box-shadow: none !important; -webkit-box-shadow: none !important; box-shadow: none !important; width: auto !important}
+	.navigationmenulight .leftmenuclose::before { content: ""; position: absolute; top: 9px; left: 5px; width: 23px; height: 17px; border-top: 10px double #fff; border-bottom: 3px solid #fff}
+	.navigationmenulight .leftmenuclose { float: none; cursor: pointer; position: relative; z-index: 1; background: #b30507; display: block; width: 35px; height: 35px; padding: 5px}
+	.navigationmenulight .leftmenuclose img { float: left; display: none}
+	.header_quad { height: 70px}
+}
+*/ /* comment because design issues in page search qrn */
+@media screen and (max-width:640px) {
+	.search-table { padding-top: 10px; overflow-x: auto}
+	.search-table .form-table { width: 620px}
+	.package-location .small-block-grid-2 > li { width: 100%; display: block}
+}
+@media screen and (max-width:479px) {
+	.edition-calculate .title-theme a { }
+	.calculation-inner-quad .package-location .input-label { width: 100%; margin-right: 0px }
+	.calculation-inner-quad .package-input { width: 100%; margin-right: 0px; margin-bottom: 20px}
+	.calculation-inner-quad-2 .package-location .input-label { width: 100%; margin-right: 0px }
+	.calculation-inner-quad-2 .package-input { width: 100%; margin-right: 0px; margin-bottom: 20px}
+	.edition-calculate .panel-default { margin-bottom: 20px !important}
+	.title-calculation { font-size: 14px}
+	.radio-quad { margin-top: 0px; margin-bottomd: 0px}
+	.button-price { font-size: 13px}
+	.calculate-box-1 input[type="text"] { width: 100%}
+	.desc-box { margin-bottom: 20px}
+	.main-box-cal { margin-top: 20px}
+	.location-part input[type="text"] { width: 100%; margin-right: 0px; margin-bottom: 10px}
+	.location-part select { width: 100%; margin-right: 0px; margin-bottom: 10px}
+	.select-cat { width: 100%}
+	.price-wise img { width: 160px}
+	.price-wise { top: 4px}
+	.home-logo img { width: 70px}
+	.login-user { width: 88% }
+	.login-psw { width: 88% }
+	.mob-menu-list { height: 100% !important; padding-bottom: 10px !important}
+	.forgot-item { font-size: 12px}
+
+	/*Report Css*/
+	.detail-info-row .custom-list > li { width: 100% !important; padding-bottom: 15px !important }
+	.report-section .detail-info-row .custom-listl li { padding-bottom: 20px; width: 100%}
+	.report-section .final-deal-row .button-price { margin-top: 0px; margin-left: 0px}
+	.report-section .report-icon { display: block; text-align: left; margin-top: 20px}
+	.report-section .qrn-tree { display: block}
+	.calculate-box-1 select { width: 100%}
+	.desc-box { padding: 20px 10px 20px}
+	.title-theme { padding: 10px 10px 10px}
+}
+@media only screen and (min-width:320px) and (max-width:320px) {
+	.button-price { padding: 6px 6px 6px 6px; font-size: 12px}
+	.count-cutom-modal .final-deal-row .form-field, .count-cutom-modal .final-deal-row input.form-field[type="text"] { height: 30px !important}
+	.price-wise { top: 8px}
+	.price-wise img { width: 120px}
+	.button { margin-right: 3px}
+}
+@media only screen and (min-width:732px) and (max-width:736px) { }
+@media only screen and (min-width:412px) and (max-width:414px) { }
+@media only screen and (min-width:360px) and (max-width:360px) { }
+_:-ms-lang(x), .abc { }
+.selected-item-area { display: none}
+.package-desc .select-form-quad { margin-top: 7px}
+.package-desc .select-form-quad input[type="radio"] { margin: 0px 5px 0px 10px }
+input[type="radio"] { margin: 0px 0 0}
+.btn-wrp { float: left; width: 100% }
+.package-location { float: left; width: 100%; margin-bottom: 15px}
+.package-heading { float: left; width: 100%; color: #4d4d4d; font-size: 16px}
+.package-location .input-label { width: 64px; margin-top: 10px; margin-right: 25px; word-wrap: break-word}
+.package-location .cal-select { width: 16%; margin-right: 15px }
+.package-input { width: 16%; margin-right: 15px }
+.package-insertion { float: left; width: 100%; margin-bottom: 15px}
+.empty-field { margin-left: 6px; float: left; width: 26%}
+.calculation-quad { padding-right: 0px}
+.calculation-inner-quad { float: left; width: 100%; display: block !important}
+.calculation-inner-quad-2 { float: left; width: 100%; display: block !important}
+.titlecloseleftmenu img { width: 150px }
+
+/* Package drop down  */
+.package-list-box { background: #666; width: 130px; position: absolute; z-index: 1000; height: 140px !important; right: 0px; top: 33px; overflow-y: scroll; overflow: auto}
+.package-list-box ul { }
+.package-list-box ul li { }
+.package-list-box ul li a { font-size: 12px; color: #fff; text-align: left; float: left; width: 100%; padding: 5px 10px 5px; border-bottom: solid 1px #928e8e; position: relative; display: block}
+.package-list-box ul li a:hover { background: #d10a0d}
+
+/* Package drop down  */
+.center-quad { text-align: right}
+.sec-width { width: 83px }
+#load_div { display: none}
+.saving { opacity: 0.6; height: 100%; background-color: rgba(0, 0, 0, 0.4); position: fixed; text-align: center; width: 100%; display: block !important; z-index: 999}
+.saving > img { left: 50%; margin-left: -40px; margin-top: -40px; position: absolute; top: 50%; }
+
+.disabled {background-color: lightgray;
+    border: 1px solid #999;
+    color: #333;
+    opacity: 0.68;}
+#errorMsg {color: #1d1616;font-size: 1em; margin-bottom: 4px;margin-left: 32%;padding: 4px;position: relative;text-align: center; width:27%;}
+#trErrorMsg  {color: #FF0000;font-size: 1em; margin-bottom: 4px;padding: 4px;position: relative;text-align: center;}
+#trErrorMsgTr {color: #FF0000;font-size: 1em; margin-bottom: 4px;padding: 4px;text-align: center;}
+span#errorMsg {width: 60%;background: transparent;line-height: 45px;border: 1px dashed #ff0000;margin-top: 4px;margin: 20px 0 0 20px;width: 84%;}
+
+
+@media only screen and (min-width:768px) and (max-width:1024px) {
+.table-striped.table { width: auto !important;  max-width: inherit !important;}
+}
+@media only screen and (min-width:414px) and (max-width:736px) {
+.table-striped.table { width: auto !important;  max-width: inherit !important;}
+}
+@media only screen and (min-width:375px) and (max-width:667px) {
+.table-striped.table { width: auto !important;  max-width: inherit !important;}
+}
+@media only screen and (min-width:320px) and (max-width:568px) {
+.table-striped.table {  max-width: 400px !important;width: auto !important;}
+.dataTables_wrapper .dataTables_paginate {width: 350px;}
+.paginate_button .previous .disable{width:100% !important;text-align:left;}
+.paginate_button .next{width:100% !important;text-align:left;}
+.paging_simple_numbers span{width:100% !important;}
+.paging_simple_numbers span a:nth-child(4){display:none;}
+.paging_simple_numbers span a:nth-child(5){display:none;}
+}
+/* close btn  */
+.close-top-quad {float: left;width: 187px;background: #666;height: 25px;    position: fixed;z-index: 100;}
+.close-quad {position: absolute;right: 21px;top: -5px;}
+.close-pic {position: fixed;padding: 0px 0px 0px 0px;text-decoration: none;
+font-size: 25px;color: #d10a0d;display: block;}
+/* close btn  */
+

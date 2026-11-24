@@ -1,0 +1,51 @@
+
+A:hover {
+	TEXT-DECORATION: underline
+}
+
+.caption {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 8.5pt;
+	font-style: normal;
+	line-height: 15pt;
+	font-weight: bolder;
+	text-transform: capitalize;
+	color: #33bdd0;
+}
+.email {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	font-style: normal;
+	line-height: 12pt;
+	font-weight: bold;
+	text-transform: lowercase;
+	color: #838689;
+}
+.addressJunglee {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	font-style: normal;
+	line-height: 11pt;
+	font-weight: bold;
+    color: #838689;
+}	
+
+.JPname {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: bold;
+	color: #ff6633;
+	text-transform: capitalize;
+	text-decoration: none;
+	}
+.JPdesignation {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-style: normal;
+	font-weight: bold;
+	text-transform: capitalize;
+	color: #ff6633;
+	text-decoration: none;
+}
+
